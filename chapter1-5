@@ -1785,3 +1785,403 @@
 //	//cout << 'a' - 'A' << endl;//32
 //	system("pause");
 //}
+
+////团体队列
+//#include <iostream>
+//#include <queue>
+//#include <map>
+//#include <string>
+//using namespace std;
+//const int maxn = 1000;
+//int main() {
+//	int tn;
+//	while (cin >> tn) {
+//		if (tn == 0) {
+//			break;
+//		}
+//		map<int, int> team;
+//		for (int i = 0; i < tn; i++) {
+//			//cout << "i：" << i << endl;
+//			int n1;
+//			cin >> n1;
+//			int num;
+//			for (int j = 0; j < n1; j++) {
+//				cin >> num;
+//				team[num] = i;
+//				//cout << "j：" << j << endl;
+//			}
+//		}
+//		queue<int> q, q2[maxn];//队列要放到while前面 注意作用域！
+//		while (true) {
+//			string op;
+//			cin >> op;
+//			if (op[0] == 'S') {
+//				break;
+//			}
+//			else if (op[0] == 'E') {
+//				int x;
+//				cin >> x;
+//				int t = team[x];
+//				//cout <<"q2.size:"<<q2[t].size()<< "empty: " << q2[t].empty() << endl;
+//				if (q2[t].empty()) {
+//					q2[t].push(x);
+//					q.push(t);
+//					//cout << "team: " << t << " " << q2[t].front() <<"q: "<<q.front() << endl;
+//				}
+//				else {
+//					//cout << "hhh" << endl;
+//					q2[t].push(x);
+//				}
+//			}
+//			else if (op[0] == 'D') {
+//				int temp_t, temp_m;
+//				temp_t = q.front();
+//				temp_m = q2[temp_t].front();
+//				cout << temp_m << endl;
+//				q2[temp_t].pop();
+//				if (q2[temp_t].empty()) {
+//					q.pop();
+//				}
+//			}
+//		}
+//
+//	}
+//
+//}
+
+
+////丑数（优先队列） 
+//#include <iostream>
+//#include <queue>
+//#include <set>
+//using namespace std;
+//typedef long long LL;
+//const int t[3] = { 2,3,5 };
+//int main() {
+//	priority_queue<LL, vector<LL>, greater<LL>> pq;//priority_queue< int , vector<int> , greater<int> > que;  priority_queue里的数据类型是int，它是用vector<int>作为底层容器实现，并且用系统提供的greater函数作为比较标准
+//	set<LL> s;
+//	pq.push(1);
+//	s.insert(1);
+//	//int cnt = 1;
+//	//法一 标答方法
+//	//for (int i = 1;; i++) {//i用于计数 一开始就等于1  因为1在优先队列里了 
+//	//	LL temp = pq.top();//注意所有用到的int包括中间结果 都要用long long
+//	//	pq.pop();//取完值就删掉
+//	//	if (i == 1500) {//因为每个循环都必须经过取top() 相当于取了多少次top就有几个数
+//	//		cout << temp << endl;
+//	//		break;
+//	//	}
+//	//	for (int j = 0; j < 3; j++) {
+//	//		LL n = temp * t[j];//注意所有用到的int包括中间结果 都要用long long
+//	//		if (!s.count(n)) {
+//	//			cout << n << endl;
+//	//			pq.push(n);
+//	//			s.insert(n);
+//	//			//cnt++;
+//	//		}
+//	//	}
+//	//}
+//
+//	//法二
+//	int cnt = 1;
+//	while (1) {
+//		LL temp = pq.top();
+//		pq.pop();
+//		if (cnt == 1500) {
+//			cout << temp << endl;
+//		}
+//		cnt++;//放在判断条件后面 因为初始化为1 弹出一个数字加1 直到弹到第1500个数字
+//		for (int i = 0; i < 3; i++) {
+//			LL x = temp * t[i];
+//			if (!s.count(x)) {
+//				pq.push(x);
+//				s.insert(x);
+//			}
+//		}
+//	}
+//	system("pause");
+//}
+
+////随机数的生成 assert
+//#include <vector>
+//#include <algorithm>
+//#include <assert.h>
+//#include <iostream>
+//using namespace std;
+//void fill_random_int(vector<int>& v, int cnt) {//参数为引用  避免不必要的值被复制
+//	v.clear();
+//	for (int i = 0; i < cnt; i++) {
+//		v.push_back(rand());
+//	}
+//}
+//void test_sort(vector<int>& v) {
+//	sort(v.begin(), v.end());
+//	for (int i = 0; i < v.size()- 1; i++) {
+//		assert(v[i] <= v[i + 1]);
+//	}
+//}
+//int main() {
+//	vector<int> v;
+//	fill_random_int(v, 10);
+//	test_sort(v);
+//	cout << "hhh";
+//	system("pause");
+//	return 0;
+//}
+
+////取一个数的各个位的值 记住
+//#include <iostream>
+//#include <vector>
+//using namespace std;
+//static const int BASE = 10;
+//int main() {
+//	int n;
+//	vector<int> v;
+//	cin >> n;
+//	do {
+//		v.push_back(n % BASE);
+//		//cout << n % BASE << endl;
+//		n = n / BASE;
+//	} while (n > 0);
+//	//cout << v.size();
+//	for (int i = v.size()-1; i >= 0; i--) {
+//		//cout << "1";
+//		cout << v[i];
+//	}
+//	system("pause");
+//}
+
+//5-8 记住如何计算行和列
+//#include <iostream>
+//#include <string>
+//#include <vector>
+//#include <algorithm>
+//using namespace std;
+//const int len = 60;
+//
+//
+//void stadard_print(string s, int len, char c) {
+//	for (int i = 0; i < len; i++) {
+//		if (i < s.length()) {
+//			cout << s[i];
+//		}
+//		else {
+//			cout << c;
+//		}
+//	}
+//}
+//int main() {
+//	int n;
+//	while (cin >> n) {
+//		vector<string> v;
+//		int maxv = 0;//这里是局部变量 如果作为全局变量 当之前一轮中有很大的 后面就不变了
+//		for (int i = 0; i < n; i++) {
+//			//cout << "hhh" << endl;
+//			string s;
+//			cin >> s;
+//			v.push_back(s);
+//
+//			maxv = max(maxv, (int)v[i].size());//注意要加（int）
+//		}
+//		cout << "maxv: " << maxv << endl;
+//		sort(v.begin(), v.end());
+//		int col = (len - maxv) / (maxv + 2) + 1; //(len - maxv)因为最后一列不需要+2  所以要减去 之后再加最后一列
+//		int row = n / col + 1;//存疑  答案是 （n - 1） / col + 1
+//		for (int i = 0; i < len; i++) {
+//			cout << '-';
+//		}
+//		cout << endl;
+//		for (int r = 0; r < row; r++) {
+//			for (int c = 0; c < col; c++) {
+//				int  index = c * row + r;
+//				if (index < v.size()) {//这里要加判断条件 否则数组越界了
+//					stadard_print(v[index], c == (col - 1) ? maxv : (maxv + 2), ' ');
+//				}
+//			}
+//			cout << endl;
+//		}
+//	}
+//
+//
+//	system("pause");
+//}
+
+////5-9
+////map：
+////
+////优点：
+////
+////有序性，这是map结构最大的优点，其元素的有序性在很多应用中都会简化很多的操作
+////红黑树，内部实现一个红黑书使得map的很多操作在lgn的时间复杂度下就可以实现，因此效率非常的高
+////缺点： 空间占用率高，因为map内部实现了红黑树，虽然提高了运行效率，但是因为每一个节点都需要额外保存父节点、孩子节点和红 / 黑性质，使得每一个节点都占用大量的空间
+////
+////适用处：对于那些有顺序要求的问题，用map会更高效一些
+////
+////unordered_map：
+////
+////优点： 因为内部实现了哈希表，因此其查找速度非常的快
+////缺点： 哈希表的建立比较耗费时间
+////适用处：对于查找问题，unordered_map会更加高效一些，因此遇到查找问题，常会考虑一下用unordered_map
+//
+//#include<iostream>
+//#include<map>
+//#include<string>
+//#include<unordered_map>
+//using namespace std;
+//int main() {
+//	int n, m;
+//	while (cin >> n >> m) {
+//		string nonsense;
+//		getline(cin, nonsense);//输入n和m的时候敲了回车 相当于第一次执行下面的getline 得到的字符串是回车 所以先用一个符号存无用的回车
+//
+//		//cout << "n: " << n << " m: " << m << endl;
+//		//第1列中1、2行字符串相同，在unordered_map<string,vector<int>>存储形式为{"Michael",{1,2}}。
+//		//共有m列，所以可以定义vector<unordered_map<string, vector<int>>>columns(m)来存储每一列的信息。
+//		//vector<int> ilist4(7) 默认值初始化，ilist4中将包含7个元素，每个元素进行缺省的值初始化，对于int，也就是被赋值为0，因此ilist4被初始化为包含7个0。当程序运行初期元素大致数量可预知，而元素的值需要动态获取的时候，可采用这种初始化方式。
+//		vector<unordered_map<string, vector<int>>> columns(m);
+//		for (int i = 0; i < n; i++) {
+//			string line;
+//			string temp = "";
+//			//system("pause");
+//			getline(cin, line);//这里执行第一次的时候line存的是回车；
+//			//cout << line << endl;
+//			//cout << "temp.size(): " << temp.size() << endl;
+//
+//			for (int j = 0, k = 0; j <= line.size(); j++) {//j用于遍历line，k表示列号 j <= line.size()要取等 因为下面判断分割的时候取等了 否则少最后一列
+//				if (j == line.size() || line[j] == ',') {
+//					columns[k++][temp].push_back(i);//表示第k列的temp字符串对应的行号，行号键值对应的value
+//					//cout << "temp: " << temp << endl;
+//					temp = "";
+//				}
+//				else {
+//					temp += line[j];
+//				}
+//				//cout <<"len: "<< line.size() << "j: " << j << endl;
+//			}
+//			//cout << "i: " << i << endl;
+//			//cout << "n: " << i << endl;
+//		}
+//		/*for (int i = 0; i < columns.size(); i++) {
+//			cout << columns[i] << endl;
+//		}*/
+//		//cout << "hhh" << endl;
+//		/*接着定义一个map<pair<int, int>, int>rows，具体使用方法是：
+//		遍历整个columns，针对第一组输入数据，遍历到columns[1]时，columns[1]中含有元素{ "Michael",{ 1,2 } }，
+//		以columns[1]的值{ 1,2 }作键，以列号1作值，将{ { 1,2 },1（这里的1指的是列号） }放入rows中。
+//		接着遍历到columns[2]时，columns[2]含有元素{ "michael@neerc.ifmo.ru",{ 1,2 } }，而rows中已经有{ 1,2 }这个键了，
+//		我们便找到了满足要求的r1，r2，c1，c2，即1, 2, 1, 2（这里的行号列号均由0开始，输出时都要加1）
+//		*/
+//		map<pair<int, int>, int> rows;
+//		bool flag = false;
+//		for (int i = 0; i < columns.size(); i++) {//遍历每一列
+//			/*for循环中的每个迭代初始化一个新的引用
+//			 for (auto &c : s)
+//			 c = toupper(c);
+//			 等价于：
+//			 for (auto it = s.begin(); it != s.end(); ++it)
+//			 {
+//			 auto &c = *it;
+//			 c = toupper(c);
+//			 }
+//			*/
+//			//cout << "i： " << i << endl;
+//			for (auto &j : columns[i]) {//遍历每列中的各个元素 是unorder_map对象,i指列号
+//				//cout << "size: " << j.second.size() << endl;
+//				if (j.second.size() > 1) {//一列当中字符串至少出现了两次
+//
+//					for (int k1 = 0; k1 < j.second.size(); k1++) {
+//						for (int k2 = k1 + 1; k2 < j.second.size(); k2++) {
+//							//cout << "k1: " << k1 << " k2: " << k2 << endl;
+//							pair<int, int> p = make_pair(j.second[k1], j.second[k2]);
+//							//用find函数来定位数据出现位置，它返回的一个迭代器，当数据出现时，它返回数据所在位置的迭代器，如果map中没有要查找的数据，它返回的迭代器等于end函数返回的迭代器
+//							if (rows.find(p) != rows.end()) {
+//								cout << "NO" << endl;
+//								cout << p.first + 1 << " " << p.second + 1 << endl;//一列里面的行坐标
+//								cout << rows[p] + 1 << " " << i + 1 << endl;// rows[p] + 1是已经存在的一对行号对应的列号  i+1是和存在的匹配的第二个列号
+//								flag = true;
+//								break;
+//							}
+//							else {
+//								rows.insert({ p, i });//p指行号，i指列号
+//							}
+//						}
+//					}
+//				}
+//				
+//			}
+//		}
+//		if (!flag) {
+//			cout << "YES" << endl;
+//			flag = false;
+//		}
+//	}
+//	system("pause");
+//}
+
+//#include<iostream>
+//#include<map>
+//#include<string>
+//#include<unordered_map>
+//using namespace std;
+//int main() {
+//	int n, m;
+//	while (cin >> n >> m) {
+//		string nonsense;
+//		getline(cin, nonsense);
+//
+//		vector<unordered_map<string, vector<int>>> cols(m);
+//		for (int i = 0; i < n; i++) {
+//			string line;
+//			string temp = "";
+//			getline(cin, line);
+//			int k = 0;//k放外面 累加功能
+//			for (int j = 0; j <= line.size(); j++) {
+//				if (j == line.size() || line[j] == ',') {
+//					cols[k][temp].push_back(i);
+//					k++;
+//					//cout << "temp: " << temp << endl;
+//					temp = "";
+//				}
+//				else {
+//					temp.push_back(line[j]);
+//				}
+//			}
+//		}
+//		bool flag = false;
+//
+//		map<pair<int, int>, int> rows;
+//		//cout << "col" << cols.size() << endl;
+//		for (int i = 0; i < cols.size(); i++) {
+//			//cout << "i: " << i << endl;
+//			for (auto &j : cols[i]) {
+//				//cout << "j.second.size(): " << j.second.size() << endl;
+//				if (j.second.size() > 1) {
+//					//cout << "i: " << i << endl;
+//					for (int k1 = 0; k1 < j.second.size(); k1++) {
+//						for (int k2 = k1 + 1; k2 < j.second.size(); k2++) {
+//							pair<int, int> p;
+//							p = make_pair(j.second[k1], j.second[k2]);
+//							if (rows.find(p) != rows.end()) {
+//								cout << "NO" << endl;
+//								cout << p.first + 1 << " " << p.second + 1 << endl;
+//								cout << rows[p] + 1 << " " << i + 1 << endl;
+//								flag = true;
+//								break;
+//							}
+//							else {
+//								//rows.insert({ p,i });
+//								rows[p] = i;
+//								//cout << "insert i: " << i << endl;
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}
+//		if (!flag) {
+//			cout << "YES" << endl;
+//		}
+//	}
+//	system("pause");
+//}
+
