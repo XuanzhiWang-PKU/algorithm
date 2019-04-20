@@ -2185,3 +2185,1381 @@
 //	system("pause");
 //}
 
+//6-2
+//#include<iostream>
+//#include<stack>
+//using namespace std;
+//const int maxn = 100;
+//int main() {
+//	int n;
+//
+//	while (cin >> n) {
+//		int tar[maxn];
+//		memset(tar, 0, sizeof(tar));
+//		int flag = 1;
+//		for (int i = 1; i <= n; i++) {
+//			int temp;
+//			cin >> temp;
+//			tar[i] = temp;
+//			//cout << temp << endl;
+//		}
+//
+//		/*for (int i = 1; i <= n; i++) {
+//			cout << tar[i] << " ";
+//		}*/
+//
+//		stack<int> s;
+//		int a = 1, b = 1;
+//		while (b <= n) {
+//			//cout << "a:" << a << " b: " << b << endl;
+//			if (a == tar[b]) {
+//				//cout << "a->b" << endl;
+//				a++;
+//				b++;
+//			}
+//			else if ((!s.empty()) && (s.top() == tar[b])) {
+//				//cout << "c->b" << endl;
+//				b++;
+//				s.pop();
+//			}
+//			else if (a <= n) {
+//				//cout << "a->c" << endl;
+//				s.push(a);//先把a放进去了再自加
+//				a++;
+//				//cout << "top: " << s.top() << endl;
+//			}
+//			else {
+//				flag = 0;
+//				break;
+//			}
+//			//cout << "hhh" << endl;
+//		}
+//		if (flag) {
+//			cout << "YES";
+//		}
+//		else {
+//			cout << "NO";
+//		}
+//	}
+//	system("pause");
+//}
+
+////栈对于表达式求值有着特殊的作用。
+////遇到字母时入栈，遇到右括号时出栈并计算，然后结果入栈。
+////因为输入保证合法，括号无须入栈。
+//#include<iostream>
+//#include<stack>
+//#include<string>
+//using namespace std;
+//struct Matrix {
+//	int a, b;
+//	Matrix(int a = 0, int b = 0) :a(a), b(b) {}
+//}m[26];
+//stack<Matrix> s;
+//int main() {
+//	int n;
+//	cin >> n;
+//
+//	for (int i = 0; i < n; i++) {
+//		char c;
+//		cin >> c;
+//		int k = 'A' - c;
+//		cin >> m[k].a >> m[k].b;
+//	}
+//
+//	string op;
+//
+//	while (cin >> op) {
+//		int tot = 0;
+//		int len = op.length();
+//		bool flag = true;
+//		for (int i = 0; i < len; i++) {
+//
+//			if (isalpha(op[i])) {
+//				int k = 'A' - op[i];
+//				s.push(m[k]);
+//			}
+//			if (op[i] == ')') {
+//				int a, b, c, d;
+//				a = s.top().a;
+//				b = s.top().b;
+//				s.pop();
+//				c = s.top().a;
+//				d = s.top().b;
+//				if (a != d) {
+//					cout << "error" << endl;
+//					flag = false;
+//					break;
+//				}
+//				else {
+//					int temp = (a * b)*c;
+//					tot = tot + temp;
+//					s.pop();
+//					s.push(Matrix(c, b));
+//				}
+//			}
+//		}
+//		if (flag) {
+//			cout << tot << endl;
+//		}
+//	}
+//	system("pause");
+//}
+
+//#include <iostream>
+//using namespace std;
+//
+//const int maxn = 1000;
+//int last, current;//其中next[i]是s[i]连的下一个字符的编号
+//int nxt[maxn];
+//int main() {
+//	char c[maxn];
+//	char ch;
+//	int len = 0;
+//	while (cin >> ch) {
+//		len++;
+//		c[len] = ch;
+//
+//		nxt[0] = 0;
+//		last = 0;
+//		current = 0;
+//		//cout << "len: " << len << endl;
+//		for (int i = 1; i <= len; i++) {
+//			cout << "c[i]: " << c[i] << endl;
+//			if (c[i] == '[') {
+//				current = 0;
+//			}
+//			else if (c[i] == ']') {
+//				current = last;
+//			}
+//			else {
+//				nxt[i] = nxt[current];
+//				nxt[current] = i;
+//				if (last == current) {
+//					last = i;
+//				}
+//				current = i;
+//			}
+//		}
+//
+//		//for (int i = nxt[0]; nxt[i] != 0; i = nxt[i]) {
+//		//	cout << "next[i]: " << nxt[i] << endl;
+//
+//		//	//cout << c[nxt[i]];
+//		//}
+//		//如果next[i]=0，说明不知道这个节点连哪个下一个节点，如果全部插入完节点，遇到next[i]=0，就意味着这个链表已经结束 
+//		for (int i = nxt[0]; i != 0; i = nxt[i]) {
+//			//cout << "next[i]: " << nxt[i] << endl;
+//
+//			cout << c[i];
+//		}
+//		cout << endl;
+//	}
+//	system("pause");
+//
+//}
+
+////二叉树，不难发现，对于一个结点k，其左子结点、右子结点的编号分别是2k和2k + 1。
+////给定一棵包含2d个结点（其中d为树的高度）的完全二叉树，如果把结点从上到下从左到右编号为1, 2, 3……，则结点k的左右子结点编号分别为2k和2k + 1。
+////当I是奇数时，它是往左走的第(I+1)/2个小球；当I是偶数时，她是往右走的第I/2个小球。这样，可以直接模拟最后一个小球的路线：
+//#include<iostream>
+//using namespace std;
+//int main() {
+//	int D, I;
+//	while (cin >> D >> I) {
+//		int k = 1;
+//		for (int i = 1; i < D;i++) {//只用走d-1次
+//			if (I % 2 == 0) {//偶数往右走
+//				I = I / 2;
+//				k = 2 * k + 1;
+//			}
+//			else {
+//				I = I / 2 + 1;
+//				k = k * 2;
+//			}
+//		}
+//		cout << k << endl;
+//	}
+//	system("pause");
+//}
+//
+////递归定义：二叉树是n(n>=0)个有限结点构成的集合。N=0称为空二叉树；n>0的二叉树由一个根结点和两互不相交的，分别称为左子树和右子树的二叉树构成。
+////二叉树中任何结点的第1个子树称为其左子树，左子树的根称为该结点的左孩子；二叉树中任何结点的第2个子树称为其右子树，
+//#include <iostream>
+//#include <string>
+//#include <sstream>
+//#include <vector>
+//#include <queue>
+//using namespace std;
+//struct Node
+//{
+//	int value;
+//	int have_v;
+//	Node *lch;
+//	Node *rch;
+//	Node() :have_v(0), lch(NULL), rch(NULL) {};
+//};
+//
+//Node* root = new Node();
+////Node* root;
+//Node* newnode() {
+//	return new Node();
+//}
+//void freenode(Node *u) {
+//	if (u == NULL) {
+//		return;
+//	}
+//	free(u->lch);
+//	free(u->rch);
+//	delete u;
+//}
+//bool addnode(int v, string op) {
+//	int len = op.length();
+//	//cout << "len: " << len << endl;
+//
+//	//root = new Node();
+//	Node* u = root;
+//	for (int i = 0; i < len; i++) {
+//		//cout << "i: " << i << endl;
+//		if (op[i] == 'L') {
+//			//cout << "u->lch: " << u->lch << endl;
+//			if (u->lch == NULL) {
+//				//cout << "L" << endl;
+//				u->lch = newnode();
+//			}
+//			u = u->lch;
+//		}
+//		if (op[i] == 'R') {
+//			if (u->rch == NULL) {
+//				u->rch = newnode();
+//			}
+//			u = u->rch;
+//		}
+//	}
+//	if (!u->have_v) {
+//		u->have_v = 1;
+//		u->value = v;
+//		//cout << "u->value: " << u->value << "u->have_v: " << u->have_v<<endl;
+//	}
+//	else {
+//		return false;
+//	}
+//	//system("pause");
+//	return true;
+//}
+//void readtree() {
+//	string line;
+//	getline(cin, line);
+//	stringstream ss(line);
+//	//cout << "1" << endl;
+//	string op;
+//	while (ss >> op) {
+//		//cout << op << endl;
+//		//system("pause");
+//		if (op == "()") {
+//			break;
+//		}
+//		else {
+//
+//			int k = 1;
+//			int v = 0;
+//			while (isalnum(op[k])) {
+//				//cout << "op[k]: " << op[k] << endl;
+//				v = v * 10 + op[k] - '0';
+//				k++;
+//				/*cout << "v: " << v << endl;
+//				system("pause");*/
+//			}
+//			//cout << "k: " << op[k] << endl;
+//
+//			//k = 1;
+//			/*while (op[k] != ',') {
+//				cout << "k: " << op[k] << endl;
+//				k++;
+//				system("pause");
+//			}*/
+//			/*cout << "k +1 : " << k+1 << " op.length() - k - 1: " << op.length() - k - 1 << endl;
+//			system("pause");*/
+//			string op2 = op.substr(k + 1, op.length() - k - 1);
+//			//cout << "op2: " << op2 << endl;
+//			//system("pause");
+//			addnode(v, op2);
+//		}
+//	}
+//	//system("pause");
+//}
+//
+//bool bfs(vector<int> &ans) {
+//	//cout << "root->value: " << root->value <<" root->have_v: "<< root->have_v << endl;
+//	queue<Node *> q;
+//	q.push(root);
+//	while (!q.empty()) {
+//		//cout << "1" << endl;
+//		Node *u = q.front();
+//		q.pop();
+//		if (!u->have_v) {
+//			//cout << "false" << endl;
+//			return false;
+//		}
+//		ans.push_back(u->value);
+//
+//		if (u->lch) {
+//			//cout << "q.push(u->lch)" << endl;
+//			q.push(u->lch);
+//		}
+//		if (u->rch) {
+//			//cout << "q.push(u->rch)" << endl;
+//			q.push(u->rch);
+//		}
+//
+//	}
+//	return true;
+//	system("pause");
+//}
+//int main() {
+//	while (true) {
+//		//freenode(root);//加了会报错
+//		cout << "hhh" << endl;
+//
+//		readtree();
+//		vector<int> ans;
+//		ans.clear();
+//		if (bfs(ans)) {
+//			for (int i = 0; i < ans.size(); i++) {
+//				cout << ans[i] << " ";
+//			}
+//		}
+//		else {
+//			cout << "-1" << endl;
+//		}
+//	}
+//
+//	system("pause");
+//	return 0;
+//}
+
+////abbortt的复仇
+//#include<cstdio>
+//#include<cstring>
+//#include<vector>
+//#include<queue>
+//#include<iostream>
+//#include <string>
+//using namespace std;
+//
+//struct Node {
+//	int r, c, dir; // 位于(r,c)朝向dir(0~3表示四个方向N, E, S, W)
+//	Node(int r = 0, int c = 0, int dir = 0) :r(r), c(c), dir(dir) {}
+//};
+//
+//const int maxn = 10;
+//const char* dirs = "NESW"; // 顺时针旋转。 
+//const char* turns = "FLR";//“三种转弯方式”。 
+//
+//int has_edge[maxn][maxn][4][3];// 表示当前状态（r，c，dir），是否可以沿着转弯方向[trun]行走。 
+//int d[maxn][maxn][4];          //表示初始状态到（r，c，dir）的最短路长度。 
+//Node p[maxn][maxn][4];          //同时用p[r][c][dir]保存了状态(r, c, dir)在BFS树中的父结点。 
+//int r0, c0, dir, r1, c1, r2, c2;
+//
+////把四个方向和3种“转弯方式”编号0~3和0~2. 
+//int dir_id(char c) { return strchr(dirs, c) - dirs; }
+//int turn_id(char c) { return strchr(turns, c) - turns; }
+////用于转弯。 
+//const int dr[] = { -1, 0, 1, 0 };//顺序是N E S W
+//const int dc[] = { 0, 1, 0, -1 };
+//
+//Node walk(const Node& u, int turn) {
+//	int dir = u.dir;                    //直行， 方向不变 
+//	if (turn == 1) dir = (dir + 3) % 4; // 逆时针 ，转向 因为原来的dirs数组是按照顺时针排列的
+//	if (turn == 2) dir = (dir + 1) % 4; // 顺时针 ，转向 
+//	return Node(u.r + dr[dir], u.c + dc[dir], dir);//下一步可能的状态 
+//}
+//
+////判断是否出界 
+//bool inside(int r, int c) {
+//	return r >= 1 && r <= 9 && c >= 1 && c <= 9;
+//}
+//
+////读取r0，c0，dir，并计算出r1，c1， 然后读入has_edge数组。 
+//bool read_case() {
+//	char s[99], s2[99];
+//	//if (scanf_s("%s%d%d%s%d%d", s, &r0, &c0, s2, &r2, &c2) != 6) return false;
+//	cin >> s >> r0 >> c0 >> s2 >> r2 >> c2;//s表示这个案例的名字
+//	printf("%s\n", s);
+//
+//	//system("pause");
+//	dir = dir_id(s2[0]);//得到s2在dirs中的下标
+//	r1 = r0 + dr[dir];//按照下标的方向走一步
+//	c1 = c0 + dc[dir];
+//
+//	memset(has_edge, 0, sizeof(has_edge));
+//	for (;;) {
+//		int r, c;
+//		//scanf_s("%d", &r);
+//		cin >> r;
+//		if (r == 0) break;
+//		//scanf_s("%d", &c);
+//		cin >> c;
+//		//cout << "r: " << r << " c: " << c << endl;
+//		//system("pause");
+//		string str;
+//		while (cin >> str) {
+//			if (str[0] == '*') {
+//				//cout << "read *" << endl;
+//				break;
+//			}
+//			for (int i = 1; i < str.size(); i++) {
+//				//cout <<"  dir_id(str[0]): " << dir_id(str[0]) << "  turn_id(str[i]): " << turn_id(str[i]) << endl;
+//				has_edge[r][c][dir_id(str[0])][turn_id(str[i])] = 1;//取字符串的第一个字符为方向  后面遍历得转向
+//				//cout << "hhh" << endl;
+//			}
+//		}
+//		//cout << "str: " << str << endl;
+//		//system("pause");
+//	}
+//	return true;
+//}
+//
+//void print_ans(Node u) {
+//	// 从目标结点逆序追溯到初始结点。 
+//	vector<Node> nodes;
+//	for (;;) {
+//		nodes.push_back(u);
+//		if (d[u.r][u.c][u.dir] == 0) break;
+//		u = p[u.r][u.c][u.dir];//往回追溯
+//	}
+//	nodes.push_back(Node(r0, c0, dir));
+//
+//	//打印解， 每行 10 个。 
+//	int cnt = 0;
+//	for (int i = nodes.size() - 1; i >= 0; i--) {
+//		if (cnt % 10 == 0) printf(" ");
+//		printf(" (%d,%d)", nodes[i].r, nodes[i].c);
+//		if (++cnt % 10 == 0) printf("\n");
+//	}
+//	if (nodes.size() % 10 != 0) printf("\n");
+//}
+//
+////BFS主过程。 
+//void solve() {
+//	queue<Node> q;
+//	memset(d, -1, sizeof(d)); //d表示初始状态到（r，c，dir）的最短路长度。
+//	Node u(r1, c1, dir);//r1,c1,dir是r0,c0朝着dir方向走一步的坐标  新建一个NODE并初始化
+//	d[u.r][u.c][u.dir] = 0;
+//	q.push(u);
+//	while (!q.empty()) {
+//		Node u = q.front(); q.pop();
+//		if (u.r == r2 && u.c == c2) { print_ans(u); return; }//到达目的地 
+//		for (int i = 0; i < 3; i++) {//所有可能的转向，（直行，逆时针转， 顺时针转） 
+//			Node v = walk(u, i);      //下一步的状态 
+//			//从这一步是否可以达到下一步，下一步是否出界， 下一步是否被走过（同方向）。 
+//			if (has_edge[u.r][u.c][u.dir][i] && inside(v.r, v.c) && d[v.r][v.c][v.dir] < 0) {
+//				d[v.r][v.c][v.dir] = d[u.r][u.c][u.dir] + 1;//最短长度加 1. 
+//				p[v.r][v.c][v.dir] = u;//记录父结点。 
+//				q.push(v);
+//			}
+//		}
+//	}
+//	printf("  No Solution Possible\n");//走了所有可以走的可能， 无法到达终点。 
+//}
+//
+//int main() {
+//	while (read_case()) {
+//		solve();
+//	}
+//	return 0;
+//}
+
+//#include<stdio.h> 
+//#include<stdlib.h> 
+//#include<string> 
+//#include<math.h> 
+//#include<iostream>
+//
+//using namespace std;
+//#define max 100+5 
+//int c[max], topo[max], t, n, G[max][max];
+////如G[1,2] 从1指向2的有向线段 
+//int dfs(int u)
+//{
+//	int v;
+//	c[u] = -1; //访问标志，-1为正在访问，0是未访问，1是已经访问
+//	for (v = 1; v <= n; v++) //看的是与你比较的v 有无再次访问到 
+//		if (G[u][v])
+//		{
+//			if (c[v] < 0) return 0; // 如果再次访问到一个在c中被标记为-1的结点就说明存在一个有向环
+//			else if (!c[v] && !dfs(v)) return 0; //v没被访问过 用dfs递归 如果返回0表示失败 
+//
+//
+//		}
+//	c[u] = 1;
+//	/*每次DFS在访问完一个结点后把它加到当前拓扑序首部，因为只能保证向后已经访问完，我们不知道开始DFS的
+//	结点是否有父结点，所以如果前面还有结点肯定都比现在访问到的这些结点要小必须放在它们前面。*/
+//	topo[t--] = u;
+//	cout <<"t: "<<t+1 << " u: " << u << endl;
+//	
+//	return 1;
+//}
+//int toposort()
+//{
+//	int i;
+//	t = n;//t表示节点个数
+//	memset(c, 0, sizeof(c));
+//	//-1的结点就说明存在一个有向环，0表示这个结点还未被访问，它的子孙有没有被访问不知道，因为有可能从它的子孙开始DFS，1表示这个结点以及它的子孙已经被访问过
+//	for (i = 1; i <= n; i++)//遍历所有节点
+//		if (!c[i]) {//如果该节点没有被访问
+//			if (!dfs(i))//如果不存在拓扑结构
+//			{
+//				return 0;
+//			}
+//		}
+//	return 1;
+//}
+//int main()
+//{
+//	int m, i;
+//	while (cin >> n >> m, n || m)//n个数 m组操作
+//	{
+//		int u, v;
+//		memset(G, 0, sizeof(G));
+//		for (i = 0; i < m; i++)
+//		{
+//			cin >> u >> v;
+//			G[u][v] = 1;
+//		}
+//		if (toposort())
+//		{
+//			for (i = 0; i < n - 1; i++)
+//				printf("%d ", topo[i]);
+//			printf("%d\n", topo[i]);
+//		}
+//	}
+//	return 0;
+//}
+
+//#include<iostream>
+//using namespace std;
+//const int maxn = 100;
+//int G[maxn][maxn];
+//int c[maxn];//记录节点是否被走过
+//int n, m;
+//int ans[maxn];
+//int cnt;
+//bool dfs(int u) {
+//	c[u] = -1;
+//	for (int v = 1; v <= n; v++) {//节点编号是1-n
+//		if (G[u][v] == 1) {
+//			if (c[v] == -1) {
+//				return 0;
+//			}
+//			else if (c[v] == 0) {
+//				if (!dfs(v)) {
+//					return 0;
+//				}
+//			}
+//		}
+//
+//	}
+//	c[u] = 1;
+//	ans[--cnt] = u;
+//	cout << "cnt: " << cnt << " u: " << u << endl;
+//	return 1;
+//}
+//bool topo() {
+//	memset(c, 0, sizeof(c));
+//	cout << "hhh" << endl;
+//	for (int i = 1; i <= n; i++) {
+//		cout << "c[i]: " << c[i] << endl;
+//		if (!c[i]) {
+//			if (!dfs(i)) {
+//				return 0;
+//			}
+//		}
+//	}
+//	return 1;
+//}
+//int main() {
+//
+//	while (cin >> n >> m) {
+//		if (n == 0 && m == 0) {
+//			break;
+//		}
+//		cnt = n;
+//		int u, v;
+//		memset(G, 0, sizeof(G));
+//		for (int i = 0; i < m; i++) {
+//			cin >> u >> v;
+//			G[u][v] = 1;
+//		}
+//
+//		if (topo()) {
+//			for (int i = 0; i < n ; i++) {
+//				cout << ans[i] << " ";
+//				//system("pause");
+//			}
+//		}
+//	}
+//}
+
+
+////G is the graph; vis tells us whether a path has been visited; n is the number of nodes
+//void eulerPath(int u) {
+//	for (int v = 0; v < n; v++) {
+//		if (G[u][v] && vis[u][v] == 0) {
+//			vis[u][v] = 1;
+//			//Since this is a undirected graph, severe the connection at both directions
+//			vis[u][v] = vis[v][u];
+//			eulerPath(v);
+//			System.out.println(u + " " + v + "\n");
+//		}
+//	}
+//}
+
+//#include <iostream>
+//#include <string.h>
+//#include <stdio.h>
+//#define MM(x) memset(x,0,sizeof(x))
+//using namespace std;
+//const int maxn = 26;
+//int cotIn[maxn], cotOut[maxn], visit[maxn], G[maxn][maxn];
+//void init() {//初始化
+//	MM(cotIn); MM(cotOut); MM(visit); MM(G);
+//}
+//void dfs(int u) {//深搜
+//	visit[u] = 1;
+//	for (int v = 0; v < maxn; v++) {
+//		if (G[u][v] && !visit[v]) dfs(v);
+//	}
+//}
+////思路：判断有向图是否为欧拉回路：
+////
+////前提条件：
+////
+////（1）最多只能有两个点的入度不等于出度，而且必须是其中一个点的出度恰好比入度大1（把它作为起点），另一个的入度比出度大1（把它作为终点）。
+////
+////（2）在忽略边的方向后，图必须是连通的。（dfs判断即可）
+//bool judge() {//判断是否为欧拉回路
+//	int recIn = 0, recOut = 0, flag = 1;
+//	//条件1
+//	for (int i = 0; i < maxn; i++) {//遍历26个字母
+//		if (cotIn[i] == cotOut[i]) continue;//出度与入度相等不用管
+//		if (cotIn[i] - cotOut[i] == 1) recIn++;//出度比入度大1记录个数
+//		else if (cotIn[i] - cotOut[i] == -1) recOut++;//出度比入度小1记录个数
+//		else { flag = 0; break; }//其他情况直接不符合跳出
+//	}
+//	//条件2
+//	if (recIn <= 1 && recOut <= 1 && flag) {//满足有向图的欧拉前提条件
+//		for (int i = 0; i < maxn; i++)if (cotIn[i]) { dfs(i); break; }//找一个起始点开始深搜判断通路
+//		for (int i = 0; i < maxn; i++) if ((cotIn[i] || cotOut[i]) && !visit[i]) return false;//判断如果此点存在但没有访问即不构成欧拉回路
+//		return true;//上面所有情况都通过即为欧拉回路
+//	}
+//	return false;
+//}
+//int main()
+//{
+//	int n, t;
+//	char str[1005];
+//	cin >> t;
+//	while (t--) {
+//		init();
+//		cin >> n;
+//		while (n--) {
+//			cin>>str;
+//			int len = strlen(str);
+//			G[str[0] - 'a'][str[len - 1] - 'a'] = 1;//二维数组表示图
+//			cotIn[str[0] - 'a']++;//记录此字母的入度数
+//			cotOut[str[len - 1] - 'a']++;//记录此字母的出度数
+//			cout << "cotIn[str[0] - 'a']: " << cotIn[str[0] - 'a'] << " cotOut[str[len - 1] - 'a']: " << cotOut[str[len - 1] - 'a'] << endl;
+//		}
+//		if (judge()) printf("Ordering is possible.\n");
+//		else printf("The door cannot be opened.\n");
+//		system("pause");
+//	}
+//	
+//	return 0;               
+//}
+//
+//
+
+
+////7-1
+//#include <iostream>
+//using namespace std;
+//const int maxn = 15;
+//int v[maxn];
+//int main() {
+//	int n;
+//	cin >> n;
+//	memset(v, 0, sizeof(v));
+//
+//	//cout << "n: " << n << endl;
+//	for (int i = 1234; i < 98765; i++) {
+//		//cout << "i: " << i << endl;
+//		int temp_i = i;
+//		int temp_m = n * i;
+//		long long m = n * i;
+//		for (int k = 0; k < 5; k++) {
+//			v[k] = temp_i % 10;
+//			temp_i = temp_i / 10;
+//			//cout << "v["<<k<<"]: " << v[k] << endl;
+//		}
+//		int flag = 1;
+//		for (int k = 5; k < 11; k++) {
+//			if (k == 10 && temp_m != 0) {
+//				flag = 0;
+//			}
+//			else {
+//				v[k] = temp_m % 10;
+//				temp_m = temp_m / 10;
+//			}
+//			//cout << "v[" << k << "]: " << v[k] << endl;
+//		}
+//		int sum = 0;
+//		int cj = 1;
+//		int cnt0 = 0;
+//		for (int j = 0; j < 10; j++) {
+//			sum += v[j];
+//			if (v[j] == 0) {
+//				cj = cj;
+//				cnt0++;
+//			}
+//			else {
+//				cj *= v[j];
+//			}
+//
+//		}
+//		if (flag == 1 && cnt0 == 1 && sum == 45 && cj == 362880) {
+//			cout << m << " / " << "0" << i << " = " << n << endl;
+//		}
+//		//system("pause");
+//	}
+//
+//	system("pause");
+//}
+
+
+////生成0-1的全排列
+//#include<iostream>
+//using namespace std;
+//const int maxn = 100;
+//int A[maxn];
+//int P[maxn];
+//void permutation1_n(int n, int* A, int cur) {
+//	if (cur == n) {//结束标志 这个时候A数组里面存的就是一组完整的排列值
+//		for (int i = 0; i < n; i++) {
+//			cout << A[i] << " ";
+//		}
+//		cout << endl;
+//	}
+//	//cout << "hhh" << endl;
+//
+//	for (int i = 1; i <= n; i++) {
+//		int flag = 1;//每次找前cur元素有没有等于i的都要讲flag重新赋值
+//		for (int j = 0; j < cur; j++) {
+//			if (i == A[j]) {
+//				flag = 0;
+//			}
+//		}
+//		if (flag) {
+//			A[cur] = i;
+//			permutation1_n(n, A, cur + 1);
+//		}
+//	}
+//}
+//
+//int main() {
+//	memset(A, 0, sizeof(A));
+//	int n;
+//	cin >> n;
+//	permutation1_n(n, A, 0);//生成1～n的排列
+//	permutation(n, A, P, 0);
+//	
+//	system("pause");
+//}
+
+
+////生成可重集的排列
+//#include<iostream>
+//#include<algorithm>
+//using namespace std;
+//const int maxn = 100;
+//void permutation(int n, int* A, int* P, int cur) {
+//	//cout << "hhh" << endl;
+//	if (cur == n) {
+//		for (int i = 0; i < n; i++) {
+//			cout << A[i];
+//		}
+//		cout << endl;
+//	}
+//
+//	for (int i = 0; i < n; i++) {
+//		int c1 = 0, c2 = 0;
+//		for (int k = 0; k < cur; k++) {
+//			if (A[k] == P[i]) {
+//				c1++;
+//			}
+//		}
+//		for (int k = 0; k < n; k++) {
+//			if (P[k] == P[i]) {
+//				c2++;
+//			}
+//		}
+//		//cout << "i: " << i << " c1: " << c1 << " c2: " << c2 << endl;
+//		//因为P是有序的 所以只需要判断前后两个值是否相同 例如：1 1就不用在递归了
+//		if (c1 < c2 && P[i] != P[i-1]) {//这里只需要判断P[i]在之前出现的次数和总的次数的大小
+//			A[cur] = P[i];
+//			//cout << "A[" << cur << "] = " << P[i] << endl;
+//			permutation(n, A, P, cur + 1);
+//		}
+//
+//	}
+//}
+//int main() {
+//	int A[maxn];//ans
+//	int P[maxn];//输入数组P
+//	memset(A, 0, sizeof(A));
+//	int cnt = 0;
+//	while (cin >> P[cnt]) {
+//		cnt++;
+//	}
+//	cout << "cnt: " << cnt << endl;
+//	sort(P, P + cnt);
+//	permutation(cnt, A, P, 0);
+//
+//	system("pause");
+//}
+
+////枚举排列的常见方法有两种：一是递归枚举，二是用STL中的next_permutation。
+////next_permutation（）在使用前需要对欲排列数组按升序排序，否则只能找出该序列之后的全排列数。
+//#include<cstdio>
+//#include<iostream>
+//#include<algorithm> //包含next_permutation
+//using namespace std;
+//int main() {
+//	int n, p[10];
+//	cin >> n;
+//	for (int i = 0; i < n; i++) cin >> p[i];
+//	sort(p, p + n); //排序，得到p的最小排列
+//	do {
+//		for (int i = 0; i < n; i++) printf("%d ", p[i]); //输出排列p
+//		printf("\n");
+//	} while (next_permutation(p, p + n)); //求下一个排列
+//	system("pause");
+//	return 0;
+//}
+
+
+////增量法 
+//#include <iostream>
+//using namespace std;
+//int a[20];
+///*递归输出n以内所有的子集,其中cur为当前下标,初始值0*/
+//void print_subset(int n, int* a, int cur) {
+//	for (int i = 0; i < cur; i++)//每次递归输出当前子集,靠它来最后输出上一层指定的子集
+//		cout << a[i] << ' ';
+//	cout << endl;//以行分隔
+//
+//	//找到当前子集首个值，因为按字典顺序输出，所以每次找到最小的元素，cur > 0，则minElem=a[cur-1]+1,否则为0
+//	int minElem = cur ? a[cur - 1] + 1 : 0;//相当于下一层的第一个值
+//	cout << "cur: " << cur << " a[cur - 1] + 1: " << minElem << " minElem: " << minElem << endl;
+//	//从子集第一个值开始遍历,先不看下面的print_subset(n,a,cur+1)，单看这for循环，
+//	//可知是将子集第一个值从头往后依次赋值为 minElem-n-1。
+//	//每次第一个值变化后递归设置下一个值(相当于下一层的第一个值)
+//	for (int i = minElem; i < n; i++) {
+//		a[cur] = i;
+//		cout << "cur: " << cur << " i: " << i << endl;
+//		//当前层子集第一个值
+//		//cur+1表示当前层值设置完毕，开始递归下一层，和前面步骤一样。
+//		//到达最后一层结束后return 到上一层，然后i++,a[cur]的值(首元素)改变，又反复递归下一层...
+//		print_subset(n, a, cur + 1);
+//	}
+//}
+//
+//int main() {
+//	int n;
+//	while (cin >> n, n) {
+//		print_subset(n, a, 0);
+//	}
+//}
+//
+
+
+//#include<iostream>
+//using namespace std;
+//void print_subset(int n, int s) {
+//	for (int i = 0; i < n; i++) {//对于传进来的s 遍历每一位取或不取
+//		//cout << "1 << i: " << (1 << i) << endl;
+//		if (s & (1 << i)) {//与运算“&”比较两个二进制数的每一位，如果都为1则在结果的同一位置返回1，否则返回0 
+//			/*假设i的二进制是1011
+//				1. j = 0 那么 1011 & 0001 = 0001>0 第0位被选择了 = >输出A[0]
+//				2. j = 1 那么 1011 & 0010 = 0010>0 第1位被选择了 = >输出A[1]
+//				3. j = 2 那么 1011 & 0100 = 0000 == 0 第2位没有选 = >不输出A[2]
+//				4. j = 3 那么 1011 & 1000 = 1000>0 第3位被选择了 = >输出A[3]*/
+//			cout << i << " ";
+//		}
+//	}
+//	cout << endl;
+//}
+//int main() {
+//	int n;
+//	cin >> n;
+//	cout << (1 << n) << endl;
+//	for (int i = 0; i < (1 << n); i++) {
+//		cout << "i: " << i << endl;
+//		print_subset(n, i);
+//	}
+//	system("pause");
+//}
+
+////n皇后问题
+//#include<iostream>
+//using namespace std;
+//const int maxn = 100;
+//int tot = 0;
+//int n;
+//int ans[maxn];
+//bool check(int pos) {
+//	for (int i = 1; i < pos; i++) {
+//		if (ans[pos] == ans[i] || abs(ans[pos] - ans[i]) == abs(pos - i)) {
+//			//cout << pos << " is false." << endl;
+//			//system("pause");
+//			return false;
+//		}
+//	}
+//	//cout << pos << " is true." << endl;
+//	//system("pause");
+//	return true;
+//}
+//void queen(int cur) {
+//	if (cur > n) tot++;
+//	else {
+//		//cout << "n: " << n << endl;
+//		//system("pause");
+//		for (int i = 1; i <= n; i++) {
+//			ans[cur] = i;
+//			//cout << "cur: "<<cur<<" i: " << i << endl;
+//			if (check(cur)) {
+//				queen(cur + 1);
+//			}
+//		}
+//	}
+//}
+//int main() {
+//
+//	cin >> n;
+//	queen(1);
+//	cout << "tot: " << tot << endl;
+//	system("pause");
+//}
+
+//#include<iostream>
+//#include<string>
+//using namespace std;
+//
+//const int maxn = 20;
+//int vis[maxn];
+//int ans[maxn];
+//int n;
+////判断是不是素数
+//bool is_prime(int m) {
+//	for (int i = 2; i < sqrt(m) + 1; i++) {
+//		if (m % i == 0) {
+//			//cout << m << " is not."<<endl;
+//			return false;
+//		}
+//	}
+//	//cout << m << " is."<<endl;
+//	return true;
+//}
+//void prime_ring(int cur) {
+//	if (cur == n+1) {
+//		
+//		int temp = ans[cur] + ans[1];
+//		if (is_prime(temp)) {
+//			for (int i = 1; i <= n; i++) {
+//				cout << ans[i] << " ";
+//			}
+//			cout << endl;
+//		}
+//	}
+//	else {
+//		for (int i = 2; i <= n; i++) {
+//			ans[cur] = i;
+//			
+//			if (is_prime(i + ans[cur - 1]) && !vis[i]) {//要判断是否访问 再标记vis
+//				vis[i] = 1;//这里标记的是i不是cur 因为具体的数字是i
+//				prime_ring(cur + 1);
+//				vis[i] = 0;
+//			}
+//			
+//			
+//		}
+//	}
+//}
+//int main() {
+//	memset(vis, 0, sizeof(vis));
+//	memset(ans, 0, sizeof(ans));
+//	cin >> n;
+//	ans[1] = 1;
+//	prime_ring(2);
+//	system("pause");
+//}
+//
+
+////困难的串
+//#include <iostream>
+//using namespace std;
+//const int maxn = 100;
+//int ans[maxn];//从下标1 开始
+//int n, L, cnt = 0;
+//bool check(int pos) {
+//	int flag = true;
+//	//cout << " pos / 2: " << pos / 2 << endl;
+//	for (int i = 1; i <= pos / 2; i++) {//如果pos-1是困难的串，现在判断pos是不是困难的串 只用判断加入pos后 从后面向前面遍历，是不是困难的串 满足多米诺性质
+//		int equal = 1;
+//		for (int j = 0; j < i; j++) {//注意是j++ 不是i++！！！！！
+//			//cout << "pos: " << pos << " i: " << i << " j: " << j << " ans[pos - j]: " << ans[pos - j] << " ans[pos - j - i] : " << ans[pos - j - i] << endl;
+//			if (ans[pos - j] != ans[pos - j - i]) {//只要前一半和后一半不一样 就标记为0
+//				//cout << " not equal" << endl;
+//				equal = 0;
+//				break;
+//			}
+//		}
+//		if (equal) {//如果没有标记为0 说明对于i来说事容易的串
+//			flag = false;
+//			break;
+//		}
+//	}
+//	if (flag) {//如果flag为真 说明之前对于任意长度的i  都不是容易得串
+//		//cout << pos << " is true." << endl;
+//		return true;//困难的串
+//	}
+//	else {
+//		//cout << pos << " is false." << endl;
+//		return false;
+//	}
+//}
+//void dfs(int cur) {
+//	cnt++;
+//	//cout << "cnt: " << cnt << " n: " << n << endl;
+//	//system("pause");
+//	if (cnt > n) {//为了保证遍历到n 所以cur要大于n时才退出  但此时cur=n+1 所以输出是要<cur
+//		//而不是小于等于cur
+//		for (int i = 1; i < cur; i++) {//结束条件是cur  cur相当于字符串的长度
+//			cout << char('A' + ans[i] - 1) << " ";//ans下标是从1开始存的 所以要减一
+//		}
+//		cout << endl;
+//		system("pause");
+//		return;
+//	}
+//	else {
+//		for (int i = 1; i <= L; i++) {
+//			//cout << "i: " << i << endl;
+//			ans[cur] = i;
+//			if (check(cur)) {//是困难的串
+//				//cout << "cur: " << cur << " i: " << i << endl;
+//				dfs(cur + 1);
+//			}
+//			//cout << i << " not pass the check" << endl;
+//		}
+//	}
+//}
+//int main() {
+//	cin >> n >> L;
+//	//cout << "n: " << n << " L: " << L << endl;
+//	dfs(1);
+//}
+
+////八数码问题  bfs+stl 效率低
+////采用BFS比较合理，因为DFS深度搜索下限不好设定，BFS按层搜索，只要不到目标状态就一直进行
+//#include <iostream>
+//#include <set>
+////#include <string>
+//using namespace std;
+//typedef int State[9];
+//const int maxn = 1000000;
+//State st[maxn];
+//State goal;
+//int dis[maxn] = { 0,0 };//因为front是从1开始算的，所以初始化两个0，才能初始化front = 1
+//set<int> vis;
+////定义方向 上下左右
+//int dirx[4] = { 0,0,-1,1 };
+//int diry[4] = { 1,-1,0,0 };
+//void init_lookup_tabel() {
+//	vis.clear();
+//}
+//bool try_to_insert(int pos) {//用stl跑效率极低 跑不出来
+//	int value = 0;
+//	for (int i = 0; i < 9; i++) {
+//		value = value * 10 + st[pos][i];
+//	}
+//	if (vis.count(value)) {
+//		return false;
+//	}
+//	else {
+//		vis.insert(value);
+//		return true;
+//	}
+//}
+//int bfs() {
+//	init_lookup_tabel();
+//	int front = 1, rear = 2;
+//	while (front < rear) {
+//		State &s = st[front];
+//		if (memcmp(goal, s, sizeof(s)) == 0) {// strcmp比较的字符串，而memcmp比较的是内存块，strcmp需要时刻检查是否遇到了字符串结束的 /0 字符，而memcmp则完全不用担心这个问题，所以memcmp的效率要高于strcmp
+//			return front;
+//		}
+//		else {
+//			int bl;//记录空白的位置 一维的位置
+//			for (bl = 0; bl < 9;bl++) {
+//				if (s[bl] == 0) {
+//					break;
+//				}
+//			}
+//			int x = bl / 3;//将一维坐标转化成二维
+//			int y = bl % 3;
+//			for (int i = 0; i < 4; i++) {
+//				int newx = x + dirx[i];
+//				int newy = y + diry[i];
+//				int newz = newx * 3 + newy;
+//				if (newx >= 0 && newx <= 2 && newy >= 0 && newy <= 2) {
+//					State& temp = st[rear];//指向rear所在的新的表格
+//					memcpy(&temp, &s, sizeof(s));//将front的内容 copy给rear
+//					temp[newz] = s[bl];//交换位置
+//					temp[bl] = s[newz];
+//					dis[rear] = dis[front] + 1;
+//					
+//					if (try_to_insert(rear)) {//如果队尾指针指向不同的表 相当于在同一层扩展节点
+//						cout <<rear<< " is insert sus!" << endl;
+//						rear++;
+//					}
+//					/*for (int j = 0; j < 9; j++) {
+//						if (j % 3 == 0) cout << endl;
+//						cout << temp[j] << " ";
+//					}
+//					cout << endl;
+//					system("pause");*/
+//				}
+//			}
+//			front++;//朝着四个方向扩展节点完毕 修改队首指针
+//		}
+//	}
+//	return -1;
+//}
+//int main() {
+//	//memset(dis, 0, sizeof(dis));
+//	for (int i = 0; i < 9; i++) {
+//		cin >> st[1][i];
+//	}
+//	for (int i = 0; i < 9; i++) {
+//		cin >> goal[i];
+//	}
+//	int ans = bfs();
+//	cout << "hhh" << endl;
+//	if (ans != -1) {
+//		cout << dis[ans] << endl;
+//	}
+//	else cout << "-1" << endl;
+//	system("pause");
+//}
+
+
+////八数码问题 bfs+hash 速度快 注意哈希函数不能任意选 这里巧妙运用了将9个数弄成9位数
+//#include<iostream>
+//using namespace std;
+//typedef int State[9];
+//const int maxn = 1000000;
+//const int hashsize = 1000000;
+//State st[maxn], goal;
+//int dis[maxn] = { 0,0 };
+//int dirx[4] = { 0,0,1,-1 };
+//int diry[4] = { 1,-1,0,0 };
+//int head[hashsize], Next[maxn];
+//void init_table() {
+//	memset(head, 0, sizeof(head));
+//}
+//int Hash(State& s) {
+//	int v = 0;
+//	for (int i = 0; i < 9; i++) {
+//		v = v * 10 + s[i];
+//	}
+//	return v % hashsize;
+//}
+//bool try_insert(int rear) {
+//	int h = Hash(st[rear]);//得到和rear层的9位数 所在的链表 
+//	int u = head[h];//取链表的头 若u=0说明没有该链表 直接插入
+//	while (u) {
+//		if (memcmp(st[u], st[rear], sizeof(st[rear])) == 0) {
+//			return false;
+//		}
+//		u = Next[u];
+//	}
+//	Next[rear] = head[h];
+//	head[h] = rear;
+//	return true;
+//
+//}
+//int bfs() {
+//	init_table();
+//	int front = 1;
+//	int rear = 2;
+//	while (front < rear)
+//	{
+//		State& s = st[front];//这里要使用引用
+//		if (memcmp(s, goal, sizeof(s)) == 0) {
+//			return front;
+//		}
+//		else {
+//			int z;
+//			for (z = 0; z < 9; z++) {
+//				if (st[front][z] == 0) {
+//					break;
+//				}
+//			}
+//			int x = z / 3;
+//			int y = z % 3;
+//			for (int i = 0; i < 4; i++) {
+//				int newx = x + dirx[i];
+//				int newy = y + diry[i];
+//				int newz = newx * 3 + newy;
+//				if (newx >= 0 && newx < 3 && newy >= 0 && newy < 3) {
+//					State& temp = st[rear];//尝试更新移动后的状态
+//					memcpy(temp, s, sizeof(s));
+//					temp[newz] = s[z];
+//					temp[z] = s[newz];
+//					dis[rear] = dis[front] + 1;
+//					if (try_insert(rear)) {
+//						rear++;
+//					}
+//				}
+//			}
+//			front++;
+//		}
+//	}
+//	return 0;
+//}
+//int main() {
+//	for (int i = 0; i < 9; i++) {
+//		cin >> st[1][i];
+//	}
+//	for (int i = 0; i < 9; i++) {
+//		cin >> goal[i];
+//	}
+//	int ans = bfs();
+//	if (ans > 0) {
+//		cout << dis[ans];
+//	}
+//	system("pause");
+//}
+
+//#include<iostream>
+//#include<cstdio>
+//#include<cstring>
+//#include<queue>
+//using namespace std;
+//struct Node {
+//	int v[3], dist;////v[]是各个杯子里的水，dist是总取水量！
+//	bool operator < (const Node& rhs) const {
+//		return dist > rhs.dist;////最小值优先级大！
+//	}
+//};
+
+////倒水问题
+////用ans[]来记录答案，不断取最小值来更新！
+////
+////用vis[][]来表示是否访问过，之所以是二维数组，是因为总水量是固定的，两个杯子确定，第三个杯子自然也就确定，两个状态足矣！
+////
+////用结构体表示每一个状态！其中包括每个杯子的水量！u.v[]，还有dist 为到目前这个状态总的取水量！
+//const int maxn = 200 + 5;
+//int vis[maxn][maxn], cap[3], ans[maxn];
+//
+//void update_ans(const Node& u) {
+//	for (int i = 0; i < 3; i++) {//三个杯子的状态都需要更新
+//		int d = u.v[i];
+//		////在优先队列中每提出一个队首元素，就对应一个新的状态，就需要在ans[]更新状态！更新取水量最小的状态
+//		cout << "update: " << "u.v[" << i << "]: " << d << endl;
+//		if (ans[d] < 0 || u.dist < ans[d]) {//如果这个水量没有出现过 或者出现过 但是现在能给出更小的值 则更新
+//			ans[d] = u.dist;
+//		}
+//	}
+//	
+//}
+//void solve(int a, int b, int c, int d) {
+//	cap[0] = a; cap[1] = b; cap[2] = c;//表示三个杯子的状态
+//	memset(vis, 0, sizeof(vis));
+//	memset(ans, -1, sizeof(ans));
+//	priority_queue<Node> q;
+//	Node start;
+//	start.dist = 0;
+//	start.v[0] = 0; start.v[1] = 0; start.v[2] = c;
+//	q.push(start);
+//	vis[0][0] = 1;
+//	while (!q.empty()) {
+//		Node u = q.top(); q.pop();
+//		update_ans(u);
+//		if (ans[d] >= 0) break;
+//		for (int i = 0; i < 3; i++)///i倒入j
+//			for (int j = 0; j < 3; j++) if (i != j) {
+//				if (u.v[i] == 0 || u.v[j] == cap[j]) continue;//i中没水或者j已经满了 跳过
+//				int amount = min(cap[j], u.v[i] + u.v[j]) - u.v[j];////mount 为需要倒水的量，这样写 不会出现负值！
+//				Node u2;
+//				memcpy(&u2, &u, sizeof(u));
+//				u2.dist = u.dist + amount;
+//				u2.v[i] -= amount;
+//				u2.v[j] += amount;
+//				if (!vis[u2.v[0]][u2.v[1]]) {//判断是否需要加入节点
+//					vis[u2.v[0]][u2.v[1]] = 1;
+//					q.push(u2);
+//				}
+//			}
+//	}
+//	while (d >= 0) {
+//		if (ans[d] >= 0) {//如果d对应的ans存在 则直接输出 否则递减（因为求最接近的）
+//			printf("%d %d\n", ans[d], d);
+//			return;
+//		}
+//		d--;
+//	}
+//}
+//int main() {
+//	int T, a, b, c, d;
+//	cin >> T;//T表示测试用例数
+//	while (T--) {
+//		cin >> a >> b >> c >> d;
+//		solve(a, b, c, d);
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+////最大字段和 暴力求解
+//#include<iostream>
+//using namespace std;
+//const int maxn = 10000;
+//int sum = 0;
+//int main() {
+//	int n;
+//	int A[maxn];
+//	int len = 0;
+//	int ans = -1000000;
+//	while (cin >> n) {
+//		A[len++] = n;
+//		//cout << len << "n: "<<n<<endl;
+//
+//	}
+//	for (int i = 0; i < len; i++) {
+//		sum = 0;
+//		for (int j = i; j < len; j++) {
+//			sum = sum + A[j];
+//			
+//			if (sum > ans) { 
+//				ans = sum;
+//			}
+//
+//		}
+//	}
+//	cout << ans;
+//	system("pause");
+//}
+
+
