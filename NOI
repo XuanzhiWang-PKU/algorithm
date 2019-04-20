@@ -1,0 +1,966 @@
+//1.1编程基础之输入输出
+//	Hello, World!
+//#include <iostream>
+//using namespace std;
+//int main() {
+//	cout << "Hello, World!";
+//}
+
+//	输出第二个整数
+//#include<iostream>
+//using namespace std;
+//int main() {
+//	int a, b, c;
+//	cin >> a >> b>>c;
+//	cout << b;
+//}
+
+//	对齐输出
+//#include <iostream>
+//using namespace std;
+//int main() {
+//	int a, b, c;
+//	cin >> a >> b >> c;
+//	printf("%8d %8d %8d", a, b, c);
+//	system("pause");
+//	return 0;
+//}
+
+//输出保留3位小数的浮点数
+//#include<iostream>
+//#include <iomanip>
+//using namespace std;
+//int main() {
+//	float a;//单精度浮点数
+//	cin >> a;
+//	cout << fixed << setprecision(3) << a;
+//	system("pause");
+//}
+
+//输出保留12位小数的浮点数
+//#include<iostream>
+//#include<iomanip>
+//using namespace std;
+//int main() {
+//	double a;
+//	cin >> a;
+//	cout << fixed << setprecision(12) << a;
+//	system("pause");
+//}
+
+//空格分隔输出
+//#include<iostream>
+//#include<iomanip>
+//using namespace std;
+//int main() {
+//	char a;
+//	int b;
+//	float c;
+//	double d;
+//	cin >> a >> b >> c >> d;
+//	cout << a << " " << b << " " << fixed << setprecision(6) << c << " " << fixed << setprecision(6) << d;
+//	system("pause");
+//}
+
+//输出浮点数
+//#include <iostream>
+//using namespace std;
+//double a;
+//int main() {
+//	cin >> a;
+//	printf("%f\n", a);
+//	printf("%.5f\n", a);//.后面表示精度
+//	printf("%e\n", a);
+//	printf("%g", a);
+//	system("pause");
+//	return 0;
+//}
+
+//字符三角形
+//#include <iostream>
+//using namespace std;
+//char a;
+//int main() {
+//	cin >> a;
+//	cout << "  " << a << "  "<<endl;
+//	cout << " " << a << a << a << " " << endl;
+//	cout << a << a << a << a << a;
+//	system("pause");
+//	return 0;
+//}
+
+//字符菱形
+//#include <iostream>
+//using namespace std;
+//char a;
+//int main() {
+//	cin >> a;
+//	cout << "  " << a << "  " << endl;
+//	cout << " " << a << a << a << " " << endl;
+//	cout << a << a << a << a << a<<endl;
+//	cout << " " << a << a << a << " " << endl;
+//	cout << "  " << a << "  ";
+//	system("pause");
+//	return 0;
+//}
+
+//超级玛丽游戏 ?
+//#include <iostream>
+//using namespace std;
+//int main() {
+//	printf("                ********\n\
+//               ************\n\
+//               ####....#.\n\
+//             #..###.....##....\n\
+//             ###.......######              ###                 ###           ###           ###\n\
+//                ...........               #...#               #...#         #...#         #...#\n\
+//               ##*#######                 #.#.#               #.#.#         #.#.#         #.#.#\n\
+//            ####*******######             #.#.#               #.#.#         #.#.#         #.#.#\n\
+//           ...#***.****.*###....          #...#               #...#         #...#         #...#\n\
+//           ....**********##.....           ###                 ###           ###           ###\n\
+//           ....****    *****....\n\
+//             ####        ####\n\
+//           ######        ######\n\
+//##############################################################              ##################################\n\
+//#...#......#.##...#......#.##...#......#.##------------------#              #...#......#.##------------------#\n\
+//###########################################------------------#              ###############------------------#\n\
+//#..#....#....##..#....#....##..#....#....#####################              #..#....#....#####################\n\
+//##########################################    #----------#                  ##############    #----------#\n\
+//#.....#......##.....#......##.....#......#    #----------#                  #.....#......#    #----------#\n\
+//##########################################    #----------#                  ##############    #----------#\n\
+//#.#..#....#..##.#..#....#..##.#..#....#..#    #----------#                  #.#..#....#..#    #----------#\n\
+//##########################################    ############                  ##############    ############");
+//	system("pause");
+//}
+
+//1.2编程基础之变量定义、赋值及转换
+//整型数据类型 存储空间大小存储空间大小（单位：字节） 4 2
+//#include <iostream>
+//using namespace std;
+//int main() {
+//	int a;
+//	short b;
+//	a = 1;
+//	b = 1;
+//	cout << sizeof(a) <<" "<< sizeof(b);
+//	system("pause");
+//	return 0;
+//}
+
+//浮点型数据类型存储空间大小  4 8 
+//#include <iostream>
+//using namespace std;
+//int main() {
+//	float a;
+//	double b;
+//	a = 1.0;
+//	b = 1.0;
+//	cout << sizeof(a) << " " << sizeof(b);
+//	system("pause");
+//	return 0;
+//}
+
+//其他基本数据类型存储空间大小 1 1 
+//#include <iostream>
+//using namespace std;
+//int main() {
+//	bool a;
+//	char b;
+//	a = true;
+//	b = a;
+//	cout << sizeof(a) << " " << sizeof(b);
+//	system("pause");
+//	return 0;
+//}
+
+//填空：类型转换1
+//#include <iostream>
+//using namespace std;
+//int main() {
+//	cout << "D C";
+//	system("pause");
+//}
+
+//填空：类型转换1
+//#include <iostream>
+//using namespace std;
+//int main() {
+//	cout << "F E";
+//	system("pause");
+//}
+
+//浮点数向零舍入
+//#include <iostream>
+//using namespace std;
+//int main() {
+//	float a;
+//	cin >> a;
+//	cout << (int)a;
+//	system("pause");
+//}
+
+//打印ASCII码 NULL的ascii是0
+//#include <iostream>
+//using namespace std;
+//int main() {
+//	char a;
+//	cin >> a;
+//	//cout << a - NULL;
+//	cout << (int)a;
+//	system("pause");
+//}
+
+//打印字符
+//#include <iostream>
+//using namespace std;
+//int main() {
+//	int a;
+//	cin >> a;
+//	cout << (char)a;
+//	system("pause");
+//}
+
+//整型与布尔型的转换
+//#include <iostream>
+//using namespace std;
+//int main() {
+//	int a;
+//	cin >> a;
+//	bool b = a;
+//	a = b;
+//	cout << a;
+//	system("pause");
+//}
+
+//Hello, World!的大小
+//#include <iostream>
+//using namespace std;
+//int main() {
+//	char c[] = "Hello, World!";
+//	cout << sizeof(c);
+//	system("pause");
+//}
+
+//1.3编程基础之算术表达式与顺序执行
+////A+B问题
+//#include<iostream>
+//using namespace std;
+//int main() {
+//	int a, b;
+//	cin >> a >> b;
+//	cout << a + b;
+//	system("pause");
+//}
+
+//计算(a+b)*c的值
+//#include<iostream>
+//using namespace std;
+//int main() {
+//	int a, b, c;
+//	cin >> a >> b >> c;
+//	cout << (a + b)*c;
+//	system("pause");
+//}
+
+//计算(a+b)/c的值
+//#include<iostream>
+//using namespace std;
+//int main() {
+//	int a, b, c;
+//	cin >> a >> b >> c;
+//	cout << (a + b)/c;
+//	system("pause");
+//}
+
+//带余除法
+//#include<iostream>
+//using namespace std;
+//int main() {
+//	int a, b;
+//	cin >> a >> b ;
+//	cout <<a/b<<" "<<a%b;
+//	system("pause");
+//}
+
+//计算分数的浮点数值
+//#include<iostream>
+//#include<iomanip>
+//using namespace std;
+//int main() {
+//	int a, b;
+//	cin >> a >> b;
+//	double c = (double)a / b;
+//	cout << fixed<<setprecision(9)<<c;
+//	system("pause");
+//}
+
+//甲流疫情死亡率
+//#include<iostream>
+//#include<iomanip>
+//using namespace std;
+//int main() {
+//	int a, b;
+//	cin >> a >> b;
+//	double c = (double)b / a;
+//	c = c * 100;
+//	cout << fixed << setprecision(3) << c << "%";
+//	system("pause");
+//}
+
+
+//计算多项式的值 ？
+//#include<iostream>
+//#include<iomanip>
+//#include<math.h>//因为用了pow 要加头文件
+//using namespace std;
+//int main() {
+//	double x, a, b, c, d;
+//	cin >> x >> a >> b >> c >> d;
+//	double ans = a * pow(x, 3) + b * pow(x, 2) + c * pow(x, 1) + d;
+//	cout << fixed << setprecision(7) << ans;
+//	system("pause");
+//}
+
+//温度表达转化
+//#include<iostream>
+//#include<iomanip>
+//using namespace std;
+//int main() {
+//	double f;
+//	cin >>f;
+//	double ans = 5*(f -32)/9;
+//	cout << fixed << setprecision(5) << ans;
+//	system("pause");
+//}
+
+
+// 与圆相关的计算
+//#include<iostream>
+//#include<iomanip>
+//#include<math.h>
+//using namespace std;
+//double pi = 3.14159;
+//double r;
+//int main() {
+//	cin >> r;
+//	cout << fixed << setprecision(4) << 2*r<<" " << fixed << setprecision(4) << 2 * r * pi << " " << fixed << setprecision(4) << pi * pow(r,2) << " ";
+//	system("pause");
+//}
+
+//计算并联电阻的阻值  ？
+//#include<iostream>
+//#include<iomanip>
+//using namespace std;
+//float a, b;//题目要求用浮点型
+//int main() {
+//	cin >> a >> b;
+//	float ans = 1 / (1 / a + 1 / b);
+//	cout << fixed << setprecision(2) << ans;
+//	system("pause");
+//}
+
+//计算浮点数相除的余数 ?
+//#include<iostream>
+//#include<iomanip>
+//using namespace std;
+//double a, b;
+//int main() {
+//	cin >> a >> b;
+//	int k = a / b;
+//	double ans = a - b * k;
+//	/*注意：输出时小数尾部没有多余的0，可以用下面这种格式：
+//		double x;
+//	x = 1.33;
+//	printf("%g", x);*/
+//	printf("%g", ans);
+//	system("pause");
+//}
+
+//计算球的体积
+//#include<iostream>
+//#include<iomanip>
+//#include<math.h>
+//using namespace std;
+//double pi = 3.14;
+//double r;
+//int main() {
+//	cin >> r;
+//	double ans =( 4.0 / 3.0) * pi*pow(r, 3);
+//	cout << fixed << setprecision(2) << ans;
+//	system("pause");
+//}
+
+//反向输出一个三位数
+//#include<iostream>
+//using namespace std;
+//int a;
+//int main() {
+//	cin >> a;
+//	cout << a % 10;
+//	a = a / 10;
+//
+//	cout << a % 10;
+//	a = a / 10;
+//
+//	cout << a % 10;
+//	a = a / 10;
+//
+//	system("pause");
+//}
+
+//大象喝水
+//1升 = 1000毫升
+//1毫升 = 1 立方厘米
+//#include<iostream>
+//#include<math.h>//floor向下取整要包含头文件
+//using namespace std;
+//int h, r;
+//double pi = 3.14159;
+//int main() {
+//	cin >> h >> r;
+//	double v = pi * pow(r, 2)*h;
+//	int  ans = floor((20.0 * 1000.0)/ v + 1);//相当于向上取整
+//	cout << ans;
+//	system("pause");
+//}
+
+//苹果和虫子 ?
+//#include<iostream>
+//#include<math.h>//ceil向上取整要包含头文件
+//using namespace std;
+//int n, x, y;
+//int main() {
+//	cin >> n >> x >> y;
+//	int bad = ceil(double(y) / double(x));
+//	int ans = n - bad;
+//	cout << ans;
+//
+//	system("pause");
+//}
+
+//计算线段长度 ?头文件问题
+//#include<iostream>
+//#include<cmath>//包含cmath就不报错 math.h报错
+//#include <iomanip>
+//using namespace std;
+//double xa, ya, xb, yb;
+//int main() {
+//	cin >> xa >> ya >> xb >> yb;
+//	double  ans = sqrt(pow(abs(xa - xb), 2) + pow(abs(ya - yb), 2));
+//	cout << fixed << setprecision(3) << ans;
+//	system("pause");
+//}
+
+//计算三角形面积
+//用海伦公式
+//#include <iostream>
+//#include<iomanip>
+//#include<cmath>
+//using namespace std;
+//float x1, Y1, x2, y2, x3, y3;
+//int main() {
+//	cin >> x1 >> Y1 >> x2 >> y2 >> x3 >> y3;
+//	float a = sqrt(pow(abs(x1 - x2), 2) + pow(abs(Y1 - y2), 2));
+//	float b = sqrt(pow(abs(x3 - x2), 2) + pow(abs(y3 - y2), 2));
+//	float c = sqrt(pow(abs(x1 - x3), 2) + pow(abs(Y1 - y3), 2));
+//	float p = (a + b + c) / 2;//半周长
+//	float s = sqrt(p*(p - a)*(p - b)*(p - c));
+//	//cout << a << " " << b << " " << c << " " << p << endl;
+//	cout << fixed << setprecision(2) << s;
+//	system("pause");
+//	return 0;
+//}
+
+//等差数列末项计算
+//#include <iostream>
+//#include<iomanip>
+//#include<cmath>
+//using namespace std;
+//int a, b, n;
+//int main() {
+//	cin >> a >> b >> n;
+//	int delta = b - a;
+//	int ans = a + delta * (n - 1);
+//	cout << fixed << setprecision(2) << ans;
+//	system("pause");
+//	return 0;
+//}
+
+//A*B问题
+//#include <iostream>
+//using namespace std;
+//long long a, b;
+//int main() {
+//	cin >> a >> b ;
+//	
+//	long long ans = a *b;
+//	cout  << ans;
+//	system("pause");
+//	return 0;
+//}
+
+//计算2的幂
+//#include <iostream>
+//#include<cmath>
+//using namespace std;
+//int n;
+//int main() {
+//	cin >> n;
+//
+//	long long ans = pow(2, n);
+//	cout << ans;
+//	system("pause");
+//	return 0;
+//}
+
+//1.4编程基础之逻辑表达式与条件分支
+//#include <iostream>
+//using namespace std;
+//int n;
+//int main() {
+//	cin >> n;
+//	if (n > 0) {
+//		cout << "positive";
+//	}
+//	else if (n == 0) {
+//		cout << "zero";
+//	}
+//	else{
+//		cout << "negative";
+//	}
+//	system("pause");
+//}
+
+//输出绝对值
+//#include <iostream>
+//#include <iomanip>
+//#include<cmath>
+//using namespace std;
+//float n;
+//int main() {
+//	cin >> n;
+//	cout << fixed << setprecision(2) << abs(n);
+//	system("pause");
+//}
+
+//奇偶数判断
+//#include <iostream>
+//#include <iomanip>
+//#include<cmath>
+//using namespace std;
+//int n;
+//int main() {
+//	cin >> n;
+//	if (n % 2 == 1) {
+//		cout << "odd";
+//	}
+//	else {
+//		cout << "even";
+//	}
+//	system("pause");
+//}
+
+//奇偶ASCII值判断 ？
+//#include <iostream>
+//#include <iomanip>
+//using namespace std;
+//char ch;
+//int main() {
+//	ch = getchar();//cin>>ch报错
+//	if ((int)ch % 2 == 1) {
+//		cout << "YES";
+//	}
+//	else {
+//		cout << "NO";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+// 整数大小比较
+//#include <iostream>
+//#include <iomanip>
+//using namespace std;
+//long long x, y;
+//int main() {
+//	cin >> x >> y;
+//	if (x > y) {
+//		cout << ">";
+//	}
+//	else if (x < y) {
+//		cout << "<";
+//	}
+//	else {
+//		cout << "=";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//判断是否为两位数
+//#include <iostream>
+//#include <iomanip>
+//using namespace std;
+//int x;
+//int main() {
+//	cin >> x ;
+//	if (x>=10&&x<=99) {
+//		cout << "1";
+//	}
+//	else {
+//		cout << "0";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//收集瓶盖赢大奖
+//#include <iostream>
+//#include <iomanip>
+//using namespace std;
+//int x,y;
+//int main() {
+//	cin >> x>>y;
+//	if (x >= 10||y>=20) {
+//		cout << "1";
+//	}
+//	else {
+//		cout << "0";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//判断一个数能否同时被3和5整除
+//#include <iostream>
+//#include <iomanip>
+//using namespace std;
+//int x;
+//int main() {
+//	cin >> x ;
+//	if (x %3 == 0 && x%5 == 0) {
+//		cout << "YES";
+//	}
+//	else {
+//		cout << "NO";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//判断能否被3，5，7整除
+//#include <iostream>
+//#include <iomanip>
+//using namespace std;
+//int x;
+//
+//int main() {
+//	cin >> x;
+//	bool flag = false;
+//	if (x % 3 == 0) {
+//		cout << "3";
+//		flag = true;
+//		if (x % 5 == 0) {
+//			cout << " 5";
+//			if (x % 7 == 0) {
+//				cout << " 7";
+//			}
+//		}
+//		else {
+//			if (x % 7 == 0) {
+//				cout << " 7";
+//			}
+//		}
+//	}
+//	else {
+//		if (x % 5 == 0) {
+//			flag = true;
+//			cout << "5";
+//			if (x % 7 == 0) {
+//				cout << " 7";
+//			}
+//		}
+//		else {
+//			if (x % 7 == 0) {
+//				flag = true;
+//				cout << "7";
+//			}
+//		}
+//	}
+//	if (!flag) {
+//		cout << 'n';
+//	}
+//
+//
+//	system("pause");
+//	return 0;
+//}
+
+//有一门课不及格的学生
+//#include <iostream>
+//#include <iomanip>
+//using namespace std;
+//int x,y;
+//int main() {
+//	cin >> x>>y;
+//	bool flag = false;
+//	if ((x < 60 && y>=60)|| y < 60 && x >= 60) {
+//		cout << 1;
+//	}
+//	else {
+//		cout << 0;
+//	}
+//	
+//	system("pause");
+//	return 0;
+//}
+
+//晶晶赴约会
+//#include <iostream>
+//#include <iomanip>
+//using namespace std;
+//int x;
+//int main() {
+//	cin >> x;
+//	if (x == 1 || x == 3 || x == 5) {
+//		cout << "NO";
+//	}
+//	else {
+//		cout << "YES";
+//	}
+//
+//	system("pause");
+//	return 0;
+//}
+
+//骑车与走路
+//#include <iostream>
+//#include <iomanip>
+//using namespace std;
+//int x;
+//int main() {
+//	cin >> x;
+//	double walk = x / 1.2;
+//	double bike = x / 3.0 + 27 + 23;
+//	if (walk > bike) {
+//		cout << "Bike";
+//	}
+//	else if(walk<bike){
+//		cout << "Walk";
+//	}
+//	else {
+//		cout << "All";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//	分段函数
+//#include <iostream>
+//#include <iomanip>
+//using namespace std;
+//double x;
+//double y = 0.0;
+//int main() {
+//	cin >> x;
+//	
+//	if (x>=0&& x<5) {
+//		y = -x + 2.5;
+//	}
+//	else if (x>=5&&x<10) {
+//		y = 2 - 1.5*(x - 3)*(x - 3);
+//	}
+//	else {
+//		y = x / 2 - 1.5;
+//	}
+//	cout <<fixed<<setprecision(3)<< y;
+//	system("pause");
+//	return 0;
+//}
+
+
+//计算邮资
+//#include <iostream>
+//#include <iomanip>
+//#include <cmath>
+//using namespace std;
+//int x;
+//char ch;
+//int tot = 0;
+//int main() {
+//	cin >> x>>ch;
+//
+//	if (x <=1000) {
+//		tot = tot + 8;
+//	}
+//	else  {
+//		int k = ceil((double(x) - 1000.0) / 500.0);
+//		//cout << (double(x) - 1000.0) / 500.0;
+//		tot = tot + 8 + k * 4;
+//	}
+//	if (ch == 'y') {
+//		tot = tot + 5;
+//	}
+//	cout << tot;
+//	system("pause");
+//	return 0;
+//}
+
+//最大数输出
+//#include <iostream>
+//#include <iomanip>
+//#include <cmath>
+//using namespace std;
+//int x, y, z;
+//int m;
+//int main() {
+//	cin >> x >> y >> z;
+//	m = x;
+//	if (y > m) {
+//		m = y;
+//	}
+//	if (z > m) {
+//		m = z;
+//	}
+//	cout << m;
+//	system("pause");
+//	return 0;
+//}
+
+//三角形判断
+//#include <iostream>
+//#include <iomanip>
+//#include <cmath>
+//using namespace std;
+//int x, y, z;
+//int main() {
+//	cin >> x >> y >> z;
+//	if (x +y >z&& x+z>y&&y+z>x) {
+//		cout << "yes";
+//	}
+//	else {
+//		cout << "no";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//判断闰年
+//#include <iostream>
+//using namespace std;
+//int a;
+//int main() {
+//	cin >> a;
+//	if (a % 100 == 0) {
+//		if (a % 400 == 0) {
+//			cout << "Y";
+//		}
+//		else cout << "N";
+//	}
+//	else if (a % 4 == 0) {
+//		cout << "Y";
+//	}
+//	else {
+//		cout << "N";
+//	}
+//	system("pause");
+//}
+
+
+//点和正方形的关系
+//#include <iostream>
+//using namespace std;
+//int x, y;
+//int main() {
+//	cin >> x >> y;
+//	if (x <= 1 && x >= -1 && y <= 1 && y >= -1) {
+//		cout << "yes";
+//	}
+//	else {
+//		cout << "no";
+//	}
+//	system("pause");
+//}
+
+//简单计算器
+//#include <iostream>
+//using namespace std;
+//int x, y;
+//char ch;
+//int main() {
+//	cin >> x >> y >> ch;
+//	if (ch == '+') {
+//		cout << x + y;
+//	}
+//	else if (ch == '-') {
+//		cout << x - y;
+//	}
+//	else if (ch == '*') {
+//		cout << x * y;
+//	}
+//	else if (ch == '/') {
+//		if (y == 0) {
+//			cout << "Divided by zero!";
+//		}
+//		else {
+//			cout << x / y;
+//		}
+//	}
+//	else {
+//		cout << "Invalid operator!";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//求一元二次方程的根
+//#include <iostream>
+//#include <cmath>
+//#include<iomanip>
+//using namespace std;
+//double a, b, c;
+//int main() {
+//	cin >> a >> b >> c;
+//	if (b *b == 4 * a * c) {
+//
+//		cout << "x1=x2=" << fixed << setprecision(5) << (-b + sqrt(b*b - 4 * a*c)) / (2 * a);
+//	}
+//	else if (b*b > 4 * a * c) {
+//
+//		cout << "x1=" << fixed << setprecision(5) << (-b + sqrt(b*b - 4 * a*c)) / (2 * a) << ";";
+//		cout << "x2=" << fixed << setprecision(5) << (-b - sqrt(b*b - 4 * a*c)) / (2 * a);
+//	}
+//	else if (b*b < 4 * a * c) {
+//		if (b != 0) {
+//			cout << "x1=" << fixed << setprecision(5) << -b / (2 * a) << '+' << fixed << setprecision(5) << sqrt(4 * a*c - b * b) / (2 * a) << 'i' << ";";
+//			cout << "x2=" << fixed << setprecision(5) << -b / (2 * a) << '-' << fixed << setprecision(5) << sqrt(4 * a*c - b * b) / (2 * a) << 'i';
+//		}
+//		else {
+//			cout << "x1=" << fixed << setprecision(5) << 0.0 << '+' << fixed << setprecision(5) << sqrt(4 * a*c - b * b) / (2 * a) << 'i' << ";";
+//			cout << "x2=" << fixed << setprecision(5) << 0.0 << '-' << fixed << setprecision(5) << sqrt(4 * a*c - b * b) / (2 * a) << 'i';
+//
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//苹果和虫子2
+//#include<iostream>
+//#include<math.h>//ceil向上取整要包含头文件
+//using namespace std;
+//int n, x, y;
+//int main() {
+//	cin >> n >> x >> y;
+//	int bad = ceil(double(y) / double(x));
+//	int ans = n - bad;
+//	if (ans < 0) {
+//		cout << 0;
+//	}
+//	else {
+//		cout << ans;
+//	}
+//	system("pause");
+//}
