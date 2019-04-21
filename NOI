@@ -964,3 +964,1128 @@
 //	}
 //	system("pause");
 //}
+
+// 1.5编程基础之循环控制
+//	求平均年龄
+//#include<iostream>
+//#include<iomanip>
+//using namespace std;
+//int n;
+//int sum = 0;
+//int main() {
+//	cin >> n;
+//	int tot = n;
+//	int temp;
+//	while (n--) {
+//		cin >> temp;
+//		sum = sum + temp;
+//	}
+//	double ave = double(sum) / double(tot);
+//	cout <<fixed <<setprecision(2)<< ave;
+//	system("pause");
+//}
+
+//财务管理
+//#include<iostream>
+//#include<iomanip>
+//using namespace std;
+//int main() {
+//	double temp;
+//	double sum = 0;
+//	for(int i = 0; i < 12; i++) {
+//		cin >> temp;
+//		sum = sum + temp;
+//	}
+//	double ave = double(sum) / 12.0;
+//	cout << "$"<<fixed << setprecision(2) << ave;
+//	system("pause");
+//}
+
+
+//均值
+//#include<iostream>
+//#include<iomanip>
+//using namespace std;
+//int main() {
+//	double temp;
+//	double sum = 0;
+//	int n;
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		cin >> temp;
+//		sum = sum + temp;
+//	}
+//	double ave = double(sum) /double(n);
+//	cout <<  fixed << setprecision(4) << ave;
+//	system("pause");
+//}
+
+//求整数的和与均值
+//#include<iostream>
+//#include<iomanip>
+//using namespace std;
+//int main() {
+//	long long temp;
+//	long long sum = 0;
+//	int n;
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		cin >> temp;
+//		sum = sum + temp;
+//	}
+//	double ave = double(sum) / double(n);
+//	cout <<sum<<" "<< fixed << setprecision(5) << ave;
+//	system("pause");
+//}
+
+
+//最高的分数
+//#include<iostream>
+//#include<iomanip>
+//using namespace std;
+//int main() {
+//	int m,f,temp;
+//	int n;
+//	cin >> n;
+//	cin >> f;
+//	m = f;
+//	for (int i = 1; i < n; i++) {
+//
+//		cin >> temp;
+//		if (temp > m) {
+//			m = temp;
+//		}
+//	}
+//	
+//	cout << m;
+//	system("pause");
+//}
+
+//整数序列的元素最大跨度值
+//#include<iostream>
+//#include<iomanip>
+//using namespace std;
+//int main() {
+//	int m,s, f, temp;
+//	int n;
+//	cin >> n;
+//	cin >> f;
+//	m = f;
+//	s = f;
+//	for (int i = 1; i < n; i++) {
+//
+//		cin >> temp;
+//		if (temp > m) {
+//			m = temp;
+//		}
+//		if (temp < s) {
+//			s = temp;
+//		}
+//	}
+//
+//	cout << m - s;
+//	system("pause");
+//}
+
+//奥运奖牌计数
+//#include<iostream>
+//#include<iomanip>
+//using namespace std;
+//int main() {
+//	int n;
+//	int tj, ty, tt;
+//	int j = 0;
+//	int y = 0;
+//	int t = 0;
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		cin >> tj >> ty >> tt;
+//		j += tj;
+//		y += ty;
+//		t += tt;
+//	}
+//	cout << j<<" "<<y<<" "<<t<<" "<<j+y+t;
+//	system("pause");
+//}
+
+//多边形内角和
+//#include<iostream>
+//#include<iomanip>
+//using namespace std;
+//int main() {
+//	int n,temp;
+//	cin >> n;
+//	int sum = 0;
+//	for (int i = 0; i < n-1; i++) {
+//		cin >> temp;
+//		sum += temp;
+//	}
+//	cout << (n-2)*180 - sum;
+//	system("pause");
+//}
+
+//奇数求和
+//#include<iostream>
+//#include<iomanip>
+//using namespace std;
+//int main() {
+//	int n, m;
+//	int sum = 0;
+//	cin >> n >> m;
+//	if (n % 2 == 1) {
+//		for (int i = n; i <= m; i = i + 2) {
+//			
+//				sum += i;
+//			
+//		}
+//	}
+//	else {
+//		for (int i = n+1; i <= m; i = i + 2) {
+//
+//			sum += i;
+//
+//		}
+//	}
+//	
+//	cout << sum;
+//	system("pause");
+//}
+
+//满足条件的数累加
+//#include<iostream>
+//#include<iomanip>
+//using namespace std;
+//int main() {
+//	int n, m;
+//	int sum = 0;
+//	cin >> n >> m;
+//	
+//		for (int i = n; i <= m; i++) {
+//			if (i % 17 == 0) {
+//				sum += i;
+//			}
+//		}
+//	
+//	cout << sum;
+//	system("pause");
+//}
+
+//整数的个数
+//#include<iostream>
+//#include<iomanip>
+//using namespace std;
+//int main() {
+//	int n, m, temp;
+//	int sum = 0;
+//	cin >> n >> m;
+//
+//	for (int i = 0; i < n; i++) {
+//		cin >> temp;
+//		if (temp == m) {
+//			sum++;
+//		}
+//	}
+//	cout << sum;
+//	system("pause");
+//}
+
+//乘方计算
+//#include<iostream>
+//#include<cmath>
+//using namespace std;
+//int main() {
+//	int n, m;
+//	long long ans;
+//	cin >> n >> m;
+//
+//	ans = pow(n, m);
+//	cout << ans;
+//	system("pause");
+//}
+
+//人口增长问题
+//#include<iostream>
+//#include<iomanip>
+//#include<cmath>
+//using namespace std;
+//int main() {
+//	int x,n;
+//	double  ans;
+//	cin >> x >> n;
+//	ans = double(x);
+//	for (int i = 0; i < n; i++) {
+//		ans = ans *(1+ 0.1 / 100);
+//	}
+//	cout <<fixed<<setprecision(4)<< ans;
+//	system("pause");
+//}
+
+//银行利息 ????
+//#include<iostream>
+//#include<iomanip>
+//#include<cmath>
+//using namespace std;
+//int main() {
+//	int r, m, y;
+//	cin >> r >> m >> y;
+//	double ans = m;
+//	for (int i = 0; i < y; i++) {
+//		ans = ans * (100 + r) / 100;
+//		//cout << ans << endl;
+//	}
+//	int q = floor(ans);
+//	cout << q;
+//	system("pause");
+//	return 0;
+//}
+
+
+//买房子
+//#include<iostream>
+//#include<iomanip>
+//#include<cmath>
+//using namespace std;
+//int main() {
+//	int n, k;
+//	cin >> n >> k;
+//	double price = 200.0;
+//	double salary = double(n);
+//	int flag = 0;
+//	for (int i = 1;i<=20; i++) {
+//		
+//		if (salary >= price) {
+//			cout << i;
+//			flag = 1;
+//			break;
+//		}
+//		price = price * (100 + k) / 100;
+//		salary += n;
+//	}
+//	if (!flag) {
+//		cout << "Impossible";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//菲波那契数列 ?
+//#include <iostream>
+//#include<string.h>//memset函数要头文件string.h
+//using namespace std;
+//const int maxn = 50;
+//int m[maxn];
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	m[1] = 1;
+//	m[2] = 1;
+//	int k;
+//	cin >> k;
+//	if (k <= 2) {
+//		cout << 1;
+//	}
+//	else {
+//		for (int i = 3; i <= k; i++) {
+//			m[i] = m[i - 1] + m[i - 2];
+//		}
+//		cout << m[k];
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//鸡尾酒疗法
+//#include <iostream>
+//using namespace std;
+//int main() {
+//	int n, stanx, stany;
+//	cin >> n;
+//	cin >> stanx >> stany;
+//	double stan = double(stany) / double(stanx);
+//	int tempx, tempy;
+//	double temp;
+//	for (int i = 1; i < n; i++) {
+//		cin >> tempx >> tempy;
+//		temp = double(tempy) / double(tempx);
+//	
+//		if (temp - stan > 0.05) {
+//			cout << "better" ;
+//		}
+//		else if (stan  - temp> 0.05) {
+//			cout << "worse" ;
+//		}
+//		else {
+//			cout << "same" ;
+//		}
+//		if (i < n - 1) {
+//			cout << endl;
+//		}
+//	}
+//	system("pause");
+//}
+
+//救援 ？
+//#include <iostream>
+//#include<cmath>
+//using namespace std;
+//int main() {
+//	int n;
+//	cin >> n;
+//	double x, y;//读清题目条件 输入为实数
+//	int z;
+//	double t = 0.0;
+//	for (int i = 0; i < n; i++) {
+//		cin >> x >> y >> z;
+//		double dist = sqrt(pow(x, 2) + pow(y, 2));
+//		//cout << dist << " " << 2 * dist / 50 << endl;
+//		t = t + 2 * dist / 50 + z * 1.5;
+//	}
+//	cout << ceil(t);
+//	system("pause");
+//}
+
+//球弹跳高度的计算
+//#include <iostream>
+//#include<cmath>
+//using namespace std;
+//int main() {
+//	int n = 10;
+//	int h;
+//	cin >> h;
+//	double tot = 0.0;
+//	double len = double(h);
+//	tot = tot + len;
+//	len = len / 2;
+//	for (int i = 2; i <= n; i++) {
+//		tot = tot + 2 * len;
+//		len = len / 2;
+//	}
+//	printf("%g\n%g", tot, len);
+//	system("pause");
+//}
+
+
+//角谷猜想 ？
+//#include <iostream>
+//#include<cmath>
+//using namespace std;
+//int main() {
+//	long int n, temp;//用long int 不然会报错
+//	cin >> n;
+//	if (n == 1) {
+//		cout << "End";
+//	}
+//	else {
+//		while (n != 1) {
+//			if (n % 2 == 1) {
+//				temp = n * 3 + 1;
+//				cout << n << "*3+1=" << temp << endl;
+//				n = temp;
+//			}
+//			else {
+//				temp = n / 2;
+//				cout << n << "/2=" << temp << endl;
+//				n = temp;
+//			}
+//		}
+//		cout << "End";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//津津的储蓄计划 ??
+//#include <iostream>
+//#include<cmath>
+//using namespace std;
+//int main() {
+//	int n = 12;
+//	int temp, rest = 0;
+//	int win = 0;
+//	bool flag = true;
+//	for (int i = 1; i <= n; i++) {
+//		rest = rest + 300;
+//		cin >> temp;
+//		if (temp > rest) {
+//			cout << "-" << i;
+//			flag = false;
+//			break;
+//		}
+//		else {
+//			rest = rest - temp;
+//			win = win + 100 * (rest / 100);
+//			rest = rest - 100 * (rest / 100);
+//		}
+//		//cout << rest << " " << win << endl;
+//	}
+//	if (flag) {
+//		cout << win * 1.2 + rest;//最后一个月可能还剩下钱
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//药房管理
+//#include <iostream>
+//#include<cmath>
+//using namespace std;
+//int main() {
+//	int tot, n, temp, cnt = 0;
+//	cin >> tot >> n;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> temp;
+//		if (temp <= tot) {//可以取等
+//			tot = tot - temp;
+//		}
+//		else {
+//			cnt++;
+//		}
+//	}
+//	cout << cnt;
+//	system("pause");
+//	return 0;
+//}
+
+//正常血压 
+//#include <iostream>
+//#include<cmath>
+//using namespace std;
+//int main() {
+//	int n,h,l;
+//	int cnt = 0,max = 0;
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> h>>l;
+//		if (h>=90 &&h<=140&&l>=60&&l<=90) {
+//			cnt++;
+//			if (cnt >= max) {
+//				max = cnt;
+//			}
+//		}
+//		else {
+//			cnt = 0;
+//		}
+//	}
+//	cout << max;
+//	system("pause");
+//	return 0;
+//}
+
+//求特殊自然数 ？
+//#include <iostream>
+//#include<cmath>
+//using namespace std;
+//int main() {
+//	int  s, n;
+//	int m[3];
+//	bool flag = true;
+//	for (int i = 101; i <= 666; i++) {//因为7进制数不能出现大于7的数字
+//		int temp = i;
+//		for (int j = 0; j < 3; j++) {
+//			m[j] = temp % 10;
+//			temp = temp / 10;
+//			//cout << m[j] << endl;
+//		}
+//		s = m[0] + m[1] * 7 + m[2] * 49;
+//		n = m[0] * 81 + m[1] * 9 + m[2];
+//		if (m[0] < 7 && m[1] < 7 && s == n) {//因为7进制数不能出现大于7的数字
+//			if (flag) {
+//				cout << s << endl << m[2] << m[1] << m[0] << endl << m[0] << m[1] << m[2];
+//				flag = false;
+//			}
+//			else {
+//				cout << endl << s << endl << m[2] << m[1] << m[0] << endl << m[0] << m[1] << m[2];
+//			}
+//		}
+//
+//	}
+//
+//	system("pause");
+//	return 0;
+//}
+
+//统计满足条件的4位数个数
+//#include <iostream>
+//#include<cmath>
+//using namespace std;
+//int main() {
+//	int  n;
+//	int cnt = 0;
+//	int temp;
+//	int m[4];
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		cin >> temp;
+//		for (int j = 0; j < 4; j++) {
+//			m[j] = temp % 10;
+//			temp = temp / 10;
+//		}
+//		int ans = m[0] - m[1] - m[2] - m[3];
+//		if (m[0] - m[1] - m[2] - m[3] > 0) {
+//			cnt++;
+//		}
+//	}
+//	cout << cnt;
+//	system("pause");
+//	return 0;
+//}
+
+//级数求和
+//#include <iostream>
+//#include<cmath>
+//using namespace std;
+//int main() {
+//	int  n;
+//	cin >> n;
+//	double s = 0.0;
+//	int i;
+//	for ( i = 1; s <= n; i++) {
+//		if (s > n) {
+//			cout << i;
+//		}
+//		else {
+//			
+//			s = s + 1.0 / i;
+//			//cout << s << endl;
+//		}
+//	}
+//	cout << i-1;
+//	system("pause");
+//	return 0;
+//}
+
+//分离整数的各个数位
+//#include <iostream>
+//#include<cmath>
+//using namespace std;
+//const int maxn = 15;
+//int m[maxn];
+//int main() {
+//	long int  n;
+//	cin >> n;
+//	int i;
+//	for (i = 0;; i++) {
+//		if (n == 0) {
+//			break;
+//		}
+//		else {
+//			m[i] = n % 10;
+//			n = n / 10;
+//		}
+//	}
+//	bool flag = true;
+//	for (int j = 0; j < i; j++) {
+//		if (flag) {
+//			cout << m[j];
+//			flag = false;
+//		}
+//		else {
+//			cout << " " << m[j];
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//数字反转
+//#include <iostream>
+//#include<cmath>
+//using namespace std;
+//const int maxn = 15;
+//int m[maxn];
+//int main() {
+//	long int  n;
+//	cin >> n;
+//	int i;
+//	bool nag = false;
+//	if (n < 0) {
+//		n = -n;
+//		nag = true;
+//	}
+//	for (i = 0;; i++) {
+//		if (n == 0) {
+//			break;
+//		}
+//		else {
+//			m[i] = n % 10;
+//			n = n / 10;
+//		}
+//	}
+//	bool flag = true;
+//	if (nag) {
+//		cout << "-";
+//	}
+//	for (int j = 0; j < i; j++) {
+//		
+//		if (flag) {
+//			if (m[j] != 0) {
+//				cout << m[j];
+//				flag = false;
+//			}
+//		}
+//		else {
+//			cout << m[j];
+//		}
+//		
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//含k个3的数
+//#include <iostream>
+//#include<cmath>
+//using namespace std;
+//const int maxn = 15;
+//int matrix[maxn];
+//int main() {
+//	int  m,k,cnt = 0;
+//	cin >> m>>k;
+//	int i;
+//	if (m % 19 == 0) {
+//		for (i = 0;; i++) {
+//			if (m == 0) {
+//				break;
+//			}
+//			else {
+//				matrix[i] = m % 10;
+//				m = m / 10;
+//			}
+//		}
+//		for (int j = 0; j < i; j++) {
+//				if (matrix[j] == 3) {
+//					cnt++;
+//				}
+//		}
+//		if (cnt == k) {
+//			cout << "YES";
+//			system("pause");
+//			return 0;
+//		}
+//	}
+//	cout << "NO";
+//	system("pause");
+//	return 0;
+//}
+
+//开关灯
+//#include <iostream>
+//#include<cmath>
+//#include <string.h>
+//using namespace std;
+//const int maxn = 5001;
+//int matrix[maxn];
+//int main() {
+//	memset(matrix, 0, sizeof(matrix));
+//	
+//	int  n, m;
+//	cin >> n >> m;
+//	for (int i = 1; i <= m; i++) {
+//		for (int j = i; j <= n; j = j + i) {//这里的步长是i，不是m
+//			matrix[j] = matrix[j] + 1;
+//			/*for (int k = 1; k <= 5; k++) {
+//				cout << matrix[k] << " ";
+//			}
+//			cout << endl;*/
+//		}
+//		//cout << "i:" << i << endl;
+//	}
+//	bool flag = true;
+//	for (int i = 1; i <= n; i++) {
+//		if (matrix[i] % 2 == 1) {
+//			if (flag) {
+//				cout << i;
+//				flag = false;
+//			}
+//			else {
+//				cout << "," << i;
+//			}
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//求分数序列和
+//#include <iostream>
+//#include<cmath>
+//#include <string.h>
+//#include <iomanip>
+//using namespace std;
+//const int maxn = 35;
+//int m[maxn];
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	m[1] = 1;
+//	m[2] = 2;
+//	int  n;
+//	cin >> n;
+//	for (int i = 3; i <= n + 1; i++) {
+//		m[i] = m[i - 1] + m[i - 2];
+//		//cout << m[i] << endl;
+//	}
+//	double sum = 0.0;
+//	for (int i = 1; i <= n; i++) {
+//		sum = sum + double(m[i + 1]) / double(m[i]);
+//		//cout << "sum: " << sum << endl;
+//	}
+//	cout << fixed << setprecision(4) << sum;
+//	system("pause");
+//	return 0;
+//}
+
+//计算分数加减表达式的值
+//#include <iostream>
+//#include<cmath>
+//#include <string.h>
+//#include <iomanip>
+//using namespace std;
+//
+//int main() {
+//	double sum = 0.0;
+//	int  n;
+//	cin >> n;
+//	for (int i = 1; i <= n ; i++) {
+//		sum = sum - pow(-1, i)*1.0/double(i);
+//	}
+//	
+//	cout << fixed << setprecision(4) << sum;
+//	system("pause");
+//	return 0;
+//}
+
+//求阶乘的和
+//#include <iostream>
+//#include<cmath>
+//#include <string.h>
+//#include <iomanip>
+//using namespace std;
+//int main() {
+//	long int sum = 1;
+//	long int part = 1;
+//	int  n;
+//	cin >> n;
+//	for (int i = 2; i <= n; i++) {
+//		part = part * i;
+//		sum = sum + part;
+//		//cout <<" "<< sum << endl;
+//	}
+//	cout << sum;
+//	system("pause");
+//	return 0;
+//}
+
+//求出e的值
+//#include <iostream>
+//#include<cmath>
+//#include <string.h>
+//#include <iomanip>
+//using namespace std;
+//int main() {
+//	double sum = 2.0;
+//	long int part = 1;
+//	int  n;
+//	cin >> n;
+//	for (int i = 2; i <= n; i++) {
+//		part = part * i;
+//		sum = sum + 1/double(part);
+//		
+//	}
+//	cout <<fixed<<setprecision(10)<< sum;
+//	system("pause");
+//	return 0;
+//}
+
+//计算多项式的值
+//#include <iostream>
+//#include<cmath>
+//#include <string.h>
+//#include <iomanip>
+//using namespace std;
+//int main() {
+//	double sum = 1.0;
+//	float part = 1;
+//	int n;
+//	float x;
+//	cin >> x >> n;
+//	for (int i = 1; i <= n; i++) {
+//		part = part * x;
+//		sum = sum + part;
+//
+//	}
+//	cout << fixed << setprecision(2) << sum;
+//	system("pause");
+//	return 0;
+//}
+
+//雇佣兵 注意理解题意
+//#include <iostream>
+//#include<cmath>
+//#include <string.h>
+//#include <iomanip>
+//using namespace std;
+//int main() {
+//	int m, n, x;
+//	cin >> m >> n >> x;
+//	while (1) {
+//		if (n > m) {
+//			cout << n;
+//			break;
+//		}
+//		else if (x*n < m) {
+//			cout << n;
+//			break;
+//		}
+//		else {
+//			x = x - ceil(double(m) / double(n));
+//			int add = m / n;
+//			n = n + add;
+//		}
+//	}
+//	
+//	//cout << fixed << setprecision(2) << sum;
+//	system("pause");
+//	return 0;
+//}
+
+//计算多项式的导函数 样例输入第一行的3删掉 从第二行开始看
+//#include <iostream>
+//#include<cmath>
+//#include <string.h>
+//#include <iomanip>
+//using namespace std;
+//int main() {
+//	int n,temp;
+//	bool flag = true;
+//	cin >> n;
+//	if (n == 0) {
+//		cout << 0;
+//	}
+//	else {
+//		for (int i = n; i > 0; i--) {
+//			
+//			cin >> temp;
+//			if (flag) {
+//				cout << i * temp;
+//				flag = false;
+//			}
+//			else {
+//				cout << " " << i * temp;
+//			}
+//			
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//与7无关的数
+//#include <iostream>
+//#include<cmath>
+//#include <string.h>
+//#include <iomanip>
+//using namespace std;
+//const int maxn = 5;
+//int m[maxn];
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	bool flag = false;
+//	long long n, sum = 0;
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		if (i % 7 == 0) {
+//			flag = true;
+//		}
+//		else {
+//			long long temp = i;
+//			for (int j = 1; temp > 0; j++) {
+//				m[j] = temp % 10;
+//				temp = temp / 10;
+//			}
+//			for (int k = 1; k <= 3; k++) {
+//				if (m[k] == 7) {
+//					flag = true;
+//				}
+//			}
+//		}
+//		if (!flag) {
+//			sum = sum + pow(i, 2);
+//			
+//		}
+//		flag = false;
+//		//cout <<i<< " "<< sum << endl;
+//	}
+//	cout << sum;
+//	system("pause");
+//	return 0;
+//}
+
+//数1的个数
+//#include <iostream>
+//#include<cmath>
+//#include <string.h>
+//#include <iomanip>
+//using namespace std;
+//const int maxn = 6;
+//int m[maxn];
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	int n, cnt = 0;
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		int temp = i;
+//		while (temp != 0) {
+//			if (temp % 10 == 1) {
+//				cnt++;
+//			}
+//			temp = temp / 10;
+//			//cout << temp << endl;
+//		}
+//		//cout << i << " " << cnt << endl;
+//	}
+//	cout << cnt;
+//	system("pause");
+//	return 0;
+//}
+
+//数字统计
+//#include <iostream>
+//#include<cmath>
+//#include <string.h>
+//#include <iomanip>
+//using namespace std;
+//int main() {
+//	int n, m, cnt = 0;
+//	cin >> n >> m;
+//	for (int i = n; i <= m; i++) {
+//		int temp = i;
+//		while (temp != 0) {
+//			if (temp % 10 == 2) {
+//				cnt++;
+//			}
+//			temp = temp / 10;
+//			//cout << temp << endl;
+//		}
+//		//cout << i << " " << cnt << endl;
+//	}
+//	cout << cnt;
+//	system("pause");
+//	return 0;
+//}
+
+//画矩形
+//#include <iostream>
+//#include<cmath>
+//#include <string.h>
+//#include <iomanip>
+//using namespace std;
+//int main() {
+//	int row, col, flag;
+//	char ch;
+//	cin >> row >> col >> ch >> flag;
+//	for (int i = 1; i <= col; i++) {
+//		cout << ch;
+//	}
+//	cout << endl;
+//	for (int j = 2; j < row; j++) {
+//		if (flag) {
+//			for (int i = 1; i <= col; i++) {
+//				cout << ch;
+//			}
+//			cout << endl;
+//		}
+//		else {
+//			cout << ch;
+//			for (int i = 2; i < col; i++) {
+//				cout << " ";
+//			}
+//			cout << ch;
+//			cout << endl;
+//		}
+//	}
+//	for (int i = 1; i <= col; i++) {
+//		cout << ch;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//质因数分解 ??
+//分析：题目要我们求的，是某个数的最大质因数，首先，要求的数要先满足两个条件
+//（1） 它要是个质数 （2）它要能被题目所给数整除
+//好了 一般思路，从小到大循环求这个数（从小到大查找可以极大减小运行次数），看看能不能把题目所给的数整除，而且还要是个质数，是就输出，解决；
+//但问题真的那么简单吗，仔细思考，我们会发现，题目已经保障了数据一定是两个质数想乘而得到的，这意味着除了1和它本身，它只能被其他两个质数整除，
+//所以，还判断什么质数啊，找到可以整除的最大数，直接输出吧，骚年。
+//（注意从小到大进行查找）
+//#include <iostream>
+//#include<cmath>
+//#include <string.h>
+//#include <iomanip>
+//using namespace std;
+//int main() {
+//	int n;
+//	cin >> n;
+//	for (int i = 2; i*i <= n; i++) {
+//		if (n%i == 0) {
+//			cout << n / i;
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//第n小的质数
+//#include <iostream>
+//#include<cmath>
+//#include <string.h>
+//#include <iomanip>
+//using namespace std;
+//int main() {
+//	int n;
+//	int cnt = 0;
+//	bool flag = true;
+//	cin >> n;
+//	int i;
+//	for (i = 2; cnt < n; i++) {
+//		for (int j = 2; j*j <= i; j++) {//要取等号
+//			if (i%j == 0) {
+//				flag = false;
+//				break;
+//			}
+//		}
+//		if (flag) {
+//			cnt++;
+//		}
+//		flag = true;
+//	}
+//	cout << i-1;
+//	system("pause");
+//	return 0;
+//}
+
+////金币
+//#include <iostream>
+//#include<cmath>
+//#include <string.h>
+//#include <iomanip>
+//using namespace std;
+//int main() {
+//	int n;
+//	cin >> n;
+//	int d = 0;
+//	int sum = 0;
+//	for (int i = 1;; i++) {
+//		for (int j = 1; j <= i; j++) {
+//			sum = sum + i;
+//			d++;
+//			if (d == n) {
+//				cout << sum;
+//				system("pause");
+//				return 0;
+//			}
+//		}
+//	}
+//	return 0;
+//}
