@@ -2089,3 +2089,651 @@
 //	}
 //	return 0;
 //}
+
+//1.6编程基础之一维数组
+//与指定数字相同的数的个数
+//#include <iostream>
+//#include<string.h>
+//using namespace std;
+//const int maxn = 110;
+//int m[maxn];
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	int n, tar, temp,cnt =0;
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		cin >> temp;
+//		m[i] = temp;
+//		
+//	}
+//	cin >> tar;
+//	for (int i = 0; i < n; i++) {
+//		if (m[i] == tar) {
+//			cnt++;
+//			
+//		}
+//	}
+//	cout << cnt;
+//	system("pause");
+//}
+
+//陶陶摘苹果
+//#include <iostream>
+//#include<string.h>
+//using namespace std;
+//const int maxn = 11;
+//int m[maxn];
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	int can, temp, cnt = 0;
+//	
+//	for (int i = 0; i < 10; i++) {
+//		cin >> temp;
+//		m[i] = temp;
+//
+//	}
+//	cin >> can;
+//	for (int i = 0; i < 10; i++) {
+//		if (m[i] <= can+30) {
+//			cnt++;
+//
+//		}
+//	}
+//	cout << cnt;
+//	system("pause");
+//}
+
+//计算书费
+//#include <iostream>
+//#include<string.h>
+//#include <iomanip>
+//using namespace std;
+//const int maxn = 10;
+//float book[maxn] = { 28.9,32.7 ,45.6,78.0,35.0, 86.2 ,27.8 ,43.0 ,56.0,65.0 };
+//int main() {
+//	float tot = 0.0;
+//	int temp;
+//	for (int i = 0; i < 10; i++) {
+//		cin >> temp;
+//		tot = tot + book[i] * temp;
+//	}
+//	cout << fixed << setprecision(1) << tot;
+//	system("pause");
+//}
+
+//数组逆序重放
+//#include <iostream>
+//#include<string.h>
+//#include <iomanip>
+//using namespace std;
+//const int maxn = 10;
+//int m[maxn];
+//int main() {
+//	int n, temp;
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		cin >> temp;
+//		m[i] = temp;
+//	}
+//	bool flag = true;
+//	for (int i = n-1; i >= 0; i--) {
+//		if (flag) {
+//			cout << m[i];
+//			flag = false;
+//		}
+//		else {
+//			cout << " " << m[i];
+//		}
+//	}
+//	system("pause");
+//}
+
+//年龄与疾病
+//#include <iostream>
+//#include<string.h>
+//#include <iomanip>
+//using namespace std;
+//const int maxn = 10;
+//int m[maxn];
+//int cnt[4];
+//int main() {
+//	int n, temp;
+//	memset(cnt, 0, sizeof(cnt));
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		cin >> temp;
+//		if (temp <= 18 && temp >= 0) {
+//			cnt[0] = cnt[0] + 1;
+//		}
+//		if (temp <= 35 && temp >= 19) {
+//			cnt[1] = cnt[1] + 1;
+//		}
+//		if (temp <= 60 && temp >= 36) {
+//			cnt[2] = cnt[2] + 1;
+//		}
+//		if (temp >= 61) {
+//			cnt[3] = cnt[3] + 1;
+//		}
+//	}
+//	bool flag = true;
+//	for (int i = 0; i < 4; i++) {
+//		if (flag) {
+//			cout << fixed << setprecision(2) << double(cnt[i]) / double(n)*100.0 << "%";
+//			flag = false;
+//		}
+//		else {
+//			cout << endl << fixed << setprecision(2) << double(cnt[i]) / double(n)*100.0 << "%";
+//		}
+//	}
+//	system("pause");
+//}
+
+//校门外的树 ？
+//#include <iostream>
+//#include<string.h>
+//#include <iomanip>
+//using namespace std;
+//const int maxn = 10010;
+//int m[maxn];
+//int main() {
+//	int len, amount, templ, tempr,cnt=0;
+//	memset(m, 0, sizeof(m));
+//
+//	cin >> len >> amount;
+//	for (int i = 0; i < amount; i++) {
+//		cin >> templ >> tempr;
+//		for (int j = templ; j <= tempr; j++) {
+//			m[j] = 1;
+//		}
+//	}
+//	for (int i = 0; i <= len; i++) {//这里要取0，因为0处也要种树
+//		if(m[i]==1){
+//			cnt++;
+//		}
+//	}
+//	cout << len + 1 - cnt;
+//	system("pause");
+//}
+
+//有趣的跳跃 ??只有6分
+//#include <iostream>
+//#include<string.h>
+//#include <iomanip>
+//#include<algorithm>
+//using namespace std;
+//const int maxn = 3010;
+//long long m[maxn];
+//long long ans[maxn];
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	memset(ans, 0, sizeof(ans));
+//	int  n, cnt = 0;
+//	long long temp;
+//	cin >> n;
+//	if (n == 1) {
+//		cout << "Jolly";
+//	}
+//	else {
+//		cin >> m[0];
+//		for (int i = 1; i < n; i++) {
+//			cin >> m[i];
+//		}
+//		for (int i = 0; i < n - 1; i++) {
+//			ans[i] = abs(m[i] - m[i + 1]);//注意这里的范围，是m+1而不是m-1
+//		}
+//		sort(ans, ans + n - 1);
+//		for (int i = 0; i < n - 2; i++) {
+//			//cout << ans[i] << " ";
+//			if (ans[i] - ans[i + 1] != -1) {
+//				cout << "Not jolly";
+//				system("pause");
+//				return 0;
+//			}
+//		}
+//		cout << "Jolly";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//石头剪刀布
+//#include <iostream>
+//#include<string.h>
+//#include <iomanip>
+//using namespace std;
+//const int maxn = 110;
+//int a[maxn], b[maxn];
+//int main() {
+//	memset(a, 0, sizeof(a));
+//	memset(b, 0, sizeof(b));
+//	int n, na, nb,cnta= 0,cntb = 0;
+//	cin >> n >> na >> nb;
+//	for (int i = 0; i < na; i++) {
+//		cin >> a[i];
+//	}
+//	for (int i = 0; i < nb; i++) {
+//		cin >> b[i];
+//	}
+//	for (int i = 0; i < n; i++) {
+//		a[i] = a[i%na];
+//		b[i] = b[i%nb];
+//	}
+//	for (int i = 0; i < n; i++) {
+//		if (a[i] == 0) {
+//			if (b[i] == 2) {
+//				cnta++;
+//			}
+//			else if (b[i] == 5) {
+//				cntb++;
+//			}
+//		}
+//		if (a[i] == 2) {
+//			if (b[i] == 5) {
+//				cnta++;
+//			}
+//			else if (b[i] == 0) {
+//				cntb++;
+//			}
+//		}
+//		if (a[i] == 5) {
+//			if (b[i] == 0) {
+//				cnta++;
+//			}
+//			else if (b[i] == 2) {
+//				cntb++;
+//			}
+//		}
+//	}
+//	if (cnta > cntb) {
+//		cout << "A";
+//	}
+//	else if (cnta < cntb) {
+//		cout << "B";
+//	}
+//	else {
+//		cout << "draw";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//向量点积计算
+//#include <iostream>
+//#include<string.h>
+//#include <iomanip>
+//using namespace std;
+//const int maxn = 1100;
+//int a[maxn], b[maxn];
+//int main() {
+//	memset(a, 0, sizeof(a));
+//	memset(b, 0, sizeof(b));
+//	int n;
+//	long long sum = 0;//不然会溢出
+//	cin >> n ;
+//	for (int i = 0; i < n; i++) {
+//		cin >> a[i];
+//	}
+//	for (int i = 0; i < n; i++) {
+//		cin >> b[i];
+//	}
+//	
+//	for (int i = 0; i < n; i++) {
+//		sum = sum + a[i] * b[i];
+//	}
+//	cout << sum;
+//	system("pause");
+//	return 0;
+//}
+
+//大整数加法
+//#include <iostream>
+//#include<string.h>
+//#include <iomanip>
+//using namespace std;
+//const int maxn = 210;
+//char a[maxn], b[maxn], ra[maxn], rb[maxn]; //用于存储输入和反转后的数组
+//int aa[maxn], bb[maxn];//数字化数组
+//int result[maxn];
+//int carry[maxn];
+//int main() {
+//	//一定要初始化 因为可能会进位，要确保每一位进位时原来就是0
+//	memset(a, '0', sizeof(a));
+//	memset(b, '0', sizeof(b));
+//	memset(ra, '0', sizeof(ra));
+//	memset(rb, '0', sizeof(rb));
+//	memset(result, 0, sizeof(result));
+//	memset(carry, 0, sizeof(carry));
+//	memset(aa, 0, sizeof(aa));//重新开一个数组，确保后面每一位都是0
+//	memset(bb, 0, sizeof(bb));
+//
+//	cin >> a;
+//	cin >> b;
+//	int lena = strlen(a);
+//	int lenb = strlen(b);
+//	int cnta = 0, cntb = 0;
+//	//统计开头的0的个数 方便后面翻转时不要把高位0也算进去了
+//	for (int i = 0; i < lena; i++) {
+//		if (a[i] != '0') {
+//			break;
+//		}
+//		else {
+//			cnta++;
+//		}
+//	}
+//	for (int i = 0; i < lenb; i++) {
+//		if (b[i] != '0') {
+//			break;
+//		}
+//		else {
+//			cntb++;
+//		}
+//	}
+//	//这里是考虑边界情况，如果0+0，即字符串的长度等于高位0的个数，此时直接输出0
+//	if (lena - cnta == 0 && lenb - cntb == 0) {
+//		cout << 0;
+//	}
+//	//翻转数组 方便处理，不用翻转高位0，此时先不处理len 因为从最小位开始往前去 需要定位到len
+//	for (int i = 0; i < lena - cnta; i++) {
+//		ra[i] = a[lena - i - 1];
+//	}
+//	for (int i = 0; i < lenb - cntb; i++) {
+//		rb[i] = b[lenb - i - 1];
+//	}
+//	//翻转完之后再跟新len  并求最长len
+//	lena = lena - cnta;
+//	lenb = lenb - cntb;
+//	int lenmax = lenb * (lena < lenb) + lena * (lena >= lenb);
+//	//_strrev(a);//编译器不让用
+//	//_strrev(b);
+//
+//	//将字符转化为数字 要重新开一个int数组 因为后面计算是基于数字的  不是基于char的（ascii码）
+//	for (int i = 0; i < lena; i++) {
+//		aa[i] = ra[i] - '0';
+//	}
+//	for (int i = 0; i < lenb; i++) {
+//		bb[i] = rb[i] - '0';
+//	}
+//	//先不考虑进位 直接相加
+//	for (int i = 0; i < lenmax; i++) {
+//		result[i] = aa[i] + bb[i];
+//		result[i + 1] = 0;//防止最后一位有进位
+//		//cout << "i: " << i << " " << result[i] << endl;
+//	}
+//	//考虑进位 注意 这里应该先将当前位的数 加上进位位后 在计算下一个下一个进位位和当前的数
+//	for (int i = 0; i < lenmax + 1; i++) {//最后一位可能有进位
+//		result[i] = result[i] + carry[i];
+//		carry[i + 1] = (result[i]) / 10;
+//		result[i] = result[i] % 10;
+//	}
+//
+//	//可能最高位进位了 则lenmax+1
+//	if (result[lenmax] != 0) {
+//		lenmax++;
+//	}
+//	//倒着输出
+//	for (int i = lenmax - 1; i >= 0; i--) {
+//		cout << result[i];
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//大整数减法
+//#include <iostream>
+//#include<string.h>
+//#include <iomanip>
+//using namespace std;
+//const int maxn = 210;
+//char a[maxn], b[maxn], ra[maxn], rb[maxn]; //用于存储输入和反转后的数组
+//int aa[maxn], bb[maxn];//数字化数组
+//int result[maxn];
+//int carry[maxn];
+//int main() {
+//	//一定要初始化 因为可能会进位，要确保每一位进位时原来就是0
+//	memset(a, '0', sizeof(a));
+//	memset(b, '0', sizeof(b));
+//	memset(ra, '0', sizeof(ra));
+//	memset(rb, '0', sizeof(rb));
+//	memset(result, 0, sizeof(result));
+//	memset(carry, 0, sizeof(carry));
+//	memset(aa, 0, sizeof(aa));//重新开一个数组，确保后面每一位都是0
+//	memset(bb, 0, sizeof(bb));
+//
+//	cin >> a;
+//	cin >> b;
+//	int lena = strlen(a);
+//	int lenb = strlen(b);
+//	int cnta = 0, cntb = 0;
+//	//统计开头的0的个数 方便后面翻转时不要把高位0也算进去了
+//	for (int i = 0; i < lena; i++) {
+//		if (a[i] != '0') {
+//			break;
+//		}
+//		else {
+//			cnta++;
+//		}
+//	}
+//	for (int i = 0; i < lenb; i++) {
+//		if (b[i] != '0') {
+//			break;
+//		}
+//		else {
+//			cntb++;
+//		}
+//	}
+//	//这里是考虑边界情况，如果0+0，即字符串的长度等于高位0的个数，此时直接输出0
+//	if (lena - cnta == 0 && lenb - cntb == 0) {
+//		cout << 0;
+//	}
+//	//翻转数组 方便处理，不用翻转高位0，此时先不处理len 因为从最小位开始往前去 需要定位到len
+//	for (int i = 0; i < lena - cnta; i++) {
+//		ra[i] = a[lena - i - 1];
+//	}
+//	for (int i = 0; i < lenb - cntb; i++) {
+//		rb[i] = b[lenb - i - 1];
+//	}
+//	//翻转完之后再跟新len  并求最长len
+//	lena = lena - cnta;
+//	lenb = lenb - cntb;
+//	int lenmax = lenb * (lena < lenb) + lena * (lena >= lenb);
+//	//_strrev(a);//编译器不让用
+//	//_strrev(b);
+//
+//	//将字符转化为数字 要重新开一个int数组 因为后面计算是基于数字的  不是基于char的（ascii码）
+//	for (int i = 0; i < lena; i++) {
+//		aa[i] = ra[i] - '0';
+//	}
+//	for (int i = 0; i < lenb; i++) {
+//		bb[i] = rb[i] - '0';
+//	}
+//
+//	//先不考虑进位 直接相减
+//	for (int i = 0; i < lenmax; i++) {
+//		result[i] = aa[i] - bb[i];
+//		//result[i + 1] = 0;//防止最后一位有进位
+//		//cout << i << " " << result[i] << endl;
+//	}
+//
+//	//考虑进位 注意 只要小于零 借位自动为1
+//	for (int i = 0; i < lenmax; i++) {
+//		result[i] = result[i] - carry[i];
+//		if (result[i] < 0) {
+//			carry[i + 1] = 1;
+//		}
+//		result[i] = (result[i] + 10) % 10;
+//	}
+//	int cnt = 0;
+//	//最高位的0不输出
+//	for (int i = lenmax - 1; i >= 0; i--) {
+//		if (result[i] != 0) {
+//			break;
+//		}
+//		else {
+//			cnt++;
+//		}
+//	}
+//	
+//	//倒着输出
+//	for (int i = lenmax - 1 - cnt; i >= 0; i--) {
+//		cout << result[i];
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//计算2的N次方
+//#include <iostream>
+//#include<string.h>
+//#include <iomanip>
+//#include<algorithm>
+//using namespace std;
+//const int maxn = 50;
+//int a[maxn];
+//int main() {
+//	memset(a, 0, sizeof(a));
+//	int n;
+//	cin >> n;
+//	int carry = 0;
+//	int temp;
+//	a[0] = 1;
+//	while (n--) {
+//		for (int i = 0; i < 50; i++) {
+//			temp = a[i] * 2 + carry;
+//			carry = temp / 10;
+//			a[i] = temp % 10;
+//		}
+//	}
+//	int j;
+//	for (j = 49; j >= 0; j--) {
+//		if (a[j] != 0) {
+//			break;
+//		}
+//	}
+//	for (; j >= 0; j--) {
+//		cout << a[j];
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//大整数的因子
+//#include <iostream>
+//#include<string.h>
+//#include <iomanip>
+//#include<algorithm>
+//using namespace std;
+//const int maxn = 35;
+//char ch[maxn];
+//int m[maxn];
+//int main() {
+//	memset(ch, '0', sizeof(ch));
+//	memset(m, 0, sizeof(m));
+//	int left, temp, cnt = 0, flag = 1;
+//	cin >> ch;
+//	int len = strlen(ch);
+//	for (int i = 0; i < len; i++) {
+//		m[i] = ch[i] - '0';
+//	}
+//	for (int i = 2; i < 10; i++) {
+//		left = 0;
+//		for (int j = 0; j < len; j++) {
+//			temp = m[j] + 10 * left;
+//			left = temp % i;
+//		}
+//		if (left == 0) {
+//			if (flag) {
+//				cout << i;
+//				flag = 0;
+//			}
+//			else {
+//				cout << " " << i;
+//			}
+//			cnt++;
+//		}
+//	}
+//	if (!cnt) {
+//		cout << "none";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//求10000以内n的阶乘
+//#include <iostream>
+//#include<string.h>
+//#include <iomanip>
+//#include<algorithm>
+//using namespace std;
+//const int maxn = 35670;
+//int m[maxn];
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	int n;
+//	long long left, temp;//防止溢出
+//	cin >> n;
+//	m[0] = 1;
+//	for (int i = 1; i <= n; i++) {
+//		left = 0;
+//		for (int j = 0; j < maxn; j++) {
+//			temp = m[j] * i + left;
+//			m[j] = temp % 10;
+//			left = temp / 10;
+//		}
+//	}
+//	int k;
+//	for (k = maxn; k >= 0; k--) {
+//		if (m[k] != 0) {
+//			break;
+//		}
+//	}
+//	for (; k >= 0; k--) {
+//		cout << m[k];
+//	}
+//
+//
+//	system("pause");
+//	return 0;
+//}
+
+//阶乘和
+//#include <iostream>
+//#include<string.h>
+//#include <iomanip>
+//#include<algorithm>
+//using namespace std;
+//const int maxn = 200;
+//int m[maxn],sum[maxn];
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	memset(sum, 0, sizeof(sum));
+//	int n, alt,carry;
+//	long long left, temp;//防止溢出
+//	cin >> n;
+//	m[0] = 1;
+//	for (int i = 1; i <= n; i++) {
+//		left = 0;
+//		for (int j = 0; j < maxn; j++) {
+//			temp = m[j] * i + left;
+//			m[j] = temp % 10;
+//			left = temp / 10;
+//		}
+//		carry = 0;
+//		for (int a = 0; a < maxn; a++) {
+//			alt = sum[a] + m[a] + carry;
+//			sum[a] = alt % 10;
+//			carry = alt / 10;
+//		}
+//	}
+//	int k;
+//	for (k = maxn; k >= 0; k--) {
+//		if (sum[k] != 0) {
+//			break;
+//		}
+//	}
+//	for (; k >= 0; k--) {
+//		cout << sum[k];
+//	}
+//
+//	system("pause");
+//	return 0;
+//}
