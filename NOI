@@ -2478,6 +2478,85 @@
 //	return 0;
 //}
 
+
+//大整数加法 法二
+//#include <iostream>
+//#include <string.h>
+//using namespace std;
+//const int maxn = 210;
+//char a[maxn];
+//char b[maxn];
+//char ra[maxn];
+//char rb[maxn];
+//int aa[maxn];
+//int bb[maxn];
+//int result[maxn];
+//int main() {
+//	memset(a, '0', sizeof(a));
+//	memset(b, '0', sizeof(b));
+//	memset(ra, '0', sizeof(ra));
+//	memset(rb, '0', sizeof(rb));
+//	memset(aa, 0, sizeof(aa));
+//	memset(bb, 0, sizeof(bb));
+//	memset(result, 0, sizeof(result));
+//
+//	cin >> a;
+//	cin >> b;
+//	int lena = strlen(a);
+//	int lenb = strlen(b);
+//	int cnta = 0;
+//	int cntb = 0;
+//	for (int i = 0; i < lena; i++) {
+//		if (a[i] != 0) {
+//			break;
+//		}
+//		else {
+//			cnta++;
+//		}
+//	}
+//	for (int i = 0; i < lenb; i++) {
+//		if (b[i] != 0) {
+//			break;
+//		}
+//		else {
+//			cntb++;
+//		}
+//	}
+//
+//	for (int i = 0; i < lena - cnta; i++) {
+//		ra[i] = a[lena - i - 1];
+//	}
+//	for (int i = 0; i < lenb - cntb; i++) {
+//		rb[i] = b[lenb - i - 1];
+//	}
+//
+//	lena = lena - cnta;
+//	lenb = lenb - cntb;
+//	int lenmax = lena * (lena >= lenb) + lenb * (lenb > lena);
+//
+//	for (int i = 0; i < lena; i++) {
+//		aa[i] = ra[i] - '0';
+//	}
+//	for (int i = 0; i < lenb; i++) {
+//		bb[i] = rb[i] - '0';
+//	}
+//	int temp, carry = 0;
+//	for (int i = 0; i < lenmax + 1; i++) {
+//		temp = aa[i] + bb[i] + carry;
+//		result[i] = temp % 10;
+//		carry = temp / 10;
+//	}
+//	if (result[lenmax] != 0) {
+//		lenmax++;
+//	}
+//	for (int i = lenmax - 1; i >= 0; i--) {
+//		cout << result[i];
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
 //大整数减法
 //#include <iostream>
 //#include<string.h>
@@ -2734,6 +2813,1669 @@
 //		cout << sum[k];
 //	}
 //
+//	system("pause");
+//	return 0;
+//}
+
+//1.7编程基础之字符串
+//统计数字字符个数 isdigit()
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//using namespace std;
+//int main() {
+//	int cnt = 0;
+//	char x;
+//	string line;
+//	getline(cin, line);
+//	stringstream ss(line);
+//	while (ss >> x) {
+//		if (isdigit(x)) {
+//			cnt++;
+//		}
+//		//cout << x;
+//	}
+//	cout << cnt;
+//	system("pause");
+//}
+
+//找第一个只出现一次的字符
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//using namespace std;
+//const int maxn = 100000;
+//char ch[maxn];
+//int res[maxn];
+//int main() {
+//	memset(ch, '0', sizeof(ch));
+//	memset(res, 0, sizeof(res));
+//	bool flag = false;
+//	cin >> ch;
+//	int len = strlen(ch);
+//	for (int i = 0; i < len; i++) {
+//		res[ch[i] - '0'] = res[ch[i] - '0'] + 1;
+//		//cout << ch[i] << " " << res[ch[i] - '0'] << endl;
+//	}
+//	for (int i = 0; i < len; i++) {
+//		if (res[ch[i] - '0'] == 1) {
+//			cout <<ch[i];
+//			flag = true;
+//			break;
+//		}
+//	}
+//	if (!flag) {
+//		cout << "no";
+//	}
+//	system("pause");
+//}
+
+//基因相关性
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//using namespace std;
+//const int maxn = 100000;
+//char a[maxn];
+//char b[maxn];
+//int main() {
+//	memset(a, '0', sizeof(a));
+//	memset(b, '0', sizeof(b));
+//	double h;
+//	int cnt = 0;
+//	cin >> h;
+//	cin >> a>>b;
+//	int len = strlen(a);
+//	for (int i = 0; i < len; i++) {
+//		if (a[i] == b[i]) {
+//			cnt++;
+//		}
+//	}
+//	double real = double(cnt) / double(len);
+//	if (real >= h) {
+//		cout << "yes";
+//	}
+//	else {
+//		cout << "no";
+//	}
+//	
+//	system("pause");
+//}
+
+//石头剪子布 ???
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//using namespace std;
+//const int maxn = 1000;
+//char a[maxn];
+//char b[maxn];
+//int main() {
+//	int n;
+//	cin >> n;
+//	//bool flag = true;
+//	for (int i = 0; i < n; i++) {
+//		cin >> a;
+//		cin >> b;
+//		/*if (flag) {
+//		flag = false;
+//		}
+//		else {
+//		cout << endl;
+//		}*/
+//		if (a[0] == 'R'&&b[0] == 'S' || a[0] == 'S'&&b[0] == 'P' || a[0] == 'P'&&b[0] == 'R')
+//			cout << "Player1" << endl;
+//		if (b[0] == 'R'&&a[0] == 'S' || b[0] == 'S'&&a[0] == 'P' || b[0] == 'P'&&a[0] == 'R')
+//			cout << "Player2" << endl;
+//		if (a[0] == b[0])
+//			cout << "Tie" << endl;
+//
+//
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//输出亲朋字符串 ? cin读不了空格
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//#include<stdio.h>
+//using namespace std;
+//const int maxn = 110;
+//char a[maxn];
+//char b[maxn];
+//int main() {
+//	memset(a, '0', sizeof(a));
+//	gets_s(a);//gets_s 和 gets
+//	int len = strlen(a);
+//	for (int i = 0; i < len -1; i++) {
+//		//b[i] = int(a[i] - NULL) + int(a[i + 1] -NULL);//审题第一个字符的ASCII值加第二个字符的ASCII值
+//		//cout << a[i] - NULL;
+//		cout << char(a[i] + a[i + 1]);
+//	}
+//	cout << char(a[len - 1] + a[0]);
+//	/*b[len - 1] = a[0] + a[len - 1];
+//	for (int i = 0; i < len; i++) {
+//		cout << char(b[i]);
+//	}*/
+//	system("pause");
+//	return 0;
+//}
+
+//合法 C 标识符
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//#include<stdio.h>
+//using namespace std;
+//const int maxn = 25;
+//char a[maxn];
+//int main() {
+//	memset(a, '0', sizeof(a));
+//	cin >> a;
+//	int len = strlen(a);
+//	if (a[0] >= '0'&&a[0] <= '9') {
+//		cout << "no";
+//		system("pause");
+//		return 0;
+//	}
+//	for (int i = 0; i < len; i++) {
+//		if ((a[i] >= '0'&&a[i] <= '9') || (a[i] <= 'Z'&&a[i] >= 'A') || (a[i] >= 'a'&&a[i] <= 'z')||a[i] == '_') {
+//
+//		}
+//		else {
+//			cout << "no";
+//			system("pause");
+//			return 0;
+//		}
+//	}
+//	cout << "yes";
+//	system("pause");
+//	return 0;
+//}
+
+//配对碱基链
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//#include<stdio.h>
+//using namespace std;
+//const int maxn = 260;
+//char a[maxn];
+//int main() {
+//	memset(a, '0', sizeof(a));
+//	cin >> a;
+//	int len = strlen(a);
+//
+//	for (int i = 0; i < len; i++) {
+//		if (a[i] == 'A') {
+//			cout << 'T';
+//		}
+//		if (a[i] == 'T') {
+//			cout << 'A';
+//		}
+//		if (a[i] == 'G') {
+//			cout << 'C';
+//		}
+//		if (a[i] == 'C') {
+//			cout << 'G';
+//		}
+//	}
+//	
+//	system("pause");
+//	return 0;
+//}
+
+//字符替换
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//#include<stdio.h>
+//using namespace std;
+//const int maxn = 35;
+//char a[maxn];
+//int main() {
+//	memset(a, '0', sizeof(a));
+//	char tar, nw;
+//	cin >> a >> tar >> nw;
+//	int len = strlen(a);
+//
+//	for (int i = 0; i < len; i++) {
+//		if (a[i] == tar) {
+//			cout << nw;
+//		}
+//		else {
+//			cout << a[i];
+//		}
+//	}
+//
+//	system("pause");
+//	return 0;
+//}
+
+//密码翻译
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//#include<stdio.h>
+//using namespace std;
+//const int maxn = 90;
+//char stan_l[26] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+//char stan_u[26] = { 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
+//char a[maxn];
+//int main() {
+//	memset(a, '0', sizeof(a));
+//	gets_s(a);
+//	int len = strlen(a);
+//
+//	for (int i = 0; i < len; i++) {
+//		if (isalpha(a[i])) {
+//			if (a[i] >= 'a'&&a[i] <= 'z') {
+//				if (a[i] == 'z') {
+//					cout<<"a";
+//				}
+//				else {
+//					for (int j = 0; j < 26; j++) {
+//						if (stan_l[j] == a[i]) {
+//							cout << stan_l[j + 1];
+//							break;
+//						}
+//					}
+//				}
+//				
+//			}
+//			if (a[i] >= 'A'&&a[i] <= 'Z') {
+//				if (a[i] == 'Z') {
+//					cout << "A";
+//				}
+//				else {
+//					for (int j = 0; j < 26; j++) {
+//						if (stan_u[j] == a[i]) {
+//							cout << stan_u[j + 1];
+//							break;
+//						}
+//					}
+//				}
+//				
+//			}
+//		}
+//		else {
+//			cout << a[i];
+//		}
+//	}
+//
+//	system("pause");
+//	return 0;
+//}
+
+//简单密码
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//#include<stdio.h>
+//using namespace std;
+//const int maxn = 210;
+//char secret[26] = { 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
+//char white[26] = { 'V','W','X', 'Y', 'Z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U' };
+//
+//char a[maxn];
+//int main() {
+//	memset(a, '0', sizeof(a));
+//	gets_s(a);
+//	int len = strlen(a);
+//
+//	for (int i = 0; i < len; i++) {
+//		if (isalpha(a[i])) {
+//			for (int j = 0; j < 26; j++) {
+//				if (secret[j] == a[i]) {
+//					cout << white[j];
+//					break;
+//				}
+//			}
+//		}
+//		else {
+//			cout << a[i];
+//		}
+//	}
+//
+//	system("pause");
+//	return 0;
+//}
+
+//潜伏者 ??最开始只考虑了stan[secret]不能对应不同的原文 没有stan[0] = stan[1]这种情况
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//#include<stdio.h>
+//using namespace std;
+//const int maxn = 110;
+//char stan[26];
+//char real[maxn];
+//char secret[maxn];
+//char now[maxn];
+//int main() {
+//	memset(stan, '0', sizeof(stan));
+//	memset(secret, '0', sizeof(secret));
+//	memset(real, '0', sizeof(real));
+//	memset(now, '0', sizeof(now));
+//	cin >> secret;
+//	cin >> real;
+//	cin >> now;
+//	int len = strlen(secret);
+//	int lenr = strlen(real);
+//	if (len != lenr) {
+//		cout << "Failed";
+//		system("pause");
+//		return 0;
+//	}
+//	int lenn = strlen(now);
+//
+//	for (int i = 0; i < len; i++) {
+//		if (stan[secret[i] - 'A'] != '0') {
+//			if (stan[secret[i] - 'A'] != real[i]) {
+//				cout << "Failed";
+//				system("pause");
+//				return 0;
+//			}
+//		}
+//		else {
+//			stan[secret[i] - 'A'] = real[i];
+//		}
+//	}
+//	for (int i = 0; i < 26; i++) {
+//		for (int j = i + 1; j < 26; j++) {
+//			if (stan[i] == stan[j]) {
+//				cout << "Failed";
+//				system("pause");
+//				return 0;
+//			}
+//		}
+//	}
+//	for (int i = 0; i < 26; i++) {
+//		//cout << i << " " << stan[i] << endl;
+//		if (stan[i] == '0') {
+//			cout << "Failed";
+//			system("pause");
+//			return 0;
+//		}
+//	}
+//	for (int i = 0; i < lenn; i++) {
+//
+//		cout << stan[now[i] - 'A'];
+//	}
+//
+//	system("pause");
+//	return 0;
+//}
+
+//加密的病历单
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//#include<stdio.h>
+//using namespace std;
+//const int maxn = 55;
+//char stan[26];
+//char real[maxn];
+//char pr1[maxn];
+//char pr2[maxn];
+//char ans[maxn];
+//int main() {
+//	memset(stan, '0', sizeof(stan));
+//	memset(pr1, '0', sizeof(pr1));
+//	memset(pr2, '0', sizeof(pr2));
+//	memset(ans, '0', sizeof(ans));
+//	cin >> real;
+//	int len = strlen(real);
+//	
+//	for (int i = 0; i < len; i++) {
+//		if (real[i] == 'z') {
+//			pr1[i] = 'c';
+//		}
+//		else if (real[i] == 'y') {
+//			pr1[i] = 'b';
+//			
+//		}
+//		else if (real[i] == 'x') {
+//			pr1[i] = 'a';
+//		}
+//		else if (real[i] == 'Z') {
+//			pr1[i] = 'C';
+//		}
+//		else if (real[i] == 'Y') {
+//			pr1[i] = 'B';
+//
+//		}
+//		else if (real[i] == 'X') {
+//			pr1[i] = 'A';
+//		}
+//		else {
+//			pr1[i] = real[i] + 3;//97-122
+//			
+//		}
+//		//cout << pr1[i];
+//	}
+//	//cout << endl;
+//	for (int i = 0; i < len; i++) {
+//		pr2[i] = pr1[len - 1 - i];
+//		//cout << pr2[i];
+//	}
+//	//cout << endl;
+//	for (int i = 0; i < len; i++) {
+//		if (pr2[i] <= 'z'&&pr2[i] >= 'a') {
+//			ans[i] = pr2[i] - 32;
+//		}
+//		if (pr2[i] <= 'Z'&&pr2[i] >= 'A') {
+//			ans[i] = pr2[i] + 32;
+//		}
+//		cout << ans[i];
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//将字符串中的小写字母转换成大写字母
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//#include<stdio.h>
+//using namespace std;
+//const int maxn = 110;
+//char m[maxn];
+//int main() {
+//	memset(m, '0', sizeof(m));
+//	gets_s(m);
+//	int len = strlen(m);
+//	
+//	for (int i = 0; i < len; i++) {
+//		if (m[i] >= 'a'&&m[i] <= 'z') {
+//			cout <<char( m[i] - 32);
+//		}
+//		else {
+//			cout << m[i];
+//		}
+//	}
+//	
+//	system("pause");
+//	return 0;
+//}
+
+
+//大小写字母互换
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//#include<stdio.h>
+//using namespace std;
+//const int maxn = 110;
+//char m[maxn];
+//int main() {
+//	memset(m, '0', sizeof(m));
+//	gets_s(m);
+//	int len = strlen(m);
+//	
+//	for (int i = 0; i < len; i++) {
+//		if (m[i] >= 'a'&&m[i] <= 'z') {
+//			cout <<char( m[i] - 32);
+//		}
+//		else if (m[i] >= 'A'&&m[i] <= 'Z') {
+//			cout << char(m[i] + 32);
+//		}
+//		else {
+//			cout << m[i];
+//		}
+//	}
+//	
+//	system("pause");
+//	return 0;
+//}
+
+//整理药名
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//#include<stdio.h>
+//using namespace std;
+//const int maxn = 25;
+//char m[maxn];
+//int main() {
+//	int n;
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		memset(m, '0', sizeof(m));
+//		cin>> m;
+//		int len = strlen(m);
+//		if (m[0] >= 'a'&&m[0] <= 'z') {
+//			cout << char(m[0] - 32);
+//		}
+//		else {
+//			cout << m[0];
+//		}
+//		for (int j = 1; j < len; j++) {
+//			if (m[j] >= 'A'&&m[j] <= 'Z') {
+//				cout << char(m[j] + 32);
+//			}
+//			else {
+//				cout << m[j];
+//			}
+//		}
+//		cout << endl;
+//	}
+//
+//	system("pause");
+//	return 0;
+//}
+
+//忽略大小写的字符串比较
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//#include<stdio.h>
+//using namespace std;
+//const int maxn = 85;
+//char a[maxn];
+//char b[maxn];
+//int main() {
+//	memset(a, '0', sizeof(a));
+//	memset(b, '0', sizeof(b));
+//	gets_s(a);
+//	gets_s(b);
+//	int lena = strlen(a);
+//	int lenb = strlen(b);
+//	int lenmax = lena * (lena >= lenb) + lenb * (lenb > lena);
+//	int flag = -1;
+//	
+//	for (int i = 0; i < lenmax; i++) {
+//		if (a[i] >= 'A'&&a[i] <= 'Z') {
+//			a[i] = char(a[i] + 32);
+//		}
+//		if (b[i] >= 'A'&&b[i] <= 'Z') {
+//			b[i] = char(b[i] + 32);
+//		}
+//		if (a[i] < b[i]) {
+//			cout << "<";
+//			system("pause");
+//			return 0;
+//		}
+//		else if (a[i] > b[i]) {
+//			cout << ">";
+//			system("pause");
+//			return 0;
+//		}
+//
+//
+//	}
+//
+//	cout << "=";
+//
+//	system("pause");
+//	return 0;
+//}
+
+//字符串判等
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//#include<stdio.h>
+//using namespace std;
+//const int maxn = 85;
+//
+//int main() {
+//	string linea;
+//	string lineb;
+//	getline(cin, linea);
+//	getline(cin, lineb);
+//	string a;
+//	string b;
+//	stringstream ssa(linea);
+//	stringstream ssb(lineb);
+//	char temp;
+//	while (ssa >> temp) {
+//		if (temp >= 'A'&&temp <= 'Z') {
+//			temp = char(temp + 32);
+//		}
+//		a.push_back(temp);
+//	}
+//	while (ssb >> temp) {
+//		if (temp >= 'A'&&temp <= 'Z') {
+//			temp = char(temp + 32);
+//		}
+//		b.push_back(temp);
+//	}
+//	int lena = a.length();
+//	int lenb = b.length();
+//	if (lena != lenb) {
+//		cout << "NO";
+//		system("pause");
+//		return 0;
+//	}
+//	for (int i = 0; i < lena; i++) {
+//		
+//		if (a[i] != b[i]) {
+//			cout << "NO";
+//			system("pause");
+//			return 0;
+//		}
+//		
+//	}
+//	cout << "YES";
+//	system("pause");
+//	return 0;
+//}
+
+//验证子串  数组做法
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//#include<stdio.h>
+//using namespace std;
+//const int maxn = 200;
+//char a[maxn];
+//char b[maxn];
+//int main() {
+//	memset(a, '0', sizeof(a));
+//	memset(b, '0', sizeof(b));
+//	cin >> a >> b;
+//	int lena = strlen(a);
+//	int lenb = strlen(b);
+//	int cnt = 0,temp;
+//	if (lena < lenb) {
+//		for (int i = 0; i < lenb; i++) {
+//			cnt = 0;
+//			temp = i;
+//			for (int j = 0; j < lena; j++) {
+//				if (b[temp] == a[j]) {
+//					cnt++;
+//					//cout << temp << " " << j << " " << cnt << endl;
+//					temp++;
+//				}
+//				else {
+//					break;
+//				}
+//			}
+//			if (cnt == lena) {
+//				cout << a << " is substring of " << b;
+//				system("pause");
+//				return 0;
+//			}
+//		}
+//	}
+//	else {
+//		for (int i = 0; i < lena; i++) {
+//			cnt = 0;
+//			temp = i;//防止后面第二重循环时的++对第一重循环造成影响
+//			for (int j = 0; j < lenb; j++) {
+//				if (b[j] == a[temp]) {
+//					//cout << temp << " " << j << " " << cnt << endl;
+//					temp++;
+//					cnt++;
+//				}
+//				else {
+//					break;
+//				}
+//			}
+//			if (cnt == lenb) {
+//				cout << b << " is substring of " << a;
+//				system("pause");
+//				return 0;
+//			}
+//		}
+//	}
+//	
+//	cout << "No substring";
+//	system("pause");
+//	return 0;
+//}
+
+//验证子串 调用函数
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//#include<stdio.h>
+//using namespace std;
+//const int maxn = 200;
+//char a[maxn];
+//char b[maxn];
+//int main() {
+//	memset(a, '0', sizeof(a));
+//	memset(b, '0', sizeof(b));
+//	cin >> a >> b;
+//
+//	if (strstr(a, b) != NULL) {
+//		cout << b << " is substring of " << a;
+//		system("pause");
+//		return 0;
+//	}
+//	if (strstr(b, a) != NULL) {
+//		cout << a << " is substring of " << b;
+//		system("pause");
+//		return 0;
+//	}
+//	
+//
+//	cout << "No substring";
+//	system("pause");
+//	return 0;
+//}
+
+//字符串移位包含问题 ? 审题 a,b不确定哪个长 哪个短
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//#include<stdio.h>
+//using namespace std;
+//const int maxn = 35;
+//char a[maxn];
+//char b[maxn];
+//int main() {
+//	memset(a, '0', sizeof(a));
+//	memset(b, '0', sizeof(b));
+//	cin >> a >> b;
+//	int lena = strlen(a);
+//	int lenb = strlen(b);
+//	if (lenb > lena) {
+//		swap(a, b);
+//		swap(lena, lenb);
+//	}
+//	int cnt = 0;
+//	int temp;
+//	//cout << "lena: " << lena << endl;
+//	for (int i = 0; i < lena; i++) {
+//		cnt = 0;
+//		temp = i;
+//		//cout << "i: " << a[i] << endl;
+//		for (int j = 0; j < lenb; j++) {
+//			//cout << temp << ": " << a[temp] << " " << j << ": " << b[j] <<endl;
+//
+//			//cout << "temp: " << temp << endl;
+//			if (temp == lena) {//若temp超出了lena 则置0 从第一个开始找
+//				temp = 0;
+//				j--;//因为这一步循环没有比较两个字符串但是又加了1 所以要先减去
+//				//cout << "hhh" << endl;
+//			}
+//			else {
+//				if (a[temp] == b[j]) {
+//					cnt++;
+//					//cout << i << " " << temp << " " << cnt << endl;
+//					temp++;
+//				}
+//				else {
+//					break;
+//				}
+//			}
+//			//cout << " " << cnt << endl;
+//		}
+//		if (cnt == lenb) {
+//			cout << "true";
+//			system("pause");
+//			return 0;
+//		}
+//	}
+//
+//	cout << "false";
+//	system("pause");
+//	return 0;
+//}
+
+////删除单词后缀
+//#include<iostream>
+//#include<string.h>
+//#include<sstream>
+//#include<stdio.h>
+//using namespace std;
+//const int maxn = 35;
+//char a[maxn];
+//int main() {
+//	memset(a, '0', sizeof(a));
+//	cin >> a;
+//	int len = strlen(a);
+//	//cout << len << endl;
+//	if (a[len - 1] == 'r' &&a[len - 2] == 'e') {
+//		//cout << "h";
+//		for (int i = 0; i < len - 2; i++) {
+//			//cout << i << endl;
+//			cout << a[i];
+//			
+//		}
+//	}
+//	else if (a[len - 1] == 'y' &&a[len - 2] == 'l') {
+//		for (int i = 0; i < len - 2; i++) {
+//			cout << a[i];
+//			
+//		}
+//	}
+//	else if (a[len - 1] == 'g' &&a[len - 2] == 'n'&&a[len - 3] == 'i') {
+//		for (int i = 0; i < len - 3; i++) {
+//			cout << a[i];
+//			
+//		}
+//	}
+//	else {
+//		for (int i = 0; i < len ; i++) {
+//			cout << a[i];
+//			
+//		}
+//	}
+//	
+//	system("pause");
+//	return 0;
+//}
+
+//单词替换
+//#include <iostream>
+//#include <string>
+//#include <sstream>
+//using namespace std;
+//
+//int main() {
+//	string line;
+//	string tar;
+//	string nw;
+//	
+//	getline(cin, line);
+//	cin >> tar >> nw;
+//	stringstream ss(line);
+//	string temp;
+//	while (ss >> temp) {
+//		if (temp == tar) {
+//			cout << nw;
+//		}
+//		else {
+//			cout << temp;
+//		}
+//		cout << " ";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//紧急措施
+//#include <iostream>
+//#include <string>
+//using namespace std;
+//string tar;
+//string adr;
+//string user;
+//string pw;
+//int main() {
+//	cin >> tar;
+//	int n;
+//	int len;
+//	bool flag = false;
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		cin >> user >> pw >> adr;
+//		if (adr == tar) {
+//			cout << user << " ";
+//			len = pw.length();
+//			for (int j = 0; j < len; j++) {
+//				if (pw[j] <= 'z' && pw[j] >= 'a') {
+//					cout << char(pw[j] - 32);
+//				}
+//				else if (pw[j] <= 'Z' && pw[j] >= 'A') {
+//					cout << char(pw[j] + 32);
+//				}
+//				else {
+//					cout << pw[j];
+//				}
+//			}
+//			cout << endl;//每输出一行要空行
+//			flag = true;
+//		}
+//	}
+//	if (!flag) {
+//		cout << "empty";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//过滤多余的空格
+//#include <iostream>
+//#include <string>
+//#include <sstream>
+//using namespace std;
+//
+//int main() {
+//	string line;
+//	getline(cin, line);
+//	stringstream ss(line);
+//	string temp;
+//	while (ss >> temp) {
+//		cout << temp << " ";
+//	}
+//	system("pause");
+//	return 0;
+//
+//}
+
+//单词的长度
+//#include <iostream>
+//#include <string>
+//#include <sstream>
+//using namespace std;
+//
+//int main() {
+//	string line;
+//	getline(cin, line);
+//	stringstream ss(line);
+//	string temp;
+//	int len;
+//	bool flag = true;
+//	while (ss >> temp) {
+//		len = temp.length();
+//		if (flag) {
+//			cout << len;
+//			flag = !flag;
+//		}
+//		else {
+//			cout << "," << len;
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//最长最短单词
+//#include <iostream>
+//#include <string>
+//#include <sstream>
+//using namespace std;
+//
+//int main() {
+//	string line;
+//	getline(cin, line);
+//	stringstream ss(line);
+//	string temp;
+//	int len,min,max;
+//	string mins;
+//	string maxs;
+//
+//	ss >> temp;
+//	len = temp.length();
+//	if (temp[len - 1] == ',') {
+//		len = len - 1;
+//		temp.pop_back();
+//	}
+//	min = max = len;
+//	mins = temp;
+//	maxs = temp;
+//	//cout << mins << endl;
+//	while (ss >> temp) {
+//		len = temp.length();
+//		if (temp[len - 1] == ',') {
+//			len = len - 1;
+//			temp.pop_back();
+//		}
+//		if (len < min) {
+//			min = len;
+//			mins = temp;
+//		}
+//		if (len>max) {
+//			max = len;
+//			maxs = temp;
+//		}
+//	}
+//	cout << maxs << endl << mins;
+//	system("pause");
+//	return 0;
+//}
+
+////字符串最大跨距
+//#include <iostream>
+//#include <string>
+//using namespace std;
+//string origin;
+//string s;
+//string s1, s2;
+//int main() {
+//
+//
+//	//我自己想的比较笨的方法
+//	//cin >> origin;
+//	//for (int i = 0; i < origin.length(); i++) {
+//	//	if (origin[i] != ',') {
+//	//		s.push_back(origin[i]);
+//	//		//cout << s << endl;
+//	//	}
+//	//	else {
+//	//		for (int j = i + 1; j < origin.length(); j++) {
+//	//			if (origin[j] != ',') {
+//	//				s1.push_back(origin[j]);
+//	//			}
+//	//			else {
+//	//				for (int k = j + 1; k < origin.length(); k++) {
+//	//					s2.push_back(origin[k]);
+//	//				}
+//	//				break;
+//	//			}
+//	//		}
+//	//		break;
+//	//	}
+//
+//	//}
+//
+//	getline(cin, s, ',');
+//	getline(cin, s1, ',');
+//	getline(cin, s2);
+//	//cout << s << endl << s1 << endl << s2;
+//	int len1 = s1.length();
+//
+//	int p1 = s.find(s1);//这里p1不能加len1 因为后面要判断是否为空
+//	int p2 = s.rfind(s2);
+//
+//	if (p1 == -1 || p2 == -1 || p1 + len1 > p2) {//这里是>而不是>=
+//		cout << -1;
+//	}
+//	else {
+//		cout << p2 - p1 - len1;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+////单词翻转 
+//#include <iostream>
+//#include <string>
+//#include <vector>
+//using namespace std;
+//const int maxn = 500;
+//vector<string> v(maxn);
+//vector<string> space(maxn);
+//string s;
+//int main() {
+//	getline(cin, s);
+//	int start, end;
+//	int flag = 1;
+//	int num = 0;
+//	//cout << s << endl;
+//	for (int i = 0; i < s.length(); i++) {
+//		if (s[i] == ' ') {
+//			
+//			//cout << s[i];
+//			if (flag) {
+//				num++;
+//				flag = 0;
+//			}
+//			space[num].push_back(s[i]);
+//		}
+//		else {
+//			//cout << "HH" << endl;
+//			v[num].push_back(s[i]);
+//			flag = 1;
+//		}
+//	}
+//	for (int i = 0; i <= num; i++) {
+//		for (int j = v[i].length() -1 ; j >=0; j--) {
+//			cout << v[i][j];
+//		}
+//		cout<<space[i+1];
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//单词倒排
+//#include <iostream>
+//#include <string>
+//#include <vector>
+//using namespace std;
+//const int maxn = 500;
+//vector<string> v(maxn);
+//vector<string> space(maxn);
+//string s;
+//int main() {
+//	getline(cin, s);
+//	int start, end;
+//	int flag = 1;
+//	int num = 0;
+//	//cout << s << endl;
+//	for (int i = 0; i < s.length(); i++) {
+//		if (s[i] == ' ') {
+//			
+//			//cout << s[i];
+//			if (flag) {
+//				num++;
+//				flag = 0;
+//			}
+//			space[num].push_back(s[i]);
+//		}
+//		else {
+//			//cout << "HH" << endl;
+//			v[num].push_back(s[i]);
+//			flag = 1;
+//		}
+//	}
+//	for (int i = num; i>=0; i--) {
+//		cout << v[i];
+//		cout<<space[i];
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//ISBN号码
+//#include <iostream>
+//#include <string>
+//using namespace std;
+//int main() {
+//	string s1, s2, s3, tar;
+//	getline(cin, s1, '-');
+//	getline(cin, s2, '-');
+//	getline(cin, s3, '-');
+//	getline(cin, tar);
+//	int sum = 0;
+//	bool flag = true;
+//	string str = s1 + s2 + s3;
+//	for (int i = 0; i < 9; i++) {
+//		sum = sum + (i + 1)*(str[i] - '0');
+//	}
+//	int res = sum % 11;
+//	//cout << res << endl;
+//	if (res != 10) {
+//		if (res != tar[0] - '0') {
+//			//cout << "hhh" << endl;
+//			flag = false;
+//		}
+//	}
+//	else {
+//		if (tar[0] != 'X') {
+//			//cout << "111" << endl;
+//			flag = false;
+//		}
+//	}
+//
+//	if (flag) {
+//		cout << "Right";
+//	}
+//	else {
+//		if (res == 10) {
+//			cout << s1 << "-" << s2 << '-' << s3 << "-X";
+//		}
+//		else {
+//			cout << s1 << "-" << s2 << '-' << s3 << "-" << res;
+//
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//字符环
+//#include <iostream>
+//#include <algorithm>
+//#include <string>
+//using namespace std;
+//int main() {
+//	string s1, s2;
+//	cin >> s1 >> s2;
+//	int len1 = s1.length();
+//	int len2 = s2.length();
+//	int cnt = 0, max = 0;
+//	for (int i = 0; i < len1; i++) {
+//		
+//		//cout << "HHH" << endl;
+//		for (int j = 0; j < len2; j++) {
+//			int tempi = i;
+//			int tempj = j;
+//			cnt = 0;
+//			//cout<<"hhh " << (tempi) << ": " << s1[tempi] << " " << tempj << ": " << s2[tempj] << " " << cnt << endl;
+//			while (s1[tempi] == s2[tempj] && cnt<min(len1,len2)) {
+//				cnt++;
+//				//cout << (tempi) << ": " << s1[tempi] << " " << tempj << ": " << s2[tempj] << " " << cnt << endl;
+//				tempi = (tempi + 1) % len1;
+//				tempj = (tempj + 1) % len2;
+//			}
+//			if (cnt > max) {
+//				max = cnt;
+//			}
+//		}
+//	}
+//	cout << max;
+//	system("pause");
+//	return 0;
+//}
+
+//字符串p型编码
+//#include <iostream>
+//#include <algorithm>
+//#include <string>
+//using namespace std;
+//int main() {
+//	string s;
+//	cin >> s;
+//	int cnt = 0;
+//	char ch;
+//	int temp;
+//	for (int i = 0; i < s.length(); i++) {
+//		ch = s[i];
+//		while (ch == s[i]) {
+//			i++;
+//			cnt++;
+//		}
+//		i--;
+//		cout << cnt << s[i];
+//		cnt = 0;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//行程长度编码
+//#include <iostream>
+//#include <algorithm>
+//#include <string>
+//using namespace std;
+//int main() {
+//	string s;
+//	cin >> s;
+//	int cnt = 0;
+//	char ch;
+//	int temp;
+//	for (int i = 0; i < s.length(); i++) {
+//		s[i] = toupper(s[i]);
+//	}
+//	for (int i = 0; i < s.length(); i++) {
+//		
+//		ch = s[i];
+//		while (ch == s[i]) {
+//			i++;
+//			cnt++;
+//		}
+//		i--;
+//		cout <<"("<<s[i]<<","<<cnt<<")";
+//		cnt = 0;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//判断字符串是否为回文
+//#include <iostream>
+//#include <algorithm>
+//#include <string>
+//using namespace std;
+//int main() {
+//	string s;
+//	cin >> s;
+//	int len = s.length();
+//	for (int i = 0; i < len/ 2; i++) {
+//		if (s[i] != s[len - i - 1]) {
+//			cout << "no";
+//			system("pause");
+//			return 0;
+//		}
+//		
+//	}
+//	cout << "yes";
+//	system("pause");
+//	return 0;
+//}
+
+//回文子串
+//#include <iostream>
+//#include <algorithm>
+//#include <string>
+//#include <map>
+//
+//using namespace std;
+//
+//const int maxn = 250;
+//multimap<int, string> m;
+//int main() {
+//	string s;
+//	cin >> s;
+//	bool flag;
+//	int len = s.length();
+//	int i, j, period;
+//	for (period = 2; period <= len; period++) {//表示子串的长度
+//		for (i = 0; i <= len - period; i++) {//带入特殊值验证是否取等号  起始位置
+//			flag = true;
+//			//cout << "hhh" << endl;
+//			for (j = i; j < i + period; j++) { //判断是否是回文
+//				//cout << i << " " << j << " " << period << endl;
+//				//cout << j << " " << s[j] << " " << i + period - (j - i) - 1 << " " << s[i + period - (j - i) - 1] << endl;
+//				if (s[j] != s[i+period-(j-i) - 1]) {
+//					flag = false;
+//					//cout << "h" << endl;
+//					break;
+//				}
+//			}
+//			//cout << flag << endl;
+//			if (flag) {
+//				cout << s.substr(i, period) << endl;
+//			}
+//		}
+//		//cout << period << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//回文子串 只有3分
+//#include <iostream>
+//#include <algorithm>
+//#include <string>
+//#include <map>
+//
+//using namespace std;
+//
+//const int maxn = 250;
+//multimap<int, string> m;
+//int main() {
+//	string s;
+//	cin >> s;
+//	bool flag = false;
+//	int len = s.length();
+//	int cnt = -1;
+//	int maxl = 0, minl = len;
+//	for (int i = 0; i < len - 1; i++) {
+//		for (int j = i + 1; j < len; j++) {
+//
+//			//cout << "hhh" << endl;
+//			int tempi = i, tempj = j;
+//			//cout << "hhh " << tempi << " " << s[tempi] << " " << tempj << " " << s[tempj] << endl;
+//
+//			flag = false;
+//			while ((s[tempi] == s[tempj]) && (tempi <= tempj)) {
+//				//cout <<tempi<<" "<<s[tempi]<<" "<<tempj<<" "<<s[tempj] << endl;
+//				if (tempi + 1 == tempj) {
+//					flag = true;
+//					cnt++;
+//				}
+//				tempi++;
+//				tempj--;
+//				//cout << "hhh" << endl;
+//
+//			}
+//
+//			if (flag) {
+//				//cout << i << " " << j << endl;
+//				m.insert(pair<int, string >(j - i + 1, s.substr(i, j - i + 1)));
+//				flag = false;
+//				maxl = max(j - i + 1, maxl);
+//				minl = min(j - i + 1, minl);
+//			}
+//		}
+//	}
+//
+//
+//	for (auto itr = m.begin(); itr != m.end(); itr++) {
+//		for (int i = minl; i <= maxl; i++) {
+//			if (itr->first == i) {
+//				cout << itr->second << endl;
+//			}
+//		}
+//	}
+//
+//
+//	system("pause");
+//	return 0;
+//}
+
+//字符串的展开 自己做的 有很多bug  只能得4-6分 
+//#include <iostream>
+//#include <algorithm>
+//#include <string>
+//using namespace std;
+//int main() {
+//	int p1, p2, p3;
+//	cin >> p1 >> p2 >> p3;
+//	string s;
+//	cin >> s;
+//	int len = s.length();
+//	bool flag[120] = { false };
+//	//cout << len << endl;
+//	for (int i = 0; i < len; i++) {
+//
+//		//先判断越界，否则会报错越界了
+//		if (i >= 0 && i + 2 < len) {
+//			if ((isalpha(s[i]) && isalpha(s[i + 2]) && s[i + 1] == '-') || (isdigit(s[i]) && isdigit(s[i + 2]) && s[i + 1] == '-')) {
+//				if (s[i + 2] - s[i] == 1) {//相邻的可以省略-
+//										   //cout << 1 << endl;
+//					cout << s[i] << s[i + 2];
+//					i = i + 2;
+//				}
+//				else if (int(s[i + 2] - s[i]) <= 0) {//后面比前面小 保留等号
+//					if (!flag) {
+//						cout << s[i];
+//					}
+//					cout << "-" << s[i + 2];
+//					i = i + 2;
+//				}
+//				else {
+//					//cout << i << ": " << s[i] << endl;
+//					int period = s[i + 2] - s[i] - 1;//两者之间的间隔
+//					if (!flag[i]) {
+//						cout << s[i];
+//						flag[i + 2] = true;
+//					}
+//					//cout << s[i];
+//					//cout << s[i];//直接输出当前字符
+//					if (p1 == 1) {
+//						if (p3 == 1) {
+//							for (int j = 1; j <= period; j++) {
+//								for (int k = 0; k < p2; k++) {//重复次数
+//									if (s[i] <= 'Z'&&s[i] >= 'A') {
+//										cout << char(s[i] + j + 32);
+//									}
+//									else if (s[i] <= 'z'&&s[i] >= 'a') {
+//										cout << char(s[i] + j);
+//									}
+//									else {
+//										cout << s[i] + j - '0';
+//										//cout << "i: "<<i<<" j: "<<j<< s[i] + j - '0' << endl;
+//									}
+//								}
+//							}
+//						}
+//						else if (p3 == 2) {
+//							for (int j = 1; j <= period; j++) {
+//								for (int k = 0; k < p2; k++) {
+//									if (s[i] <= 'z'&&s[i] >= 'a') {
+//										cout << char(s[i + 2] - j);
+//
+//									}
+//									else if (s[i] <= 'Z'&&s[i] >= 'A') {
+//										cout << char(s[i + 2] - j + 32);
+//									}
+//									else {
+//										cout << s[i + 2] - j - '0';
+//									}
+//								}
+//							}
+//						}
+//
+//					}
+//					else if (p1 == 2) {
+//						if (p3 == 1) {
+//							for (int j = 1; j <= period; j++) {
+//								for (int k = 0; k < p2; k++) {//重复次数
+//									if (s[i] <= 'Z'&&s[i] >= 'A') {
+//										cout << char(s[i] + j);
+//									}
+//									else if (s[i] <= 'z'&&s[i] >= 'a') {
+//										cout << char(s[i] + j - 32);
+//									}
+//									else {
+//										cout << s[i] + j - '0';
+//									}
+//								}
+//							}
+//						}
+//						else if (p3 == 2) {
+//							for (int j = 1; j <= period; j++) {
+//								for (int k = 0; k < p2; k++) {
+//									if (s[i] <= 'z'&&s[i] >= 'a') {
+//										cout << char(s[i + 2] - j - 32);
+//
+//									}
+//									else if (s[i] <= 'Z'&&s[i] >= 'A') {
+//										cout << char(s[i + 2] - j);
+//									}
+//									else {
+//										cout << s[i + 2] - j - '0';
+//									}
+//								}
+//							}
+//						}
+//
+//					}
+//					else if (p1 == 3) {
+//
+//						for (int j = 1; j <= period; j++) {
+//							for (int k = 0; k < p2; k++) {
+//								cout << '*';
+//							}
+//						}
+//
+//					}
+//					//cout << "i+2: "<<i+2 << endl;
+//					cout << s[i + 2];
+//					//cout << "2222" << endl;
+//					flag[i + 2] = true;
+//					//cout << "2222" << endl;
+//					i = i + 1;
+//				}
+//
+//
+//
+//			}
+//			else {
+//				//cout << "hhh" << endl;
+//				if (!flag[i]) {
+//					cout << s[i];
+//				}
+//
+//			}
+//		}
+//
+//		else {
+//			if (!flag[i]) {
+//				cout << s[i];
+//			}
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//字符串的展开 网上的答案
+//#include<iostream>
+//#include<cstring>
+//#include<algorithm> 
+//using namespace std;
+//int p1, p2, p3, len, sum;
+//char a[30000], b[30000];
+//int main()
+//{
+//	cin >> p1 >> p2 >> p3 >> a;
+//	len = strlen(a);
+//	for (int i = 0; i < len; i++)
+//		if (a[i] == '-'&&i > 0 && i < strlen(a) - 1)//开头或结尾的-直接else输出 
+//		{
+//			if (a[i - 1] == '-' || a[i + 1] == '-') cout << '-';//几个-连在一起，直接输出- 
+//			else if (a[i + 1] == a[i - 1] + 1) continue;//-两边ascll码是连续的，跳过- 
+//			else if (a[i - 1] >= a[i + 1] || (a[i - 1] <= '9'&&a[i + 1] >= 'A')) cout << '-';//-两边是字符和数字或者没有按升序排列，输出-；因为字母的acsll码本来就大于数字的，所以只需要另判断左边是数字右边是字母即可 
+//			else
+//			{
+//				int l = 0;
+//				if (p1 == 1)
+//				{
+//					for (int j = a[i - 1] + 1; j < a[i + 1]; j++)//枚举过程中字符型自动转化为整形 
+//					{
+//						for (int k = 1; k <= p2; k++)
+//							b[l++] = tolower((char)j);//整形强制转换成字符型 
+//					}
+//				}
+//				else if (p1 == 2)
+//				{
+//					for (int j = a[i - 1] + 1; j < a[i + 1]; j++)
+//					{
+//						for (int k = 1; k <= p2; k++)
+//							b[l++] = toupper((char)j);
+//					}
+//				}
+//				else
+//				{
+//					for (int j = a[i - 1] + 1; j < a[i + 1]; j++)
+//					{
+//						for (int k = 1; k <= p2; k++)
+//							b[l++] = '*';
+//					}
+//				}
+//				if (p3 == 2)
+//					reverse(b, b + l);//数组翻转 
+//				for (int j = 0; j < l; j++)
+//					cout << b[j];
+//			}
+//		}
+//		else cout << a[i];
+//		system("pause");
+//}
+
+//字符串的展开 自己写的一次
+//#include <iostream>
+//#include <string>
+//#include<algorithm> 
+//using namespace std;
+//const int maxn = 50000;
+//char ch[maxn];
+//int main() {
+//	int p1, p2, p3;
+//	string s;
+//	cin >> p1 >> p2 >> p3 >> s;
+//	int len = s.length();
+//	for (int i = 0; i < len; i++) {
+//		if (i > 0 && i < len - 1 &&s[i] =='-') {
+//			if (s[i - 1] == '-'||s[i + 1] == '-') {//几个-连在一起，直接输出-   逻辑符号是|| 而不是&&
+//				cout << '-';
+//			}
+//			else if (s[i+1] - s[i-1] == 1) {
+//				continue;
+//			}
+//			else if (s[i + 1] <= s[i - 1] || (isalpha(s[i-1])&&isdigit(s[i+1]))|| (isalpha(s[i + 1]) && isdigit(s[i - 1]))) {
+//				cout << '-';
+//			}
+//			else {
+//				int cnt = 0;
+//				if (p1 == 1) {
+//					for (int j = s[i - 1] + 1; j < s[i + 1]; j++) {
+//						for (int k = 0; k < p2; k++) {
+//							ch[cnt++] = tolower(char(j));
+//						}
+//						
+//					}
+//				}
+//				else if (p1 == 2) {
+//					for (int j = s[i - 1] + 1; j < s[i + 1]; j++) {
+//						for (int k = 0; k < p2; k++) {
+//							ch[cnt++] = toupper(char(j));
+//						}
+//					}
+//				}
+//				else if (p1 == 3) {
+//					for (int j = s[i - 1] + 1; j < s[i + 1]; j++) {
+//						for (int k = 0; k < p2; k++) {
+//							ch[cnt++] = '*';
+//						}
+//					}
+//				}
+//				if (p3 == 2) {
+//					reverse(ch, ch + cnt);
+//				}
+//				for (int j = 0; j < cnt; j++) {
+//					cout << ch[j];
+//				}
+//			}
+//		}
+//		else {
+//			cout << s[i];
+//		}
+//	}
 //	system("pause");
 //	return 0;
 //}
