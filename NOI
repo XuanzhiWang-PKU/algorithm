@@ -4479,3 +4479,1400 @@
 //	system("pause");
 //	return 0;
 //}
+
+//1.8编程基础之多维数组
+//矩阵交换行
+//#include<iostream>
+//using namespace std;
+//int m[5][5];
+//int main() {
+//	for (int i = 0; i < 5; i++) {
+//		for (int j = 0; j < 5; j++) {
+//			cin >> m[i][j];
+//		}
+//	}
+//	int x, y;
+//	cin >> x >> y;
+//	for (int i = 0; i < 5; i++) {
+//		if (i == x-1) {
+//			for (int j = 0; j < 5; j++) {
+//				cout << m[y-1][j]<<" ";
+//			}
+//		}
+//		else if (i == y-1) {
+//			for (int j = 0; j < 5; j++) {
+//				cout << m[x-1][j] << " ";
+//			}
+//		}
+//		else {
+//			for (int j = 0; j < 5; j++) {
+//				cout << m[i][j] << " ";
+//			}
+//		}
+//		cout << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//同行列对角线的格子
+//#include<iostream>
+//using namespace std;
+//const int maxn = 15;
+//int m[maxn][maxn];
+//int main() {
+//	int n, row, col;
+//	cin >> n >> row >> col;
+//	for (int i = 1; i <= n; i++) {
+//		cout << "(" << row << "," << i << ") ";
+//	}
+//	cout << endl;
+//	for (int i = 1; i <= n; i++) {
+//		cout << "(" << i << "," << col << ") ";
+//	}
+//	cout << endl;
+//	for (int i = 1; i <= n; i++) {
+//		if (i + (col - row) > n || i + (col - row) < 1) continue;
+//		cout << "(" << i << "," << i + (col - row) << ") ";
+//	}
+//	cout << endl;
+//	for (int i = n; i >= 1; i--) {
+//		if ((col + row) - i > n || (col + row) - i < 1)continue;
+//		cout << "(" << i << "," << (col + row) - i << ") ";
+//	}
+//
+//	system("pause");
+//	return 0;
+//}
+
+//计算矩阵边缘元素之和 ？考虑行向量和列向量
+//#include<iostream>
+//using namespace std;
+//const int maxn = 100;
+//int m[maxn][maxn];
+//int main() {
+//	int row, col;
+//	cin >> row >> col;
+//	for (int i = 0; i < row; i++) {
+//		for (int j = 0; j < col; j++) {
+//			cin >> m[i][j];
+//		}
+//	}
+//	long long sum = 0;
+//	for (int i = 0; i < col; i++) {
+//		if (row - 1 != 0) {//判断单行
+//			sum = sum + m[0][i] + m[row - 1][i];
+//		}else{
+//			sum = sum + m[0][i];
+//		}
+//	}
+//	for (int i =1; i < row-1; i++) {
+//		if (col - 1 != 0) {//判断单列
+//			sum = sum + m[i][0] + m[i][col - 1];
+//		}
+//		else {
+//			sum = sum + m[i][0] ;
+//		}
+//	}
+//	cout << sum;
+//	system("pause");
+//	return 0;
+//}
+
+//错误探测 ？ 先判断正确的 剩下的都是错的
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//using namespace std;
+//const int maxn = 110;
+//int m[maxn][maxn];
+//int row[maxn];
+//int col[maxn];
+//int main() {
+//	memset(row, 0, sizeof(row));
+//	memset(col, 0, sizeof(col));
+//	int n;
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < n; j++) {
+//			cin >> m[i][j];
+//		}
+//	}
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < n; j++) {
+//			row[i] = (row[i] + m[i][j]) %2;
+//		}
+//	}
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < n; j++) {
+//			col[i] = (col[i] + m[j][i])%2;
+//		}
+//	}
+//	int ansr = -1, ansc = -1;
+//	int cntr = 0, cntc = 0;
+//	for (int i = 0; i < n; i++) {
+//		
+//		if (row[i] % 2 != 0) {
+//			ansr = i;
+//			cntr++;
+//		}
+//		if (col[i] % 2 != 0) {
+//			ansc = i;
+//			cntc++;
+//		}
+//	}
+//	//先判断特殊的正确情况 剩下的情况都是错的
+//	if (ansr == -1 && ansc == -1) {
+//		cout << "OK";
+//	}
+//	else if(cntr == 1&&cntc ==1){
+//		cout << ansr + 1 << " " << ansc + 1;
+//	}
+//	else  {
+//		cout << "Corrupt";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//计算鞍点
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//using namespace std;
+//const int maxn = 10;
+//int m[maxn][maxn];//读矩阵
+//int row[maxn];//存行最大值
+//int col[maxn];//存列最大值
+//int main() {
+//	memset(m, 0, sizeof(0));
+//	memset(row, 0, sizeof(row));
+//	memset(col, 0, sizeof(col));
+//	int n = 5;
+//	int ansr[5], ansc[5];//其实并没有什么用 存每行最大值的列坐标 每列最小值的行坐标
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < n; j++) {
+//			cin >> m[i][j];
+//		}
+//	}
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < n; j++) {
+//			if (j == 0) {
+//				row[i] = m[i][j];
+//				ansr[i] = j;
+//				//cout << i + 1 << " " << row[i] << endl;
+//
+//			}
+//			else {
+//				//cout << i + 1 << " " << row[i] << endl;
+//				if (row[i] < m[i][j]) {
+//					row[i] = m[i][j];
+//					ansr[i] = j;
+//				}
+//			}
+//		}
+//		//cout << i + 1 << " " << ansr[i] <<" "<<row[i]<< endl;
+//	}
+//	//cout << ansr[0] << " " << ansr[1] << endl;
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < n; j++) {
+//			if (j == 0) {
+//				col[i] = m[j][i];
+//				ansc[i] = j;
+//			}
+//			else {
+//				if (col[i] > m[j][i]) {
+//					col[i] = m[j][i];
+//					ansc[i] = j;
+//				}
+//			}
+//		}
+//		//cout << i + 1 << " " << ansc[i] << " " << col[i] << endl;
+//	}
+//	bool flag = false;
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < n; j++) {
+//
+//			if (row[i] == col[j]) {
+//				cout << i + 1 << " " << j + 1 << " " << row[i];
+//				flag = true;
+//			}
+//		}
+//	}
+//	if (!flag) {
+//		cout << "not found";
+//	}
+//
+//	system("pause");
+//	return 0;
+//}
+
+//图像相似度
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//#include<iomanip>
+//using namespace std;
+//const int maxn = 110;
+//int m1[maxn][maxn];
+//int m2[maxn][maxn];
+//int main() {
+//	memset(m1, 0, sizeof(m1));
+//	memset(m2, 0, sizeof(m2));
+//
+//	int k, n, cnt = 0;
+//	cin >> k >> n;
+//	for (int i = 0; i < k; i++) {
+//		for (int j = 0; j < n; j++) {
+//			cin >> m1[i][j];
+//		}
+//	}
+//	for (int i = 0; i < k; i++) {
+//		for (int j = 0; j < n; j++) {
+//			cin >> m2[i][j];
+//			if (m1[i][j] == m2[i][j]) {
+//				cnt++;
+//			}
+//		}
+//	}
+//	cout << fixed << setprecision(2) << double(cnt) / (n * k ) *100;
+//	system("pause");
+//	return 0;
+//}
+
+//矩阵归零消减序列和 自己写的只有1分  之后把输出位置调整到一开始就可以了 ？
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//#include<iomanip>
+//#include<vector>
+//using namespace std;
+//const int maxn = 110;
+//int m[maxn][maxn];
+//int ans[maxn];
+//int tempr[maxn];
+//int tempc[maxn];
+//int m1[maxn][maxn];
+//int m2[maxn][maxn];
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	memset(ans, 0, sizeof(ans));
+//	memset(m1, 0, sizeof(m1));
+//	memset(m2, 0, sizeof(m2));
+//	int n;
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = 1; j <= n; j++) {
+//			cin >> m[i][j];
+//		}
+//	}
+//	//cout << m[2][2] << endl;
+//	for (int r = 0; r < n ; r++) {
+//		cout << m[2][2] << endl;
+//		memset(m1, 0, sizeof(m1));
+//		memset(m2, 0, sizeof(m2));
+//		for (int i = 1; i <= n - r; i++) {//求每行最小值
+//			tempr[i] = m[i][1];
+//			for (int j = 1; j <= n - r; j++) {
+//				tempr[i] = min(tempr[i], m[i][j]);
+//				//cout << j << " " << tempc[j] << endl;
+//			}
+//			//cout << i << " " << tempr[i] << endl;
+//
+//		}
+//		for (int i = 1; i <= n - r; i++) {//减去最小值
+//			for (int j = 1; j <= n - r; j++) {
+//				m[i][j] = m[i][j] - tempr[i];
+//				//cout << m[i][j] << " ";
+//			}
+//			//cout << endl;
+//		}
+//		for (int i = 1; i <= n - r; i++) {//每列最小值
+//			tempc[i] = m[1][i];
+//			for (int j = 1; j <= n - r; j++) {
+//				tempc[i] = min(tempc[i], m[j][i]);
+//				//cout << j << " " << tempc[j] << endl;
+//			}
+//			//cout << i << " " << tempr[i] << endl;
+//		}
+//		for (int i = 1; i <= n - r; i++) {//减去最小值
+//			for (int j = 1; j <= n - r; j++) {
+//				m[j][i] = m[j][i] - tempc[i];
+//			}
+//
+//		}
+//		/*for (int i = 1; i <= n - r; i++) {
+//			for (int j = 1; j <= n - r; j++) {
+//
+//				cout << m[i][j] << " ";
+//			}
+//			cout << endl;
+//		}*/
+//	/*	if (r < n - 2) {
+//			cout << m[2][2] << endl;
+//		}
+//		else {
+//			
+//		}*/
+//		
+//	
+//		for (int i = 2; i < n - r; i++) {
+//			for (int j = 1; j <= n - r; j++) {
+//				m[i][j] = m[i + 1][j];
+//			}
+//		}
+//		for (int i = 2; i < n - r; i++) {
+//			for (int j = 1; j <= n - r; j++) {
+//				m[j][i] = m[j][i + 1];
+//			}
+//		}
+//		
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//矩阵归零消减序列和 答案 简单
+//#include <iostream>
+//using namespace std;
+//const int maxn = 110;
+//int main() {
+//	int n; cin >> n;
+//	int a[maxn][maxn] = { 0 }, min = 1e9;
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < n; j++) {
+//			cin >> a[i][j];
+//		}
+//	}
+//	for (; n; n--) {
+//		cout << a[1][1] << endl;
+//		for (int i = 0; i < n; i++) {
+//			min = 1e9;
+//			for (int j = 0; j < n; j++)min > a[i][j] ? min = a[i][j] : min;//取行最小值
+//			for (int j = 0; j < n; j++) { a[i][j] -= min; if (a[i][j] < 0)a[i][j] = 0; }//每行减去行最小值
+//		}
+//		for (int i = 0; i < n; i++) {
+//			min = 1e9;
+//			for (int j = 0; j < n; j++)min > a[j][i] ? min = a[j][i] : min;//取列最小值
+//			for (int j = 0; j < n; j++) { a[j][i] -= min; if (a[j][i] < 0)a[j][i] = 0; }//每列减去行最小值
+//		}
+//		if (n != 2) {
+//			for (int i = 0; i < n; i++)for (int j = 1; j < n; j++)a[i][j] = a[i][j + 1];//删除第二行
+//			for (int i = 0; i < n; i++)for (int j = 1; j < n; j++)a[j][i] = a[j + 1][i];//删除第二列
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//矩阵加法
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//#include<iomanip>
+//using namespace std;
+//const int maxn = 110;
+//long long  m1[maxn][maxn];
+//long long  m2[maxn][maxn];
+//int main() {
+//
+//	memset(m1, 0, sizeof(m1));
+//	memset(m2, 0, sizeof(m2));
+//	int m, n;
+//	cin >> m>>n;
+//	for (int i = 0; i < m; i++) {
+//		for (int j = 0; j < n; j++) {
+//			cin >> m1[i][j];
+//		}
+//	}
+//	for (int i = 0; i < m; i++) {
+//		for (int j = 0; j < n; j++) {
+//			cin >> m2[i][j];
+//			m2[i][j] += m1[i][j];
+//			cout << m2[i][j] << " ";
+//		}
+//		cout << endl;
+//	}
+//
+//	system("pause");
+//	return 0;
+//}
+
+//矩阵乘法
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//#include<iomanip>
+//using namespace std;
+//const int maxn = 110;
+//long long  m1[maxn][maxn];
+//long long  m2[maxn][maxn];
+//long long ans[maxn][maxn];
+//int main() {
+//	memset(ans, 0, sizeof(ans));
+//	memset(m1, 0, sizeof(m1));
+//	memset(m2, 0, sizeof(m2));
+//	int n, m, k;
+//	cin >> n >> m >> k;
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < m; j++) {
+//			cin >> m1[i][j];
+//		}
+//	}
+//	for (int i = 0; i < m; i++) {
+//		for (int j = 0; j < k; j++) {
+//			cin >> m2[i][j];
+//		}
+//	}
+//	for (int i = 0; i < n; i++) {//A 行
+//		for (int j = 0; j < k; j++) {// B 列
+//			for (int p = 0; p < m; p++) {
+//				ans[i][j] += m1[i][p] * m2[p][j];
+//			}
+//		}
+//	}
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < k; j++) {
+//			cout << ans[i][j] << " ";
+//		}
+//		cout << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//矩阵转置
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//#include<iomanip>
+//using namespace std;
+//const int maxn = 110;
+//long long  m1[maxn][maxn];
+//int main() {
+//
+//	memset(m1, 0, sizeof(m1));
+//
+//	int n, m;
+//	cin >> n >> m ;
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < m; j++) {
+//			cin >> m1[i][j];
+//		}
+//	}
+//	for (int i = 0; i < m; i++) {
+//		for (int j = 0; j < n; j++) {
+//			cout << m1[j][i] << " ";
+//		}
+//		cout << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//图像旋转
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//#include<iomanip>
+//using namespace std;
+//const int maxn = 110;
+//long long  m1[maxn][maxn];
+//int main() {
+//
+//	memset(m1, 0, sizeof(m1));
+//
+//	int n, m;
+//	cin >> n >> m;
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < m; j++) {
+//			cin >> m1[i][j];
+//		}
+//	}
+//	for (int i = 0; i < m; i++) {
+//		for (int j = n-1; j >=0; j--) {
+//			cout << m1[j][i] << " ";
+//		}
+//		cout << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//变幻的矩阵
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//#include<iomanip>
+//using namespace std;
+//const int maxn = 50;
+//char  m1[maxn][maxn];
+//char  m2[maxn][maxn];
+//char ans1[maxn][maxn];
+//char ans2[maxn][maxn];
+//char ans3[maxn][maxn];
+//int main() {
+//
+//	memset(m1, 0, sizeof(m1));
+//	memset(m2, 0, sizeof(m2));
+//	memset(ans1, 0, sizeof(ans1));
+//	memset(ans2, 0, sizeof(ans2));
+//	memset(ans3, 0, sizeof(ans3));
+//
+//	int n;
+//	cin >> n;
+//	//cout << n << endl;
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < n; j++) {
+//			cin >> m1[i][j];
+//			//cout << i << " " << j << endl;
+//		}
+//	}
+//	//cout << "hhh" << endl;
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < n; j++) {
+//			cin >> m2[i][j];
+//		}
+//	}
+//	
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < n; j++) {
+//			ans1[i][j] = m1[n - j - 1][i];
+//			ans2[i][j] = m1[j][n - i - 1];
+//			ans3[i][j] = m1[n - i - 1][n - j - 1];
+//			//cout << ans3[i][j] << " ";
+//		}
+//		//cout << endl;
+//	}
+//	int flag[4] = {1,1,1,1};
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < n; j++) {
+//			if (ans1[i][j] != m2[i][j]) {
+//				flag[0] = 0;
+//			}
+//			if (ans2[i][j] != m2[i][j]) {
+//				flag[1] = 0;
+//			}
+//			if (ans3[i][j] != m2[i][j]) {
+//				flag[2] = 0;
+//			}
+//			if (m1[i][j] != m2[i][j]) {
+//				//cout << m1[i][j] << " " << m2[i][j] << endl;
+//				flag[3] = 0;
+//			}
+//		}
+//	}
+//	bool sus = false;
+//	for (int i = 0; i < 4; i++) {
+//		//cout << flag[i] << endl;
+//		if (flag[i]) {
+//			cout << i + 1;
+//			sus = true;
+//			break;
+//		}
+//	}
+//	if (!sus) {
+//		cout << 5;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//图像模糊处理  判断单行
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//#include<iomanip>
+//using namespace std;
+//const int maxn = 110;
+//int  m1[maxn][maxn];
+//int  m2[maxn][maxn];
+//
+//int main() {
+//
+//	memset(m1, 0, sizeof(m1));
+//	memset(m2, 0, sizeof(m2));
+//
+//
+//	int n, m;
+//	cin >> n >> m;
+//	//cout << n << endl;
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < m; j++) {
+//			cin >> m1[i][j];
+//			//cout << i << " " << j << endl;
+//		}
+//	}
+//	for (int i = 0; i < m; i++) {
+//		cout << m1[0][i] << " ";
+//	}
+//	cout << endl;
+//	for (int i = 1; i < n - 1; i++) {
+//		for (int j = 0; j < m; j++) {
+//			if (j == 0) {
+//				cout << m1[i][0] << " ";
+//
+//			}
+//			else if (j == m - 1) {
+//				cout << m1[i][m - 1];
+//
+//			}
+//			else {
+//				//cout << "hhh: " << m1[i][j] << " " << m1[i - 1][j] << " " << m1[i + 1][j] << " " << m1[i][j - 1] << " " << m1[i][j + 1] << endl;
+//				double a = (double(m1[i][j]) + double(m1[i - 1][j]) + double(m1[i + 1][j]) + double(m1[i][j - 1]) + double(m1[i][j + 1])) / 5.0;
+//				int ans = floor(a + 0.5);
+//				cout << ans << " ";
+//				//cout << a << " ";
+//			}
+//
+//		}
+//		cout << endl;
+//		//cout << endl;
+//	}
+//	if (n != 1) {
+//		for (int i = 0; i < m; i++) {
+//			cout << m1[n - 1][i] << " ";
+//		}
+//	}
+//
+//	system("pause");
+//	return 0;
+//}
+
+//扫雷游戏地雷数计算
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//#include<iomanip>
+//using namespace std;
+//const int maxn = 110;
+//char  m1[maxn][maxn];
+//int  m2[maxn][maxn];
+//
+//int main() {
+//
+//	memset(m1, 0, sizeof(m1));
+//	memset(m2, 0, sizeof(m2));
+//
+//
+//	int n, m;
+//	cin >> n >> m;
+//	//cout << n << endl;
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = 1; j <= m; j++) {
+//			cin >> m1[i][j];
+//		}
+//	}
+//
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = 1; j <= m; j++) {
+//			if (m1[i][j] == '*') {//不用判断边界条件 因为边界以为的都初始化为0  只要不为*就不加
+//				cout << m1[i][j] ;
+//			}
+//			else {
+//				if (m1[i - 1][j] == '*') {
+//					m2[i][j]++;
+//				}
+//				if (m1[i + 1][j] == '*') {
+//					m2[i][j]++;
+//				}
+//				if (m1[i - 1][j - 1] == '*') {
+//					m2[i][j]++;
+//				}
+//				if (m1[i - 1][j + 1] == '*') {
+//					m2[i][j]++;
+//				}
+//				if (m1[i][j - 1] == '*') {
+//					m2[i][j]++;
+//				}
+//				if (m1[i][j + 1] == '*') {
+//					m2[i][j]++;
+//				}
+//				if (m1[i + 1][j - 1] == '*') {
+//					m2[i][j]++;
+//				}
+//				if (m1[i + 1][j + 1] == '*') {
+//					m2[i][j]++;
+//				}
+//				cout << m2[i][j] ;
+//			}
+//
+//		}
+//		cout << endl;
+//		//cout << endl;
+//	}
+//	
+//	system("pause");
+//	return 0;
+//}
+
+//细菌的繁殖与扩散 ？？自己写的思路不对  抓住核心 以每个元素为对象写 而不是以每个元素扩散影响其他元素来写！！
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//#include<iomanip>
+//using namespace std;
+//const int maxn = 11;
+//int  m1[maxn][maxn];//前一天的状态
+//int  m2[maxn][maxn];//后一天的状态 扩散之后的状态
+////int  m3[maxn][maxn];//记录前一天的状态
+//int main() {
+//
+//	memset(m1, 0, sizeof(m1));
+//	memset(m2, 0, sizeof(m2));
+//	//memset(m3, 0, sizeof(m3));
+//	int r[8] = { 0,0,1,-1,-1,1,-1,1 };
+//	int c[8] = { 1,-1,0,0,1,1,-1,-1 };
+//
+//	int n, m;
+//	cin >> n >> m;
+//	m1[5][5] = n;
+//	//m2[5][5] = n;
+//	/*for (int i = 1; i <= 9; i++) {
+//		for (int j = 1; j <= 9; j++) {
+//			cout << m1[i][j] << " ";
+//		}
+//		cout << endl;
+//	}*/
+//	for (int d = 1; d <= m; d++) {
+//		for (int i = 1; i <= 9; i++) {
+//			for (int j = 1; j <= 9; j++) {
+//				m2[i][j] = m1[i][j] * 2;
+//				for (int k = 0; k < 8; k++) {
+//					m2[i][j] = m2[i][j] + m1[i+r[k]][j+c[k]];
+//				}
+//			}
+//		}
+//		for (int o = 1; o <= 9; o++) {
+//			for (int p = 1; p <= 9; p++) {
+//				m1[o][p] = m2[o][p];
+//			}
+//		}
+//		/*cout << "day" << d << endl;
+//		for (int i = 1; i <= 9; i++) {
+//			for (int j = 1; j <= 9; j++) {
+//				cout << m2[i][j] << " ";
+//			}
+//			cout << endl;
+//		}
+//		cout << endl;*/
+//	}
+//	for (int i = 1; i <= 9; i++) {
+//		for (int j = 1; j <= 9; j++) {
+//			cout << m2[i][j] << " ";
+//		}
+//		cout << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//矩阵剪刀石头布 对于矩阵一定要考虑单行单列
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//#include<iomanip>
+//using namespace std;
+//const int maxn = 110;
+//char  m1[maxn][maxn];//前一天的状态
+//char  m2[maxn][maxn];//后一天的状态 扩散之后的状态
+//					
+//int main() {
+//
+//	memset(m1, 0, sizeof(m1));
+//	memset(m2, 0, sizeof(m2));
+//	int dirr[4] = { 1,-1,0,0 };// 下 上 右 左
+//	int dirc[4] = { 0,0,1,-1 };
+//
+//	int r, c, n;
+//	cin >> r >> c >> n;
+//	for (int i = 1; i <= r; i++) {
+//		for (int j = 1; j <= c; j++) {
+//			cin >> m1[i][j];
+//		}
+//	}
+//	if(r==1&&c==1){
+//		cout << m1[1][1];
+//		system("pause");
+//		return 0;
+//	}
+//	for (int d = 0; d < n; d++) {
+//		for (int i = 1; i <= r; i++) {
+//			for (int j = 1; j <= c; j++) {
+//				int flag = 0;
+//				for (int k = 0; k < 4; k++) {
+//
+//					if (isalpha(m1[i + dirr[k]][j + dirc[k]])) {
+//						if (!flag) {
+//							if ((m1[i][j] == 'R'&&m1[i + dirr[k]][j + dirc[k]] == 'P') || (m1[i][j] == 'S'&&m1[i + dirr[k]][j + dirc[k]] == 'R') || (m1[i][j] == 'P'&&m1[i + dirr[k]][j + dirc[k]] == 'S')) {
+//								m2[i][j] = m1[i + dirr[k]][j + dirc[k]];
+//								flag = 1;
+//							}
+//							else {
+//								
+//								m2[i][j] = m1[i][j];
+//								
+//							}
+//							//cout << k << " " << i << " " << j << " " << m1[i][j] << " " << m1[i + dirr[k]][j + dirc[k]] << " " << m2[i][j] << endl;
+//						}	
+//					}
+//				}
+//			}
+//		}
+//		for (int i = 1; i <= r; i++) {
+//			for (int j = 1; j <= c; j++) {
+//				m1[i][j] = m2[i][j];
+//			}
+//		}
+//	}
+//	for (int i = 1; i <= r; i++) {
+//		for (int j = 1; j <= c; j++) {
+//			cout << m1[i][j];
+//		}
+//		cout << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//最好的草
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//#include<iomanip>
+//using namespace std;
+//const int maxn = 110;
+//char  m1[maxn][maxn];//前一天的状态
+//char  m2[maxn][maxn];//后一天的状态 扩散之后的状态
+//
+//int main() {
+//
+//	memset(m1, 0, sizeof(m1));
+//	memset(m2, 0, sizeof(m2));
+//	int dirr[4] = { 1,-1,0,0 };// 下 上 右 左
+//	int dirc[4] = { 0,0,1,-1 };
+//
+//	int r, c, n;
+//	cin >> r >> c;
+//	for (int i = 1; i <= r; i++) {
+//		for (int j = 1; j <= c; j++) {
+//			cin >> m1[i][j];
+//		}
+//	}
+//	if (r == 1 && c == 1) {
+//		cout << m1[1][1];
+//		system("pause");
+//		return 0;
+//	}
+//	int cnt = 0;
+//	for (int i = 1; i <= r; i++) {
+//		for (int j = 1; j <= c; j++) {
+//			if (m2[i][j] != '1'&&m1[i][j] == '#') {
+//				//cout << i << " " << j << endl;
+//				cnt++;
+//				for (int k = 0; k < 4; k++) {
+//					m2[i][j] = '1';
+//					if (m2[i + dirr[k]][j + dirc[k]] != '1'&&m1[i + dirr[k]][j + dirc[k]] == '#') {
+//						m2[i + dirr[k]][j + dirc[k]] = '1';
+//					}
+//				}
+//				/*for (int i = 1; i <= r; i++) {
+//					for (int j = 1; j <= c; j++) {
+//						if (m2[i][j] == '1') {
+//							cout << m2[i][j] << " ";
+//
+//						}
+//						else {
+//							cout << 0 << " ";
+//						}
+//					}
+//					cout << endl;
+//				}
+//				cout << endl;*/
+//			}
+//			
+//		}
+//	}
+//		cout << cnt;
+//		system("pause");
+//		return 0;
+//	}
+
+
+//肿瘤面积  注意边界的判定包括出界和遇到255两种情况 
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//#include<iomanip>
+//using namespace std;
+//const int maxn = 1010;
+//int  m1[maxn][maxn];
+//
+//int main() {
+//
+//	memset(m1, 0, sizeof(m1));
+//
+//	int  n;
+//	int zs[2], zx[2], ys[2], yx[2];
+//	memset(zs, 0, sizeof(zs));
+//	memset(zx, 0, sizeof(zx));
+//	memset(ys, 0, sizeof(ys));
+//	memset(yx, 0, sizeof(yx));
+//
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = 1; j <= n; j++) {
+//			cin >> m1[i][j];
+//
+//		}
+//	}
+//	if (n == 1 && m1[1][1] == 255) {
+//		cout << 0;
+//		system("pause");
+//		return 0;
+//	}
+//	//for (int i = 1; i <= n; i++) {
+//	//	for (int j = 1; j <= n; j++) {
+//	//		cout<< m1[i][j]<<" ";
+//	//	}
+//	//	cout << endl;
+//	//}
+//
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = 1; j <= n; j++) {
+//			//cout << m1[i][j] << " ";
+//			if (m1[i][j] == 0) {
+//				//cout << "hhh" << endl;
+//
+//				zs[0] = i;
+//				zs[1] = j;
+//				zx[1] = j;
+//				//cout << zs[0] << " " << zs[1] << endl;
+//				while (j++) {
+//					if (m1[i][j] == 255||j==n+1) {
+//						j--;
+//						ys[0] = i;
+//						ys[1] = j;
+//						while (i++) {
+//							if (m1[i][j] == 255 || i == n + 1) {
+//								i--;
+//								yx[0] = i;
+//								yx[1] = j;
+//								zx[0] = i;
+//								break;
+//							}
+//						}
+//						break;
+//					}
+//				}
+//				break;
+//			}
+//		}
+//
+//	}
+//	int ans = (yx[0] - zs[0] - 1)*(yx[1] - zs[1] - 1);
+//	cout << ans;
+//	system("pause");
+//	return 0;
+//}
+
+//肿瘤检测  思路就按照题目意思来 不要自己想算法！！！
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//#include<iomanip>
+//using namespace std;
+//const int maxn = 110;
+//int  m1[maxn][maxn];
+//int main() {
+//
+//	memset(m1, 0, sizeof(m1));
+//
+//	int  n, area = 0, per = 0;
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = 1; j <= n; j++) {
+//			cin >> m1[i][j];
+//		}
+//	}
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = 1; j <= n; j++) {
+//			if (m1[i][j] <= 50) {
+//				area++;
+//				if (i == 1 || i == n || j == 1 || j == n || m1[i - 1][j] > 50 || m1[i + 1][j] > 50 || m1[i][j - 1] > 50 || m1[i][j + 1] > 50) {
+//					per++;
+//				}
+//			}
+//		}
+//	}
+//	cout << area << " " << per;
+//	system("pause");
+//	return 0;
+//}
+
+//反反复复
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//#include<iomanip>
+//#include<string>
+//using namespace std;
+//const int maxn = 110;
+//char  m1[maxn];
+//char  m2[maxn][maxn];
+//int main() {
+//
+//	memset(m1, 0, sizeof(m1));
+//	memset(m2, 0, sizeof(m2));
+//
+//	int  n;
+//	cin >> n;
+//	char c;
+//	int cnt = 0;
+//	while (cin >> c) {
+//		m1[cnt++] = c;
+//	}
+//	//cout << cnt << endl;
+//	int len = cnt / n;
+//	//cout << "hh " << len << endl;
+//	for (int i = 0; i < len; i++) {
+//		for (int j = 0; j < n; j++) {
+//			//cout << i * len + j << " ";
+//			if (i % 2 == 0) {
+//				m2[i][j] = m1[i*n + j];
+//			}
+//			else {
+//				m2[i][n - j - 1] = m1[i*n + j];
+//			}
+//		}
+//
+//	}
+//	/*for (int i = 0; i < len; i++) {
+//		for (int j = 0; j < n; j++) {
+//			cout << m2[i][j];
+//		}
+//		cout << endl;
+//	}*/
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < len; j++) {
+//			cout << m2[j][i];
+//		}
+//		
+//	}
+//	//cout << area << " " << per;
+//	system("pause");
+//	return 0;
+//}
+
+//二维数组右上左下遍历  
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//#include<iomanip>
+//#include<string>
+//using namespace std;
+//const int maxn = 110;
+//int   m1[maxn][maxn];
+//int  m2[maxn][maxn];
+//int main() {
+//
+//	memset(m1, 0, sizeof(m1));
+//	memset(m2, 0, sizeof(m2));
+//
+//	int  r, c;
+//	cin >> r >> c;
+//	for (int i = 0; i < r; i++) {
+//		for (int j = 0; j < c; j++) {
+//			cin >> m1[i][j];
+//		}
+//	}
+//
+//	for (int i = 0; i < c; i++) {//第一行起点 上三角
+//		for (int j = 0; j < r; j++) {
+//			if ((i - j) >= 0) {
+//				cout << m1[j][i - j] << endl;
+//			}
+//		}
+//	}
+//
+//	for (int i = 1; i < r; i++) {//最后一列起点 下三角
+//		for (int j = 0; j < c; j++) {
+//			if ((i + j) < r) {
+//				cout << m1[i + j][c - j - 1] << endl;
+//			}
+//		}
+//	}
+//	//for (int i = 1; i < r; i++) {//最后一列起点 下三角
+//	//	for (int j = c - 1; j >= 0; j--) {
+//	//		if ((i + c - j - 1) < r) {//c-r +j <=i
+//	//			cout << m1[i + c - j - 1][j] << endl;
+//	//		}
+//	//	}
+//	//}
+//	//cout << area << " " << per;
+//	system("pause");
+//	return 0;
+//}
+
+//神奇的幻方
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//#include<iomanip>
+//#include<string>
+//using namespace std;
+//const int maxn = 110;
+//int   m1[maxn][maxn];
+//int  m2[maxn][maxn];
+//int main() {
+//
+//	memset(m1, 0, sizeof(m1));
+//	memset(m2, 0, sizeof(m2));
+//
+//	int  n;
+//	cin >> n;
+//	n = 2 * n - 1;
+//	int num = pow(n, 2);
+//	int i = 1, j = n/2+1;
+//	int cnt = 1;
+//	//cout << n << endl;
+//	while (num--) {
+//		
+//		m1[i][j] = cnt;
+//		//cout << i << " " << j <<" "<< m1[i][j]<<endl;
+//		cnt++;
+//		if ((i == 1 && j == n) || (m1[i - 1][j + 1])) {
+//			//cout << i << " " << j << endl;
+//			i = i + 1;
+//		}
+//		else if (i == 1) {
+//			i = n;
+//			j = j + 1;
+//		}
+//		else if (j == n) {
+//			j = 1;
+//			i = i - 1;
+//		}
+//		else {
+//			i = i - 1;
+//			j = j + 1;
+//		}
+//	}
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = 1; j <= n; j++) {
+//			cout << m1[i][j] << " ";
+//		}
+//		cout<<endl;
+//	}	
+//	system("pause");
+//	return 0;
+//}
+
+//二维数组回形遍历
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//#include<iomanip>
+//#include<string>
+//using namespace std;
+//const int maxn = 110;
+//int   m1[maxn][maxn];
+//int  m2[maxn][maxn];
+//int main() {
+//
+//	memset(m1, 0, sizeof(m1));
+//	memset(m2, 0, sizeof(m2));
+//
+//	int  r,c;
+//	cin >> r>>c;
+//	for (int i = 0; i < r; i++) {
+//		for (int j = 0; j < c; j++) {
+//			cin >> m1[i][j];
+//		}
+//	}
+//	int cnt = r * c;
+//	int i = 0, j = 0;
+//	int round = 0;
+//	cout << m1[i][j] << endl;
+//	cnt--;
+//	while (cnt) {
+//		while (cnt&&j+1<c-round) {
+//			j++;
+//			cnt--;
+//			cout << m1[i][j]<<endl;
+//			//system("pause");
+//		}
+//		while (cnt&&i + 1 < r - round) {
+//			i++;
+//			cout << m1[i][j] << endl;
+//			cnt--;
+//		}
+//		while (cnt&&j - 1 >= 0+ round) {
+//			j--;
+//			cout << m1[i][j] << endl;
+//			cnt--;
+//		}
+//		round++;
+//		while (cnt&&i - 1 >= 0+round) {
+//			i--;
+//			cout << m1[i][j] << endl;
+//			cnt--;
+//		}
+//		
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//蛇形填充数组  
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//#include<iomanip>
+//#include<string>
+//using namespace std;
+//const int maxn = 110;
+//int   m1[maxn][maxn];
+//int  m2[maxn][maxn];
+//int main() {
+//
+//	memset(m1, 0, sizeof(m1));
+//	memset(m2, 0, sizeof(m2));
+//
+//	int  n;
+//	cin >> n;
+//	int v = 1;
+//	int cnt = 2 * n - 1;
+//	for (int sum = 0; sum < cnt; sum++) {
+//		for (int i = 0; i < n; i++) {
+//			for (int j = 0; j < n; j++) {
+//				if (i + j == sum) {
+//					//cout << sum << " " << i << " " << j << " " << v << endl;
+//
+//					if (sum % 2 == 1) {
+//						m2[i][j] = v;
+//						v++;
+//					}
+//					else {
+//						m2[j][i] = v;
+//						v++;
+//					}
+//				}
+//			}
+//		}
+//	}
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < n; j++) {
+//			cout << m2[i][j] << " ";
+//		}
+//		cout << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//螺旋加密
+//#include<iostream>
+//#include<cstring>//memset要包含头文件
+//#include<algorithm>
+//#include<iomanip>
+//#include<string>
+//using namespace std;
+//const int maxn = 3000;
+//int   m1[maxn];
+//int  m2[maxn];
+//int m3[maxn][maxn];
+//int main() {
+//
+//	memset(m1, 0, sizeof(m1));
+//	memset(m2, 0, sizeof(m2));
+//	memset(m3, 0, sizeof(m3));
+//	int  r, c;
+//	cin >> r >> c;
+//	string s;
+//	getline(cin, s);//s的第一个字符是空格
+//	//cout << s;
+//	int len = s.size() - 1;
+//	for (int i = 1; i <= len; i++) {//s的第一个字符是空格
+//		if (s[i] == ' ') {
+//			m1[i] = 0;
+//		}
+//		else {
+//			m1[i] = s[i] - 'A' + 1;
+//		}
+//	}
+//	/*for (int i = 1; i <= len; i++) {
+//		cout << m1[i] << " ";
+//	}*/
+//	for (int i = 1; i <= len; i++) {
+//		for (int j = (i - 1) * 5 + 5; j > (i - 1) * 5; j--) {
+//			m2[j] = m1[i] % 2;
+//			m1[i] = m1[i] / 2;
+//			//cout << m2[j];
+//		}
+//		//cout << endl;
+//	}
+//	int cnt = r * c;
+//	for (int i = len * 5 + 1; i <= cnt; i++) {
+//		m2[i] = 0;
+//		//cout << i << " " << m2[i] << endl;
+//	}
+//
+//	/*for (int i = 1; i <= cnt; i++) {
+//		cout << m2[i];
+//	}
+//	cout << endl;*/
+//
+//	//cout << cnt << endl;
+//	int i = 1, j = 1;
+//	int cur = 1;
+//	int round = 0;
+//	m3[i][j] = m2[cur++];
+//	cnt--;
+//	//cout << m3[i][j];
+//	while (cnt) {
+//		//cout << cnt << endl;
+//		while (cnt&&j+1 <= c - round) {//思想：先预判能不能走 。如果先走当前步再判断，当判断为false的时候j已经越界了
+//			j++;
+//			cnt--;
+//			m3[i][j] = m2[cur++];
+//			//cout << i << " " << j << " " << m3[i][j] << endl;
+//			
+//		}
+//		//system("pause");
+//		while (cnt&&i+1 <= r - round) {
+//			i++;
+//			cnt--;
+//			m3[i][j] = m2[cur++];
+//			//cout << i << " " << j << " " << m3[i][j] << endl;
+//			
+//		}
+//		//system("pause");
+//		while (cnt&&j-1 >= 1 + round) {
+//			j--;
+//			cnt--;
+//			m3[i][j] = m2[cur++];
+//			//cout << i << " " << j << " " << m3[i][j] << endl;
+//			
+//		}
+//		//system("pause");
+//		round++;
+//		while (cnt&&i-1 >= 1 + round) {
+//			i--;
+//			cnt--;
+//			m3[i][j] = m2[cur++];
+//			//cout << i << " " << j << " " << m3[i][j] << endl;
+//			
+//		}
+//		//system("pause");
+//	}
+//
+//	for (int h = 1; h <= r; h++) {
+//		for (int g = 1; g <= c; g++) {
+//			cout << m3[h][g];
+//		}
+//		//cout << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
