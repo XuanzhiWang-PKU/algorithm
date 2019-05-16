@@ -5876,3 +5876,1557 @@
 //	system("pause");
 //	return 0;
 //}
+
+//#include<iostream>
+//using namespace std;
+//const int maxn = 10010;
+//int m[maxn];
+//int main() {
+//	int n,cnt=0;
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		cin >> m[i];
+//		cnt++;
+//	}
+//	int tar;
+//	bool flag = false;
+//	cin >> tar;
+//	for (int i = 0; i < cnt; i++) {
+//		if (m[i] == tar) {
+//			cout << i + 1;
+//			flag = true;
+//			break;
+//		}
+//	}
+//	if (!flag) {
+//		cout << -1;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//输出最高分数的学生姓名
+//#include<iostream>
+//#include<map>
+//#include<string>
+//using namespace std;
+//const int maxn = 10010;
+//map<int, string, greater<int>> m;
+//int main() {
+//	int n, cnt = 0;
+//	cin >> n;
+//	int score;
+//	string name;
+//	for (int i = 0; i < n; i++) {
+//		cin >> score;
+//		cin >> name;
+//		m.insert(pair<int, string>(score, name));
+//	}
+//	for (auto itr = m.begin(); itr != m.end(); itr++) {
+//		cout << itr->second << endl;
+//		break;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//不高兴的津津
+//#include<iostream>
+//#include<map>
+//#include<string>
+//using namespace std;
+//const int maxn = 7;
+//int m[maxn];
+//int main() {
+//	int x, y;
+//	int big = 0, d = -1;
+//	for (int i = 0; i < 7; i++) {
+//		cin >> x >> y;
+//		m[i] = x + y;
+//		if (m[i] > 8 && m[i] > big) {
+//			big = m[i];
+//			d = i+1;
+//		}
+//	}
+//	if (d == -1) {
+//		cout << 0;
+//		system("pause");
+//		return 0;
+//	}
+//	for (int i = 0; i < 7; i++) {
+//		if (big == m[i]) {
+//			cout << i + 1;
+//			break;
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//谁拿了最多奖学金
+//#include<iostream>
+//#include<map>
+//#include<string>
+//using namespace std;
+//multimap<int, string,greater<int>> multim;
+//int main() {
+//	int n;
+//	cin >> n;
+//	string name;
+//	int score, classscore;
+//	char leader, west;
+//	int paper, sum = 0, tot = 0;
+//	for (int i = 0; i < n; i++) {
+//		sum = 0;
+//		cin >> name >> score >> classscore >> leader >> west>>paper;
+//		if (score > 80 && paper >= 1) {
+//			sum += 8000;
+//		}
+//		//cout << name << " " << sum << endl;
+//		if (score > 85 && classscore > 80) {
+//			sum += 4000;
+//		}
+//		//cout << name << " " << sum << endl;
+//
+//		if (score > 90) {
+//			sum += 2000;
+//		}
+//		//cout << name << " " << sum << endl;
+//
+//		if (score > 85 && west == 'Y') {
+//			sum += 1000;
+//		}
+//		//cout << name << " " << sum << endl;
+//
+//		if (classscore > 80 && leader == 'Y') {
+//			sum += 850;
+//		}
+//		//cout << name << " " << sum << endl;
+//		tot += sum;
+//		multim.insert(pair<int, string>(sum, name));
+//	}
+//	for (auto itr = multim.begin(); itr != multim.end(); itr++) {
+//		cout << itr->second << endl<< itr->first << endl<<tot;
+//		break;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//最大值和最小值的差
+//#include<iostream>
+//#include<map>
+//#include<cstring>
+//#include<limits.h>
+//#include <iomanip>
+//using namespace std;
+//const int maxn = 10010;
+//int m[maxn];
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	int n;
+//	cin >> n;
+//	int minv=INT_MAX, maxv=INT_MIN;//
+//	for (int i = 0; i < n; i++) {
+//		cin >> m[i];
+//		if (m[i] < minv) {
+//			minv = m[i];
+//		}
+//		if (m[i] > maxv) {
+//			maxv = m[i];
+//		}
+//	}
+//	cout << maxv - minv;
+//	system("pause");
+//	return 0;
+//}
+
+//笨小猴
+//#include<iostream>
+//#include<map>
+//#include<string>
+//#include<math.h>//ceil floor
+//#include<cstring>//memset
+//#include<limits.h>//INT_MAX
+//#include <iomanip>
+//using namespace std;
+//string s;
+//map<char, int>	m;
+//int main() {
+//
+//	cin >> s;
+//	for (int i = 0; i < s.length(); i++) {
+//		map<char, int>::iterator iter;
+//		iter = m.find(s[i]);
+//		if (iter != m.end()) {
+//			m[s[i]]++;
+//		}
+//		else {
+//			m.insert(pair<char, int>(s[i], 1));
+//		}
+//	}
+//	int minv = INT_MAX, maxv = INT_MIN;
+//	for (auto itr = m.begin(); itr != m.end(); itr++) {
+//		//cout << itr->first << " " << itr->second << endl;
+//		if (itr->second > maxv) {
+//			maxv = itr->second;
+//		}
+//		if (itr->second < minv) {
+//			minv = itr->second;
+//		}
+//	}
+//	int v = maxv - minv;
+//	if (v == 0||v==1) {
+//		cout << "No Answer" << endl << 0;
+//		system("pause");
+//		return 0;
+//	}
+//
+//	bool flag = true;
+//	for (int i = 2; i < ceil(v / 2); i++) {
+//		if (v%i == 0) {
+//			flag = false;
+//			break;
+//		}
+//	}
+//	if (flag) {
+//		cout << "Lucky Word" << endl << v;
+//	}
+//	else {
+//		cout << "No Answer" << endl << 0;
+//	}
+//
+//	//cout << v << endl;
+//	system("pause");
+//	return 0;
+//}
+
+//不与最大数相同的数字之和
+//#include<iostream>
+//#include<map>
+//#include<string>
+//#include<math.h>//ceil floor
+//#include<cstring>//memset
+//#include<limits.h>//INT_MAX
+//#include <iomanip>
+//using namespace std;
+//const int maxn = 110;
+//long long m[maxn];
+//int main() {
+//	int n, maxv = INT_MIN;
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		cin >> m[i];
+//		if (m[i] > maxv) {
+//			maxv = m[i];
+//		}
+//	}
+//	long long sum = 0;
+//	for (int i = 0; i < n; i++) {
+//		if (m[i] != maxv) {
+//			sum += m[i];
+//		}
+//	}
+//	cout << sum;
+//	system("pause");
+//	return 0;
+//}
+
+//白细胞计数
+//#include<iostream>
+//#include<map>
+//#include<string>
+//#include<cmath>//abs()
+//#include<math.h>//ceil floor
+//#include<cstring>//memset
+//#include<limits.h>//INT_MAX
+//#include <iomanip>
+//#include<stdlib.h>
+//using namespace std;
+//const int maxn = 310;
+//double m[maxn];
+//double var[maxn];
+//int main() {
+//	memset(m, 0, sizeof(0));
+//	memset(var, 0, sizeof(0));
+//	int n;
+//	cin >> n;
+//	cin >> m[0];
+//	//cout << m[0] << endl;
+//	double minv = m[0], maxv = m[0];
+//	int posmin= 0, posmax=0;
+//	for (int i = 1; i < n; i++) {
+//		cin >> m[i];
+//		//cout <<i<<" "<< m[i] << endl;
+//		if (m[i] > maxv) {
+//			maxv = m[i];
+//			posmax = i;
+//		}
+//		if (m[i] < minv) {
+//			minv = m[i];
+//			posmin=i;
+//		}
+//	}
+//	if (posmax == posmin) {
+//		cout << fixed << setprecision(2) << m[0] << " " << fixed << setprecision(2) << 0.00;
+//		system("pause");
+//		return 0;
+//	}
+//	//cout << "hhh" << endl;
+//	double sum = 0.0;
+//	for (int i = 0; i < n; i++) {
+//		if (i != posmax && i != posmin) {
+//			sum += m[i];
+//		}
+//	}
+//	double av = sum / double(n - 2);
+//	double maxva = 0.0;
+//	for (int i = 0; i < n; i++) {
+//		if (i != posmax && i != posmin) {
+//			double cha;
+//			if (m[i] > av) {
+//				cha = m[i] - av;
+//			}
+//			else {
+//				cha = av - m[i];
+//			}
+//			if (cha > maxva) {
+//				maxva = cha;
+//			}
+//		}
+//	}
+//	cout << fixed << setprecision(2) << av << " " << fixed << setprecision(2) << maxva;
+//	system("pause");
+//	return 0;
+//}
+
+//直方图
+//#include<iostream>
+//#include<limits.h>
+//#include<map>
+//using namespace std;
+//const int maxn = 10020;
+//int m[maxn];
+//map<int, int> ans;
+//int main(){
+//	int n,maxv = INT_MIN;
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		cin >> m[i];
+//		if (m[i] > maxv) {
+//			maxv = m[i];
+//		}
+//		if (m[i] <= maxv) {
+//			map<int, int>::iterator iter;
+//			iter = ans.find(m[i]);
+//			if (iter != ans.end()) {
+//				ans[m[i]]++;
+//			}
+//			else {
+//				ans.insert(pair<int, int>(m[i], 1));
+//			}
+//		}
+//	}
+//	int i = 0;
+//	for (auto itr = ans.begin(); itr != ans.end(); itr++) {
+//		while (itr->first != i) {
+//			cout << 0 << endl;
+//			i++;
+//		}
+//		cout << itr->second << endl;
+//		i++;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//找最大数序列
+//#include<iostream>
+//#include<limits.h>
+//#include<vector>
+//#include<string>
+//#include<sstream>
+//using namespace std;
+//const int maxn = 10020;
+//int m[maxn];
+//vector<vector<int>> vv;
+//vector<int> v;
+//int main() {
+//	string tempn;
+//	int n=0;
+//	getline(cin, tempn);
+//	//cout << tempn.size() << endl;
+//	for (int i = 0; i < tempn.size(); i++) {
+//		n = tempn[i] - '0' + n * 10;
+//	}
+//	//cout << n;
+//	string s;
+//	int t=0;
+//	for (int i = 0; i < n; i++) {
+//		v.clear();
+//		getline(cin , s);
+//		for (int j = 0; j < s.size(); j++) {
+//			if (s[j] != ',') {
+//				t = t * 10 + s[j] - '0';
+//			}
+//			else {
+//				//cout << t << endl;
+//				v.push_back(t);
+//				t = 0;
+//			}
+//		}
+//		v.push_back(t);
+//		t = 0;
+//		vv.push_back(v);
+//		//system("pause");
+//		
+//	}
+//	int maxv = vv[0][0];
+//	//cout << maxv;
+//	for (int i = 0; i<vv.size(); i++) {
+//		for (int j = 0; j < vv[i].size(); j++) {
+//			if (vv[i][j] > maxv) {
+//				maxv = vv[i][j];
+//				
+//			}
+//			//cout << maxv << endl;
+//		}
+//	}
+//	cout << maxv << endl;
+//	bool flag = true;
+//	for (int i = 0; i<vv.size(); i++) {
+//		for (int j = 0; j < vv[i].size(); j++) {
+//			if (vv[i][j]== maxv) {
+//				if (flag) {
+//					cout << i+1;
+//					flag = false;
+//					break;
+//				}
+//				else {
+//					cout << "," << i+1;
+//					break;
+//				}
+//			}
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//连续出现的字符
+//#include<iostream>
+//#include<limits.h>
+//#include<vector>
+//#include<string>
+//#include<sstream>
+//using namespace std;
+//const int maxn = 10020;
+//int m[maxn];
+//int main() {
+//	int n;
+//	string s;
+//	cin >> n >> s;
+//	char tar;
+//	vector<char> best;
+//	int temp,cnt = 1,max = 1;
+//	bool flag = false;
+//	for (int i = 0; i < s.size(); i++) {
+//		cnt = 1;
+//		tar = s[i];
+//		int temp = i;
+//		//cout << "i: " << i << endl;
+//		while (s[++temp] == tar) {
+//			cnt++;
+//			i++;
+//			//cout<<tar<<" "<<temp<<" " << cnt << endl;
+//		}
+//		if (cnt >= n) {
+//			//max = cnt;
+//			best.push_back(tar);
+//			flag = true;
+//		}
+//	}
+//	if (flag) {
+//		cout << best[0];
+//	}
+//	else {
+//		cout << "No";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//最长平台 ? 自己写的 只有9分
+//#include<iostream>
+//#include<limits.h>
+//#include<vector>
+//#include<string>
+//#include<sstream>
+//using namespace std;
+//const int maxn = 1010;
+//int m[maxn];
+//int main() {
+//	memset(m, 0, sizeof(0));
+//	int n;
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		cin >> m[i];
+//	}
+//	if (n == 0) {
+//		cout << 0;
+//		system("pause");
+//		return 0;
+//	}
+//	char tar;
+//	int temp,cnt = 1,maxv = 1;
+//	for (int i = 0; i<n; i++) {
+//		//cout << i << endl;
+//		tar = m[i];
+//		temp = i;
+//		cnt = 1;
+//		if (temp + 1 < n) {//y思想：先判断 再走
+//			while (m[++temp] == tar) {
+//				i++;
+//				cnt++;
+//			}
+//		}
+//		if (cnt > maxv) {
+//			maxv = cnt;
+//		}
+//	}
+//	cout << maxv;
+//	system("pause");
+//	return 0;
+//}
+
+
+//最长平台 参考网上的 10分
+//#include<iostream>
+//#include<limits.h>
+//#include<vector>
+//#include<string>
+//#include<sstream>
+//#include<cmath>
+//#include<cstring>
+//using namespace std;
+//const int maxn = 1010;
+//int m[maxn];
+//int main() {
+//	memset(m, 0, sizeof(0));
+//	int n,maxv = 0,cnt = 1;
+//	int a, b;
+//	cin >> n>>a;
+//	for (int i = 1; i < n; i++) {
+//		cin >> b;
+//		if (a == b) {
+//			cnt++;
+//		}
+//		if (a != b) {
+//			cnt = 1;
+//			a = b;
+//		}
+//		if (cnt > maxv) {
+//			maxv = cnt;
+//		}
+//	}
+//	
+//	cout << maxv;
+//	system("pause");
+//	return 0;
+//}
+
+//最长平台 自己写一次 
+//#include<iostream>
+//using namespace std;
+//const int maxn = 1010;
+//int m[maxn];
+//int main() {
+//	int n;
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		cin >> m[i];
+//	}
+//	int  tar, cnt = 1,maxv = 0;
+//	tar = m[0];
+//	for (int i = 1; i < n; i++) {
+//		if (tar == m[i]) {
+//			cnt++;
+//		}
+//		else if (tar != m[i]) {
+//			cnt = 1;
+//			tar = m[i];
+//		}
+//		if (cnt > maxv) {
+//			maxv = cnt;
+//		}
+//	}
+//	cout << maxv;
+//	system("pause");
+//	return 0;
+//}
+
+//整数去重
+//#include<iostream>
+//#include<set>
+//using namespace std;
+//const int maxn = 20010;
+//int m[maxn];
+//set<int> s;
+//int main() {
+//	int n;
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		cin >> m[i];
+//		set<int>::iterator iter;
+//		iter = s.find(m[i]);
+//		if (iter == s.end()) {
+//			s.insert(m[i]);
+//			cout << m[i] << " ";
+//		}
+//		
+//	}
+//	
+//	system("pause");
+//	return 0;
+//}
+
+//铺地毯 ??思路很重要
+//#include<iostream>
+//#include<cstring>
+//#include<vector>
+//using namespace std;
+//const int maxn = 100010;
+//int m[maxn];
+//int a[maxn], b[maxn], g[maxn], k[maxn];
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	memset(a, 0, sizeof(a));
+//	memset(b, 0, sizeof(b));
+//	memset(g, 0, sizeof(g));
+//	memset(k, 0, sizeof(k));
+//	int n,x,y;
+//	cin >> n;
+//	
+//	for (int i = 0; i < n; i++) {
+//		cin >> a[i] >> b[i] >> g[i] >> k[i];
+//
+//	}
+//	cin >> x>>y;
+//	bool flag = false;
+//	for (int i = n - 1; i >= 0; i--) {
+//		if (x >= a[i] && x <= a[i] + g[i] && y >= b[i] && y <= b[i] + k[i]) {
+//			cout << i + 1;
+//			flag = true;
+//			break;
+//		}
+//	}
+//	if (!flag)
+//	{
+//		cout << -1;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//接水问题 ??思路  问啥求啥 每个人去总时间最少的水龙头接水
+//#include<iostream>
+//#include<cstring>
+//#include<vector>
+//using namespace std;
+//const int maxn = 10010;
+//int m1[maxn];
+//int n1[maxn];
+//int main() {
+//	memset(m1, 0, sizeof(m1));
+//	memset(n1, 0, sizeof(n1));
+//	int n,m;
+//	cin >> n>>m;
+//	int min,pos;
+//	for (int i = 0; i < n; i++) {
+//		cin >> n1[i];
+//	}
+//	for (int i = 0; i < n; i++) {
+//		min = m1[0];
+//		pos = 0;
+//		for (int j = 1; j < m; j++) {
+//			if (m1[j] < min) {
+//				min = m1[j];
+//				pos = j;
+//			}
+//		}
+//		m1[pos] = m1[pos] + n1[i];
+//	}
+//	int max = m1[0];
+//	for (int i = 0; i < m; i++) {
+//		if (m1[i] > max) {
+//			max = m1[i];
+//		}
+//	}
+//	cout << max;
+//	system("pause");
+//	return 0;
+//}
+
+//接水问题  网上答案
+//#include <iostream>
+//#include <cstdio>
+//#include <string>
+//#include <cstring>
+//#include <algorithm>
+//using namespace std;
+//int main() {
+//	int a[100], m, n, i, j, min, minn, x, s;//
+//	cin >> n >> m;
+//	memset(a, 0, sizeof(a));	//数组清零，不用说了吧
+//	for (i = 0; i<n; i++) {
+//		cin >> x;
+//		for (j = 0; j<m; j++) {
+//			if (j == 0 || minn>a[j]) {
+//				min = j;	//把最小值的地址赋给min，待会用
+//				minn = a[j];	//把最小值赋给minn，要进行比较
+//			}
+//		}
+//		a[min] += x;	//把接水最少的水龙头对上
+//	}
+//	for (i = 0; i<m; i++) if (i == 0 || s<a[i]) s = a[i];//找出最大的时间，即为所求
+//	cout << s << endl;
+//	return 0;
+//}
+
+
+//1.10编程基础之简单排序
+// 谁考了第k名
+//#include<iostream>
+//#include<map>
+//#include<string>
+//using namespace std;
+//multimap<double, string, greater<double>> m;
+//int main() {
+//	int n, k;
+//	string id;
+//	double score;
+//	cin >> n >> k;
+//	for (int i = 0; i < n; i++) {
+//		cin >> id >> score;
+//		m.insert(pair<double, string>(score,id));
+//	}
+//	int i = 1;
+//	for (auto itr = m.begin(); itr != m.end(); itr++) {
+//		if (i == k) {
+//			cout << itr->second << " " << itr->first;
+//		}
+//		i++;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//奇数单增序列
+//#include<iostream>
+//#include<set>
+//#include<string>
+//using namespace std;
+//multiset<int> s;
+//int main() {
+//	int n,temp;
+//	cin >> n ;
+//	for (int i = 0; i < n; i++) {
+//		cin >> temp;
+//		s.insert(temp);
+//	}
+//	int i = 1;
+//	bool flag = true;
+//	for (auto itr = s.begin(); itr != s.end(); itr++) {
+//		if (*itr%2 == 1) {
+//			if (flag) {
+//				cout << *itr;
+//				flag = false;
+//			}
+//			else {
+//				cout << "," << *itr;
+//			}
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//成绩排序  用冒泡排序来做
+//#include<iostream>
+//#include<set>
+//#include<map>
+//#include<string>
+//#include<cstring>//strcmp()
+//using namespace std;
+//const int maxn = 25;
+//
+//multimap<int,string,greater<int>> m;
+//struct person {
+//	char name[maxn];
+//	int score;
+//};
+//int main() {
+//	int n;
+//	cin >> n;
+//	person per[maxn];
+//	for (int i = 0; i < n; i++) {
+//		cin >> per[i].name >> per[i].score;
+//	}
+//	for (int i = n - 1; i >= 0; i--) {
+//		for (int j = 0; j < i; j++) {
+//			if ((per[j].score < per[j + 1].score) || (per[j].score == per[j + 1].score) && strcmp(per[j].name, per[j + 1].name) > 0) {//strcmp只能比char型数组 不能比string
+//				swap(per[j].score, per[j + 1].score);
+//				swap(per[j].name, per[j + 1].name);
+//			}
+//		}
+//	}
+//	for (int i = 0; i < n; i++) {
+//		cout << per[i].name << " " << per[i].score << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//奖学金
+//#include<iostream>
+//#include<set>
+//#include<map>
+//#include<string>
+//#include<cstring>//strcmp()
+//using namespace std;
+//const int maxn = 300;
+//struct person {
+//	int score1;
+//	int score2;
+//	int score3;
+//	int tot;
+//	int id;
+//};
+//int main() {
+//	int n;
+//	cin >> n;
+//	person per[maxn];
+//	for (int i = 0; i < n; i++) {
+//		cin >> per[i].score1 >> per[i].score2 >> per[i].score3;
+//		per[i].tot = per[i].score1 + per[i].score2 + per[i].score3;
+//		per[i].id = i + 1;
+//	}
+//	for (int i = n - 1; i >= 0; i--) {
+//		for (int j = 0; j < i; j++) {
+//			if ((per[j].tot < per[j + 1].tot) || ((per[j].tot == per[j + 1].tot) && per[j].score1<per[j+1].score1 ) ){//strcmp只能比char型数组 不能比string
+//				swap(per[j].score1, per[j + 1].score1);
+//				swap(per[j].score2, per[j + 1].score2);
+//				swap(per[j].score3, per[j + 1].score3);
+//				swap(per[j].tot, per[j + 1].tot);
+//				swap(per[j].id, per[j + 1].id);
+//			}
+//		}
+//	}
+//	for (int i = 0; i < 5; i++) {
+//		cout << per[i].id<<" "<<per[i].tot<<endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//分数线划定  看清楚范围！
+//#include<iostream>
+//#include<set>
+//#include<map>
+//#include<string>
+//#include<cstring>//strcmp()
+//#include<cmath>//floor()
+//using namespace std;
+//const int maxn = 5010;
+//struct person {
+//	int score;
+//	int id;
+//};
+//int main() {
+//	int n, m;
+//	cin >> n >> m;
+//	person per[maxn];
+//	for (int i = 0; i < n; i++) {
+//		cin >> per[i].id >> per[i].score;
+//
+//	}
+//	for (int i = n - 1; i >= 0; i--) {
+//		for (int j = 0; j < i; j++) {
+//			if ((per[j].score < per[j + 1].score) || ((per[j].score == per[j + 1].score) && per[j].id > per[j + 1].id)) {//strcmp只能比char型数组 不能比string
+//				swap(per[j].score, per[j + 1].score);
+//				swap(per[j].id, per[j + 1].id);
+//			}
+//		}
+//	}
+//	int k = floor(double(m)*1.5);
+//	//cout << k << endl;
+//	int line;
+//	for (int i = 0; i < k; i++) {
+//		line = per[i].score;
+//	}
+//	
+//	int cnt = 0;
+//	for (int i = 0; per[i].score >= line; i++) {
+//		cnt++;
+//	}
+//	cout << line << " " << cnt << endl;
+//	for (int i = 0; i < cnt; i++) {
+//		cout << per[i].id << " " << per[i].score << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+//
+
+
+//整数奇偶排序
+//#include<iostream>
+//#include<set>
+//#include<map>
+//#include<string>
+//#include<cstring>//strcmp()
+//#include<cmath>//floor()
+//using namespace std;
+//const int maxn = 15;
+//int m[maxn];
+//multiset<int, greater<int>> ji;
+//multiset<int> ou;
+//int main() {
+//	int n = 10;
+//	for (int i = 0; i < n; i++) {
+//		cin >> m[i];
+//		if (m[i] % 2 == 0) {
+//			ou.insert(m[i]);
+//		}
+//		else {
+//			ji.insert(m[i]);
+//		}
+//	}
+//	for (auto itr = ji.begin(); itr != ji.end();itr++) {
+//		cout << *itr << " ";
+//	}
+//	for (auto itr = ou.begin(); itr != ou.end(); itr++) {
+//		cout << *itr << " ";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//合影效果
+//#include<iostream>
+//#include<iomanip>
+//#include<set>
+//#include<map>
+//#include<string>
+//#include<cstring>//strcmp()
+//#include<cmath>//floor()
+//using namespace std;
+//multiset<double, greater<double>> female;
+//multiset<double> male;
+//int main() {
+//	int n;
+//	cin >> n;
+//	string gender;
+//	double h;
+//	for (int i = 0; i < n; i++) {
+//		cin >>gender>> h;
+//		if (gender == "male") {
+//			male.insert(h);
+//		}
+//		else {
+//			female.insert(h);
+//		}
+//	}
+//	for (auto itr = male.begin(); itr != male.end(); itr++) {
+//		cout <<fixed<<setprecision(2)<< *itr << " ";
+//	}
+//	for (auto itr = female.begin(); itr != female.end(); itr++) {
+//		cout << fixed << setprecision(2)<<*itr << " ";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//病人排队
+//#include<iostream>
+//#include<iomanip>
+//#include<vector>
+//#include<set>
+//#include<map>
+//#include<string>
+//#include<cstring>//strcmp()
+//#include<cmath>//floor()
+//using namespace std;
+//const int maxn = 110;
+//multimap<int, string, greater<int>> older;
+//vector<string> v;
+//struct person
+//{	
+//	string id;
+//	int age;
+//};
+//int main() {
+//	int n;
+//	cin >> n;
+//	person per[maxn];
+//	for (int i = 0; i < n; i++) {
+//		cin >> per[i].id >> per[i].age;
+//		if (per[i].age >=60) {
+//			older.insert(pair<int, string>(per[i].age,per[i].id));
+//		}
+//		else {
+//			v.push_back(per[i].id);
+//		}
+//	}
+//	for (auto itr = older.begin(); itr != older.end(); itr++) {
+//		cout <<	itr->second << endl;
+//	}
+//	for (int i = 0; i < v.size();i++) {
+//		cout << v[i]<<endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//明明的随机数
+//#include<iostream>
+//#include<iomanip>
+//#include<vector>
+//#include<set>
+//#include<map>
+//#include<string>
+//#include<cstring>//strcmp()
+//#include<cmath>//floor()
+//using namespace std;
+//const int maxn = 110;
+//set<int> s;
+//
+//int main() {
+//	int n,temp;
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		cin >> temp;
+//		s.insert(temp);
+//	}
+//	cout << s.size() << endl;
+//	for (auto itr = s.begin(); itr != s.end(); itr++) {
+//		cout <<*itr << " ";
+//	}
+//	
+//	system("pause");
+//	return 0;
+//}
+
+//单词排序
+//#include<iostream>
+//#include<iomanip>
+//#include<vector>
+//#include<set>
+//#include<map>
+//#include<string>
+//#include<sstream>
+//#include<cstring>//strcmp()
+//#include<cmath>//floor()
+//using namespace std;
+//const int maxn = 110;
+//set<string> se;
+//
+//int main() {
+//	string line;
+//	getline(cin, line);
+//	stringstream ss(line);
+//	string temp;
+//	while (ss >> temp) {
+//		se.insert(temp);
+//	}
+//	for (auto itr = se.begin(); itr != se.end(); itr++) {
+//		cout << *itr << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//1.11编程基础之二分查找
+//查找最接近的元素  ?? 背住模板
+//#include<iostream>
+//#include<cstring>
+//using namespace std;
+//const int maxn = 100010;
+//long long  m[maxn];
+//long long que[maxn];
+//void solve(long long tar, int tot) {
+//	int left = 1;
+//	int right = tot;
+//	int mid;
+//	//while (left + 1 < right) {
+//	//	mid = left + ((right - left) / 2);
+//	//	//cout << left << " " << mid << " " << right << " " << m[mid] << endl;
+//
+//	//	if (tar > m[mid]) {
+//	//		left = mid;
+//	//	}
+//	//	else {
+//	//		right = mid;
+//	//	}
+//	//}
+//	while (left + 1 < right) {//下界 一般情况下是 left<right 但是这个值可能不存在 所以要改为 left+1 < right
+//		mid = left + (right - left) / 2;//// 当A[m]=v时，左侧还可能存在v，所以y更新为m这时查找的是[x,m)
+//		if (tar <= m[mid]) {// 当A[m]>v时，说明v在左侧，区间更新为[x,m)
+//			right = mid;// 当A[m]<v时，说明v在右侧，区间更新为[m+1,y]
+//		}
+//		else {
+//			left = mid;//这里本来是left = mid +1  但是值可能不在里面 所以 left= mid；
+//		}
+//	}//最后得到的下界是left
+//
+//	if (abs(tar - m[left]) <= abs(tar - m[left + 1])) {
+//		cout << m[left] << endl;
+//	}
+//	else {
+//		cout << m[left + 1] << endl;
+//	}
+//	return;
+//}
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	int n;
+//	cin >> n;
+//
+//	for (int i = 1; i <= n; i++) {
+//		cin >> m[i];
+//
+//	}
+//
+//	int q;
+//	cin >> q;
+//	for (int i = 1; i <= q; i++) {
+//		cin >> que[i];
+//		//cout << i << endl;
+//	}
+//	//cout << "hhh" << endl;
+//	for (int i = 1; i <= q; i++) {
+//		if (n == 1) {
+//			cout << m[1] << endl;
+//			continue;//考虑n ==1的特殊情况
+//		}
+//		if (que[i] <= m[1]) {
+//			cout << m[1] << endl;
+//			continue;
+//		}
+//		if (que[i] >= m[n]) {
+//			cout << m[n] << endl;
+//			continue;
+//		}
+//		//cout << i << endl;
+//		solve(que[i], n);
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//二分法求函数的零点 ? 判断精度
+//#include<iostream>
+//#include<iomanip>
+//#include<math.h>
+//using namespace std;
+//double getV(double x) {
+//	return pow(x, 5) - 15 * pow(x, 4) + 85 * pow(x, 3) - 225 * pow(x, 2) + 274 * x - 121;
+//}
+//int main() {
+//	long double left = 1.5;
+//	long double right = 2.4;
+//	long double mid = 1.5;
+//	while (fabs(right - left)>1e-7) {
+//		mid = left + (right - left) / 2;
+//		//cout << getV(mid) << " " << mid << endl;
+//		if (getV(mid) > 0) {
+//			left = mid;
+//		}
+//		else {
+//			right = mid;
+//		}
+//	}
+//	cout << fixed << setprecision(6) << left;
+//	system("pause");
+//	return 0;
+//}
+
+//矩形分割  ??思路
+//#include<iostream>
+//#include<cstring>
+//using namespace std;
+//const int maxn = 1000010;
+//long long m[maxn];//极端情形下，R=10^6，从而R^2=10^12，考虑前缀和，将超过int——所以用long long。
+//long long s[maxn];
+//int r;
+//int solve(int left, int right) {
+//	int mid;
+//	while (left < right) {
+//		mid = left + (right - left) / 2;
+//		if (s[mid] * 2 >= s[r]) {//s[r]为总的面积
+//			right = mid;
+//		}
+//		else {
+//			left = mid + 1;
+//		}
+//	}
+//	return left;
+//}
+//int main() {
+//	/*memset(m, 0, sizeof(m));//超时
+//	memset(s, 0, sizeof(s));*/
+//	int n;
+//	cin >> r >> n;
+//	int L, T, W, H;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> L >> T >> W >> H;
+//		for (int j = L + 1; j <= L + W; j++) {//这里是从L+1开始算
+//			m[j] = m[j] + H;//这里是m[j] =m[j]+ H 因为纵向有可能不止一个矩形
+//
+//		}
+//	}
+//
+//	for (int i = 1; i <= r; i++) {
+//		s[i] = s[i - 1] + m[i];//前缀和
+//		//cout << s[i] << endl;
+//	}
+//	/*for (int i = 1; i <= r; i++) {
+//		cout <<"hhh  "<< m[i] << " " << s[i] << endl;
+//	}*/
+//	int v = solve(1, r);
+//	//cout << v << endl;
+//	while (v < r&&s[v] == s[v + 1]) {
+//		v++;
+//	}
+//	cout << v;
+//	system("pause");
+//	return 0;
+//}
+
+//网线主管  ？？思路
+//#include<iostream>
+//#include<iomanip>
+//#include<math.h>
+//#include<algorithm>
+//using namespace std;
+//const int maxn = 10020;
+//int m[maxn];
+//void solve(int n, int k, int maxv) {
+//	int left = 0;//起点是0 因为有可能无法取得满足要求的绳子 中点是maxn + 1
+//	int right = maxv;
+//	int mid = 1;
+//	int tot = 0;
+//	while (left + 1 < right) {//这里要加1 否则死循环
+//		mid = left + (right - left) / 2;
+//		cout << left << " " << mid << " " << right << " " << tot << endl;
+//		tot = 0;
+//		for (int i = 1; i <= n; i++) {
+//			tot += m[i] / mid;
+//		}
+//		if (tot < k) {//判断是否去等号的方法：加入相等了 是希望取上界还是下界！
+//			right = mid;
+//		}
+//		else {
+//			left = mid;
+//		}
+//	}
+//	cout << fixed << setprecision(2) << double(left) / 100.0 << endl;
+//}
+//int main() {
+//	int n, k;
+//	cin >> n >> k;
+//	double temp;
+//	int maxv;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> temp;
+//		m[i] = 100 * temp;
+//		maxv = max(maxv, m[i]);
+//	}
+//	solve(n, k, maxv + 1);//要加1 因为可能整条绳子刚好完全用完  而我用的二分搜索是求下界 所以会求不到最后一个元素
+//	system("pause");
+//	return 0;
+//}
+
+//派 ？ 精度问题 之前1e-5 和1e-8只有9分  PI的精度要求很高
+//#include <iostream>
+//#include<algorithm>
+//#include<iomanip>
+//#include<math.h>
+//using namespace std;
+//double PI = acos(-1.0);//精度要到位 记住PI
+//const int maxn = 10020;
+//int m[maxn];
+//void solve(int maxv, int n, int f) {
+//	//cout << "f " << f << endl;
+//	double left = 0.0;
+//	double right = double(maxv + 1e-8);//这里要多加一点 
+//	double mid;
+//	int tot = 0;
+//	while (fabs(left - right) > 1e-10) {
+//		mid = left + (right - left) / 2;
+//		//cout << left << " " << mid << " " << right << " " << tot << endl;
+//
+//		tot = 0;
+//		for (int i = 1; i <= n; i++) {
+//			tot = tot + floor((PI * pow(m[i], 2)) / (PI * pow(mid, 2)));
+//		}
+//		if (tot < f) {
+//			right = mid;
+//		}
+//		else {
+//			left = mid;
+//		}
+//	}
+//	// << "l: " << left << endl;
+//	cout << fixed << setprecision(3) << PI * pow(left, 2) << endl;
+//}
+//int main() {
+//	int n, f;
+//	cin >> n >> f;
+//	int maxv = 0;
+//	int temp;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> m[i];
+//		maxv = max(maxv, m[i]);
+//		//cout << maxv << endl;
+//	}
+//	solve(maxv, n, f + 1);
+//	system("pause");
+//	return 0;
+//}
+
+//月度开销 ？？思路判断是否满足f  以及什么时候是m+1？
+//#include<iostream>	
+//#include<algorithm>
+//#include<math.h>
+//using namespace std;
+//const int maxn = 100010;
+//long long m[maxn];
+//int  n, f;
+//long long maxv;
+//long long tot = 0;
+//bool check(int mid) {
+//	int cnt = 1;
+//	long long temp = 0;
+//	for (int i = 1; i <= n; i++) {
+//		//cout << i << " " << m[i] << " " << cnt << endl;
+//		if (m[i] + temp <= mid) {
+//			temp += m[i];
+//		}
+//		else if (m[i] <= mid) {
+//			temp = m[i];//重新开启一个月时  temp初始化为第一个月的值
+//			cnt++;
+//		}
+//		else {
+//			//cout << "false" << endl;
+//			return false;
+//		}
+//	}
+//	if (cnt > f) {
+//		//cout << "false" << endl;
+//		return false;
+//	}
+//	else
+//	{
+//		//cout << "true" << endl;
+//		return true;
+//	}
+//}
+//void solve() {
+//	int left = maxv;
+//	int right = tot;
+//	int mid;
+//	while (left< right) {
+//		mid = left + (right - left) / 2;
+//		cout << left << " " << mid << " " << right << endl;
+//		//system("pause");
+//		if (check(mid)) {
+//			right = mid;
+//		}
+//		else {
+//			left = mid+1;//什么时候是mid 什么时候是mid+1
+//		}
+//	}
+//	cout << left;
+//}
+//int main() {
+//	cin >> n >> f;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> m[i];
+//		maxv = max(maxv, m[i]);
+//		tot += m[i];
+//	}
+//	//cout << maxv << endl;
+//	solve();
+//	system("pause");
+//	return 0;
+//}
+
+//和为给定数 ？？思路 以及判重
+//#include<iostream>
+//#include<math.h>
+//#include<algorithm>
+//using namespace std;
+//const int maxn = 1000010;
+//long long m[maxn], tar;
+//int n;
+//void solve() {
+//	if (n == 1) {
+//		cout << "No";
+//		return;
+//	}
+//	long long temp;
+//	int left, right, mid;
+//	bool flag = false;
+//	for (int i = 1; i <= n; i++) {
+//		temp = tar - m[i];
+//		left = 0;
+//		right = n + 1;
+//		while (left < right) {
+//			mid = left + (right - left) / 2;
+//			//cout << temp << " " << m[i] << " " << left << " " << mid << " " << right << " " << m[mid] << endl;
+//			if (temp == m[mid] && mid !=i) {//一定要判断找到的元素不能是自己
+//				
+//				cout << m[i] << " " << temp << endl;
+//				flag = true;
+//				return;
+//			}
+//			else if (temp < m[mid]) {
+//				right = mid;
+//			}
+//			else {
+//				left = mid + 1;
+//			}
+//		}
+//	}
+//	if (!flag) {
+//		cout << "No";
+//	}
+//}
+//int main() {
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> m[i];
+//	}
+//	sort(m + 1, m + n + 1);
+//	//for (int i = 1; i <= n; i++) {
+//	//	cout << m[i] << " ";
+//	//}
+//	cin >> tar;
+//	solve();
+//	system("pause");
+//	return 0;
+//}
+
+//不重复地输出数 用set
+//#include<iostream>
+//#include<set>
+//using namespace std;
+//set<int> se;
+//int main() {
+//	int n;
+//	cin >> n;
+//	int temp;
+//	for (int i = 0; i < n; i++) {
+//		cin >> temp;
+//		se.insert(temp);
+//
+//	}
+//	for (auto itr = se.begin(); itr != se.end(); itr++) {
+//		cout << *itr << " ";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//膨胀的木棍  ??思路 遍历圆心角 如果得不到满分 把精度改大
+//#include<iostream>
+//#include<math.h>
+//#include<iomanip>
+//using namespace std;
+//#define PI (acos(-1))
+//double l, n, c;
+//double tar, r, templ, d;
+//void solve() {
+//	double left = 0;
+//	double right = PI;
+//	double mid;
+//	while (fabs(right - left) > 1e-15) {
+//		mid = left + (right - left) / 2;
+//		r = l / 2 / sin(mid/2);//这里圆心角的度数要除以2
+//		templ = r * mid;
+//		//cout << left << " " << mid << " " << right << " " << templ << endl;
+//		if (templ >= tar) {
+//			right = mid;
+//		}
+//		else {
+//			left = mid;
+//		}
+//	}
+//	r = l / 2 / sin(mid/2);
+//	d = r - r * cos(left/2);
+//	cout << fixed << setprecision(3) << d;
+//}
+//int main() {
+//	cin >> l >> n >> c;
+//	tar = (1.0 + n * c)*l;
+//	solve();
+//	system("pause");
+//	return 0;
+//}
+
+
+//河中跳房子  ??思路 遍历最小距离 一般思路 求什么遍历什么 最开始只有5分 没有把终点石头加进去
+//#include<iostream>
+//#include<math.h>
+//#include<iomanip>
+//using namespace std;
+//const long long  maxn = 50010;
+//long long m[maxn];
+//long long l, n, c;
+//bool check(long long mid) {
+//	long long pos = 0;
+//	int cnt = 0;
+//	for (int i = 1; i <= n; i++) {
+//		if (m[i] - pos < mid) {
+//			cnt++;
+//		}
+//		else {
+//			pos = m[i];
+//		}
+//	}
+//	if (cnt <= c) {
+//		return true;
+//	}
+//	else { 
+//		return false; 
+//	}
+//}
+//void solve() {
+//	long long left = 0;
+//	long long right = l + 1;
+//	long long mid;
+//	while (left +1 < right) {
+//		mid = left + (right - left) / 2;
+//
+//		//cout << left << " " << mid << " " << right << " " << check(mid) << endl;
+//		if (check(mid)) {
+//			left = mid;
+//		}
+//		else {
+//			right = mid;
+//		}
+//	}
+//	cout << left;
+//}
+//int main() {
+//	cin >> l >> n >> c;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> m[i];
+//	}
+//	m[++n] = l;
+//	solve();
+//	system("pause");
+//	return 0;
+//}
+
