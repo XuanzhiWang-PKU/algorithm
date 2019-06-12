@@ -9458,3 +9458,686 @@
 //	}
 //	return 0;
 //}
+
+//仙岛求药
+//#include<iostream>
+//#include<queue>
+//#include<cstring>
+//using namespace std;
+//int r, c,startx,starty,tarx,tary;
+//const int maxn = 25;
+//int m[maxn][maxn],vis[maxn][maxn];
+//int ans;
+//int dirx[4] = { 0,0,1,-1 };
+//int diry[4] = { 1,-1,0,0 };
+//struct Point
+//{
+//	int x, y, step;
+//	bool operator < (const Point& a) const {
+//		return step > a.step;
+//	}
+//};
+//void bfs() {
+//	Point start;
+//	start.x = startx;
+//	start.y = starty;
+//	start.step = 0;//初始化为0
+//	priority_queue<Point> q;
+//	q.push(start);
+//	bool flag = false;
+//	
+//	while (!q.empty()) {
+//		Point now = q.top();
+//		q.pop();
+//
+//		if (vis[now.x][now.y]) {
+//			continue;
+//		}
+//		else {
+//			vis[now.x][now.y] = 1;
+//		}
+//		if (now.x == tarx && now.y == tary) {
+//			flag = true;
+//			 ans = now.step;
+//			
+//		}
+//		for (int i = 0; i < 4; i++)
+//		{
+//			Point next;
+//			next.x = now.x + dirx[i];
+//			next.y = now.y + diry[i];
+//			if (next.x >= 1 && next.x <= r && next.y >= 1 && next.y <= c && vis[next.x][next.y] == 0 && m[next.x][next.y] == 0) {
+//				next.step = now.step + 1;
+//				q.push(next);
+//			}
+//		}
+//	}
+//	if (flag) {
+//		cout << ans << endl;
+//	}
+//	else {
+//		cout << -1 << endl;
+//	}
+//}
+//int main() {
+//	while (cin >> r >> c) {
+//		memset(m, 0, sizeof(m));
+//		memset(vis, 0, sizeof(vis));
+//		ans = 0;
+//		if (r == 0 && c == 0) {
+//			break;
+//		}
+//		char temp;
+//		for (int i = 1; i <= r; i++) {
+//			for (int j = 1; j <= c; j++) {
+//				cin >> temp;
+//				if (temp == '@') {
+//					startx = i;
+//					starty = j;
+//					m[i][j] = 0;
+//				}
+//				if (temp == '*') {
+//					tarx = i;
+//					tary = j;
+//					m[i][j] = 0;
+//				}
+//				if (temp == '.') {
+//					m[i][j] = 0;
+//				}
+//				if (temp == '#') {
+//					m[i][j] = 1;
+//				}
+//			}
+//		}
+//		bfs();
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//走迷宫
+//#include<iostream>
+//#include<queue>
+//#include<cstring>
+//using namespace std;
+//const int maxn = 45;
+//int m[maxn][maxn], vis[maxn][maxn];
+//int r, c;
+//int dirx[4] = { 0,0,1,-1 };
+//int diry[4] = { 1,-1,0,0 };
+//struct Point
+//{
+//	int x, y, step;
+//	bool operator<(const Point &a)const {
+//		return step > a.step;
+//	}
+//};
+//void bfs() {
+//	Point start;
+//	start.x = 1;
+//	start.y = 1;
+//	start.step = 1;
+//	priority_queue<Point> q;
+//	q.push(start);
+//	int ans;
+//	bool flag = false;
+//	while (!q.empty()) {
+//		Point now = q.top();
+//		q.pop();
+//		if (now.x == r && now.y == c) {
+//			flag = true;
+//			ans = now.step;
+//		}
+//		if (vis[now.x][now.y]) {
+//			continue;
+//		}
+//		else {
+//			vis[now.x][now.y] = 1;
+//		}
+//		for (int i = 0; i < 4; i++)
+//		{
+//			Point next;
+//			next.x = now.x + dirx[i];
+//			next.y = now.y + diry[i];
+//			if (next.x >= 1 && next.x <= r && next.y >= 1 && next.y <= c && vis[next.x][next.y] == 0 && m[next.x][next.y] == 0) {
+//				next.step = now.step + 1;
+//				q.push(next);
+//			}
+//		}
+//	}
+//	if (flag) {
+//		cout << ans << endl;
+//	}
+//	else {
+//		cout << -1 << endl;
+//	}
+//}
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	memset(vis, 0, sizeof(vis));
+//	cin >> r >> c;
+//	char temp;
+//	for (int i = 1; i <= r; i++) {
+//		for (int j = 1; j <= c; j++) {
+//			cin >> temp;
+//			if (temp == '.') {
+//				m[i][j] = 0;
+//			}
+//			if (temp == '#') {
+//				m[i][j] = 1;
+//			}
+//		}
+//	}
+//	bfs();
+//	system("pause");
+//	return 0;
+//}
+
+
+//抓住那头牛
+//#include<iostream>
+//#include<queue>
+//#include<cstring>
+//using namespace std;
+//const int maxn = 200020;
+//int vis[maxn];
+//int beg, tar;
+//struct Point
+//{
+//	int x, step;
+//	bool operator< (const Point &a)const {
+//		return step > a.step;
+//	}
+//};
+//void bfs() {
+//	Point start;
+//	start.x = beg;
+//	start.step = 0;
+//	priority_queue<Point> q;
+//	q.push(start);
+//	bool flag = false;
+//	int ans;
+//	while (!q.empty()) {
+//		Point now = q.top();
+//		q.pop();
+//		//cout << now.x << " " << now.step << endl;
+//		if (now.x == tar) {
+//			flag = true;
+//			ans = now.step;
+//			break;
+//		}
+//		if (vis[now.x]) {
+//			continue;
+//		}
+//		else {
+//			vis[now.x] = 1;
+//		}
+//		
+//		Point next1;
+//		next1.x = now.x + 1;
+//		if (next1.x >= 0 && next1.x <= 100000 && vis[next1.x] == 0) {
+//			next1.step = now.step + 1;
+//			q.push(next1);
+//		}
+//		Point next2;
+//		next2.x = now.x - 1;
+//		if (next2.x >= 0 && next2.x <= 100000 && vis[next2.x] == 0) {
+//			next2.step = now.step + 1;
+//			q.push(next2);
+//		}
+//		Point next3;
+//		next3.x = now.x * 2;
+//		if (next3.x >= 0 && next3.x <= 100000 && vis[next3.x] == 0) {
+//			next3.step = now.step + 1;
+//			q.push(next3);
+//		}
+//
+//	}
+//	if (flag) {
+//		cout << ans;
+//	}
+//}
+//int main() {
+//	memset(vis, 0, sizeof(vis));
+//	
+//	cin >> beg >> tar;
+//	bfs();
+//	system("pause");
+//	return 0;
+//}
+
+//符号三角形  ？？思路 超时
+//#include<iostream>
+//#include<cstring>
+//using namespace std;
+//int n;
+//const int maxn = 30;
+//int m[maxn][maxn],temp[maxn];//m记录第一行  temp记录后面几行
+//int cnt;
+//int sum;
+//void func() {
+//	cnt = 0;
+//	for (int i = 1; i <= n; i++) {
+//		cnt += m[1][i];
+//		//if (m[1][i] == 1) {
+//		//	
+//		//	cnt++;
+//		//	//cout << "hh " << cnt << endl;
+//		//}
+//	}
+//	for (int i = 2; i <= n; i++) {
+//		for (int j = 1; j <= n - i + 1; j++) {
+//			m[i][j] = (m[i - 1][j] + m[i - 1][j + 1]) % 2;//这里用特殊值带入
+//			/*if (m[i][j] == 1) {
+//				cnt++;
+//			}*/
+//			cnt += m[i][j];
+//		}
+//		
+//	}
+//	if (cnt == n * (n + 1) / 2 / 2) {
+//		sum++;
+//	}
+//}
+//void dfs(int x) {
+//	if (x > n) {
+//		/*for (int i = 1; i <=n; i++)
+//		{
+//			cout << m[1][i] << " ";
+//		}
+//		cout << endl;*/
+//		
+//		func();
+//		return;
+//	}
+//	for (int i = 0; i < 2; i++) {//0+ 1-
+//		m[1][x] = i;
+//		dfs(x + 1);
+//	}
+//}
+//int main() {
+//	while (cin >> n) {
+//		memset(m, 0, sizeof(m));
+//		cnt = 0;
+//		sum = 0;
+//		if (n == 0) {
+//			break;
+//		}
+//		if ((n*(n + 1) / 2) % 2 != 0) {
+//			cout << n << " " << 0 << endl;;
+//		}
+//		else {
+//			dfs(1);
+//			cout << n << " " << sum << endl;;
+//		}
+//	}
+//	
+//	system("pause");
+//	return 0;
+//}
+
+//棋盘问题 ？？ 思路同八皇后 超时
+//#include<iostream>
+//#include<cstring>
+//using namespace std;
+//int n, k;
+//const int maxn = 20;
+//char m[maxn][maxn];
+//int vis[maxn];
+//int cnt = 0;
+//void dfs(int x, int y) {
+//	if (y >= k) {//这里判断是否用完步数
+//		cnt++;
+//		return;
+//	}
+//	for (int i = x; i < n; i++) {//这里要从x开始找之后的层  而不是从1开始
+//		for (int j = 0; j < n; j++) {
+//
+//			if (m[i][j] == '#' && vis[j] == 0) {
+//				vis[j] = 1;
+//				dfs(i + 1, y + 1);//这里传进去的参数是i+1  不是x+1
+//				vis[j] = 0;
+//			}
+//		}
+//	}
+//	return;
+//}
+//int main() {
+//	while (cin >> n >> k) {
+//		
+//		if (n == -1 && k == -1) {
+//			break;
+//		}
+//		memset(m, 0, sizeof(m));
+//		memset(vis, 0, sizeof(vis));
+//		
+//		//for (int i = 0; i < n; i++) {
+//		//	for (int j = 0; j < n; j++) {
+//		//		cin >> m[i][j];
+//		//		/*if (temp == '.') {
+//		//			m[i][j] = 1;
+//		//		}
+//		//		if (temp == '#') {
+//		//			m[i][j] = 0;
+//		//		}*/
+//		//	}
+//		//}
+//		for (int i = 0; i<n; i++)
+//			cin >> m[i];//这样写 默认是从0开始的
+//		cnt = 0;
+//		dfs(0, 0);
+//		cout << cnt << endl;
+//	}
+//	//system("pause");
+//	return 0;
+//}
+
+//拯救行动
+//#include<iostream>
+//#include<queue>	
+//#include<cstring>
+//using namespace std;
+//int r, c, startx, starty, tarx, tary;
+//const int maxn = 220;
+//char m[maxn][maxn];
+//char vis[maxn][maxn];//这里vis开的是int
+//int dirx[4] = { 0,0,1,-1 };
+//int diry[4] = { 1,-1,0,0 };
+//int ans;
+//int first = 1;//用于控制输出endl
+//struct Point
+//{
+//	int x, y, step;
+//	Point(int _x, int _y, int _step) :x(_x), y(_y), step(_step) {};
+//	Point() {};
+//	bool operator< (const Point &a)const {
+//		return step > a.step;
+//	}
+//};
+//void bfs() {
+//	Point start(startx, starty, 0);
+//	priority_queue<Point> q;
+//	q.push(start);
+//	bool flag = false;
+//	while (!q.empty()) {
+//		Point now = q.top();
+//		q.pop();
+//		//cout << now.x << " " << now.y << " " << now.step << endl;
+//		if (now.x == tarx && now.y == tary) {
+//			ans = now.step;
+//			flag = true;
+//			break;
+//		}
+//		if (vis[now.x][now.y]) {
+//			continue;
+//		}
+//		else {
+//			vis[now.x][now.y] = 1;
+//		}
+//		for (int i = 0; i < 4; i++) {
+//			Point next;
+//			next.x = now.x + dirx[i];
+//			next.y = now.y + diry[i];
+//			if (next.x >= 1 && next.x <= r && next.y >= 1 && next.y <= c && m[next.x][next.y] != '#' &&vis[next.x][next.y] == 0) {//仔细检查这一行  1和0 是否取等不要搞错了
+//				if (m[next.x][next.y] == '@') {
+//					next.step = now.step + 1;
+//				}
+//				if (m[next.x][next.y] == 'a') {//这里要考虑公主呀！！！！
+//					next.step = now.step + 1;
+//				}
+//				if (m[next.x][next.y] == 'x') {
+//					next.step = now.step + 2;
+//				}
+//				q.push(next);
+//			}
+//		}
+//	}
+//	if (flag) {
+//		if (first) {
+//			cout << ans;
+//			first = 0;
+//		}
+//		else {
+//			cout << endl << ans;
+//
+//		}
+//	}
+//	else {
+//		if (first) {
+//			cout << "Impossible";
+//			first = 0;
+//		}
+//		else {
+//			cout << endl << "Impossible";
+//
+//		}
+//	}
+//}
+//int main() {
+//	int num;
+//	cin >> num;
+//
+//	for (int i = 0; i < num; i++) {
+//		memset(m, 0, sizeof(m));
+//		memset(vis, 0, sizeof(vis));
+//		ans = 0;
+//		cin >> r >> c;
+//		for (int i = 1; i <= r; i++) {
+//			for (int j = 1; j <= c; j++) {
+//				cin >> m[i][j];
+//				if (m[i][j] == 'r') {
+//					startx = i;
+//					starty = j;
+//				}
+//				if (m[i][j] == 'a') {
+//					tarx = i;
+//					tary = j;
+//				}
+//			}
+//		}
+//		//cout << startx << " " << starty << " " << tarx << " " << tary << endl;
+//		bfs();
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//鸣人和佐助 3分
+//#include<iostream>
+//#include<queue>	
+//#include<cstring>
+//using namespace std;
+//int r, c, t, startx, starty, tarx, tary;
+//const int maxn = 220;
+//char m[maxn][maxn];
+//int vis[maxn][maxn][15];//用x,y,t唯一表示一种状态 因为相同的x,y可能拥有的钥匙不一样 不能因为前一种情况没有
+//int dirx[4] = { 0,0,1,-1 };
+//int diry[4] = { 1,-1,0,0 };
+//int ans;
+//struct Point
+//{
+//	int x, y, t_num, step;//这里把t_num加进去 由Point维护 因为下一步的t_num是有上一步的得到的 并且不同走法的t_num没有联系
+//	Point(int _x, int _y, int _t_num, int _step) :x(_x), y(_y), t_num(_t_num), step(_step) {};
+//	Point() {};
+//	bool operator< (const Point &a)const {
+//		return step > a.step;
+//	}
+//};
+//void bfs() {
+//	Point start(startx, starty, t, 0);
+//	priority_queue<Point> q;
+//	q.push(start);
+//	bool flag = false;
+//	while (!q.empty()) {
+//		Point now = q.top();
+//		q.pop();
+//		//cout << now.x << " " << now.y << " " <<now.t_num<<" "<< now.step << endl;
+//		if (now.x == tarx && now.y == tary) {
+//			ans = now.step;
+//			flag = true;
+//			break;
+//		}
+//		if (vis[now.x][now.y][now.t_num]) {//重点
+//			continue;
+//		}
+//		else {
+//			vis[now.x][now.y][now.t_num] = 1;
+//		}
+//		for (int i = 0; i < 4; i++) {
+//			Point next;
+//			next.x = now.x + dirx[i];
+//			next.y = now.y + diry[i];
+//			if (now.t_num == 0) {
+//				if (next.x >= 1 && next.x <= r && next.y >= 1 && next.y <= c && m[next.x][next.y] != '#' &&vis[next.x][next.y][now.t_num] == 0) {
+//					next.step = now.step + 1;
+//					next.t_num = now.t_num;
+//					q.push(next);
+//				}
+//			}
+//			else {
+//
+//				if (next.x >= 1 && next.x <= r && next.y >= 1 && next.y <= c && vis[next.x][next.y][now.t_num] == 0) {
+//					if (m[next.x][next.y] == '#') {
+//						next.t_num = now.t_num - 1;
+//					}
+//					else {
+//						next.t_num = now.t_num;
+//					}
+//					next.step = now.step + 1;
+//					q.push(next);
+//				}
+//			}
+//
+//		}
+//	}
+//	if (flag) {
+//		cout << ans << endl;
+//	}
+//	else {
+//		cout << -1 << endl;
+//	}
+//}
+//int main() {
+//
+//
+//	memset(m, 0, sizeof(m));
+//	memset(vis, 0, sizeof(vis));
+//	ans = 0;
+//	cin >> r >> c >> t;
+//	for (int i = 1; i <= r; i++) {
+//		for (int j = 1; j <= c; j++) {
+//			cin >> m[i][j];
+//			if (m[i][j] == '@') {
+//				startx = i;
+//				starty = j;
+//			}
+//			if (m[i][j] == '+') {
+//				tarx = i;
+//				tary = j;
+//			}
+//		}
+//	}
+//	bfs();
+//
+//	system("pause");
+//	return 0;
+//}
+
+//走出迷宫
+//#include<iostream>
+//#include<queue>	
+//#include<cstring>
+//using namespace std;
+//int r, c, startx, starty, tarx, tary;
+//const int maxn = 110;
+//char m[maxn][maxn];
+//char vis[maxn][maxn];//这里vis开的是int
+//int dirx[4] = { 0,0,1,-1 };
+//int diry[4] = { 1,-1,0,0 };
+//int ans;
+//int first = 1;//用于控制输出endl
+//struct Point
+//{
+//	int x, y, step;
+//	Point(int _x, int _y, int _step) :x(_x), y(_y), step(_step) {};
+//	Point() {};
+//	bool operator< (const Point &a)const {
+//		return step > a.step;
+//	}
+//};
+//void bfs() {
+//	Point start(startx, starty, 0);
+//	priority_queue<Point> q;
+//	q.push(start);
+//	bool flag = false;
+//	while (!q.empty()) {
+//		Point now = q.top();
+//		q.pop();
+//		//cout << now.x << " " << now.y << " " << now.step << endl;
+//		if (now.x == tarx && now.y == tary) {
+//			ans = now.step;
+//			flag = true;
+//			break;
+//		}
+//		if (vis[now.x][now.y]) {
+//			continue;
+//		}
+//		else {
+//			vis[now.x][now.y] = 1;
+//		}
+//		for (int i = 0; i < 4; i++) {
+//			Point next;
+//			next.x = now.x + dirx[i];
+//			next.y = now.y + diry[i];
+//			if (next.x >= 1 && next.x <= r && next.y >= 1 && next.y <= c && m[next.x][next.y] != '#' &&vis[next.x][next.y] == 0) {//仔细检查这一行  1和0 是否取等不要搞错了
+//				next.step = now.step + 1;
+//				q.push(next);
+//			}
+//		}
+//	}
+//	if (flag) {
+//		if (first) {
+//			cout << ans;
+//			first = 0;
+//		}
+//		else {
+//			cout << endl << ans;
+//
+//		}
+//	}
+//	else {
+//		if (first) {
+//			cout << "Impossible";
+//			first = 0;
+//		}
+//		else {
+//			cout << endl << "Impossible";
+//
+//		}
+//	}
+//}
+//int main() {
+//	
+//		memset(m, 0, sizeof(m));
+//		memset(vis, 0, sizeof(vis));
+//		ans = 0;
+//		cin >> r >> c;
+//		for (int i = 1; i <= r; i++) {
+//			for (int j = 1; j <= c; j++) {
+//				cin >> m[i][j];
+//				if (m[i][j] == 'S') {
+//					startx = i;
+//					starty = j;
+//				}
+//				if (m[i][j] == 'T') {
+//					tarx = i;
+//					tary = j;
+//				}
+//			}
+//		}
+//		//cout << startx << " " << starty << " " << tarx << " " << tary << endl;
+//		bfs();
+//	
+//	system("pause");
+//	return 0;
+//}
