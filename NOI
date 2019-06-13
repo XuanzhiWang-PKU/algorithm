@@ -10141,3 +10141,575 @@
 //	system("pause");
 //	return 0;
 //}
+
+//放苹果 ??思路 dp
+//#include<iostream>
+//#include<cstring>
+//using namespace std;
+//int apple, plate;
+//int dp(int a, int p) {
+//	if (a == 1 || a == 0 || p == 1) {//这里要判断a==0的情况
+//		return 1;
+//	}
+//	if (a < p) {
+//		return dp(a, a);
+//	}
+//	else if (a >= p) {
+//		return dp(a - p, p) + dp(a, p - 1);
+//	}
+//}
+//int main() {
+//	int t;
+//	cin >> t;
+//	for (int i = 0; i < t; i++) {
+//		cin >> apple >> plate;
+//		int ans = dp(apple, plate);
+//		cout << ans << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//迷宫问题 bfs+记录路径  不用优先队列 并且在进队的时候置vis
+//#include<iostream>
+//#include<queue>	
+//#include<cstring>
+//using namespace std;
+//int m[10][10];
+//int vis[10][10];
+//int dirx[4] = { 0,0,1,-1 };
+//int diry[4] = { 1,-1,0,0 };
+//const int maxn = 1000;
+//
+//struct Point {
+//	int x, y, step;
+//	//bool operator<(const Point &a)const {
+//	//	return step > a.step;
+//	//}
+//};
+//Point trace[maxn][maxn];
+//Point ans[maxn];
+//void track(int x, int y) {
+//	//cout << "hhh" << "(" << trace[2][4].x << ", " << trace[2][4].y << ")" << endl;
+//	int k = 0,a,b;
+//	
+//	while (x != 0 || y != 0) {//这里本来是当x == 0 && y == 0 停止  取逆
+//		a = x;//这里要先记录x,y的值 因为后面更新是先更新x， 再更新y 
+//		b = y;
+//		ans[k].x = trace[x][y].x;
+//		ans[k].y = trace[x][y].y;
+//		k++;
+//		x = trace[a][b].x;
+//		y = trace[a][b].y;
+//	}
+//	for (int i = k-1; i >= 0; i--) {
+//		cout << "(" << ans[i].x << ", " << ans[i].y << ")" << endl;
+//	}
+//	cout << "(4, 4)" << endl;
+//}
+//void bfs() {
+//	
+//	Point start;
+//	start.x = 0;
+//	start.y = 0;
+//	start.step = 0;
+//	queue<Point> q;
+//	q.push(start);
+//	vis[0][0] = 1;
+//	while (!q.empty()) {
+//		Point now = q.front();
+//		q.pop();
+//		//cout << now.x << " " << now.y << " " << now.step << endl;
+//		if (now.x == 4 && now.y == 4) {
+//			//cout << now.step << endl;
+//			track(4, 4);
+//			return;
+//		}
+//
+//		for (int i = 0; i < 4; i++) {
+//			Point next;
+//			next.x = now.x + dirx[i];
+//			next.y = now.y + diry[i];
+//
+//			if (next.x >= 0 && next.x < 5 && next.y >= 0 && next.y < 5 && vis[next.x][next.y] == 0 && m[next.x][next.y] == 0) {
+//
+//				vis[next.x][next.y] = 1;
+//				next.step = now.step + 1;
+//				//cout << next.x << " " << next.y << " " << next.step << endl;
+//
+//				trace[next.x][next.y].x = now.x;
+//				trace[next.x][next.y].y = now.y;
+//				q.push(next);
+//			}
+//		}
+//	}
+//}
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	memset(vis, 0, sizeof(vis));
+//	memset(trace, 0, sizeof(trace));
+//	memset(ans, 0, sizeof(ans));
+//	for (int i = 0; i < 5; i++) {
+//		for (int j = 0; j < 5; j++) {
+//			cin >> m[i][j];
+//		}
+//	}
+//	bfs();
+//	system("pause");
+//	return 0;
+//}
+
+//迷宫问题 优先队列+记录路径 出队再置vis 也可以  因为数据保证有唯一解
+//#include<iostream>
+//#include<queue>	
+//#include<cstring>
+//using namespace std;
+//int m[10][10];
+//int vis[10][10];
+//int dirx[4] = { 0,0,1,-1 };
+//int diry[4] = { 1,-1,0,0 };
+//const int maxn = 1000;
+//
+//struct Point {
+//	int x, y, step;
+//	bool operator<(const Point &a)const {
+//		return step > a.step;
+//	}
+//};
+//Point trace[maxn][maxn];
+//Point ans[maxn];
+//void track(int x, int y) {
+//	//cout << "hhh" << "(" << trace[2][4].x << ", " << trace[2][4].y << ")" << endl;
+//	int k = 0, a, b;
+//
+//	while (x != 0 || y != 0) {//这里本来是当x == 0 && y == 0 停止  取逆
+//		a = x;//这里要先记录x,y的值 因为后面更新是先更新x， 再更新y 
+//		b = y;
+//		ans[k].x = trace[x][y].x;
+//		ans[k].y = trace[x][y].y;
+//		k++;
+//		x = trace[a][b].x;
+//		y = trace[a][b].y;
+//	}
+//	for (int i = k - 1; i >= 0; i--) {
+//		cout << "(" << ans[i].x << ", " << ans[i].y << ")" << endl;
+//	}
+//	cout << "(4, 4)" << endl;
+//}
+//void bfs() {
+//
+//	Point start;
+//	start.x = 0;
+//	start.y = 0;
+//	start.step = 0;
+//	queue<Point> q;
+//	q.push(start);
+//	//vis[0][0] = 1;
+//	while (!q.empty()) {
+//		Point now = q.front();
+//		q.pop();
+//		//cout << now.x << " " << now.y << " " << now.step << endl;
+//		if (now.x == 4 && now.y == 4) {
+//			//cout << now.step << endl;
+//			track(4, 4);
+//			return;
+//		}
+//		if (vis[now.x][now.y]) {
+//			continue;
+//		}
+//		else {
+//			vis[now.x][now.y] = 1;
+//		}
+//		for (int i = 0; i < 4; i++) {
+//			Point next;
+//			next.x = now.x + dirx[i];
+//			next.y = now.y + diry[i];
+//
+//			if (next.x >= 0 && next.x < 5 && next.y >= 0 && next.y < 5 && vis[next.x][next.y] == 0 && m[next.x][next.y] == 0) {
+//
+//				//vis[next.x][next.y] = 1;
+//				next.step = now.step + 1;
+//				//cout << next.x << " " << next.y << " " << next.step << endl;
+//
+//				trace[next.x][next.y].x = now.x;
+//				trace[next.x][next.y].y = now.y;
+//				q.push(next);
+//			}
+//		}
+//	}
+//}
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	memset(vis, 0, sizeof(vis));
+//	memset(trace, 0, sizeof(trace));
+//	memset(ans, 0, sizeof(ans));
+//	for (int i = 0; i < 5; i++) {
+//		for (int j = 0; j < 5; j++) {
+//			cin >> m[i][j];
+//		}
+//	}
+//	bfs();
+//	system("pause");
+//	return 0;
+//}
+
+//献给阿尔吉侬的花束
+//#include<iostream>
+//#include<queue>	
+//#include<cstring>
+//using namespace std;
+//
+//int dirx[4] = { 0,0,1,-1 };
+//int diry[4] = { 1,-1,0,0 };
+//
+//const int maxn = 220;
+//int m[maxn][maxn];
+//int vis[maxn][maxn];
+//int r, c, startx, starty, tarx, tary, ans;
+//
+//struct Point {
+//	int x, y, step;
+//	bool operator<(const Point &a)const {
+//		return step > a.step;
+//	}
+//};
+//
+//void bfs() {
+//
+//	Point start;
+//	start.x = startx;
+//	start.y = starty;
+//	start.step = 0;
+//	priority_queue<Point> q;
+//	q.push(start);
+//	//vis[0][0] = 1;
+//	bool flag = false;
+//	while (!q.empty()) {
+//		Point now = q.top();
+//		q.pop();
+//		//cout << now.x << " " << now.y << " " << now.step << endl;
+//		if (now.x == tarx && now.y == tary) {
+//			ans = now.step;
+//			flag = true;
+//			break;
+//		}
+//		if (vis[now.x][now.y]) {
+//			continue;
+//		}
+//		else {
+//			vis[now.x][now.y] = 1;
+//		}
+//		for (int i = 0; i < 4; i++) {
+//			Point next;
+//			next.x = now.x + dirx[i];
+//			next.y = now.y + diry[i];
+//
+//			if (next.x >= 1 && next.x <= r && next.y >= 1 && next.y <= c && vis[next.x][next.y] == 0 && m[next.x][next.y] == 0) {
+//
+//				next.step = now.step + 1;
+//
+//				q.push(next);
+//			}
+//		}
+//	}
+//	if (flag) {
+//		cout << ans << endl;
+//	}
+//	else {
+//		cout << "oop!" << endl;
+//	}
+//}
+//int main() {
+//	int n;
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		memset(m, 0, sizeof(m));
+//		memset(vis, 0, sizeof(vis));
+//		ans = 0;
+//		cin >> r >> c;
+//		char temp;
+//		for (int i = 1; i <= r; i++) {
+//			for (int j = 1; j <= c; j++) {
+//				cin >> temp;
+//				if (temp == 'S') {
+//					m[i][j] = 0;
+//					startx = i;
+//					starty = j;
+//				}
+//				if (temp == 'E') {
+//					m[i][j] = 0;
+//					tarx = i;
+//					tary = j;
+//				}
+//				if (temp == '#') {
+//					m[i][j] = 1;
+//				}
+//				if (temp == '.') {
+//					m[i][j] = 0;
+//				}
+//			}
+//		}
+//		bfs();
+//	}
+//
+//	system("pause");
+//	return 0;
+//}
+
+//拯救公主
+
+
+
+//分成互质组  网上答案
+//#include <iostream>
+//using namespace std;
+//
+///* 分成互质组
+//* 思路:对于每个数，要么把它放到之前的组里，要么单独列成组，dfs解决
+//*/
+//
+//int m[15], s[15], f[15][15], n, result = 0x7f; //m[15]为元素，s[15]为元素属于的集合
+//
+//int gcd(int x, int y) //判断最大公约数
+//{
+//	if (y == 0) return x;
+//	else return gcd(y, x % y);
+//}
+//
+//void DFS(int pos, int ans) //pos表示当前取到的位置，ans表示有多少个组
+//{
+//	if (ans >= result) return; //剪枝
+//	if (pos > n) {
+//		result = ans;
+//		return;
+//	}
+//	for (int i = 1; i <= ans; i++) //枚举每个集合
+//	{
+//		bool flag = true;
+//		for (int j = 1; j < pos; j++) { //如果有m[pos]之前的数属于这个集合且不与m[pos]互质，这个集合不满足要求		
+//			if (s[j] == i && f[pos][j] != 1) {
+//				flag = false;
+//				break;
+//			}
+//		}
+//		if (flag) {//否则，把m[pos]归到这个集合里，搜索下一层
+//			s[pos] = i;
+//			DFS(pos + 1, ans);
+//		}
+//	}
+//	s[pos] = ans + 1; //或者，m[pos]单独再成立一个集合，搜索下一层
+//	DFS(pos + 1, ans + 1);
+//}
+//
+//int main()
+//{
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> m[i];
+//	}
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = 1; j <= n; j++) {
+//			f[i][j] = gcd(m[i], m[j]);
+//			//cout << f[i][j] << " ";
+//		}
+//		//cout << endl;
+//	}
+//	s[1] = 1;//第一个元素属于第一个集合
+//	DFS(2, 1);//判断2个元素 1个集合
+//	cout << result;
+//	system("pause");
+//	return 0;
+//}
+
+
+//分成互质组 自己默写  代码风格有变化
+//#include<iostream>
+//#include<cstring>
+//#include<climits>
+//using namespace std;
+//const int maxn = 15;
+//int m[maxn];
+//int state[maxn][maxn];
+//int group[maxn];
+//int n;
+//int ans = INT_MAX;
+//bool flag = false;
+//int gcd(int x, int y) {
+//	if (y == 0) {
+//		return x;
+//	}
+//	else {
+//		return gcd(y, x%y);
+//	}
+//}
+//void dfs(int pos, int num) {
+//	//if (num >= ans) {
+//	//	return;//剪枝
+//	//}
+//	if (flag) {
+//		return;
+//	}
+//	if (pos > n) {
+//		//cout << "hhh" << num << endl;
+//		flag = true;
+//		if (num < ans) {//这里两种写法 第一种在走到底的时候判断谁更小 更新答案 第二种 不用走到底 直接剪枝
+//			ans = num;
+//		}
+//		return;
+//	}
+//	bool suc;
+//	for (int i = 1; i <= num; i++) {//遍历每一种颜色 判断每一种颜色
+//		suc = true;//初始置为成功 因为只要有一个失败就是失败 不好判断是不是每个都是成功
+//		for (int j = 1; j < pos; j++) {//遍历是否互质
+//			if (group[j] == i && state[j][pos] != 1) {// 首先找到第i中颜色的元素j  判断在第i中颜色中 j元素是否和pos元素互质
+//				suc = false;
+//				break;
+//			}
+//		}
+//		if (suc) {//如果成功
+//			group[pos] = i;
+//			dfs(pos + 1, num);//继续搜索下去 如果能一直走到底 就能走到pos>n 就不会走到下一段代码
+//		}
+//	}
+//
+//	if (!suc) {//如果没有成功
+//		group[pos] = num + 1;
+//		dfs(pos + 1, num + 1);
+//	}
+//}
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	memset(state, 0, sizeof(state));
+//	memset(group, 0, sizeof(group));
+//
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> m[i];
+//	}
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = 1; j <= n; j++) {
+//			state[i][j] = gcd(m[i], m[j]);//如果state[i][j]== 1 则说明m[i] m[j]互质
+//		}
+//	}
+//	group[1] = 1;
+//	dfs(2, 1);
+//	cout << ans << endl;
+//	system("pause");
+//	return 0;
+//}
+
+//马走日  每步直一格再斜一格 8个方向
+//#include<iostream>
+//#include<cstring>
+//#include<climits>
+//using namespace std;
+//const int maxn = 15;
+//int m[maxn][maxn];
+//int vis[maxn][maxn];
+//int r, c, startx, starty, cnt;
+//int dirx[8] = { -2 ,-2,-1,-1,1,1,2,2 };
+//int diry[8] = { -1,1 ,-2,2,2,-2,-1,1 };
+////int dirx[8] = { -2,-1,1,2,2,1,-1,-2 };
+////int diry[8] = { 1,2,2,1,-1,-2,-2,-1 };
+//void dfs(int x, int y, int step) {
+//	if (step >= r * c) {
+//		cnt++;
+//	}
+//	for (int i = 0; i < 8; i++) {
+//		int nextx = x + dirx[i];
+//		int nexty = y + diry[i];
+//		if (vis[nextx][nexty] == 0 && nextx >= 0 && nextx < r&&nexty >= 0 && nexty < c) {
+//			//cout << nextx << " " << nexty << " " << step + 1 << " " << cnt << endl;
+//			vis[nextx][nexty] = 1;
+//			dfs(nextx, nexty, step + 1);
+//			vis[nextx][nexty] = 0;
+//		}
+//	}
+//}
+//int main() {
+//	int n;
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		memset(m, 0, sizeof(m));
+//		memset(vis, 0, sizeof(vis));
+//		cnt = 0;
+//		cin >> r >> c >> startx >> starty;
+//		vis[startx][starty] = 1;//一定记得初始化第一步
+//		dfs(startx, starty, 1);
+//		cout << cnt << endl;
+//	}
+//
+//	system("pause");
+//	return 0;
+//}
+
+//单词接龙  ??思路 dfs
+//#include<iostream>
+//#include<cstring>
+//#include<string>
+//#include<climits>
+//using namespace std;
+//const int maxn = 25;
+//int maxlen = INT_MIN;
+////int flag = 0;
+//int n;
+//struct letterstr
+//{
+//	string s;
+//	int len;
+//	int t;
+//};
+//letterstr str[maxn];
+//void dfs(int pos, int cnt) {//pos是指龙的最后一个单词  cnt是长度
+//	/*if (flag) {//回溯的时候 如果找到了一条路 还要遍历完所有路 所以不加这个 如果加了 就是直走一条路
+//		return;
+//	}*/
+//
+//	for (int i = 1; i <= n; i++) {//遍历每一个单词
+//		if (str[i].t < 2) {//如果被访问两次以内 则继续
+//			for (int j = 0; j < str[pos].len; j++) {//遍历pos的所有字母 和每一个单词的第一个字母比对
+//				if (str[pos].s[j] == str[i].s[0]) {//如果pos的单词的某一个字母和第i个单词的首字母匹配成功 则继续比对
+//					int k = 1;//用于遍历第i个单词的字母 因为之前已经判断过了0  所以从1开始
+//					bool suc = true;
+//					for (int q = j + 1; q < str[pos].len&&k < str[i].len; q++, k++) {
+//						if (str[pos].s[q] != str[i].s[k]) {
+//							suc = false;
+//							break;
+//						}
+//					}
+//					if (suc) {
+//						str[i].t = str[i].t + 1;
+//						cout << str[i].s <<" "<< cnt + str[i].len - k<< endl;
+//						
+//						dfs(i, cnt + str[i].len - k);//这里是从i开始 不是从pos+1开始
+//						str[i].t = str[i].t - 1;
+//					}
+//				}
+//			}
+//		}
+//	}
+//	if (cnt > maxlen) {//注意退出条件 放在最后
+//		maxlen = cnt;
+//		//flag = 1;
+//		return;
+//		
+//	}
+//}
+//int main() {
+//	//cout << "hhh" << maxlen << endl;
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> str[i].s;
+//		str[i].len = str[i].s.length();
+//		str[i].t = 0;
+//		//cout << str[i].s << " " << str[i].len << endl;
+//	}
+//	string start;
+//	cin >> start;
+//	str[0].s = start;
+//	str[0].len = start.length();
+//	dfs(0, start.length());//把开头字母也加进去处理
+//	cout << maxlen << endl;
+//	system("pause");
+//	return 0;
+//}
