@@ -11918,128 +11918,7 @@
 //	return 0;
 //}
 
-//2013A
-//#include<iostream>
-//using namespace std;
-//const int maxn = 110;
-//int a[maxn];
-//int b[maxn];
-//int ansa[maxn];
-//int ansb[maxn];
-//int main() {
-//	int cnta = 0, cntb = 0;
-//	int n, na, nb;
-//	cin >> n >> na >> nb;
-//	for (int i = 0; i < na; i++) {
-//		cin >> a[i];
-//		//cout << a[i] << " ";
-//	}
-//	for (int i = 0; i < nb; i++) {
-//		cin >> b[i];
-//	}
-//	for (int i = 0; i < n; i++) {
-//		ansa[i] = a[i%na];
-//		//cout << ansa[i] << " ";
-//	}
-//	//cout << endl;
-//	for (int i = 0; i < n; i++) {
-//		ansb[i] = b[i%nb];
-//		//cout << ansb[i] << " ";
-//
-//	}
-//	for (int i = 0; i < n; i++) {
-//		if (ansa[i] == 0 && ansb[i] == 2) {
-//			cnta++;
-//		}
-//		else if(ansa[i] == 2 && ansb[i] == 5) {
-//			cnta++;
-//		}
-//		else if (ansa[i] == 5 && ansb[i] == 0) {
-//			cnta++;
-//		}
-//		else if (ansa[i] == 0 && ansb[i] ==5) {
-//			cntb++;
-//		}
-//		else if (ansa[i] == 2 && ansb[i] == 0) {
-//			cntb++;
-//		}
-//		else if (ansa[i] == 5 && ansb[i] == 2) {
-//			cntb++;
-//		}
-//		//cout<<i<<" " << cnta << " " << cntb << endl;
-//	}
-//	if (cnta == cntb) {
-//		cout << "draw";
-//	}
-//	if (cnta < cntb) {
-//		cout << "B";
-//	}
-//	if (cnta > cntb) {
-//		cout << "A";
-//	}
-//	system("pause");
-//	return 0;
-//}
 
-//C:上台阶
-//#include<iostream>
-//#include<cstring>
-//#include<algorithm>
-//using namespace std;
-//int n;
-//const int maxn = 110;
-//int dp[maxn];
-//int main() {
-//	while (cin >> n) {
-//		if (n == 0)break;
-//		memset(dp, 0, sizeof(dp));
-//		dp[0] = 0;
-//		dp[1] = 1;
-//		dp[2] = 2;
-//		dp[3] = 4;
-//		for (int i = 4; i <= n; i++) {
-//			dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];
-//		}
-//		cout << dp[n] << endl;
-//	}
-//}
-
-//G:数字三角形
-//#include<iostream>
-//#include<cstring>
-//#include<algorithm>
-//#include<climits>
-//using namespace std;
-//const int maxn = 110;
-//int m[maxn][maxn];
-//int ans[maxn][maxn];
-//int main() {
-//	memset(m, 0, sizeof(m));
-//	int n;
-//	cin >> n;
-//	for (int i = 1; i <= n; i++) {
-//		for (int j = 1; j <= i; j++) {
-//			cin >> m[i][j];
-//			
-//		}
-//	}
-//	//cout << "hhh" << endl;
-//	ans[1][1] = m[1][1];
-//	for (int i = 2; i <= n; i++) {
-//		for (int j = 1; j <= i; j++) {
-//			ans[i][j] = max(m[i][j] + ans[i - 1][j], m[i][j] + ans[i - 1][j - 1]);
-//			//cout << ans[i][j] << " ";
-//		}
-//		//cout << endl;
-//	}
-//	int ans_max = INT_MIN;
-//	for (int i = 1; i <= n; i++) {
-//		ans_max = max(ans_max, ans[n][i]);
-//	}
-//	cout << ans_max << endl;
-//	system("pause");
-//	return 0;
-//}
 
 //吃糖果
 //#include<iostream>
@@ -13412,3 +13291,3051 @@
 //	system("pause");
 //	return 0;
 //}
+
+//3.1数据结构之结构
+//生日相同 2.0 ？？有注释的3个小细节要注意
+//#include<iostream>
+//#include<string>
+//#include<algorithm>
+//#include<vector>
+//using namespace std;
+//struct Node
+//{
+//	string name;
+//	int month;
+//	int day;
+//	bool operator<(const Node a)const {
+//		if (month != a.month) {
+//			return month < a.month;
+//		}
+//		else if (day != a.day) {
+//			return day < a.day;
+//		}
+//		else if (name.size() != a.name.size()) {
+//			return name.size() < a.name.size();
+//		}
+//		else if (name != a.name) {//这里判断不仅仅是判断第一个字母 判断的是整个字符串
+//			return name < a.name;
+//		}
+//	}
+//};
+//
+//Node temp[200];
+//vector<string> ans;
+//int main() {
+//	int n;
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		cin >> temp[i].name >> temp[i].month >> temp[i].day;
+//	}
+//	//因为如果不加最后一个temp[n] 会导致最后一组一样的无法输出 所以要加一个一定不会出现的 用于输出最后一组
+//	temp[n].name = "wxz";
+//	temp[n].month = 100;
+//	temp[n].day = 100;
+//	sort(temp, temp + n);
+//	ans.push_back(temp[0].name);
+//	bool flag = false;
+//	for (int i = 1; i <= n; i++) {
+//		if (temp[i].month == temp[i - 1].month&&temp[i].day == temp[i - 1].day)
+//		{
+//			ans.push_back(temp[i].name);
+//		}
+//		else {
+//			//这里还要加一个判断 ans里面长度不止1  因为每个新的加进来都是1
+//			if (ans.size() > 1) {
+//				cout << temp[i - 1].month << " " << temp[i - 1].day;
+//				for (auto itr = ans.begin(); itr != ans.end(); itr++) {
+//					cout << " " << *itr;
+//				}
+//				flag = true;
+//				cout << endl;
+//			}
+//			ans.clear();
+//			ans.push_back(temp[i].name);
+//		}
+//	}
+//	if (!flag) {
+//		cout << "None" << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//3.6数据结构之二叉树
+//二叉树
+//#include<iostream>
+//using namespace std;
+//int main() {
+//	int x, y;
+//	cin >> x >> y;
+//	while (x != y) {
+//		if (x > y) {
+//			x = x / 2;
+//		}
+//		else {
+//			y = y / 2;
+//		}
+//	}
+//	cout << x << endl;
+//	system("pause");
+//	return 0;
+//}
+
+//3.8数据结构之图
+//Avoid The Lakes
+//#include<iostream>
+//#include<queue>
+//#include<algorithm>
+//#include<climits>
+//#include<cstring>
+//using namespace std;
+//const int maxn = 110;
+//int m[maxn][maxn];
+//int vis[maxn][maxn];
+//int r, c, k;
+//int dirx[4] = { 0,0,1,-1 };
+//int diry[4] = { 1,-1,0,0 };
+//struct Point
+//{	
+//	int x, y;
+//};
+//int bfs(int x, int y) {
+//	Point start;
+//	start.x = x;
+//	start.y = y;
+//	int step = 1;
+//	queue<Point> q;
+//	q.push(start);
+//	vis[x][y] = 1;
+//	while (!q.empty()) {
+//		Point now = q.front();
+//		q.pop();
+//		for (int i = 0; i < 4; i++) {
+//			Point next = now;
+//			next.x += dirx[i];
+//			next.y += diry[i];
+//			if (next.x >= 1 && next.x <= r && next.y >= 1 && next.y <= c && vis[next.x][next.y] == 0 && m[next.x][next.y] == 1) {
+//				vis[next.x][next.y] = 1;
+//				q.push(next);
+//				step++;
+//			}
+//		}
+//	}
+//	return step;
+//}
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	memset(vis, 0, sizeof(vis));
+//	cin >> r >> c >> k;
+//	int tempx, tempy;
+//	for (int i = 1; i <= k; i++) {
+//		cin >> tempx >> tempy;
+//		m[tempx][tempy] = 1;
+//	}
+//	int ans = 1;
+//	for (int i = 1; i <= r; i++) {
+//		for (int j = 1; j <= c; j++) {
+//			if (vis[i][j] == 0&&m[i][j] == 1) {
+//				ans = max(ans, bfs(i, j));
+//			}
+//		}
+//	}
+//	cout << ans << endl;
+//	system("pause");
+//	return 0;
+//}
+
+//围棋  ??注意一个细节
+//#include<iostream>
+//#include<cstring>
+//#include<queue>
+//using namespace std;
+//int n;
+//const int maxn = 110;
+//char m[maxn][maxn];
+//int vis[maxn][maxn];
+//int dirx[4] = { 0,0,1,-1 };
+//int diry[4] = { 1,-1,0,0 };
+//int ans_w = 0;
+//int ans_b = 0;
+//struct Point
+//{
+//	int x, y;
+//};
+//void bfs(int x,int y) {
+//	Point start;
+//	start.x = x;
+//	start.y = y;
+//	queue<Point> q;
+//	q.push(start);
+//	vis[x][y] = 1;
+//	int step = 1;
+//	int flag = 0;//0表示白棋
+//	while (!q.empty()) {
+//		Point now = q.front();
+//		q.pop();
+//
+//		for (int i = 0; i < 4; i++) {
+//			Point next = now;
+//			next.x += dirx[i];
+//			next.y += diry[i];
+//			if (next.x >= 1 && next.x <= n && next.y >= 1 && next.y <= n && vis[next.x][next.y] == 0)
+//			{
+//				vis[next.x][next.y] = 1;
+//
+//				if (m[next.x][next.y] == '.') {
+//					step++;
+//				}
+//				if (m[next.x][next.y] == 'B') {
+//					ans_b++;
+//					flag = 1;//1表示黑棋
+//				}
+//				if (m[next.x][next.y] == 'W') {
+//					ans_w++;
+//					flag = 0;//0表示白棋
+//				}
+//				q.push(next);
+//			}
+//		}
+//	}
+//	if (flag) {
+//		ans_b += step;
+//	}
+//	else {
+//		ans_w += step;
+//	}
+//}
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	memset(vis, 0, sizeof(vis));
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = 1; j <= n; j++) {
+//			cin >> m[i][j];
+//		}
+//	}
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = 1; j <= n; j++) {//这里不仅仅要遍历’.' 因为黑白棋可能不是在'.'包围着
+//			if (m[i][j] == '.'&&vis[i][j] == 0) {
+//				bfs(i,j);
+//			}
+//			if (m[i][j] == 'B'&&vis[i][j] == 0) {
+//				ans_b++;
+//				vis[i][j] = 1;
+//			}
+//			if (m[i][j] == 'W'&&vis[i][j] == 0) {
+//				ans_w++;
+//				vis[i][j] = 1;
+//			}
+//		}
+//	}
+//	cout << ans_b << " " << ans_w << endl;
+//	system("pause");
+//	return 0;
+//}
+
+//Is It A Tree?  自己写的 杭电上能通过 poj通不过
+//#include<iostream>
+//#include<cstring>
+//#include<set>
+//using namespace std;
+//int in, out;
+//int c = 1;
+//const int maxn = 1005;
+//int m[maxn];
+//set<int> st;
+//int root = 0;
+//bool flag = true;
+//int main() {
+//	while (cin >> in >> out) {
+//		if (in == -1 && out == -1) {
+//			break;
+//		}
+//		if (in == 0 && out == 0) {
+//			cout << "Case " << c;
+//			c++;
+//			for (auto itr = st.begin(); itr != st.end(); itr++) {
+//				if (m[*itr] == 0) {
+//					root++;
+//					if (root > 1) {
+//						flag = false;
+//						break;
+//					}
+//				}
+//				
+//				if (m[*itr] > 1) {
+//					flag = false;
+//					break;
+//				}
+//			}
+//			if (flag) {
+//				cout << " is a tree." << endl;
+//			}
+//			else{
+//				cout << " is not a tree." << endl;
+//			}
+//			memset(m, 0, sizeof(m));
+//			st.clear();
+//			root = 0;
+//			flag = true;
+//			continue;
+//		}
+//		else {
+//			st.insert(in);
+//			st.insert(out);
+//			m[out] += 1;
+//		}
+//		
+//	}
+//}
+
+
+//is it a tree 标答
+//#include<iostream>
+//#include<cstring>
+//#include<set>
+//using namespace std;
+//
+//const int N = 1000 + 5;
+//
+//set<int> S;
+//
+//int in[N];
+//
+//int a, b;
+//
+//int main() {
+//	//freopen("in.txt", "r", stdin);
+//	int cnt = 0;
+//	while (cin >> a >> b) {
+//		S.clear();
+//		memset(in, 0, sizeof(in));
+//		if (a < 0 && b < 0) {
+//			break;
+//		}
+//		while (a != 0 && b != 0) {
+//			if (!S.count(a)) {
+//				S.insert(a);
+//			}
+//			if (!S.count(b)) {
+//				S.insert(b);
+//			}
+//			in[b]++;
+//			cin >> a >> b;
+//		}
+//		int flag = 1;
+//		int root = 0;
+//		for (set<int>::iterator it = S.begin(); it != S.end(); it++) {
+//			if (in[*it] == 0) {
+//				root++;
+//				if (root > 1) {
+//					flag = 0;
+//					break;
+//				}
+//			}
+//			if (in[*it] >= 2) {
+//				flag = 0;
+//				break;
+//			}
+//		}
+//		if (flag) {
+//			cout << "Case " << ++cnt << " is a tree." << endl;
+//		}
+//		else {
+//			cout << "Case " << ++cnt << " is not a tree." << endl;
+//		}
+//	}
+//
+//	return 0;
+//}
+
+// 3.9数据结构之C++STL
+//词典
+//#include<iostream>
+//#include<string>
+//#include<sstream>
+//#include<map>
+//using namespace std;
+//map<string, string> mp;
+//string tar;
+//int main() {
+//	string orin, forein;
+//	string line;
+//
+//	while (getline(cin, line)) {
+//		if (line.size() == 0) {
+//			break;
+//		}
+//		stringstream ss(line);
+//		ss >> orin;
+//		ss >> forein;
+//		mp.insert(pair<string, string>(forein, orin));
+//	}
+//	while (getline(cin, tar)) {
+//		if (tar.size() == 0) {
+//			break;
+//		}
+//		if (mp.find(tar) != mp.end()) {
+//			cout << mp[tar] << endl;
+//		}
+//		else {
+//			cout << "eh" << endl;
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//Set
+//#include<iostream>
+//#include<set>
+//#include<string>
+//using namespace std;
+//int main() {
+//	int n;
+//	cin >> n;
+//	string op;
+//	int x;
+//	multiset<int> st;
+//	set<int> rec;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> op >> x;
+//		if (op[0] == 'd') {
+//			cout << st.count(x) << endl;
+//			st.erase(x);
+//		}
+//		if (op[1] == 'd') {
+//			st.insert(x);
+//			rec.insert(x);
+//			cout << st.count(x) << endl;;
+//		}
+//		if (op[1] == 's') {
+//			if (rec.count(x) != 0) {
+//				cout << 1 << " ";
+//			}
+//			else {
+//				cout << 0 << " ";
+//			}
+//			cout << st.count(x) << endl;
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//热血格斗场
+//#include<iostream>
+//#include<map>
+//#include<string>
+//using namespace std;
+//map<int, int> mp;
+//int main() {
+//	int n;
+//	cin >> n;
+//	int id, abi;
+//	mp.insert(pair<int, int>(100000, 1));
+//	for (int i = 1; i <= n; i++) {
+//		cin >> id >> abi;
+//		map<int, int>::iterator itr;
+//		itr = mp.upper_bound(abi);
+//		cout << id << " ";
+//		if (itr == mp.end()) {
+//			itr--;
+//			cout << itr->second << endl;
+//		}
+//		else {
+//			itr--;
+//			if ((itr) == mp.begin()) {
+//				itr++;
+//				cout << itr->second << endl;
+//			}
+//			else {
+//				int temp1 = abs(itr->second - abi);
+//				itr++;
+//				int temp2 = abs(itr->second - abi);
+//				if (temp1 < temp2) {
+//					itr--;
+//					cout << itr->second << endl;
+//				}
+//				else if (temp1 > temp2) {
+//					cout << itr->second << endl;
+//				}
+//				else {
+//					itr--;
+//					cout << itr->second << endl;
+//				}
+//			}
+//		}
+//		mp.insert(pair<int, int>(abi, id));
+//
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//2013年本科生夏令营及保研考试
+//2013A
+//#include<iostream>
+//using namespace std;
+//const int maxn = 110;
+//int a[maxn];
+//int b[maxn];
+//int ansa[maxn];
+//int ansb[maxn];
+//int main() {
+//	int cnta = 0, cntb = 0;
+//	int n, na, nb;
+//	cin >> n >> na >> nb;
+//	for (int i = 0; i < na; i++) {
+//		cin >> a[i];
+//		//cout << a[i] << " ";
+//	}
+//	for (int i = 0; i < nb; i++) {
+//		cin >> b[i];
+//	}
+//	for (int i = 0; i < n; i++) {
+//		ansa[i] = a[i%na];
+//		//cout << ansa[i] << " ";
+//	}
+//	//cout << endl;
+//	for (int i = 0; i < n; i++) {
+//		ansb[i] = b[i%nb];
+//		//cout << ansb[i] << " ";
+//
+//	}
+//	for (int i = 0; i < n; i++) {
+//		if (ansa[i] == 0 && ansb[i] == 2) {
+//			cnta++;
+//		}
+//		else if(ansa[i] == 2 && ansb[i] == 5) {
+//			cnta++;
+//		}
+//		else if (ansa[i] == 5 && ansb[i] == 0) {
+//			cnta++;
+//		}
+//		else if (ansa[i] == 0 && ansb[i] ==5) {
+//			cntb++;
+//		}
+//		else if (ansa[i] == 2 && ansb[i] == 0) {
+//			cntb++;
+//		}
+//		else if (ansa[i] == 5 && ansb[i] == 2) {
+//			cntb++;
+//		}
+//		//cout<<i<<" " << cnta << " " << cntb << endl;
+//	}
+//	if (cnta == cntb) {
+//		cout << "draw";
+//	}
+//	if (cnta < cntb) {
+//		cout << "B";
+//	}
+//	if (cnta > cntb) {
+//		cout << "A";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//B:冷血格斗场 ac
+//#include<iostream>
+//#include<map>
+//#include<cmath>
+//#include<iterator>
+//using namespace std;
+//int id, abi;
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	map<int, int > mp;
+//	mp[1000000000] = 1;
+//	for (int i = 1; i <= n; i++)
+//	{
+//		cin >> id >> abi;
+//		map<int, int>::iterator itr;
+//		itr = mp.lower_bound(abi);
+//		//int now_id;
+//		if (itr == mp.end())
+//		{
+//			itr--;
+//			//now_id = itr->second;
+//		}
+//		// else {
+//		int now_cha = abs(itr->first - abi);
+//		int now_id = itr->second;
+//		if (itr != mp.begin())
+//		{
+//			itr--;
+//			if (abs(itr->first - abi) < now_cha || (abs(itr->first - abi) == now_cha && itr->second <now_id))
+//			{
+//				now_id = itr->second;
+//			}
+//		}
+//		//}
+//		cout << id << " " << now_id << endl;
+//		itr = mp.find(abi);
+//		if (itr == mp.end() || itr->second>id)
+//		{
+//			mp[abi] = id;
+//		}
+//	}
+//}
+
+
+
+//C:上台阶
+//#include<iostream>
+//#include<cstring>
+//#include<algorithm>
+//using namespace std;
+//int n;
+//const int maxn = 110;
+//int dp[maxn];
+//int main() {
+//	while (cin >> n) {
+//		if (n == 0)break;
+//		memset(dp, 0, sizeof(dp));
+//		dp[0] = 0;
+//		dp[1] = 1;
+//		dp[2] = 2;
+//		dp[3] = 4;
+//		for (int i = 4; i <= n; i++) {
+//			dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];
+//		}
+//		cout << dp[n] << endl;
+//	}
+//}
+
+
+//F:Dungeon Master
+//#include<iostream>
+//#include<cstring>
+//#include<queue>
+//using namespace std;
+//int h, r, c;
+//int sx, sy, sz, ex, ey, ez;
+//const int maxn = 35;
+//int m[maxn][maxn][maxn];
+//int vis[maxn][maxn][maxn];
+//const int dirx[6] = { 0,0,1,-1,0,0 };
+//const int diry[6] = { 1,-1,0,0,0,0 };
+//const int dirz[6] = { 0,0,0,0,1,-1 };
+//struct Point
+//{
+//	int x, y, z;
+//	int step;
+//
+//};
+//void bfs() {
+//	Point start;
+//	start.x = sx;
+//	start.y = sy;
+//	start.z = sz;
+//	start.step = 0;
+//	queue<Point> q;
+//	q.push(start);
+//	while (!q.empty()) {
+//		Point now = q.front();
+//		//cout << now.x << " " << now.y << " " << now.z << " " << now.step << endl;
+//		q.pop();
+//		if (now.x == ex && now.y == ey && now.z == ez) {
+//			cout << "Escaped in " << now.step << " minute(s)." << endl;
+//			return;
+//		}
+//		if (vis[now.x][now.y][now.z]) {
+//			continue;
+//		}
+//		vis[now.x][now.y][now.z] = 1;
+//		for (int i = 0; i < 6; i++) {
+//			Point next = now;
+//			next.x += dirx[i];
+//			next.y += diry[i];
+//			next.z += dirz[i];
+//			if (next.x >= 1 && next.x <= r && next.y >= 1 && next.y <= c && next.z >= 1 && next.z <= h && vis[next.x][next.y][next.z] == 0 && m[next.x][next.y][next.z] == 0) {
+//				next.step += 1;
+//				q.push(next);
+//			}
+//
+//		}
+//	}
+//	cout << "Trapped!" << endl;
+//}
+//int main() {
+//	while (cin  >> h >> r >> c) {
+//		if (r == 0 && c == 0 && h == 0) {
+//			break;
+//		}
+//		memset(vis, 0, sizeof(vis));
+//		memset(m, 0, sizeof(m));
+//		char temp;
+//		for (int k = 1; k <= h; k++) {
+//			for (int i = 1; i <= r; i++) {
+//				for (int j = 1; j <= c; j++) {
+//					cin >> temp;
+//					if (temp == '.') {
+//						m[i][j][k] = 0;
+//					}
+//					if (temp == '#') {
+//						m[i][j][k] = 1;
+//					}
+//					if (temp == 'S') {
+//						m[i][j][k] = 0;
+//						sx = i;
+//						sy = j;
+//						sz = k;
+//					}
+//					if (temp == 'E') {
+//						m[i][j][k] = 0;
+//						ex = i;
+//						ey = j;
+//						ez = k;
+//					}
+//				}
+//			}
+//		}
+//		/*for (int k = 1; k <= h; k++) {
+//			for (int i = 1; i <= r; i++) {
+//				for (int j = 1; j <= c; j++) {
+//					cout << m[i][j][k] << " ";
+//				}
+//				cout << endl;
+//			}
+//			cout << endl;
+//			cout << endl;
+//		}*/
+//		bfs();
+//	}
+//}
+
+
+//G:数字三角形
+//#include<iostream>
+//#include<cstring>
+//#include<algorithm>
+//#include<climits>
+//using namespace std;
+//const int maxn = 110;
+//int m[maxn][maxn];
+//int ans[maxn][maxn];
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	int n;
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = 1; j <= i; j++) {
+//			cin >> m[i][j];
+//			
+//		}
+//	}
+//	//cout << "hhh" << endl;
+//	ans[1][1] = m[1][1];
+//	for (int i = 2; i <= n; i++) {
+//		for (int j = 1; j <= i; j++) {
+//			ans[i][j] = max(m[i][j] + ans[i - 1][j], m[i][j] + ans[i - 1][j - 1]);
+//			//cout << ans[i][j] << " ";
+//		}
+//		//cout << endl;
+//	}
+//	int ans_max = INT_MIN;
+//	for (int i = 1; i <= n; i++) {
+//		ans_max = max(ans_max, ans[n][i]);
+//	}
+//	cout << ans_max << endl;
+//	system("pause");
+//	return 0;
+//}
+
+//H:Highways
+//#include<iostream>
+//#include<cstring>
+//#include<queue>
+//#include<algorithm>
+//using namespace std;
+//int num_city;
+//const int maxn = 510;
+//int ans = 0;
+//int vis[maxn];
+//int dis[maxn];
+//struct Edge
+//{
+//	int v;
+//	int w;
+//	int next;
+//};
+//Edge edge[maxn *maxn];
+//int head[maxn];
+//int cnt = 0;
+//void add_edge(int u, int v, int w) {
+//	edge[cnt].v = v;
+//	edge[cnt].w = w;
+//	edge[cnt].next = head[u];
+//	head[u] = cnt++;
+//}
+//struct  Node
+//{
+//	int id;
+//	int v;
+//	Node() {};
+//	Node(int _id, int _v) :id(_id), v(_v) {};
+//	bool operator<(const Node & a)const {
+//		return v > a.v;//注意这里的符号！！！
+//	}
+//};
+//void prime() {
+//	priority_queue<Node> q;
+//	dis[1] = 0;
+//	q.push(Node(1, dis[1]));
+//	while (!q.empty()) {
+//		int u = q.top().id;
+//		q.pop();//不要忘记pop（）
+//		if (vis[u]) {
+//			continue;
+//		}
+//		ans = max(ans, dis[u]);
+//		/*ans += dis[u];*/
+//		cout << u << "	" << ans << endl;
+//		vis[u] = 1;
+//		for (int i = head[u]; i != -1; i = edge[i].next) {
+//			int v = edge[i].v;
+//			int w = edge[i].w;
+//			if (vis[v] == 0 && w < dis[v]) {
+//				dis[v] = w;
+//				q.push(Node(v, dis[v]));
+//			}
+//		}
+//	}
+//}
+//int main() {
+//	int n;
+//	cin >> n;
+//	int cost;
+//	for (int cnt = 1; cnt <= n; cnt++) {
+//		memset(head, -1, sizeof(head));//初始化为-1
+//		memset(vis, 0, sizeof(vis));
+//		memset(dis, 0x3f, sizeof(dis));
+//		cnt = 0;
+//		ans = 0;
+//
+//		cin >> num_city;
+//		for (int i = 1; i <= num_city; i++) {
+//			for (int j = 1; j <= num_city; j++) {
+//				cin >> cost;
+//				if (i == j) {
+//					continue;
+//				}
+//				else {
+//					add_edge(i, j, cost);
+//				}
+//			}
+//		}
+//		/*for (int i = head[2]; i != -1; i = edge[i].next) {
+//			int v = edge[i].v;
+//			int w = edge[i].w;
+//			cout<<i<<" " << v << " " << w << endl;
+//		}*/
+//		prime();
+//		cout << ans << endl;
+//
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//2014计算机学科夏令营上机考试
+//A 人民币支付  http://noi.openjudge.cn/ch0113/13/
+//#include<iostream>	
+//using namespace std;
+//int main() {
+//	int x;
+//	cin >> x;
+//	int num_100 = x / 100;
+//	x = x - 100 * num_100;
+//	int num_50 = x / 50;
+//	x = x - 50 * num_50;
+//	int num_20 = x / 20;
+//	x = x - 20 * num_20;
+//	int num_10 = x / 10;
+//	x = x - 10 * num_10;
+//	int num_5 = x / 5;
+//	x = x - 5 * num_5;
+//	int num_1 = x;
+//	cout << num_100 << endl << num_50 << endl << num_20 << endl << num_10 << endl << num_5 << endl << num_1;
+//	system("pause");
+//	return 0;
+//}
+
+//B:排队游戏
+//#include<iostream>
+//#include<string>
+//#include<stack>
+//using namespace std;
+//int main() {
+//	stack<int> st;
+//	string str;
+//	cin >> str;
+//	int size = str.size();
+//	char boy = str[0];
+//	for (int i = 0; i < size; i++) {
+//		if (str[i] == boy) {
+//			st.push(i);
+//		}
+//		else {
+//			cout << st.top() << " " << i << endl;
+//			st.pop();
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//C:取石子游戏 wa
+//#include<iostream>
+//using namespace std;
+//int main() {
+//	int a, b;
+//	while (cin >> a >> b) {
+//		if (a == 0 && b == 0) {
+//			break;
+//		}
+//		if (a == 0 || b == 0) {
+//			cout << "win" << endl;
+//			continue;
+//		}
+//		if (a == b) {
+//			cout << "win" << endl;
+//			continue;
+//		}
+//		int cnt = 0;
+//		while (a != 0 && b != 0) {
+//			cnt++;
+//			if (a > b) {
+//				int t = a / b;
+//				a = a - t * b;
+//			}
+//			else {
+//				int t = b / a;
+//				b = b - t * a;
+//			}
+//			
+//		}
+//		if (cnt % 2 == 1) {
+//			cout << "win" << endl;
+//		}
+//		else {
+//			cout << "lose" << endl;
+//		}
+//	}
+//	//system("pause");
+//	return 0;
+//	
+//}
+
+
+//C:取石子游戏   根据提示
+//#include<iostream>
+//using namespace std;
+//int suc = 0,flag = 1;
+//void solve(int a, int b) {
+//	if (a == 0 || b == 0) {
+//		return;
+//	}
+//	if (a < b) {
+//		int temp = b;
+//		b = a;
+//		a = temp;
+//	}
+//	if ((a / b) >= 2) {
+//		//cout << "win" << endl;
+//		//suc = 1;
+//		return;
+//	}
+//	else {
+//		flag = 1 - flag;//用来判断是谁赢 
+//		solve(a - b, b);
+//	}
+//}
+//int main() {
+//	int a, b;
+//	while (cin >> a >> b) {
+//		//suc = 0;
+//		flag = 1;
+//		if (a == 0 && b == 0) {
+//			break;
+//		}
+//		if (a == b) {
+//			cout << "win" << endl;
+//			continue;
+//		}
+//		solve(a, b);
+//		if (flag) {
+//			cout << "win" << endl;
+//		}
+//		else {
+//			cout << "lose" << endl;
+//		}
+//	}
+//	//system("pause");
+//	return 0;
+//
+//}
+
+//F:Battle City
+//#include<iostream>
+//#include<cstring>
+//#include<queue>
+//using namespace std;
+//int  r, c;
+//int sx, sy, ex, ey;
+//const int maxn = 310;
+//int m[maxn][maxn];
+//int vis[maxn][maxn];
+//const int dirx[4] = { 0,0,1,-1 };
+//const int diry[4] = { 1,-1,0,0 };
+//struct Point
+//{
+//	int x, y;
+//	int step;
+//	bool operator<(const Point & a)	const {
+//		return step > a.step;
+//	}
+//};
+//void bfs() {
+//	Point start;
+//	start.x = sx;
+//	start.y = sy;
+//	start.step = 0;
+//	priority_queue<Point> q;//这里是优先队列呀！！！ 不要写成普通队列了
+//	q.push(start);
+//	while (!q.empty()) {
+//		Point now = q.top();
+//	//	cout << now.x << " " << now.y << " " << now.step << endl;
+//		q.pop();
+//		if (now.x == ex && now.y == ey) {
+//			cout << now.step << endl;
+//			return;
+//		}
+//		if (vis[now.x][now.y]) {
+//			continue;
+//		}
+//		vis[now.x][now.y] = 1;
+//		for (int i = 0; i < 4; i++) {
+//			Point next = now;
+//			next.x += dirx[i];
+//			next.y += diry[i];
+//			if (next.x >= 1 && next.x <= r && next.y >= 1 && next.y <= c && vis[next.x][next.y] == 0 && m[next.x][next.y] != 1) {
+//				if (m[next.x][next.y] == 2) {
+//					next.step += 2;
+//				}
+//				if (m[next.x][next.y] == 0) {
+//					next.step += 1;
+//				}
+//				
+//				q.push(next);
+//			}
+//
+//		}
+//	}
+//	cout << -1 << endl;
+//}
+//int main() {
+//	while (cin >> r >> c) {
+//		if (r == 0 && c == 0) {
+//			break;
+//		}
+//		memset(vis, 0, sizeof(vis));
+//		memset(m, 0, sizeof(m));
+//		char temp;
+//		
+//			for (int i = 1; i <= r; i++) {
+//				for (int j = 1; j <= c; j++) {
+//					cin >> temp;
+//					
+//					if (temp == 'R') {
+//						m[i][j] = 1;
+//					}
+//					if (temp == 'S') {
+//						m[i][j] = 1;
+//					}
+//					if (temp == 'B') {
+//						m[i][j] = 2;
+//					}
+//
+//					if (temp == 'E') {
+//						m[i][j] = 0;
+//					}
+//					if (temp == 'Y') {
+//						m[i][j] = 0;
+//						sx = i;
+//						sy = j;
+//					}
+//					if (temp == 'T') {
+//						m[i][j] = 0;
+//						ex = i;
+//						ey = j;
+//					}
+//				
+//			}
+//		}
+//		
+//		bfs();
+//	}
+//}
+
+//Charm Bracelet
+//#include<iostream>
+//#include<cstring>
+//#include<algorithm>
+//using namespace std;
+//const int maxn = 3500;
+//int w[maxn];
+//int v[maxn];
+//long long dp[13000];//这里一定要开大一点  因为 M(1 ≤ M≤ 12,880) 不然runtime error
+//int main() {
+//	int n, tot;
+//	cin >> n >> tot;
+//	dp[0] = 0;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> w[i] >> v[i];
+//	}
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = tot; j >=w[i]; j--) {//这里注意 j >=w[i]
+//			dp[j] = max(dp[j], dp[j - w[i]] + v[i]);
+//			//cout << j << " " << dp[j] << endl;
+//		}
+//	}
+//	cout << dp[tot] << endl;
+//	system("pause");
+//	return 0;
+//}
+
+//I:兔子与星空  最小生成树
+//#include<iostream>
+//#include<queue>
+//#include<string>
+//#include<sstream>
+//#include<cstring>
+//using namespace std;
+//const int maxn = 30;
+//int m[maxn][maxn];
+//int vis[maxn];
+//int dis[maxn];
+//int ans = 0;
+//struct Edge
+//{
+//	int v;
+//	int w;
+//	int next;
+//};
+//
+//Edge edge[100];
+//int head[100];
+//int cnt = 0;
+//
+//void add_edge(int u, int v, int w) {
+//	edge[cnt].v = v;
+//	edge[cnt].w = w;
+//	edge[cnt].next = head[u];
+//	head[u] = cnt++;//cnt初值是0
+//}
+//
+//struct Node
+//{
+//	int id;//x
+//	int v;//dix[x]
+//	Node(){};
+//	Node(int _id, int _v) :id(_id), v(_v) {};
+//	bool operator<(const Node& a)const {
+//		return v > a.v;
+//	}
+//};
+//
+//priority_queue<Node> q;
+//void Prim() {
+//	memset(vis, 0, sizeof(vis));
+//	memset(dis, 0x3f, sizeof(dis));
+//	while (!q.empty()) {
+//		q.pop();
+//	}
+//	dis[0] = 0;
+//	
+//	q.push(Node(0, dis[0]));
+//	while (!q.empty()) {
+//		int u = q.top().id;
+//		q.pop();
+//		if (vis[u] == 1) {
+//			continue;
+//		}
+//		ans += dis[u];
+//		//cout << ans << endl;
+//		vis[u] = 1;
+//		for (int i = head[u]; i != -1; i = edge[i].next) {
+//			int v = edge[i].v;
+//			int w = edge[i].w;
+//			if (vis[v] == 0 && dis[v] > w) {
+//				dis[v] = w;
+//				q.push(Node(v, dis[v]));
+//			}
+//		}
+//	}
+//}
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	memset(head, -1, sizeof(head));
+//	
+//	cnt = 0;
+//
+//	int n;
+//	cin >> n;
+//	string line;
+//	char city_s,city_e;
+//	int w;
+//	for (int i = 1; i < n; i++) {
+//		cin >> city_s;
+//		int num;
+//		cin >> num;
+//		for (int i = 0; i < num; i++) {
+//			cin >> city_e >> w;
+//			add_edge(city_s - 'A',city_e - 'A', w);
+//			add_edge(city_e - 'A', city_s - 'A', w);
+//		}
+//	}
+//	/*for (int i = head[8]; i != -1; i = edge[i].next) {
+//		int v = edge[i].v;
+//		int w = edge[i].w;
+//		cout << v << " " << w << endl;
+//	}*/
+//
+//	Prim();
+//	cout << ans << endl;
+//	system("pause");
+//	return 0;
+//}
+
+
+//2015计算机学科夏令营上机考试
+//A:整数的个数
+//#include<iostream>
+//using namespace std;
+//int main() {
+//	int n;
+//	cin >> n;
+//	int temp;
+//	int cnt_1 = 0, cnt_5 = 0, cnt_10 = 0;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> temp;
+//		if (temp == 1) {
+//			cnt_1++;
+//		}
+//		if (temp == 5) {
+//			cnt_5++;
+//		}
+//		if (temp == 10) {
+//			cnt_10++;
+//		}
+//	}
+//	cout << cnt_1 << endl << cnt_5 << endl << cnt_10;
+//		system("pause");
+//		return 0;
+//}
+
+//B:过滤多余的空格
+//#include<iostream>
+//#include<string>
+//#include<sstream>
+//using namespace std;
+//int main() {
+//	string line;
+//	getline(cin, line);
+//	stringstream ss(line);
+//	string temp;
+//	while (ss >> temp) {
+//		cout << temp << " ";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//C:二维数组右上左下遍历
+//#include<iostream>
+//using namespace std;
+//const int maxn = 110;
+//int m[maxn][maxn];
+//int main() {
+//	int r, c;
+//	cin >> r >> c;
+//	for (int i = 1; i <= r; i++) {
+//		for (int j = 1; j <= c; j++) {
+//			cin >> m[i][j];
+//		}
+//	}
+//	int i;
+//	for (int k = 2; k <= r + c; k++) {
+//		for (int j = c; j >=1; j--) {
+//			i = k - j;
+//			if (i >= 1 && i <= r) {
+//				cout << m[i][j] << endl;
+//			}
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+////D:合影效果  自己写的 其实还可以用set<int,greater<int>> s;
+//#include<iostream>
+//#include<string>
+//#include<iomanip>
+//#include<set>
+//using namespace std;
+//int main() {
+//	int n;
+//	cin >> n;
+//	string gender;
+//	double h;
+//	set<double> fe;
+//	set<double> ma;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> gender >> h;
+//		if (gender[0] == 'm') {
+//			ma.insert(h);
+//		}
+//		if (gender[0] == 'f') {
+//			fe.insert(h);
+//		}
+//	}
+//	for (auto itr = ma.begin(); itr != ma.end(); itr++) {
+//		cout << fixed << setprecision(2) << *itr << " ";
+//	}
+//	auto itr = fe.end();
+//	itr--;
+//	for (; itr != fe.begin(); itr--) {
+//		cout << fixed << setprecision(2) << *itr << " ";
+//	}
+//	cout << fixed << setprecision(2) << *itr;
+//	system("pause");
+//	return 0;
+//}
+
+//F:To Europe! To Europe!
+//#include<iostream>
+//#include<cstring>
+//#include<algorithm>
+//#include<climits>
+//#include<iomanip>
+//using namespace std;
+//int tot, len, num;
+//const int maxn = 1010;
+//int w[maxn];
+//int sp[maxn];
+//double dp[maxn];
+//int main()
+//{
+//	while (cin >> tot >> len >> num)
+//	{
+//		if (tot == 0 && len == 0 && num == 0)
+//		{
+//			break;
+//		}
+//		memset(dp, 0, sizeof(dp));
+//		memset(w, 0, sizeof(w));
+//		memset(sp, 0, sizeof(sp));
+//		len = len * 60;
+//		for (int i = 1; i <= num; i++)
+//		{
+//			cin >> w[i] >> sp[i];
+//		}
+//		for (int i = 1; i <= num; i++)
+//		{
+//			int weight = w[i];
+//			int speed = sp[i];
+//			// cout<<i<<" "<<sp[i] <<endl;
+//			dp[i] = dp[i - 1] + double(len) / double(speed);
+//			//cout<<double(len)<<" "<<double(speed)<<" "<<dp[i]<<endl;
+//			for (int j = i - 1; j >= 1; j--)
+//			{
+//				if (weight + w[j] > tot)
+//				{
+//					break;
+//				}
+//				else
+//				{
+//					weight += w[j];
+//					speed = min(sp[j], speed);
+//					dp[i] = min(dp[i], dp[j - 1] + double(len) / double(speed));
+//				}
+//			}
+//		}
+//		cout << fixed << setprecision(1) << dp[num] << endl;
+//	}
+//}
+
+
+//G:The Game  过了
+//#include<iostream>
+//#include<cstring>
+//#include<queue>
+//#include<string>
+//using namespace std;
+//int  r, c;
+//int sx, sy, ex, ey;
+//const int maxn = 310;
+//int m[maxn][maxn];
+//int vis[maxn][maxn];
+//const int dirx[4] = { 0,0,1,-1 };
+//const int diry[4] = { 1,-1,0,0 };
+//int cnt = 1;
+//int tot = 1;
+//struct Point
+//{
+//	int x, y;
+//	int step;
+//	int dir;
+//	bool operator<(const Point & a)	const {
+//		return step > a.step;
+//	}
+//};
+//void bfs() {
+//	Point start;
+//	start.x = sx;
+//	start.y = sy;
+//	start.step = 0;
+//	start.dir = -1;
+//	priority_queue<Point> q;//这里是优先队列呀！！！ 不要写成普通队列了
+//	q.push(start);
+//	while (!q.empty()) {
+//		Point now = q.top();
+//		//cout << now.x << " " << now.y << " " << now.step << endl;
+//		q.pop();
+//		if (now.x == ex && now.y == ey) {
+//			cout << "Pair " << tot << ": " << now.step << " segments." << endl;
+//			return;
+//		}
+//		if (vis[now.x][now.y]) {
+//			continue;
+//		}
+//		vis[now.x][now.y] = 1;
+//		for (int i = 0; i < 4; i++) {
+//			Point next = now;
+//			next.x += dirx[i];
+//			next.y += diry[i];
+//			next.dir = i;
+//			if (next.x >= 0 && next.x <= r + 1 && next.y >= 0 && next.y <= c + 1 && vis[next.x][next.y] == 0 && m[next.x][next.y] != 1) {
+//				if (next.dir != now.dir) {
+//					next.step += 1;
+//				}
+//				q.push(next);
+//			}
+//
+//		}
+//	}
+//	cout << "Pair " << tot << ": impossible." << endl;
+//}
+//int main() {
+//	while (cin >> c >> r) {
+//		if (r == 0 && c == 0) {
+//			break;
+//		}
+//		tot = 1;
+//		cout << "Board #" << cnt << ":" << endl;
+//		cnt++;
+//		
+//		memset(m, 0, sizeof(m));
+//		char temp;
+//
+//		string nonsense;
+//		getline(cin, nonsense);
+//
+//		string line;
+//		for (int i = 1; i <= r; i++) {
+//			getline(cin, line);
+//			//cout << "hhh" << endl;
+//			//cout << line << endl;
+//			for (int j = 0; j < c; j++) {
+//				if (line[j] == 'X') {
+//					m[i][j + 1] = 1;
+//				}
+//				if (line[j] == ' ') {
+//					m[i][j + 1] = 0;
+//				}
+//			}
+//		}
+//		/*for (int i = 1; i <= r; i++) {
+//			for (int j = 1; j <= c; j++) {
+//				cout << m[i][j] << " ";
+//			}
+//			cout << endl;
+//		}*/
+//		while (cin >> sy >> sx >> ey >> ex) {
+//			if (sx == 0 && sy == 0 && ex == 0 && ey == 0) {
+//				break;
+//			}
+//			m[ex][ey] = 0;
+//			memset(vis, 0, sizeof(vis));//这里是每次样例都要重新置0！！！
+//			bfs();
+//			m[ex][ey] = 1;
+//			tot++;
+//		}
+//		cout << endl;//每组样例之后都要输出空行！！！！
+//	}
+//	//system("pause");
+//	return 0;
+//}
+
+
+//2016计算机学科夏令营上机考试
+//A:分段函数
+//#include<iostream>
+//#include<iomanip>
+//using namespace std;
+//int main() {
+//	double in;
+//	double ans;
+//	cin >> in;
+//	if (in >= 0 && in < 5) {
+//		ans = -in + 2.5;
+//	}
+//	if (in >= 5 && in < 10) {
+//		ans = 2.0 - 1.5*(in - 3.0)*(in - 3.0);
+//	}
+//	if (in >= 10 && in < 20) {
+//		ans = in / 2.0 - 1.5;
+//	}
+//	cout << fixed << setprecision(3) << ans;
+//	system("pause");
+//	return 0;
+//}
+
+//B:单词翻转 6分
+//#include<iostream>
+//#include<string>
+//#include<sstream>
+//#include<algorithm>
+//using namespace std;
+//int main() {
+//	string line;
+//	getline(cin, line);
+//	int len = line.size();
+//	//cout << len << endl;
+//	string temp;
+//	for (int i = 0; i < len; i++) {
+//		//cout << i << " " << line[i] << endl;
+//		if (line[i] != ' ') {//这儿不能写isalpha 因为可能是数字
+//			temp += line[i];
+//		}
+//		if (line[i] == ' ') {
+//			if (temp.size() != 0) {
+//				reverse(temp.begin(),temp.end());
+//				cout << temp;
+//				temp.clear();
+//			}
+//			cout << line[i];
+//		}
+//	}
+//	if (!temp.empty()) {
+//		reverse(temp.begin(), temp.end());
+//		cout << temp;
+//	}
+//	
+//	system("pause");
+//	return 0;
+//}
+
+//C:反反复复
+//#include<iostream>
+//#include<string>
+//using namespace std;
+//const int maxn = 22;
+//char m[maxn][maxn];
+//int main() {
+//	int c;
+//	cin >> c;
+//	string orin;
+//	cin >> orin;
+//	int len = orin.size();
+//	int r = len / c;
+//	int k = 0;
+//	for (int i = 0; i < r; i++) {
+//		if (i % 2 == 0) {
+//			for (int j = 0; j < c; j++) {
+//				m[i][j] = orin[k++];
+//			}
+//		}
+//		else {
+//			for (int j = c-1; j >=0; j--) {
+//				m[i][j] = orin[k++];
+//			}
+//		}
+//		
+//	}
+//	/*for (int i = 0; i < r; i++) {
+//		
+//		for (int j = 0; j < c; j++) {
+//			cout << m[i][j] << " ";
+//		}
+//		cout << endl;
+//	}*/
+//	for (int i = 0; i < c; i++) {
+//		for (int j = 0; j < r; j++) {
+//			cout << m[j][i];
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//E:Exchange Rates  ac
+//#include<iostream>
+//#include<cstring>
+//#include<algorithm>
+//#include<iomanip>
+//using namespace std;
+//const int maxn = 400;
+//double m[maxn];
+//double dp[maxn][2];
+//double solve(double x)
+//{
+//	double temp = x * 100.0;
+//	int temp1 = temp;
+//	//cout<<x<<"  "<<temp1<<" "<<temp<<endl;
+//	double y = double(temp1) / 100.0;
+//	return y;
+//}
+//int main()
+//{
+//	int d;
+//	// cout<<solve(0.9999)<<" "<<solve(1.0500);
+//	while (cin >> d)
+//	{
+//		if (d == 0)
+//		{
+//			break;
+//		}
+//		memset(m, 0, sizeof(m));
+//		memset(dp, 0, sizeof(dp));
+//		for (int i = 1; i <= d; i++)
+//		{
+//			cin >> m[i];//汇率是美元转加元
+//		}
+//		dp[0][0] = 1000.0;//加元
+//		dp[0][1] = 0.0;//美元
+//		for (int i = 1; i <= d; i++)
+//		{
+//			dp[i][0] = max(dp[i - 1][0], solve(dp[i - 1][1] * m[i] * 0.97));
+//			dp[i][1] = max(dp[i - 1][1], solve(dp[i - 1][0] / m[i] * 0.97));
+//			//cout<<dp[i][0]<<" "<<dp[i][1] <<endl;
+//		}
+//		cout << fixed << setprecision(2) << dp[d][0] << endl;
+//	}
+//	//system("pause");
+//	return 0;
+//}
+
+
+//H:丛林中的路
+//#include<iostream>
+//#include<queue>
+//#include<string>
+//#include<sstream>
+//#include<cstring>
+//using namespace std;
+//const int maxn = 30;
+//int m[maxn][maxn];
+//int vis[maxn];
+//int dis[maxn];
+//int ans = 0;
+//struct Edge
+//{
+//	int v;
+//	int w;
+//	int next;
+//};
+//
+//Edge edge[100];
+//int head[100];
+//int cnt = 0;
+//
+//void add_edge(int u, int v, int w) {
+//	edge[cnt].v = v;
+//	edge[cnt].w = w;
+//	edge[cnt].next = head[u];
+//	head[u] = cnt++;//cnt初值是0
+//}
+//
+//struct Node
+//{
+//	int id;//x
+//	int v;//dix[x]
+//	Node() {};
+//	Node(int _id, int _v) :id(_id), v(_v) {};
+//	bool operator<(const Node& a)const {
+//		return v > a.v;
+//	}
+//};
+//
+//priority_queue<Node> q;
+//void Prim() {
+//	memset(vis, 0, sizeof(vis));
+//	memset(dis, 0x3f, sizeof(dis));
+//	while (!q.empty()) {
+//		q.pop();
+//	}
+//	dis[0] = 0;
+//
+//	q.push(Node(0, dis[0]));
+//	while (!q.empty()) {
+//		int u = q.top().id;
+//		q.pop();
+//		if (vis[u] == 1) {
+//			continue;
+//		}
+//		ans += dis[u];
+//		//cout << ans << endl;
+//		vis[u] = 1;
+//		for (int i = head[u]; i != -1; i = edge[i].next) {
+//			int v = edge[i].v;
+//			int w = edge[i].w;
+//			if (vis[v] == 0 && dis[v] > w) {
+//				dis[v] = w;
+//				q.push(Node(v, dis[v]));
+//			}
+//		}
+//	}
+//}
+//int main() {
+//	
+//
+//	int n;
+//	while (cin >> n) {
+//		if (n == 0) {
+//			break;
+//		}
+//		memset(m, 0, sizeof(m));
+//		memset(head, -1, sizeof(head));
+//		cnt = 0;
+//		ans = 0;
+//
+//		char city_s, city_e;
+//		int w;
+//		for (int i = 1; i < n; i++) {
+//			cin >> city_s;
+//			int num;
+//			cin >> num;
+//			for (int i = 0; i < num; i++) {
+//				cin >> city_e >> w;
+//				add_edge(city_s - 'A', city_e - 'A', w);
+//				add_edge(city_e - 'A', city_s - 'A', w);
+//			}
+//		}
+//		/*for (int i = head[8]; i != -1; i = edge[i].next) {
+//		int v = edge[i].v;
+//		int w = edge[i].w;
+//		cout << v << " " << w << endl;
+//		}*/
+//
+//		Prim();
+//		cout << ans << endl;
+//	}
+//
+//
+//	system("pause");
+//	return 0;
+//}
+
+//I:Dominoes
+//#include<iostream>
+//#include<cstring>
+//#include<algorithm>
+//#include<climits>
+//using namespace std;
+//const int maxn = 1100;
+//int up[maxn];
+//int down[maxn];
+//int cha;
+//int dp[maxn][12010];
+//int main() {
+//	int n;
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> up[i] >> down[i];
+//	}
+//	memset(dp, 0x3f, sizeof(dp));
+//	dp[0][6000] = 0;//初始化是dp[0][6000] = 0
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = 0; j <= 12000; j++) {
+//			cha = up[i] - down[i];//这里不加6000  因为这里是差值 不需要偏移  偏移的应该是基准
+//			dp[i][j] = min(dp[i - 1][j - cha], dp[i - 1][j + cha] + 1);
+//		}
+//	}
+//	int ans = INT_MAX;
+//	for (int i = 0; i <= 6000; i++) {
+//		ans = min(dp[n][6000 - i], dp[n][6000 + i]);
+//		if (ans <= n) {
+//			cout << ans << endl;
+//			break;
+//		}
+//	}
+//}
+
+
+// 2017计算机学科夏令营上机考试
+//A:判决素数个数   0和1既不是素数,也不是合数,2是素数  考虑x>y
+//#include<iostream>
+//#include<cmath>
+//#include<algorithm>
+//using namespace std;
+//int solve(int x) {
+//	if (x == 1) {
+//		return 0;
+//	}
+//	for (int i = 2; i <= sqrt(x); i++) {
+//		if (x%i == 0) {
+//			return 0;
+//		}
+//	}
+//	//cout << x << endl;
+//	return 1;
+//}
+//int main() {
+//	int x, y;
+//	cin >> x >> y;
+//	int cnt = 0;
+//	if (x > y) {
+//		swap(x, y);
+//	}
+//	for (int i = x; i <= y; i++) {
+//		cnt += solve(i);
+//	}
+//	cout << cnt;
+//	system("pause");
+//	return 0;
+//}
+
+//B:编码字符串  未提交
+//#include<iostream>
+//#include<string>
+//using namespace std;
+//int main() {
+//	string line;
+//	cin >> line;
+//	string temp = "";
+//	for (int i = 0; i < line.size(); i++) {
+//		line[i] = tolower(line[i]);
+//		if (temp.empty()) {
+//			temp += line[i];
+//		}
+//		else {
+//			if (temp[0] == line[i]) {
+//				temp += line[i];
+//			}
+//			else {
+//				cout << "(" << temp[0] << "," << temp.size() << ")";
+//				temp = "";
+//				temp += line[i];
+//			}
+//		}
+//
+//	}
+//	if (!temp.empty()) {
+//		cout << "(" << temp[0] << "," << temp.size() << ")";
+//
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//C:岛屿周长  没地方提交  https://blog.csdn.net/qq_34446716/article/details/85055844
+//#include<iostream>
+//#include<cstring>
+//#include<queue>
+//using namespace std;
+//const int maxn = 110;
+//int m[maxn][maxn];
+//int vis[maxn][maxn];
+//const int dirx[4] = { 0,0,1,-1 };//记住加const
+//const int diry[4] = { 1,-1,0,0 };
+//int r, c;
+//int cnt = 0;
+//struct  Point
+//{
+//	int x, y;
+//};
+//void bfs(int x, int y) {
+//	Point start;
+//	start.x = x;
+//	start.y = y;
+//	for (int j = 0; j < 4; j++) {
+//		Point next_start = start;
+//		next_start.x += dirx[j];
+//		next_start.y += diry[j];
+//		//cout << nn.x << " " << nn.y << endl;
+//		if (m[next_start.x][next_start.y] == 0) {
+//			cnt++;
+//		}
+//	}
+//	queue<Point> q;
+//	q.push(start);
+//	vis[x][y] = 1;
+//	while (!q.empty()) {
+//		Point now = q.front();
+//		q.pop();
+//		//cout << now.x << " " << now.y << " " << cnt << endl;
+//		for (int i = 0; i < 4; i++) {
+//			Point next = now;
+//			next.x += dirx[i];
+//			next.y += diry[i];
+//			if (next.x >= 1 && next.x <= r && next.y >= 1 && next.y <= c && vis[next.x][next.y] == 0 && m[next.x][next.y] == 1) {
+//				//cout << next.x << " " << next.y << endl;
+//				vis[next.x][next.y] = 1;
+//				for (int j = 0; j < 4; j++) {
+//					Point nn = next;
+//					nn.x += dirx[j];
+//					nn.y += diry[j];
+//					//cout << nn.x << " " << nn.y << endl;
+//					if (m[nn.x][nn.y] == 0) {
+//						cnt++;
+//					}
+//				}
+//				q.push(next);
+//			}
+//		}
+//	}
+//
+//}
+//int main() {
+//
+//	cin >> r >> c;
+//	for (int i = 1; i <= r; i++) {
+//		for (int j = 1; j <= c; j++) {
+//			cin >> m[i][j];
+//			//cout << "hhh" << endl;
+//
+//		}
+//	}
+//	for (int i = 1; i <= 1; i++) {
+//		for (int j = 1; j <= c; j++) {
+//			if (vis[i][j] == 0 &&m[i][j] ==1) {
+//				bfs(i, j);
+//				break;
+//			}
+//		}
+//		break;
+//	}
+//	cout << cnt << endl;
+//	system("pause");
+//	return 0;
+//}
+
+//E:怪盗基德的滑翔翼
+//#include<iostream>
+//#include<cstring>
+//#include<algorithm>
+//#include<climits>
+//#include<iomanip>
+//using namespace std;
+//int num, n;
+//const int maxn = 110;
+//int m[maxn];
+//int dp[maxn];
+//int dp2[maxn];
+//int main()
+//{
+//
+//	cin >> num;
+//	for (int cnt = 1; cnt <= num; cnt++)
+//	{
+//		cin >> n;
+//		for (int cnt2 = 1; cnt2 <= n; cnt2++)
+//		{
+//			cin >> m[cnt2];
+//		}
+//		for (int i = 1; i <= n; i++)
+//		{
+//			dp[i] = 1;
+//			for (int j = i - 1; j >= 1; j--)
+//			{
+//				if (m[i] > m[j])
+//				{
+//					dp[i] = max(dp[j] + 1, dp[i]);
+//				}
+//			}
+//		}
+//		for (int i = n; i >= 1; i--)
+//		{
+//			dp2[i] = 1;
+//			for (int j = i + 1; j <= n; j++)
+//			{
+//				if (m[i] > m[j])
+//				{
+//					dp2[i] = max(dp2[j] + 1, dp2[i]);
+//				}
+//			}
+//		}
+//		int ans = 0;
+//		for (int i = 1; i <= n; i++)
+//		{
+//			ans = max(ans, max(dp[i], dp2[i]));
+//		}
+//		cout << ans << endl;
+//	}
+//	return 0;
+//}
+
+//G:实现堆结构  百炼提交的网址和这道题 输入不一样
+//#include<iostream>
+//#include<cstring>
+//#include<set>
+//#include<iterator>
+//using namespace std;
+//int op;
+//int ob;
+//
+//int main()
+//{
+//	int num, tot;
+//	cin >> num;
+//	multiset<int> st;//multiset 因为可能重复
+//	cin >> tot;
+//	for (int j = 1; j <= tot; j++)
+//	{
+//		cin >> op;
+//		if (op == 1)
+//		{
+//			cin >> ob;
+//			st.insert(ob);
+//		}
+//		if (op == 2)
+//		{
+//			set<int>::iterator itr;
+//			itr = st.begin();
+//			cout << *itr << endl;
+//			st.erase(itr);//这里st.erase(itr)是指删除指针指向的元素 st.erase(*itr)  删除值等于这个的元素
+//		}
+//		//            for(set<int>::iterator p = st.begin();p!=st.end();p++){
+//		//                cout<<*p<<" ";
+//		//            }
+//		//            cout<<endl;
+//	}
+//
+//}
+
+
+//The Game   wa ??
+//#include<iostream>
+//#include<cstring>
+//#include<queue>
+//#include<string>
+//using namespace std;
+//int  r, c;
+//int sx, sy, ex, ey;
+//const int maxn = 310;
+//int m[maxn][maxn];
+//int vis[maxn][maxn];
+//const int dirx[4] = { 0,0,1,-1 };
+//const int diry[4] = { 1,-1,0,0 };
+//int cnt = 1;
+//int tot = 1;
+//struct Point
+//{
+//	int x, y;
+//	int step;
+//	int dir;
+//	bool operator<(const Point & a)	const {
+//		return step > a.step;
+//	}
+//};
+//void bfs() {
+//	Point start;
+//	start.x = sx;
+//	start.y = sy;
+//	start.step = 0;
+//	start.dir = -1;
+//	priority_queue<Point> q;//这里是优先队列呀！！！ 不要写成普通队列了
+//	q.push(start);
+//	while (!q.empty()) {
+//		Point now = q.top();
+//		//cout << now.x << " " << now.y << " " << now.step << endl;
+//		q.pop();
+//		if (now.x == ex && now.y == ey) {
+//			cout << "Pair " << tot << ": " << now.step << " segments." << endl;
+//			return;
+//		}
+//		if (vis[now.x][now.y]) {
+//			continue;
+//		}
+//		vis[now.x][now.y] = 1;
+//		for (int i = 0; i < 4; i++) {
+//			Point next = now;
+//			next.x += dirx[i];
+//			next.y += diry[i];
+//			next.dir = i;
+//			if (next.x >= 0 && next.x <= r + 1 && next.y >= 0 && next.y <= c + 1 && vis[next.x][next.y] == 0 && m[next.x][next.y] != 1) {
+//				if (next.dir != now.dir) {
+//					next.step += 1;
+//				}
+//				q.push(next);
+//			}
+//
+//		}
+//	}
+//	cout << "Pair " << tot << ": impossible." << endl;
+//}
+//int main() {
+//	while (cin >> c >> r) {
+//		if (r == 0 && c == 0) {
+//			break;
+//		}
+//		tot = 1;
+//		cout << "Board #" << cnt << ":" << endl;
+//		cnt++;
+//		memset(vis, 0, sizeof(vis));
+//		memset(m, 0, sizeof(m));
+//		char temp;
+//
+//		string nonsense;
+//		getline(cin, nonsense);
+//
+//		string line;
+//		for (int i = 1; i <= r; i++) {
+//			getline(cin, line);
+//			//cout << "hhh" << endl;
+//			//cout << line << endl;
+//			for (int j = 0; j < c; j++) {
+//				if (line[j] == 'X') {
+//					m[i][j + 1] = 1;
+//				}
+//				if (line[j] == ' ') {
+//					m[i][j + 1] = 0;
+//				}
+//			}
+//		}
+//		/*for (int i = 1; i <= r; i++) {
+//			for (int j = 1; j <= c; j++) {
+//				cout << m[i][j] << " ";
+//			}
+//			cout << endl;
+//		}*/
+//		while (cin >> sy >> sx >> ey >> ex) {
+//			if (sx == 0 && sy == 0 && ex == 0 && ey == 0) {
+//				break;
+//			}
+//			m[ex][ey] = 0;
+//			bfs();
+//			m[ex][ey] = 1;
+//			tot++;
+//		}
+//	}
+//	//system("pause");
+//	return 0;
+//}
+
+//2018计算机学科夏令营上机考试
+//A:计算两个日期之间的天数  自己写
+//#include<iostream>
+//#include<cstring>
+//using namespace std;
+//int month[20] = { 0,31,28,31,30,31,30,31,31,30,31,30,31 };
+//int month_r[20] = { 0,31,29,31,30,31,30,31,31,30,31,30,31 };
+//int ans = 0;
+//int tot = 0;
+////int flag = 1;
+//int main() {
+//	int sy, sm, sd;
+//	int ey, em, ed;
+//	cin >> sy >> sm >> sd;
+//	cin >> ey >> em >> ed;
+//	for (int i = sy; i <= ey; i++) {
+//
+//		if ((i % 4 == 0 && i % 100 != 0) || i % 400 == 0) {
+//			for (int j = 1; j <= 12; j++) {
+//				if (i == sy && j < sm) {
+//					continue;
+//				}
+//				for (int k = 1; k <= month_r[j]; k++) {
+//
+//					if (i == ey && j == em && k == ed) {
+//						cout << tot;
+//						system("pause");
+//
+//						return 0;
+//					}
+//					if (i == sy && j == sm && k < sd) {//i == sy && j == sm
+//						continue;
+//					}
+//					else {
+//						//flag = 0;
+//						tot++;
+//					}
+//				}
+//			}
+//		}
+//		else {
+//			for (int j = 1; j <= 12; j++) {
+//				if (i == sy && j < sm) {
+//					continue;
+//				}
+//				for (int k = 1; k <= month[j]; k++) {
+//
+//					if (i == ey && j == em && k == ed) {
+//						cout << tot;
+//						system("pause");
+//
+//						return 0;
+//					}
+//					if (i == sy && j == sm && k < sd) {//i == sy && j == sm
+//						continue;
+//					}
+//					else {
+//						//flag = 0;
+//						tot++;
+//					}
+//				}
+//			}
+//		}
+//	}
+//}
+
+//A:计算两个日期之间的天数  网上答案
+//#include<iostream>
+//using namespace std;
+//int bgyear, bgmonth, bgday;
+//int enyear, enmonth, enday;
+//int month[21] = { 0,31,28,31,30,31,30,31,31,30,31,30,31 };//非闰年
+//int rmonth[21] = { 0,31,29,31,30,31,30,31,31,30,31,30,31 };//闰年 
+//int flag = 1;
+//int tot = 0;
+//int main()
+//{
+//	cin >> bgyear >> bgmonth >> bgday;
+//	cin >> enyear >> enmonth >> enday;
+//	for (int i = bgyear; i <= enyear + 1; i++)//寻找年数上的差异 
+//	{
+//		if ((i % 4 == 0 && i % 100 != 0) || (i % 400 == 0))
+//		{
+//			for (int j = 1; j <= 12; j++)
+//			{
+//				if (i == bgyear && j < bgmonth)
+//					continue;//寻找开始月份
+//				for (int k = 1; k <= rmonth[j]; k++)
+//				{
+//					if (i == enyear && j == enmonth && k == enday)
+//					{
+//						cout << tot;
+//						system("pause");
+//						return 0;
+//					}
+//					if (k < bgday&&flag == 1)//寻找开始的那一天
+//						continue;
+//					else
+//					{
+//						flag = 0;
+//						tot++;
+//					}
+//
+//				}
+//
+//			}
+//		}//闰年 
+//		else
+//		{
+//
+//			for (int j = 1; j <= 12; j++)
+//			{
+//				if (i == bgyear && j < bgmonth)
+//					continue;//寻找开始月份
+//				for (int k = 1; k <= month[j]; k++)
+//				{
+//					if (i == enyear && j == enmonth && k == enday)
+//					{
+//						cout << tot;
+//						system("pause");
+//						return 0;
+//					}
+//					if (k < bgday&&flag == 1)
+//						continue;
+//					else
+//					{
+//						flag = 0;
+//						tot++;
+//					}
+//
+//				}
+//
+//			}
+//		}//非闰年 
+//	}
+//	cout << tot;
+//	system("pause");
+//	return 0;
+//}
+
+//B:回文子串  substr的用法 reverse的用法
+//#include<iostream>
+//#include<string>
+//#include<algorithm>
+//#include<cmath>
+//using namespace std;
+//int suc = 0;
+//int main() {
+//	int n;
+//	cin >> n;
+//
+//	for (int cnt = 1; cnt <= n; cnt++) {
+//		string str;
+//		cin >> str;
+//		suc = 0;
+//		int len = str.size();
+//		for (int i = len; i >= 1; i--) {
+//			string temp = "";
+//			for (int j = 0; j < len - i + 1; j++) {
+//				temp = str.substr(j, j + i);
+//				//for (int k = j; k < j + i; k++) {
+//				//	temp += str[k];
+//				//	//cout << i << " " << j << " " << k << " " << temp << endl;
+//				//}
+//				
+//				string temp2 = temp;
+//				reverse(temp.begin(), temp.end());
+//				if (temp == temp2) {
+//					cout << temp2 << endl;
+//					temp = "";
+//					suc = 1;
+//					break;
+//				}
+//				else {
+//					temp = "";
+//					//break;
+//				}
+//			}
+//			if (suc) {
+//				break;
+//
+//			}
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//D:Euro Efficiency  http://bailian.openjudge.cn/practice/1252/
+//#include<iostream>
+//#include<cstring>
+//#include<iomanip>
+//#include<climits>
+//using namespace std;
+//const int maxn = 2000 + 5;
+//int dp[maxn];
+//int m[7];
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	for (int cnt = 1; cnt <= n; cnt++)
+//	{
+//		for (int i = 1; i <= 6; i++)
+//		{
+//			cin >> m[i];
+//		}
+//		for (int i = 1; i<maxn; i++)
+//		{
+//			dp[i] = i;
+//		}
+//		for (int i = 1; i <= 6; i++)
+//		{
+//			for (int j = m[i]; j<maxn; j++)
+//			{
+//				dp[j] = min(dp[j], dp[j - m[i]] + 1);
+//			}
+//
+//		}
+//		for (int i = 1; i <= 6; i++)
+//		{
+//			for (int j = maxn - 1 - m[i]; j >= 1; j--)
+//			{
+//				dp[j] = min(dp[j], dp[j + m[i]] + 1);
+//			}
+//		}
+//		int sum = 0;
+//		int max_v = INT_MIN;
+//		for (int i = 1; i <= 100; i++)
+//		{
+//			sum += dp[i];
+//			max_v = max(max_v, dp[i]);
+//		}
+//		cout << fixed << setprecision(2) << double(sum) / 100.0 << " " << max_v << endl;
+//	}
+//
+//	// system("pause");
+//	return 0;
+//}
+
+
+//2.4基本算法之分治
+//求排列的逆序数  超时 https://blog.csdn.net/mrvector/article/details/81090165
+//#include<iostream>
+//#include<set>
+//#include<iterator>
+//#include<climits>
+//using namespace std;
+//const int maxn = 100010;
+//int m[maxn];
+//long long ans = 0;
+//int main() {
+//	int n;
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> m[i];
+//	}
+//	multiset<int> s;
+//	s.insert(INT_MAX);
+//	
+//	for (int i = n; i >= 1; i--) {
+//		//cin >> temp;
+//		ans += distance(s.begin(), s.lower_bound(m[i]));
+//		s.insert(m[i]);
+//	//	cout << i << " " << ans << endl;
+//	}
+//	cout << ans << endl;
+//	system("pause");
+//		return 0;
+//}
+
+//http://poj.org/problem?id=1258  最小生成树  多组数据
+//#include<iostream>
+//#include<cstring>
+//#include<queue>
+//using namespace std;
+//const int maxn = 110;
+//int vis[maxn];
+//int dis[maxn];
+//long long ans = 0;
+//struct Edge
+//{
+//	int v;
+//	int w;
+//	int next;
+//};
+//Edge edge[10000];
+//int head[10000];
+//int cnt = 0;
+//void add_edge(int u, int v, int w) {
+//	edge[cnt].v = v;
+//	edge[cnt].w = w;
+//	edge[cnt].next = head[u];
+//	head[u] = cnt++;
+//}
+//struct Node
+//{
+//	int id;
+//	int v;
+//	Node() {};
+//	Node(int _id, int _v) :id(_id), v(_v) {};
+//	bool operator<(const Node& a)const {
+//		return v > a.v;
+//	}
+//};
+//priority_queue<Node> q;
+//void prim() {
+//	memset(vis, 0, sizeof(vis));
+//	memset(dis, 0x3f, sizeof(dis));
+//	while (!q.empty()) {
+//		q.pop();
+//	}
+//	dis[1] = 0;//dis[0] = 0; 0不在节点中 这里可以用1-4为起点
+//	q.push(Node(1, dis[1]));
+//	while (!q.empty()) {
+//		int u = q.top().id;
+//		q.pop();//记住pop
+//
+//		if (vis[u]) {
+//			continue;
+//		}
+//		vis[u] = 1;
+//		ans += dis[u];
+//		//cout << ans << endl;
+//		for (int i = head[u]; i != -1; i = edge[i].next) {
+//			int v = edge[i].v;
+//			int w = edge[i].w;
+//			if (vis[v] == 0 && w < dis[v]) {
+//				//cout << "hhh" << endl;
+//				dis[v] = w;
+//				q.push(Node(v, dis[v]));
+//			}
+//		}
+//	}
+//
+//}
+//int main() {
+//	memset(head, -1, sizeof(head));
+//	int n;
+//	cin >> n;
+//	int temp;
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = 1; j <= n; j++) {
+//			if (i == j) {
+//				cin >> temp;
+//				continue;
+//			}
+//			cin >> temp;
+//			add_edge(i, j, temp);
+//			//cout << i << " " << j << " " << temp << endl;
+//		}
+//	}
+//	/*for (int i = head[2]; i != -1; i = edge[i].next) {
+//		cout  << edge[i].v << " " << edge[i].w << endl;
+//	}*/
+//	prim();
+//	cout << ans;
+//	system("pause");
+//	return 0;
+//}
+
+//E：重要逆序对
+//#include<iostream>
+//#include<cstring>
+//using namespace std;
+//const int maxn = 200010;
+//int m[maxn];
+//int temp[maxn];
+//long long ans = 0;
+//int n;
+//void merge(int st, int ed, int mid) {
+//	//memset(temp, 0, sizeof(temp));//可以不要这一行 会超时
+//	int i = st;
+//	int j = mid + 1;
+//	int k = st;
+//	int p = st;
+//	while (i <= mid && j <= ed) {
+//		if (m[i] > m[j]) {
+//			temp[k] = m[j];
+//			while (p <= mid && m[p] <= 2 * m[j]) {
+//				p++;
+//			}
+//			if (p != mid + 1) {
+//				ans += mid - p + 1;
+//				//cout << ans << endl;
+//			}
+//			j++;
+//		}
+//		else {
+//			temp[k] = m[i];
+//			i++;
+//		}
+//		k++;
+//	}
+//	while (i <= mid) {
+//		temp[k++] = m[i++];
+//	}
+//	while (j <= ed) {
+//		temp[k++] = m[j++];
+//	}
+//	for (int i = st; i <= ed; i++) {
+//		m[i] = temp[i];
+//		//cout << temp[i] <<  " ";
+//	}
+//	//cout << endl;
+//}
+//void mergeSort(int st, int ed) {
+//	int mid = (st + ed) / 2;
+//	if (st < ed) {
+//		mergeSort(st, mid);
+//		mergeSort(mid + 1, ed);
+//		merge(st, ed, mid);
+//	}
+//	
+//}
+//int main() {
+//
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		cin>>m[i];
+//	}
+//	mergeSort(0, n - 1);
+//	cout << ans << endl;
+//	system("pause");
+//	return 0;
+//}
+
+//http://poj.org/problem?id=2299 逆序对
+//#include<iostream>
+//#include<cstring>
+//using namespace std;
+//const int maxn = 500010;
+//int m[maxn];
+//int temp[maxn];
+//long long ans = 0;
+//int n;
+//void merge(int st, int ed, int mid) {
+//	//memset(temp, 0, sizeof(temp));//可以不要这一行 会超时
+//	int i = st;
+//	int j = mid + 1;
+//	int k = st;
+//	int p = st;
+//	while (i <= mid && j <= ed) {
+//		if (m[i] > m[j]) {
+//			temp[k] = m[j];
+//
+//			ans += mid - i + 1;
+//			j++;
+//		}
+//		else {
+//			temp[k] = m[i];
+//			i++;
+//		}
+//		k++;
+//	}
+//	while (i <= mid) {
+//		temp[k++] = m[i++];
+//	}
+//	while (j <= ed) {
+//		temp[k++] = m[j++];
+//	}
+//	for (int i = st; i <= ed; i++) {
+//		m[i] = temp[i];
+//		//cout << temp[i] <<  " ";
+//	}
+//	//cout << endl;
+//}
+//void mergeSort(int st, int ed) {
+//	int mid = (st + ed) / 2;
+//	if (st < ed) {
+//		mergeSort(st, mid);
+//		mergeSort(mid + 1, ed);
+//		merge(st, ed, mid);
+//	}
+//
+//}
+//int main() {
+//	while (cin >> n) {
+//		if (n == 0) {
+//			break;
+//		}
+//		memset(m, 0, sizeof(m));
+//		ans = 0;
+//		for (int i = 0; i < n; i++) {
+//			cin >> m[i];
+//		}
+//		mergeSort(0, n - 1);
+//		cout << ans << endl;
+//	}
+//
+//	//system("pause");
+//	return 0;
+//}
+
+//http://poj.org/problem?id=1502  MPI Maelstrom
+//#include<iostream>
+//#include<cstring>
+//#include<queue>
+//#include<string>
+//#include<sstream>
+//#include<algorithm>
+//using namespace std;
+//int num_city;
+//const int maxn = 510;
+//int ans = 0;
+//int vis[maxn];
+//int dis[maxn];
+//struct Edge
+//{
+//	int v;
+//	int w;
+//	int next;
+//};
+//Edge edge[maxn *maxn];
+//int head[maxn];
+//int cnt = 0;
+//void add_edge(int u, int v, int w) {
+//	edge[cnt].v = v;
+//	edge[cnt].w = w;
+//	edge[cnt].next = head[u];
+//	head[u] = cnt++;
+//}
+//struct  Node
+//{
+//	int id;
+//	int v;
+//	Node() {};
+//	Node(int _id, int _v) :id(_id), v(_v) {};
+//	bool operator<(const Node & a)const {
+//		return v > a.v;//注意这里的符号！！！
+//	}
+//};
+//void prime() {
+//	priority_queue<Node> q;
+//	dis[1] = 0;
+//	q.push(Node(1, dis[1]));
+//	while (!q.empty()) {
+//		int u = q.top().id;
+//		q.pop();//不要忘记pop（）
+//		/*if (u == tar) {
+//			return ans;
+//		}*/
+//		if (vis[u]) {
+//			continue;
+//		}
+//		ans += dis[u];
+//
+//		/*ans += dis[u];*/
+//		//cout << u << "	" << ans << endl;
+//		vis[u] = 1;
+//		for (int i = head[u]; i != -1; i = edge[i].next) {
+//			int v = edge[i].v;
+//			int w = edge[i].w;
+//			//if (vis[v] == 0 && w < dis[v]) {
+//			//	dis[v] = w;
+//			//	q.push(Node(v, dis[v]));//这里是加Node(v, dis[v])！！！！
+//			//}
+//
+//			if (vis[v] == 0 && w + dis[u] < dis[v]) {
+//				dis[v] = w + dis[u];
+//				q.push(Node(v, dis[v]));//这里是加Node(v, dis[v])！！！！
+//			}
+//		}
+//	}
+//}
+//int main() {
+//	
+//	while (cin >> num_city) {
+//		
+//		string cost;
+//		/*cin >> cost;
+//		cout << cost << endl;*/
+//		memset(head, -1, sizeof(head));//初始化为-1
+//		memset(vis, 0, sizeof(vis));
+//		memset(dis, 0x3f, sizeof(dis));
+//		cnt = 0;
+//		ans = 0;
+//		for (int i = 2; i <= num_city; i++) {
+//			for (int j = 1; j <= i - 1; j++) {
+//				cin >> cost;
+//				if (cost[0] == 'x') {
+//					continue;
+//				}
+//				else {
+//					stringstream ss(cost);
+//					int a;
+//					ss >> a;
+//					add_edge(i, j, a);
+//					add_edge(j, i, a);
+//				}
+//
+//			}
+//		}
+//		/*for (int i = head[5]; i != -1; i = edge[i].next) {
+//		int v = edge[i].v;
+//		int w = edge[i].w;
+//		cout << i << " " << v << " " << w << endl;
+//		}*/
+//		prime();
+//		int res = 0;
+//		for (int i = 2; i <= num_city; i++) {
+//			res = max(res, dis[i]);
+//		}
+//		//prime();
+//		cout << res << endl;
+//	}
+//	
+//	
+//
+//
+//	//system("pause");
+//	return 0;
+//}
+
+
+//http://poj.org/problem?id=2502
+//#include<iostream>
+//#include<cstring>
+//#include<queue>
+//#include<string>
+//#include<sstream>
+//#include<algorithm>
+//#include<cmath>
+//using namespace std;
+//int num_city;
+//const int maxn = 510;
+//const int INF = 0x3f3f3f3f;
+//double ans = 0;
+//int vis[maxn];
+//double dis[maxn];
+//struct Edge
+//{
+//	int v;
+//	double w;
+//	int next;
+//};
+//Edge edge[maxn *maxn];
+//int head[maxn];
+//int cnt = 0;
+//void add_edge(int u, int v, double w) {
+//	edge[cnt].v = v;
+//	edge[cnt].w = w;
+//	edge[cnt].next = head[u];
+//	head[u] = cnt++;
+//}
+//struct Point
+//{
+//	double x, y;
+//};
+//Point point[210];
+//int tot = 3;
+//struct  Node
+//{
+//	int id;
+//	double v;
+//	Node() {};
+//	Node(int _id, double _v) :id(_id), v(_v) {};
+//	bool operator<(const Node & a)const {
+//		return v > a.v;//注意这里的符号！！！
+//	}
+//};
+//double prime(int tar) {
+//	priority_queue<Node> q;
+//	dis[1] = 0;
+//	q.push(Node(1, dis[1]));
+//	while (!q.empty()) {
+//		int u = q.top().id;
+//		q.pop();//不要忘记pop（）
+//		if (u == tar) {
+//			return dis[tar];
+//		}
+//		if (vis[u]) {
+//			continue;
+//		}
+//		//ans += dis[u];
+//
+//		/*ans += dis[u];*/
+//		//cout << u << "	" << ans << endl;
+//		vis[u] = 1;
+//		for (int i = head[u]; i != -1; i = edge[i].next) {
+//			int v = edge[i].v;
+//			double w = edge[i].w;
+//			//if (vis[v] == 0 && w < dis[v]) {
+//			//	dis[v] = w;
+//			//	q.push(Node(v, dis[v]));//这里是加Node(v, dis[v])！！！！
+//			//}
+//
+//			if (vis[v] == 0 && w + dis[u] < dis[v]) {
+//				dis[v] = w + dis[u];
+//				q.push(Node(v, dis[v]));//这里是加Node(v, dis[v])！！！！
+//			}
+//		}
+//	}
+//}
+//int main() {
+//
+//	
+//	while()
+//	string cost;
+//	memset(head, -1, sizeof(head));//初始化为-1
+//	memset(vis, 0, sizeof(vis));
+//	for (int i = 0; i < maxn; i++) {
+//		dis[i] = INF;
+//	}
+//
+//	cnt = 0;
+//	ans = 0;
+//	double sx, sy, ex, ey;
+//	cin >> sx >> sy >> ex >> ey;
+//	point[1].x = sx;
+//	point[1].y = sy;
+//	point[2].x = ex;
+//	point[2].y = ey;
+//
+//	double len = sqrt((sx - ex)*(sx - ex) + (sy - ey)*(sy - ey));
+//	add_edge(1, 2, len*3.0 / 500.0);
+//	add_edge(2, 1, len*3.0 / 500.0);
+//	double tempx, tempy;
+//	int flag = 1;
+//	while (cin >> tempx >> tempy) {
+//		//cout << tempx << " " << tempy << endl;
+//		if (tempx < 0 && tempy < 0) {
+//			//cout << "hhh" << endl;
+//			flag = 1;
+//			continue;
+//		}
+//		point[tot].x = tempx;
+//		point[tot].y = tempy;
+//		if (!flag) {
+//			len = sqrt((point[tot].x - point[tot - 1].x)*(point[tot].x - point[tot - 1].x) + (point[tot].y - point[tot - 1].y)*(point[tot].y - point[tot - 1].y));
+//			add_edge(tot, tot - 1, len*3.0 / 2000.0);
+//			add_edge(tot - 1, tot, len*3.0 / 2000.0);
+//		}
+//		else {
+//			flag = 0;
+//		}
+//		tot++;
+//	}
+//	for (int i = 1; i <= tot - 1; i++) {
+//		for (int j = i + 1; j <= tot - 1; j++) {
+//			len = sqrt((point[i].x - point[j].x)*(point[i].x - point[j].x) + (point[i].y - point[j].y)*(point[i].y - point[j].y));
+//			add_edge(i, j, len*3.0 / 500.0);
+//			add_edge(j, i, len*3.0 / 500.0);
+//		}
+//	}
+//	ans = prime(2);
+//	
+//
+//	cout << round(ans) << endl;
+//
+//
+//	//system("pause");
+//	return 0;
+//	
+//}
+
+//F:Tram http://poj.org/problem?id=1847
+//#include<iostream>
+//#include<cstring>
+//#include<queue>
+//#include<string>
+//#include<sstream>
+//#include<algorithm>
+//#include<cmath>
+//using namespace std;
+//int num_city, inter, df;
+//const int maxn = 510;
+//const int INF = 0x3f3f3f3f;
+//int ans = 0;
+//int vis[maxn];
+//int dis[maxn];
+//struct Edge
+//{
+//	int v;
+//	double w;
+//	int next;
+//};
+//Edge edge[maxn *maxn];
+//int head[maxn];
+//int cnt = 0;
+//void add_edge(int u, int v, double w) {
+//	edge[cnt].v = v;
+//	edge[cnt].w = w;
+//	edge[cnt].next = head[u];
+//	head[u] = cnt++;
+//}
+//int tot = 3;
+//struct  Node
+//{
+//	int id;
+//	int v;
+//	Node() {};
+//	Node(int _id, double _v) :id(_id), v(_v) {};
+//	bool operator<(const Node & a)const {
+//		return v > a.v;//注意这里的符号！！！
+//	}
+//};
+//int prime(int start, int tar) {
+//	priority_queue<Node> q;
+//	dis[start] = 0;
+//	q.push(Node(start, dis[start]));
+//	while (!q.empty()) {
+//		int u = q.top().id;
+//		q.pop();//不要忘记pop（）
+//		if (u == tar) {
+//			return dis[tar];
+//		}
+//		if (vis[u]) {
+//			continue;
+//		}
+//
+//		vis[u] = 1;
+//		for (int i = head[u]; i != -1; i = edge[i].next) {
+//			int v = edge[i].v;
+//			double w = edge[i].w;
+//			//if (vis[v] == 0 && w < dis[v]) {
+//			//	dis[v] = w;
+//			//	q.push(Node(v, dis[v]));//这里是加Node(v, dis[v])！！！！
+//			//}
+//
+//			if (vis[v] == 0 && w + dis[u] < dis[v]) {
+//				dis[v] = w + dis[u];
+//				q.push(Node(v, dis[v]));//这里是加Node(v, dis[v])！！！！
+//			}
+//		}
+//	}
+//	return -1;
+//}
+//int main() {
+//
+//	memset(head, -1, sizeof(head));//初始化为-1
+//	memset(vis, 0, sizeof(vis));
+//	for (int i = 0; i < maxn; i++) {
+//		dis[i] = INF;
+//	}
+//	int start, tar;
+//	cin >> num_city >> start >> tar;
+//	cnt = 0;
+//	ans = 0;
+//
+//	for (int i = 1; i <= num_city; i++) {
+//		cin >> inter >> df;
+//		add_edge(i, df, 0);
+//		for (int j = 2; j <= inter; j++) {
+//			cin >> df;
+//			add_edge(i, df, 1);
+//		}
+//	}
+//	ans = prime(start, tar);
+//	cout <<ans<< endl;
+//	system("pause");
+//	return 0;
+//
+//}
+
+
+//Risk http://poj.org/problem?id=1603
+//#include<iostream>
+//#include<cstring>
+//#include<algorithm>
+//using namespace std;
+//int n, temp;
+//const int  maxn = 25;
+//int m[maxn][maxn];
+//const int INF = 0x3f3f3f3f;
+//int cnt = 1;
+//void floyd() {
+//	for (int k = 1; k <= 20; k++) {
+//		for (int i = 1; i <= 20; i++) {
+//			if (m[i][k] != INF) {
+//				for (int j = 1; j <= 20; j++) {
+//					m[i][j] = min(m[i][j], m[i][k] + m[k][j]);
+//					//cout<<
+//				}
+//			}
+//		}
+//	}
+//}
+//int main() {
+//	while (cin>>n) {//读到文件末 
+//		memset(m, 0x3f, sizeof(m));
+//		for (int j = 1; j <= n; j++) {//所以要特判第一组
+//			cin >> temp;
+//			m[1][temp] = 1;
+//			m[temp][1] = 1;
+//		}
+//		for (int i = 2; i <= 19; i++) {
+//			cin >> n;
+//			for (int j = 1; j <= n; j++) {
+//				cin >> temp;
+//				m[i][temp] = 1;
+//				m[temp][i] = 1;
+//			}
+//		}
+//		floyd();
+//		int tot;
+//		int st, ed;
+//		cin >> tot;
+//		cout << "Test Set #" << cnt<<endl;
+//		cnt++;
+//		for (int i = 1; i <= tot; i++) {
+//			cin >> st >> ed;
+//			cout << st << " to " << ed << ": " << m[st][ed] << endl;
+//		}
+//		cout << endl;
+//		
+//	}
+//}
+
