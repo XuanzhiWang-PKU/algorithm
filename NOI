@@ -2913,7 +2913,7 @@
 //int main() {
 //	int n;
 //	cin >> n;
-//	//bool flag = true;
+//	bool flag = true;
 //	for (int i = 0; i < n; i++) {
 //		cin >> a;
 //		cin >> b;
@@ -2923,9 +2923,9 @@
 //		else {
 //		cout << endl;
 //		}*/
-//		if (a[0] == 'R'&&b[0] == 'S' || a[0] == 'S'&&b[0] == 'P' || a[0] == 'P'&&b[0] == 'R')
+//		if ((a[0] == 'R'&&b[0] == 'S') || (a[0] == 'S'&&b[0] == 'P') || (a[0] == 'P'&&b[0] == 'R'))
 //			cout << "Player1" << endl;
-//		if (b[0] == 'R'&&a[0] == 'S' || b[0] == 'S'&&a[0] == 'P' || b[0] == 'P'&&a[0] == 'R')
+//		if ((b[0] == 'R'&&a[0] == 'S') ||( b[0] == 'S'&&a[0] == 'P') ||( b[0] == 'P'&&a[0] == 'R'))
 //			cout << "Player2" << endl;
 //		if (a[0] == b[0])
 //			cout << "Tie" << endl;
@@ -6545,10 +6545,10 @@
 //	for (int i = 0; i < n; i++) {
 //		cin >> n1[i];
 //	}
-//	for (int i = 0; i < n; i++) {
+//	for (int i = 0; i < n; i++) {//遍历每个人
 //		min = m1[0];
 //		pos = 0;
-//		for (int j = 1; j < m; j++) {
+//		for (int j = 1; j < m; j++) {//遍历水龙头 找到时间最短的水龙头
 //			if (m1[j] < min) {
 //				min = m1[j];
 //				pos = j;
@@ -6660,7 +6660,7 @@
 //using namespace std;
 //const int maxn = 25;
 //
-//multimap<int,string,greater<int>> m;
+////multimap<int,string,greater<int>> m;
 //struct person {
 //	char name[maxn];
 //	int score;
@@ -12164,7 +12164,7 @@
 //				dp[i][j] = dp[i][j] + dp[i - 1][j] + dp[i - 1][j - m[i]];
 //			}
 //			else {
-//				dp[i][j] = dp[i - 1][j];
+//				dp[i][j] = dp[i][j] + dp[i - 1][j];
 //			}
 //		}
 //	}
@@ -16014,7 +16014,7 @@
 //					continue;
 //				}
 //				else {
-//					stringstream ss(cost);
+//					stringstream ss(cost);//字符串转数字
 //					int a;
 //					ss >> a;
 //					add_edge(i, j, a);
@@ -16339,3 +16339,935 @@
 //	}
 //}
 
+////二叉树 已知前中序  求后序
+//#include<iostream>
+//#include<string>
+//#include<vector>
+//#include<cstring>
+//using namespace std;
+//vector<char> pre, in, post;
+//void build(int la, int ra, int lb, int rb) {//左闭右开 la ra为中序  lb rb为先序
+//	if (la >= ra) {
+//		return;
+//	}
+//	char root = pre[lb];
+//	int pos1, pos2;
+//	pos1 = la;
+//	while (in[pos1] != root) {
+//		pos1++;
+//	}
+//	pos2 = pos1 - la;
+//	build(la, la + pos2, lb + 1, lb + 1 + pos2);
+//	build(la + pos2 + 1, ra, lb + 1 + pos2, rb);
+//	post.push_back(root);
+//}
+//void print() {
+//	for (auto itr = post.begin(); itr != post.end(); itr++) {
+//		cout << *itr;
+//	}
+//}
+//int main() {
+//	string temp_pre, temp_in;
+//	cin >> temp_pre >> temp_in;
+//	for (int i = 0; i < temp_pre.size(); i++) {
+//		pre.push_back(temp_pre[i]);
+//		in.push_back(temp_in[i]);
+//	}
+//	int len = pre.size();
+//	build(0, len, 0, len);
+//	print();
+//	system("pause");
+//	return 0;
+//}
+
+//二叉树 已知后中序  求前序
+//#include<iostream>
+//#include<string>
+//#include<vector>
+//#include<cstring>
+//using namespace std;
+//vector<char> pre, in, post;
+//void build(int la, int ra, int lb, int rb) {//左闭右开 la ra为中序  lb rb为后序
+//	if (la >= ra) {
+//		return;
+//	}
+//	char root = post[rb-1];
+//	int pos1, pos2;
+//	pos1 = la;
+//	while (in[pos1] != root) {
+//		pos1++;
+//	}
+//	pos2 = pos1 - la;
+//	pre.push_back(root);
+//	build(la, la + pos2, lb, lb + pos2);
+//	build(la + pos2 + 1, ra, lb + pos2, rb - 1);
+//}
+//void print() {
+//	for (auto itr = pre.begin(); itr != pre.end(); itr++) {
+//		cout << *itr;
+//	}
+//}
+//int main() {
+//	string temp_post, temp_in;
+//	cin >> temp_post >> temp_in;
+//	for (int i = 0; i < temp_post.size(); i++) {
+//		post.push_back(temp_post[i]);
+//		in.push_back(temp_in[i]);
+//	}
+//	int len = in.size();
+//	build(0, len, 0, len);
+//	print();
+//	system("pause");
+//	return 0;
+//}
+
+//给出一个多叉树（多于二叉）的先序遍历和后序遍历，（每个节点以字符串表示），求该树的深度。
+//#include<iostream>
+//#include<cstring>
+//#include<vector>
+//#include<algorithm>
+//#include<string>
+//using namespace std;
+//const int maxn = 100;
+//int dp[maxn][maxn];
+//int main() {
+//	string pre, post;
+//	cin >> pre >> post;
+//	pre.reserve();
+//	for (int i = 0; i < pre.size(); i++) {
+//		for (int j = 0; j < post.size(); j++) {
+//			if (pre[i] == post[j]) {
+//				dp[i + 1][j + 1] = max(dp[i+1][j+1],dp[i][j] + 1);
+//			}
+//			else {
+//				dp[i + 1][j + 1] = max(dp[i + 1][j], dp[i][j + 1]);
+//			}
+//		}
+//	}
+//	cout << dp[pre.size()][post.size()] << endl;
+//	system("pause");
+//	return 0;
+//}
+
+//Tree Recovery http://poj.org/problem?id=2255
+//#include<iostream>
+//#include<string>
+//#include<vector>
+//#include<cstring>
+//#include<iterator>
+//using namespace std;
+//vector<char> pre, in, post;
+//void build(int la, int ra, int lb, int rb) {//左闭右开 la ra为中序  lb rb为后序
+//	if (la >= ra) {
+//		return;
+//	}
+//	char root = pre[lb];
+////	cout << root << endl;
+//
+//	int pos1, pos2;
+//	pos1 = la;
+//	while (in[pos1] != root) {
+//		pos1++;
+//	}
+//	pos2 = pos1 - la;
+//	//cout << la << " "<<la + pos2 << " " << lb + 1 << " " << lb + 1 + pos2 << endl;
+//	build(la, la + pos2, lb + 1, lb + 1 + pos2);
+//	build(la + pos2 + 1, ra, lb + pos2 + 1, rb);
+//	post.push_back(root);
+//}
+//void print() {
+//	for (vector<char>::iterator itr = post.begin(); itr != post.end(); itr++) {
+//		cout << *itr;
+//	}
+//	cout << endl;
+//}
+//int main() {
+//	string temp_pre, temp_in;
+//	while (cin >> temp_pre >> temp_in) {
+//		pre.clear();
+//		in.clear();
+//		post.clear();
+//		for (int i = 0; i < temp_pre.size(); i++) {
+//			pre.push_back(temp_pre[i]);
+//			in.push_back(temp_in[i]);
+//		}
+//		int len = in.size();
+//		build(0, len, 0, len);
+//		print();
+//	}
+//
+//
+//	//system("pause");
+//	return 0;
+//}
+
+//给出初始单词，终止单词，以及词典，所有单词均为长度相等的小写字母串，求从初始单词变换到终止单词的路径长度。每次变换只允许改变一个字符，且所有中间单词只能是词典中的，若不能做到则输出0。
+//#include<iostream>
+//#include<cstring>
+//#include<string>
+//#include<map>	
+//#include<queue>
+//using namespace std;
+//map<string, int> mp;
+//map<string, int > vis;
+//string st, ed;
+//int ans = 0;
+//struct  Node
+//{
+//	string str;
+//	int step;
+//	Node() {};
+//	Node(string _str, int _step) :str(_str), step(_step) {};
+//};
+//void bfs() {
+//	queue<Node> q;
+//	q.push(Node(st, 1));
+//	while (!q.empty()) {
+//		Node now = q.front();
+//		q.pop();
+//		if (now.str == ed) {
+//			ans = now.step;
+//			return;
+//		}
+//		if (vis[now.str] == 1) {
+//			continue;
+//		}
+//		vis[now.str] == 1;
+//		for (int i = 0; i <= st.length(); i++) {
+//			for (char j = 'a'; j <= 'z'; j++) {
+//				Node next = now;
+//				next.str[i] = j;
+//				if (mp[next.str] == 1 && vis[next.str] == 0) {
+//					next.step += 1;
+//					q.push(next);
+//				}
+//			}
+//		}
+//		
+//	}
+//}
+//int main() {
+//
+//	cin >> st >> ed;
+//	int n;
+//	cin >> n;
+//	string temp;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> temp;
+//		mp[temp] = 1;
+//	}
+//	bfs();
+//	cout << ans << endl;
+//	system("pause");
+//	return 0;
+//}
+
+//Count number of binary strings without consecutive 1’s
+//#include<iostream>
+//#include<cstring>
+//using namespace std;
+//const int maxn = 100;
+//long long dp[maxn][2];//dp[i][0]表示第位是0 dp[i][1]表示第位是1
+//int main() {
+//	int n;
+//	cin >> n;
+//	dp[2][0] = 2;
+//	dp[2][1] = 1;
+//	for (int i = 3; i <= n; i++) {
+//		dp[i][0] = dp[i - 1][0] + dp[i - 1][1];
+//		dp[i][1] = dp[i - 1][0] ;
+//	}
+//	cout << dp[n][0] + dp[n][1] << endl;
+//	system("pause");
+//	return 0;
+//}
+
+
+//法2
+//#include <iostream>
+//#define N 90+5
+//
+//using namespace std;
+//
+//long long dp[N];
+//
+//int main()
+//{
+//	int n;
+//
+//	dp[1] = 2, dp[2] = 3;
+//
+//	cin >> n;
+//
+//	for (int i = 3; i <= n; i++) {
+//		dp[i] = dp[i - 1] + dp[i - 2];
+//	}
+//
+//	cout << dp[n] << endl;
+//	system("pause");
+//	return 0;
+//}
+
+//给定一个二维的矩阵，包含 'X' 和 'O'（字母 O）。找到所有被 'X' 围绕的区域，并将这些区域里所有的 'O' 用 'X' 填充。
+//被围绕的区间不会存在于边界上，换句话说，任何边界上的 'O' 都不会被填充为 'X'。 任何不在边界上，或不与边界上的 'O' 相连的 'O' 最终都会被填充为 'X'。如果两个元素在水平或垂直方向相邻，则称它们是“相连”的。
+//示例:
+//
+//X X X X
+//X O O X
+//X X O X
+//X O X X
+//运行你的函数后，矩阵变为：
+//
+//X X X X
+//X X X X
+//X X X X
+//X O X X
+
+//#include<iostream>
+//#include<cstring>
+//using namespace std;
+//const int maxn = 100;
+//char m[maxn][maxn];
+//int vis[maxn][maxn];
+//int dirx[4] = { 0,0,1,-1 };
+//int diry[4] = { 1,-1,0,0 };
+//int r, c;
+//void dfs(int x, int y) {
+//	for (int i = 0; i < 4; i++) {
+//		int nx = x + dirx[i];
+//		int ny = y + dirx[i];
+//		if (nx >= 1 && nx <= r && ny >= 1 && ny <= c && vis[nx][ny] == 0 && m[nx][ny] == 'O') {
+//			vis[nx][ny] = 1;
+//			dfs(nx, ny);
+//		}
+//	}
+//}
+//int main() {
+//	
+//	cin >> r >> c;
+//	for (int i = 1; i <= r; i++) {
+//		for (int j = 1; j <= c; j++) {
+//			cin >> m[i][j];
+//		}
+//	}
+//	for (int i = 1; i <= r; i++) {
+//		if (m[i][1] == 'O'&&vis[i][1] == 0) {
+//			vis[i][1] = 1;
+//			dfs(i, 1);
+//		}
+//		if (m[i][c] == 'O'&&vis[i][c] == 0) {
+//			vis[i][c] = 1;
+//			dfs(i, c);
+//		}
+//	}
+//	for (int i = 1; i <= c; i++) {
+//		if (m[1][i] == 'O'&&vis[1][i] == 0) {
+//			vis[1][i] = 1;
+//			dfs(1, i);
+//		}
+//		if (m[r][i] == 'O'&&vis[r][i] == 0) {
+//			vis[r][i] = 1;
+//			dfs(r, i);
+//		}
+//	}
+//	for (int i = 1; i <= r; i++) {
+//		for (int j = 1; j <= c; j++) {
+//			if (m[i][j] == 'X') {
+//				cout << "X"<<" ";
+//			}
+//			else {
+//				if (vis[i][j] == 1) {
+//					cout << "O" << " ";
+//				}
+//				else {
+//					cout << "X" << " ";
+//				}
+//			}
+//		}
+//		cout << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//最长上升子序列的加强版 http://poj.org/problem?id=1836
+//#include<iostream>
+//#include<cstring>
+//#include<algorithm>
+//using namespace std;
+//const int maxn = 1010;
+//double m[maxn];
+//int dp1[maxn], dp2[maxn];
+//int main() {
+//	int n;
+//	while (cin >> n) {
+//		memset(dp1, 0, sizeof(dp1));
+//		memset(dp2, 0, sizeof(dp2));
+//		for (int i = 1; i <= n; i++) {
+//			cin >> m[i];
+//		}
+//		for (int i = 1; i <= n; i++) {
+//			dp1[i] = 1;
+//			for (int j = 1; j < i; j++) {
+//				if (m[j] < m[i]) {
+//					dp1[i] = max(dp1[j] + 1, dp1[i]);
+//				}
+//			}
+//		}
+//		for (int i = n; i >= 1; i--) {
+//			dp2[i] = 1;
+//			for (int j = n; j > i; j--) {
+//				if (m[i] > m[j]) {
+//					dp2[i] = max(dp2[j] + 1, dp2[i]);
+//				}
+//			}
+//		}
+//		int ans = 0;
+//		for (int i = 1; i <= n; i++) {
+//			for (int j = i + 1; j <= n; j++) {
+//				ans = max(ans, dp1[i] + dp2[j]);
+//			}
+//		}
+//		//cout << ans << endl;
+//		cout << n - ans << endl;
+//	}
+//
+//	//system("pause");
+//	return 0;
+//}
+
+//多重背包问题 标答  ??
+//#include <iostream>
+//#include <stdio.h>
+//#include<algorithm>
+//#define N 100+5
+//#define B 1000+100
+//const int inf = 123123123;
+//using namespace std;
+//int dp[N][B + 1];
+//int main()
+//{
+//	int T, n, m;
+//	int b, p;
+//	cin >> T;
+//	for (int t = 1; t <= T; t++) {
+//		cin >> n;
+//		for (int i = 0; i <= B; i++)
+//			dp[0][i] = 0;
+//
+//		for (int i = 1; i <= n; i++) {//因为每一个制造商必须选一个商品，因此一开始要初始化为无穷大，
+//									  //使得dp[i][j]至少更新一次
+//			for (int j = 0; j <= B; j++) {
+//				dp[i][j] = inf;
+//			}
+//		}
+//		for (int i = 1; i <= n; i++) {//遍历生产商
+//			cin >> m;
+//			for (int j = 1; j <= m; j++) {//遍历生产商i的商品
+//				cin >> b >> p;//输入该生产商的m个设备
+//				for (int k = 0; k <= B; k++) {//遍历带宽
+//
+//					if (dp[i - 1][k] != inf) {
+//
+//						if (k <= b) {//当前商品的带宽小于给定带宽时
+//							dp[i][k] = min(dp[i][k], dp[i - 1][k] + p);
+//						}
+//						else
+//							dp[i][b] = min(dp[i][b], dp[i - 1][k] + p);
+//					}
+//				}
+//			}
+//		}
+//		double ans = 0;
+//		for (int j = 0; j <= B; j++) {//遍历所有的
+//			if (dp[n][j] != inf) {
+//				ans = max(ans, j*1.0 / dp[n][j]);
+//			}
+//		}
+//		printf("%.3f\n", ans);
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//计算表达式 标答
+/*
+实现中缀表达式的计算求值
+步骤总览:
+中缀表达式->后缀表表达式->利用操作数栈辅助求值
+中缀表达式->后缀表达手：
+step1: 声明符号栈S，从左到右扫描输入的字符串，得到当前字符c
+step2: if c is digit:
+then c加入到后缀表达式的输出中
+step3: if c is '(':
+then c S.push(c)
+step4: if c is ')':
+逐一弹出S中的元素加入到后缀表达式的输出中，知道遇到'('为止，并将其丢弃
+step5: while(c is 操作符)
+if 栈顶为空 或者 S.top为'(' 或者 c的优先级比S.top高
+S.push(c)
+break
+else
+弹出栈顶元素加入到后缀表达式的输出中
+step6: 跳转到step1,直到字符串扫描结束为止
+step7: 如果此时栈S仍不为空,则将栈内的元素逐一弹出,加入到后缀表达式的输出中
+后缀表表达式->利用操作数栈辅助求值：
+维护一个数字栈S
+扫描得到的后缀表达式的字符串
+if(当前字符为数字)
+S.push(当前数字)
+else//当前字符为操作符(这里需要注意运算时操作数的顺序)
+根据操作符运算所需的操作数个数，弹出栈顶元素进行运算
+并将运算的结果压入到栈中
+字符串识别结束后，栈内只有一个元素，即运算的结果。
+*/
+/*
+(3^2/(2+1))-3*(4-5)+2!
+1+2!-3*(4-5)
+1+2*(3-4)-5*6
+*/
+
+//#include <iostream>
+//#include <string>
+//#include <stack>
+//#include <map>
+//using namespace std;
+//stack<char> Op;
+//map<int, int> prior;
+//bool isOp(char c) {
+//	if (c == '-' || c == '+' || c == '*' || c == '/' || c == '^' || c == '!')
+//		return true;
+//	else
+//		return false;
+//}
+//
+//int jiechen(int n) {//阶乘
+//	int x = 1;
+//	for (int i = 1; i <= n; i++) {
+//		x *= i;
+//	}
+//	return x;
+//}
+//
+//int power(int x, int n) {
+//	int ans = 1;
+//	for (int i = 1; i <= n; i++) {
+//		ans *= x;
+//	}
+//	return ans;
+//}
+//
+//int main()
+//{
+//
+//	prior['+'] = 1, prior['-'] = 1, prior['*'] = 2, prior['/'] = 2, prior['^'] = 3, prior['!'] = 4;
+//
+//	string src = "", tar = "";//src为中缀表达式，tar为后缀表达式
+//
+//	cin >> src;
+//	int len = src.size();
+//
+//	//中缀表达式转为后缀表达式
+//	for (int i = 0; i<len; i++) {//扫描输入的字符串
+//		if (src[i] <= '9'&&src[i] >= '0')//当输入为操作数时
+//			tar += src[i];
+//		else if (src[i] == '(')//当输入为左括号时
+//			Op.push(src[i]);
+//		else if (src[i] == ')') {//当输入为右括号时
+//			while (Op.top() != '(') {
+//				tar += Op.top();
+//				Op.pop();
+//			}
+//			Op.pop();
+//		}
+//		while (isOp(src[i])) {//当输入为操作符时
+//			if (Op.size() == 0 || Op.top() == '(' || prior[Op.top()]<prior[src[i]]) {
+//				Op.push(src[i]);
+//				break;
+//			}
+//			else {
+//				tar += Op.top();
+//				Op.pop();
+//			}
+//		}
+//	}
+//	while (Op.size() != 0) {//当输入结束时，如果栈内还有元素的话
+//		tar += Op.top();
+//		Op.pop();
+//	}
+//	cout << tar << endl;
+//
+//	//后缀表达式求值
+//	int lentar = tar.size();
+//
+//	stack<int> Num;
+//	for (int i = 0; i<lentar; i++) {
+//		if (tar[i] <= '9'&&tar[i] >= '0') {
+//			Num.push(tar[i] - '0');
+//		}
+//		else {
+//			int num1, num2;
+//			if (tar[i] == '+') {
+//				num1 = Num.top(), Num.pop();
+//				num2 = Num.top(), Num.pop();
+//				Num.push(num1 + num2);
+//			}
+//			else if (tar[i] == '-') {//注意操作数的运算顺序
+//				num1 = Num.top(), Num.pop();
+//				num2 = Num.top(), Num.pop();
+//				Num.push(num2 - num1);
+//			}
+//			else if (tar[i] == '*') {
+//				num1 = Num.top(), Num.pop();
+//				num2 = Num.top(), Num.pop();
+//				Num.push(num1*num2);
+//			}
+//			else if (tar[i] == '/') {//注意操作数的运算顺序
+//				num1 = Num.top(), Num.pop();
+//				num2 = Num.top(), Num.pop();
+//				Num.push(num2 / num1);
+//			}
+//			else if (tar[i] == '^') {//注意操作数的运算顺序
+//				num1 = Num.top(), Num.pop();
+//				num2 = Num.top(), Num.pop();
+//				Num.push(power(num2, num1));
+//			}
+//			else if (tar[i] == '!') {//注意操作数的运算顺序
+//				num1 = Num.top(), Num.pop();
+//				Num.push(jiechen(num1));
+//			}
+//		}
+//	}
+//	cout << Num.size() << endl;
+//	cout << "The result is:" << Num.top() << endl;
+//	system("pause");
+//	return 0;
+//}
+
+
+//求树上最长的路径长度 Roads in the North  http://poj.org/problem?id=2631 
+/*
+5 1 6
+1 4 5
+6 3 9
+2 6 8
+6 1 7
+0 0 0
+*/
+//#include<iostream>
+//#include<queue>
+//#include<string>
+//#include<sstream>
+//#include<cstring>
+//#include<algorithm>
+//using namespace std;
+//const int maxn = 10010;
+//int m[maxn][maxn];
+//int vis[maxn];
+//int dis[maxn];
+//int ans = 0, max_ans = 0;
+//int temp_id;
+//struct Edge
+//{
+//	int v;
+//	int w;
+//	int next;
+//};
+//
+//Edge edge[maxn*maxn];
+//int head[maxn];
+//int cnt = 0;
+//
+//void add_edge(int u, int v, int w) {
+//	edge[cnt].v = v;
+//	edge[cnt].w = w;
+//	edge[cnt].next = head[u];
+//	head[u] = cnt++;//cnt初值是0
+//}
+//
+//struct Node
+//{
+//	int id;//x
+//	int v;//dix[x]
+//	Node() {};
+//	Node(int _id, int _v) :id(_id), v(_v) {};
+//	bool operator<(const Node& a)const {
+//		return v > a.v;//从大到小排序
+//	}
+//};
+//
+//priority_queue<Node> q;
+//void bfs(int st) {
+//	max_ans = 0;
+//	memset(vis, 0, sizeof(vis));
+//	memset(dis, 0, sizeof(dis));//因为这里求最大值 所以初值设成最小值
+//	while (!q.empty()) {
+//		q.pop();
+//	}
+//	dis[st] = 0;
+//
+//	q.push(Node(st, dis[st]));
+//	while (!q.empty()) {
+//		int u = q.top().id;
+//		q.pop();
+//		if (vis[u] == 1) {
+//			continue;
+//		}
+//
+//		if (dis[u] > max_ans) {
+//			max_ans = dis[u];
+//			temp_id = u;
+//		}
+//
+//		//cout << ans << endl;
+//		vis[u] = 1;
+//		//cout << u << " " << max_ans << endl;
+//
+//		for (int i = head[u]; i != -1; i = edge[i].next) {
+//			int v = edge[i].v;
+//			int w = edge[i].w;
+//			if (vis[v] == 0 && dis[v] < dis[u] + w) {
+//				dis[v] = dis[u] + w;
+//				q.push(Node(v, dis[v]));
+//			}
+//		}
+//	}
+//}
+//int main() {
+//	//memset(m, 0, sizeof(m));
+//	memset(head, -1, sizeof(head));
+//
+//	cnt = 0;
+//	int st, ed, len;
+//	while (cin >> st >> ed >> len) {
+//		add_edge(st, ed, len);
+//		add_edge(ed, st, len);
+//	}
+//	/*for (int i = head[1]; i != -1; i = edge[i].next) {
+//		int v = edge[i].v;
+//		int w = edge[i].w;
+//		cout << v << " " << w << endl;
+//	}*/
+//
+//	bfs(1);
+//	//cout << "temp_id" << temp_id << endl;
+//	bfs(temp_id);
+//	cout << max_ans << endl;
+//	system("pause");
+//	return 0;
+//}
+
+//给定一个n层的满二叉树，不存在的结点用-1表示，同时给定一个sum，问从根结点到达叶节点有哪些路径使得点权和刚好为sum。从左到右输出所有满足条件的路径。
+//#include <iostream>
+//#include <queue>
+//#include <stack>
+//#define N 1000+5
+//using namespace std;
+//int loc;
+//int n, sum;
+//void init() {
+//	loc = 0;
+//}
+//int A[N];
+//struct TreeNode {
+//	int data;
+//	TreeNode* lchild;
+//	TreeNode* rchild;
+//}Tree[N];
+//
+//TreeNode* create() {
+//	Tree[loc].lchild = Tree[loc].rchild = NULL;
+//	return &Tree[loc++];
+//}
+//queue<TreeNode*> Que;
+//stack<int> S, Stmp;
+//vector<int> res;
+//void dfs(TreeNode* T, int curSum) {
+//	S.push(T->data);
+//	curSum += T->data;
+//	if (T->lchild == NULL && T->rchild == NULL && curSum == sum) {
+//		res.clear();
+//		Stmp = S;
+//		while (!Stmp.empty()) {
+//			res.push_back(Stmp.top());
+//			Stmp.pop();
+//		}
+//		for (int i = res.size() - 1; i >= 0; i--) {
+//			cout << res[i] << " ";
+//		}
+//		cout << endl;
+//	}
+//	if (T->lchild != NULL)
+//		dfs(T->lchild, curSum);
+//	if (T->rchild != NULL)
+//		dfs(T->rchild, curSum);
+//	curSum -= T->data;
+//	S.pop();
+//}
+//int main()
+//{
+//	while (~scanf("%d%d", &n, &sum)) {
+//
+//		for (int i = 0; i < n; i++)
+//			cin >> A[i];
+//
+//		while (!Que.empty())
+//			Que.pop();
+//		while (!S.empty())
+//			S.pop();
+//		TreeNode* T = create();
+//		T->data = A[0];
+//		Que.push(T);
+//		int pos = 0;
+//		while (!Que.empty()) {//层次遍历建树
+//			TreeNode* tmp = Que.front();
+//			Que.pop();
+//			if (pos < n&&A[++pos] != -1) {
+//				TreeNode* lt = create();
+//				lt->data = A[pos];
+//				tmp->lchild = lt;
+//				Que.push(lt);
+//			}
+//			if (pos < n&&A[++pos] != -1) {
+//				TreeNode* rt = create();
+//				rt->data = A[pos];
+//				tmp->rchild = rt;
+//				Que.push(rt);
+//			}
+//		}
+//		dfs(T, 0);
+//	}
+//	return 0;
+//}
+
+
+//给定由IF，THEN，ELSE，BEGIN，END构成的一组语句，判断该语句的嵌套结构是否符合语法规范
+//#include <iostream>
+//#include <string>
+//#include <sstream>
+//#include <stack>
+//
+//using namespace std;
+//
+//const int N = 1000 + 5;
+//
+//string Token, TokenSet[N], src;
+//stack<string> S1, S2;//其中S2专门用来判断ELSE是否合法,当IF-THEN匹配完之后把THEN压入到S2中，
+//					 //只有当S2不为空时才能匹配ELSE。
+//
+//bool Syntax(int len) {
+//	while (!S1.empty())S1.pop();
+//	while (!S2.empty())S2.pop();
+//	for (int i = 0; i<len; i++) {
+//		if (TokenSet[i] == "IF") {
+//			S1.push(TokenSet[i]);
+//		}
+//		else if (TokenSet[i] == "THEN") {
+//			if (!S1.empty() && S1.top() == "IF") {
+//				S2.push(TokenSet[i]);
+//				S1.pop();
+//			}
+//			else {
+//				cout << "No Matching Token 'THEN'" << endl;
+//				return false;
+//			}
+//		}
+//		else if (TokenSet[i] == "ELSE") {
+//			if (!S2.empty() && S2.top() == "THEN") {
+//				S2.pop();
+//			}
+//			else {
+//				cout << "No Matching Token 'ELSE'" << endl;
+//				return false;
+//			}
+//		}
+//		else if (TokenSet[i] == "BEGIN") {
+//			S1.push(TokenSet[i]);
+//		}
+//		else if (TokenSet[i] == "END") {
+//
+//			if (!S1.empty() && S1.top() == "BEGIN") {
+//				S1.pop();
+//			}
+//			else {
+//				cout << "No Matching Token 'END'" << endl;
+//				return false;
+//			}
+//		}
+//		else {
+//			cout << "invalid token!" << endl;
+//			return false;
+//		}
+//
+//	}
+//
+//	if (!S1.empty())
+//		return false;
+//
+//	return true;
+//}
+//
+//int main()
+//{
+//	int cnt;
+//	while (cin >> src) {
+//		cnt = 0;
+//		stringstream ss(src);
+//
+//		while (getline(ss, Token, ',')) {
+//			TokenSet[cnt++] = Token;
+//		}
+//
+//		if (Syntax(cnt)) {
+//			cout << "Yes!" << endl;
+//		}
+//		else {
+//			cout << "No!" << endl;
+//		}
+//
+//	}
+//	return 0;
+//}
+
+
+//给定一组数，问从给定的数组中选取3个数作为三角形的不同边，一共有多少中符合条件的选法
+//#include <iostream>
+//#include <algorithm>
+//#define N 100+5
+//using namespace std;
+//int A[N];
+//int solve(int n) {
+//	int ans = 0;
+//	for (int i = 0; i < n; i++) {//最小边下标
+//		for (int j = i + 2; j < n; j++) {//最大边下标 所以要从+2开始遍历
+//			int low = A[j] - A[i];
+//			int hig = A[j] + A[i];
+//			int lb = upper_bound(A, A + n, low) - A;
+//			lb = max(i + 1, lb);
+//			int rb = lower_bound(A, A + n, hig) - A;
+//			rb = min(j - 1, rb - 1);
+//			if (rb >= lb) {
+//				ans += rb - lb + 1;
+//			}
+//			cout << i << " " << j << " " << low << " " << hig << " " << lb << " " << rb << " " << ans << endl;
+//		}
+//	}
+//	return ans;
+//}
+//
+//int main()
+//{
+//	int n;
+//	while (~scanf_s("%d", &n)) {
+//		for (int i = 0; i < n; i++)
+//			cin >> A[i];
+//		sort(A, A + n);
+//		cout << solve(n) << endl;
+//	}
+//
+//	/*int m[5] = { 1,2,3,4,5 };
+//	int pos = lower_bound(m, m + 5, 10) - m;
+//	cout << pos << "hhh" << endl;*/
+//	system("pause");
+//	return 0;
+//}
