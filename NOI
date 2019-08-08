@@ -7430,6 +7430,1165 @@
 //	return 0;
 //}
 
+
+//1.13编程基础之综合应用
+//数制转换  8分-n有可能为0 9分-大于10的数字转化成了错误的字母
+//#include<iostream>
+//#include<string>
+//#include<cstring>
+//#include<algorithm>
+//#include<cmath>
+//using namespace std;
+//const int maxn = 10000000;
+//int temp[maxn];
+//int main() {
+//	long long a, b;
+//	string n;
+//	cin >> a >> n >> b;
+//	int len = n.length();
+//	long long ten = 0;
+//	for (int i = 0; i <len; i++) {
+//		if (isdigit(n[i])) {
+//			temp[i] = n[i] - '0';
+//		}
+//		else {
+//			temp[i] = toupper(n[i]) - 'A' + 10;
+//		}
+//		ten = temp[i] + ten * a;
+//		//cout << ten << endl;
+//	}
+//	//cout << ten << endl;
+//	string res = "";
+//	if (ten == 0) {
+//		res = "0";
+//	}
+//	while (ten!= 0) {
+//		long long yu = ten % b;
+//		ten = ten / b;
+//		if (yu > 9) {
+//			char ch =  char(yu - 10 + 'A');//要先减去10
+//			//cout << "hhhh " << ch << endl;
+//			res += ch;
+//		}
+//		else {
+//			char ch = yu+'0';
+//			//cout << "hhhh " << ch << endl;
+//
+//			res += ch;
+//		}
+//		//res += yu;
+//		//cout << yu <<" "<<res<<" "<<ten<< endl;
+//	}
+//	reverse(res.begin(), res.end());
+//	cout << res << endl;
+//	system("pause");
+//	return 0;
+//}
+
+
+//不吉利日期  网上标答  方法很巧妙
+//#include <iostream>
+//using namespace std;
+//const int DAYS = 7;
+//const int N = 13;
+//enum DAY { MON = 1, TUE, WED, THU, FRI, SAT, SUN };
+//int days[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+//
+//int main()
+//{
+//	int w, day;
+//
+//	cin >> w;
+//
+//	for (int i = 1; i <= 12; i++) {
+//		day = (w - 1 + N) % DAYS;
+//		if (day == FRI)
+//			cout << i << endl;
+//
+//		w = (w + days[i - 1]) % DAYS;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//不吉利日期
+//#include<iostream>
+//using namespace std;
+//int month[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
+//int main() {
+//	int w;
+//	cin >> w;
+//	for (int i = 1; i <= 12; i++) {
+//		int now = (w - 1 + 13) % 7;
+//		if (now == 5) {
+//			cout << i << endl;
+//		}
+//		w = (w + month[i - 1]) % 7;//这里w不用-1
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//八进制小数
+//#include<iostream>
+//#include<stdio.h>
+//#include<string>
+//using namespace std;
+//int main() {
+//	char nonsense;
+//	cin >> nonsense >> nonsense;
+//	string str;
+//	cin >> str;
+//	int len = str.length();
+//	//cout << str << endl;
+//	double ans = 0.0;
+//	for (int i = len - 1; i >= 0; i--) {
+//		ans = ans * 0.125 + (str[i] - '0')*0.125;
+//		//cout << str[i] << " " << ans * 0.125 << " " << ans << endl;
+//	}
+//	cout << "0." << str << " [8] = ";
+//	printf("%.45g", ans);//3*15 = 45位  g表示去掉末尾多余的0
+//	cout << " [10]" << endl;
+//	//system("pause");//必须注释掉 不然过不了
+//	return 0;
+//}
+
+//垂直直方图
+//#include<iostream>
+//#include<string>
+//#include<sstream>
+//#include<cstring>
+//#include<cmath>
+//#include<algorithm>
+//using namespace std;
+//const int maxn = 350;
+//char res[maxn][26];
+//int m[26];
+//int main() {
+//	memset(m, 0, sizeof(m));
+//	memset(res, 0, sizeof(res));
+//	string line;
+//	int mx = 0;
+//	for (int k = 0; k < 4; k++) {
+//		getline(cin, line);
+//		stringstream ss(line);
+//		char temp;
+//		while (ss >> temp) {
+//			//cout << temp << endl;
+//			if (temp >= 'A'&&temp <= 'Z') {
+//				m[temp - 'A'] = m[temp - 'A'] + 1;
+//				mx = max(mx, m[temp - 'A']);
+//			}
+//		}
+//	}
+//	//cout << mx << endl;
+//	for (int i = 0; i < 26; i++) {
+//
+//		for (int j = 0; j < mx - m[i]; j++) {
+//			res[j][i] = ' ';
+//		}
+//		for (int j = mx - m[i]; j <= mx; j++) {
+//			res[j][i] = '*';
+//		}
+//	}
+//
+//
+//	int flag = 1;
+//	for (int i = 0; i < mx; i++) {
+//		flag = 1;
+//		for (int j = 0; j < 26; j++) {
+//			if (flag) {
+//				cout << res[i][j];
+//				flag = 0;
+//			}
+//			else {
+//				cout << " " << res[i][j];
+//			}
+//		}
+//		cout << endl;
+//	}
+//	cout << 'A';
+//	for (int i = 1; i < 26; i++) {
+//		cout << " " << char('A' + i);
+//	}
+//	cout << endl;
+//	system("pause");
+//	return 0;
+//}
+
+//素数回文数的个数
+//#include<iostream>
+//#include<string>
+//#include<sstream>
+//using namespace std;
+//int main() {
+//	int n;
+//	cin >> n;
+//	int res = 0;
+//	for (int cnt = 11; cnt <= n; cnt = cnt + 2) {
+//		int suc = 1;
+//		for (int i = 3; i*i <= cnt; i = i+2) {
+//			if (cnt%i == 0) {
+//				suc = 0;
+//				break;
+//			}
+//		}
+//		if (suc) {
+//			
+//			stringstream ss;
+//			string str;
+//			ss << cnt;
+//			ss >> str;
+//
+//			int len = str.length();
+//			int flag = 1;
+//			for (int i = 0, j = len - 1; i <= j; i++, j--) {
+//				if (str[i] != str[j]) {
+//					flag = 0;
+//					break;
+//
+//				}
+//			}
+//			if (flag) res++;
+//			//cout << str << " " << res << endl;
+//
+//		}
+//		
+//	}
+//	cout << res << endl;
+//	system("pause");
+//	return 0;
+//}
+
+//循环数
+//#include<cstdio>
+//#include<iostream>
+//#include<set>
+//#include<cstring>
+//#include<string>
+//using namespace std;
+//const int maxn = 70;
+//int res[maxn];
+//int main()
+//{
+//	memset(res, 0, sizeof(res));
+//	string str;
+//	cin >> str;
+//	int len = str.length();
+//	int flag = 1;
+//	for (int i = 0; i < len / 2; i++) {
+//		//cout << str[i] << " " << str[len / 2 + i] << endl;
+//		if (str[i] + str[len / 2 + i] - 2 * '0' != 9) {
+//			flag = 0;
+//			break;
+//		}
+//	}
+//	if (flag == 0) {
+//		cout << 0 << endl;
+//		system("pause");
+//		return 0;
+//	}
+//	int index = 0;
+//	for (int i = len - 1; i >= 0; i--) {
+//		res[index] = res[index] + ((str[i] - '0') * (len + 1));
+//		//cout << index << " " << res[index] << endl;
+//		res[index + 1] = res[index] / 10;
+//		res[index] = res[index] % 10;
+//		//cout << index << " " << res[index] << endl;
+//
+//		index++;
+//	}
+//	res[index ] = res[index-1] / 10;
+//	res[index-1] = res[index-1] % 10;
+//	if (res[index] != 0) {
+//		cout << 0 << endl;
+//		system("pause");
+//		return 0;
+//	}
+//	for (int i = 0; i < len; i++) {
+//		if (res[i] != 9) {
+//			cout << 0 << endl;
+//			system("pause");
+//			return 0;
+//		}
+//	}
+//	cout << 1 << endl;
+//	system("pause");
+//	return 0;
+//}
+
+
+//玛雅历 网上答案
+//#include<iostream>
+//#include<string>
+//using namespace std;
+//string Haab_Month[] = { "pop", "no", "zip", "zotz", "tzec", "xul", "yoxkin", "mol", "chen", "yax", "zac", "ceh", "mac", "kankin", "muan", "pax", "koyab", "cumhu", "uayet" };
+//string Holly_Month[] = { "imix", "ik", "akbal", "kan", "chicchan", "cimi", "manik", "lamat", "muluk", "ok", "chuen", "eb", "ben", "ix", "mem", "cib", "caban", "eznab", "canac", "ahau" };
+//int main()
+//{
+//	int n, day, year;
+//	string month;
+//	cin >> n;
+//	cout << n << endl;
+//	while (n--)
+//	{
+//		scanf_s("%d.", &day);
+//		cin >> month >> year;
+//		int i, sum = 0;
+//		for (i = 0; i < 19; i++)
+//		{
+//			if (Haab_Month[i] == month)
+//				break;
+//		}
+//		sum = (year * 365) + (i * 20) + day;
+//		//cout << "hhh " << sum << endl;
+//
+//		year = sum / 260;
+//		//数字和单词各自独立循环使用
+//		//数字周期是13 时期的周期是20 
+//		month = Holly_Month[sum % 20];
+//		day = sum % 13 + 1;
+//		cout << day << " " << month << " " << year << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//玛雅历  自己写的
+//#include<iostream>
+//#include<string>
+//#include<cstring>
+//using namespace std;
+//string Haab_Month[19] = { "pop", "no", "zip", "zotz", "tzec", "xul", "yoxkin", "mol", "chen", "yax", "zac", "ceh", "mac", "kankin", "muan", "pax", "koyab", "cumhu", "uayet" };
+//string Holly_Month[20] = { "imix", "ik", "akbal", "kan", "chicchan", "cimi", "manik", "lamat", "muluk", "ok", "chuen", "eb", "ben", "ix", "mem", "cib", "caban", "eznab", "canac", "ahau" };
+//int main() {
+//	int n;
+//	cin >> n;
+//	cout << n << endl;
+//	for (int cnt = 0; cnt < n; cnt++) {
+//		int day, year;
+//		string month;
+//		char nonsense;
+//		cin >> day >> nonsense >> month >> year;
+//		int i;
+//		for (i = 0; i < 19; i++) {
+//			if (month == Haab_Month[i]) {
+//				break;
+//			}
+//		}
+//		int sum = year * 365 + i * 20 + day;//i要比正常的下标少1
+//		//cout << sum << endl;
+//		year = sum / 260;
+//		month = Holly_Month[sum % 20];//月份的下标范围是0-19 刚好对应
+//		day = sum % 13 + 1;
+//		cout << day << " " << month << " " << year << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//特殊日历计算 网上答案
+//#include <stdio.h>
+//int mon[2][13] = { 0,0,31,59,90,120,151,181,212,243,273,304,334,
+//0,0,31,60,91,121,152,182,213,244,274,305,335 };
+//int year_day(int year)
+//{
+//	if ((!(year % 4) && (year % 100)) || (!(year % 400))) return 1;
+//	return 0;
+//}
+//int main()
+//{
+//	int n, hour, minute, second, day, month, year, mhour, mmin, msec, mday, mmonth, myear, i;
+//	scanf("%d", &n);
+//	while (n--)
+//	{
+//		scanf("%d:%d:%d %d.%d.%d", &hour, &minute, &second, &day, &month, &year);
+//		int lun = (year - 2000) / 400;
+//		for (i = 0; i < lun; i++)
+//			day += 146097;//400年里有97个闰年  97+365*400
+//		year = (year - 2000) % 400;
+//		for (i = 0; i < year; i++)
+//			day += year_day(i) + 365;
+//		day += mon[year_day(year)][month];//只加month之前的整月的天数
+//		day--;
+//		second += minute * 60 + hour * 3600;
+//		//有一种特殊的日历法，它的一天和我们现在用的日历法的一天是一样长的
+//		second *= 1000;
+//		second /= 864;
+//
+//		myear = day / 1000;
+//		day %= 1000;
+//		mmonth = day / 100 + 1;
+//		mday = (day % 100) + 1;
+//		mhour = second / 10000;
+//		second %= 10000;
+//		mmin = second / 100;
+//		msec = second % 100;
+//		printf("%d:%d:%d %d.%d.%d\n", mhour, mmin, msec, mday, mmonth, myear);
+//	}
+//	return 0;
+//}
+
+//特殊日历计算 自己写
+//#include<iostream>
+//using namespace std;
+//int mon_day[2][13] = {
+//	0,0,31,59,90,120,151,181,212,243,273,304,334,
+//	0,0,31,60,91,121,152,182,213,244,274,305,335
+//};
+//int isRun(int x) {
+//	if ((x % 4 == 0 && x % 100 != 0) || x % 400 == 0) {
+//		return 1;
+//	}
+//	return 0;
+//}
+//int main() {
+//	int n;
+//	cin >> n;
+//	for (int cnt = 0; cnt < n; cnt++) {
+//		int h, m, s, year, month, day;
+//		char nonsense;
+//		cin >> h >> nonsense >> m >> nonsense >> s >> day >> nonsense >> month >> nonsense >> year;
+//		year = year - 2000;
+//		int sum = 0;
+//		for (int i = 0; i < year; i++) {
+//			sum = sum + isRun(i) + 365;
+//		}
+//		//cout << sum << endl;
+//
+//		sum = sum + mon_day[isRun(year)][month] + day;
+//		sum--;//这里要减1 因为起始天数为1 但是实际上过了0天
+//		//cout << "sum " << sum << endl;
+//		int sec = h * 3600 + m * 60 + s;
+//		sec = sec * 1000 / 864;
+//
+//		int myyear = sum / 1000;
+//		sum = sum % 1000;
+//		int mymonth = sum / 100 + 1;//从1开始计数
+//		int myday = sum % 100 + 1;//从1开始计数
+//
+//		int myhour = sec / 10000;
+//		sec = sec % 10000;
+//		int mymin = sec / 100;
+//		sec = sec % 100;
+//		int mysec = sec;
+//		cout << myhour << ":" << mymin << ":" << mysec << " " << myday << "." << mymonth << "." << myyear << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//大整数乘法 网上答案
+//#include<iostream>
+//#include<string>
+//#include<cstring>
+//using namespace std;
+//int main() {
+//	string a;
+//	string b;
+//	int aa[201];
+//	int bb[201];
+//	int mul[410];
+//	memset(aa, 0, sizeof(aa));
+//	memset(bb, 0, sizeof(bb));
+//	memset(mul, 0, sizeof(mul));
+//	cin >> a >> b;
+//	int i, j;
+//	int lena = a.length();
+//	int lenb = b.length();
+//
+//	j = 0;
+//	for (i = lena - 1; i >= 0; i--) {
+//		aa[j++] = a[i] - '0';
+//	}
+//	j = 0;
+//	for (i = lenb - 1; i >= 0; i--) {
+//		bb[j++] = b[i] - '0';
+//	}
+//	for (i = 0; i < lena; i++) {
+//		for (j = 0; j < lenb; j++) {
+//			mul[i + j] += aa[i] * bb[j];//记住这里
+//		}
+//	}
+//	for (i = 0; i < 410; i++) {
+//		if (mul[i] >= 10) {
+//			int re = mul[i] / 10;
+//			mul[i] %= 10;
+//			mul[i + 1] += re;
+//		}
+//	}
+//	bool f = false;
+//	for (i = 409; i >= 0; i--)
+//	{
+//		if (mul[i] != 0) {
+//			f = true;
+//		}
+//		if (f) {
+//			printf("%d", mul[i]);
+//		}
+//	}
+//	if (!f) {
+//		printf("0");
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//大整数乘法
+//#include<iostream>
+//#include<string>
+//#include<cstring>
+//#include<algorithm>
+//using namespace std;
+//const int maxn = 40010;
+//long long res[maxn];//要改成longlong 
+//int main() {
+//	memset(res, 0, sizeof(res));
+//	string a;
+//	string b;
+//	cin >> a >> b;
+//	reverse(a.begin(), a.end());
+//	reverse(b.begin(), b.end());
+//	//cout << a << " " << b << endl;
+//	int i, j;
+//	for (i = 0; i < a.size(); i++) {
+//		for (j = 0; j < b.size(); j++) {
+//			res[i + j] += (a[i] - '0') * (b[j] - '0');
+//			if (res[i + j] >= 10) {
+//				res[i + j + 1] += res[i + j] / 10;
+//				res[i + j] = res[i + j] % 10;
+//			}
+//			
+//
+//		}
+//	}
+//	
+//	int flag = 0;
+//	for (int k = i * j; k >= 0; k--) {
+//		if (flag) {
+//			cout << res[k];
+//			continue;
+//		}
+//		if (res[k] != 0) {
+//			flag = 1;
+//			cout << res[k];
+//		}
+//	}
+//	if (a == "0" || b == "0") {
+//		cout << 0;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//判决素数个数  
+//#include<iostream>
+//#include<cmath>
+//#include<algorithm>
+//using namespace std;
+//int solve(int x) {
+//	if (x == 1) {
+//		return 0;
+//	}
+//	for (int i = 2; i <= sqrt(x); i++) {
+//		if (x%i == 0) {
+//			return 0;
+//		}
+//	}
+//	//cout << x << endl;
+//	return 1;
+//}
+//int main() {
+//	int x, y;
+//	cin >> x >> y;
+//	int cnt = 0;
+//	if (x > y) {
+//		swap(x, y);
+//	}
+//	for (int i = x; i <= y; i++) {
+//		cnt += solve(i);
+//	}
+//	cout << cnt;
+//	system("pause");
+//	return 0;
+//}
+
+//回文素数 网上答案
+//#include <iostream>
+//#include <cmath>
+//#include <vector>
+//#include <set>
+//#include <time.h>
+//#include<algorithm>
+//#include <string>
+//using namespace std;
+//const int limits = 100000;
+//vector<int>primenum(1, 2);
+//
+//bool PrimeJudge(int n);
+//int main() {
+//	int n;
+//	cin >> n;
+//	for (int i = 3; i <= limits; i += 2) {//find the prime number which is less than limits
+//		bool flag = true;
+//		for (int j = 0; j < primenum.size() && primenum[j] <= sqrt(i); j++) {
+//			//cout << primenum.size() << endl;
+//			if (i%primenum[j] == 0) {
+//				flag = false;
+//				break;
+//			}
+//		}
+//		if (flag) {
+//			//cout << i << endl;
+//			primenum.push_back(i);
+//		}
+//	}
+//	set<int>dst;
+//	if (n == 1) {
+//		for (int i = 2; i < 10; i++) {
+//			if (PrimeJudge(i))
+//				dst.insert(i);
+//		}
+//	}
+//	else
+//		for (int i = pow(10, n / 2 - 1); i < pow(10, n / 2); i++) {
+//			int palindrome;
+//			if (n % 2 == 0) {
+//				string temp = to_string(i);
+//				reverse(temp.begin(), temp.end());
+//				/*int l = 0, r = (int)temp.size() - 1;
+//				while (l < r) {
+//					swap(temp[l], temp[r]);
+//					l++;
+//					r--;
+//				}*/
+//				palindrome = stoi(to_string(i) + temp);
+//				if (PrimeJudge(palindrome))
+//					dst.insert(palindrome);
+//			}
+//			else {
+//				for (int mid = 0; mid <= 9; mid++) {
+//					string temp = to_string(i);
+//					reverse(temp.begin(), temp.end());
+//					/*int l = 0, r = (int)temp.size() - 1;
+//					while (l < r) {
+//						swap(temp[l], temp[r]);
+//						l++;
+//						r--;
+//					}*/
+//					palindrome = stoi(to_string(i) + to_string(mid) + temp);
+//					if (PrimeJudge(palindrome))
+//						dst.insert(palindrome);
+//				}
+//			}
+//		}
+//	cout << dst.size() << endl;
+//	while (!dst.empty()) {
+//		cout << *dst.begin();
+//		dst.erase(dst.begin());
+//		if (!dst.empty())cout << ' ';
+//	}
+//	system("pause");
+//	return 0;
+//}
+//
+//bool PrimeJudge(int n) {
+//	bool resault = true;
+//	for (int i = 0; i < primenum.size() && primenum[i] <= sqrt(n); i++) {
+//		if (n%primenum[i] == 0) {
+//			resault = false; break;
+//		}
+//	}
+//	return resault;
+//}
+
+
+//回文素数  自己写的
+//#include<iostream>
+//#include<string>
+//#include<cstring>
+//#include<cmath>
+//#include<iterator>
+//#include<vector>
+//#include<algorithm>
+//using namespace std;
+//vector<int> v;
+//bool isPrime(int x) {
+//	if (x == 1) {
+//		return false;
+//	}
+//	if (x == 2) {
+//		return true;
+//	}
+//	else {
+//		for (int i = 2; i*i <= x; i++) {
+//			if (x%i == 0) {
+//				return false;
+//			}
+//		}
+//	}
+//	return true;
+//}
+//int main() {
+//	int n;
+//	cin >> n;
+//	if (n == 1) {
+//		for (int i = 1; i <= 9; i++) {
+//			if (isPrime(i)) {
+//				v.push_back(i);
+//			}
+//		}
+//	}
+//	else {
+//		if (n % 2 == 0) {
+//			for (int i = pow(10, n / 2 - 1); i < pow(10, n / 2); i++) {
+//				string temp = to_string(i);
+//				reverse(temp.begin(), temp.end());
+//				int pan = stoi(to_string(i) + temp);
+//				if (isPrime(pan)) {
+//					v.push_back(pan);
+//				}
+//			}
+//		}
+//		else {
+//			for (int i = pow(10, n / 2 - 1); i < pow(10, n / 2); i++) {
+//				string temp = to_string(i);
+//				reverse(temp.begin(), temp.end());
+//				for (char j = '0'; j <= '9'; j++) {
+//					int pan = stoi(to_string(i) + j + temp);
+//					if (isPrime(pan)) {
+//						v.push_back(pan);
+//					}
+//				}
+//
+//			}
+//		}
+//
+//	}
+//	int cnt = v.size();
+//	cout << cnt << endl;
+//	for (auto itr = v.begin(); itr != v.end(); itr++) {
+//		cout << *itr << " ";
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//分数求和 网上答案
+//#include<iostream>
+//using namespace std;
+//
+//int main() {
+//	int n;
+//	cin >> n;
+//	int sumn = 0, sumd = 1;//储存结果，sumn/sumd
+//	while (n--) {
+//		int num, deno;
+//		char slash;//专门用来吃掉/的
+//		cin >> num >> slash >> deno;
+//		//先相加 a/b + c/d = (a*d+c*b)/(b*d)
+//		sumn = sumn * deno + num * sumd;
+//		sumd = sumd * deno;
+//	}
+//	//后约分
+//	//先求最大公约数gcd，这里用的是欧几里得法
+//	int a = sumd, b = sumn, c;
+//	while (a != 0) {
+//		c = a; a = b % a; b = c;
+//	}
+//	int gcd = b;
+//	//分子分母同时除以gcd就可以完成约分
+//	sumd /= gcd;
+//	sumn /= gcd;
+//	if (sumd > 1)
+//		cout << sumn << '/' << sumd << endl;
+//	else
+//		cout << sumn << endl;
+//	return 0;
+//}
+
+//分数求和 自己写的
+//#include<iostream>
+//using namespace std;
+//int gcd(int x, int y) {
+//	if (y == 0) {
+//		//cout << x << endl;
+//		return x;
+//	}
+//	else {
+//		return gcd(y, x%y);
+//	}
+//}
+//int main() {
+//	int n;
+//	cin >> n;
+//	int sump = 0, sumq = 1;
+//	int p, q;
+//	char nonsense;
+//	for (int cnt = 0; cnt < n; cnt++) {
+//		cin >> p >> nonsense >> q;
+//		sump = sump * q + sumq * p;
+//		sumq = sumq * q;
+//	}
+//	int same = gcd(sump, sumq);
+//	//cout << same << endl;
+//	sump = sump / same;
+//	sumq = sumq / same;
+//	if (sumq == 1) {
+//		cout << sump << endl;
+//	}
+//	else {
+//		cout << sump << "/" << sumq << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//求满足条件的3位数
+//#include<iostream>
+//#include<algorithm>
+//#include<cstring>
+//#include<string>
+//#include<vector>
+//using namespace std;
+//const int maxn = 34;
+//int m[10];
+//vector<int> v;
+//int main() {
+//	int n;
+//	cin >> n;
+//	long long sq;
+//	for (int i = 10; i < maxn; i++) {
+//		memset(m, 0, sizeof(m));//每次遍历都要刷新一下数组
+//
+//		sq = pow(i, 2);
+//		string temp = to_string(sq);
+//		int suc = 0;
+//		//cout << temp << endl;
+//		for (int j = 0; j < temp.size(); j++) {
+//			m[temp[j] - '0'] += 1;
+//
+//			if (m[temp[j] - '0'] >= 2) {
+//				suc = 1;
+//				break;
+//			}
+//		}
+//		for (int j = 0; j < 9; j++) {
+//			//cout << sq << " " << j << " " << m[j] << endl;
+//		}
+//		if (suc) {
+//			v.push_back(sq);
+//		}
+//	}
+//	//for (int i = 0; i < v.size(); i++) {
+//	//	cout << v[i] << " ";
+//	//}
+//	cout << v[n - 1] << endl;
+//	system("pause");
+//	return 0;
+//}
+
+
+//求序列中的众数  有问题 1分
+//#include<iostream>
+//#include<map>
+//#include<string>
+//#include<cstring>
+//#include<iterator>
+//#include<algorithm>
+//#include<vector>
+//using namespace std;
+//map<string, int> mp;
+//multimap<int, string, greater<int>> mm;
+//vector<string> v;
+//int main() {
+//	int n;
+//	cin >> n;
+//	string nonsense;
+//	getline(cin, nonsense);
+//	string line;
+//	for (int cnt = 0; cnt < n; cnt++) {
+//		getline(cin, line);
+//		string temp = "";
+//		if (line[0] == '+' || line[0] == '-') {
+//			temp = temp + line[0];
+//			int flag = 0;
+//			for (int i = 1; i < line.size(); i++) {
+//				if (line[i] != '0') {
+//					flag = 1;
+//				}
+//				if (flag) {
+//					temp += line[i];
+//				}
+//			}
+//			map<string, int>::iterator itr;
+//			itr = mp.find(temp);
+//			if (itr == mp.end()) {
+//				mp.insert(pair<string, int>(temp, 1));
+//			}
+//			else {
+//				mp[temp] = mp[temp] + 1;
+//			}
+//		}
+//		else {
+//			temp = temp + '+';
+//			int flag = 0;
+//			for (int i = 0; i < line.size(); i++) {
+//				if (line[i] != '0') {
+//					flag = 1;
+//				}
+//				if (flag) {
+//					temp += line[i];
+//				}
+//				//cout << temp << endl;
+//			}
+//			map<string, int>::iterator itr;
+//			itr = mp.find(temp);
+//			if (itr == mp.end()) {
+//				mp.insert(pair<string, int>(temp, 1));
+//			}
+//			else {
+//				mp[temp] = mp[temp] + 1;
+//			}
+//		}
+//		v.push_back(temp);
+//		//cout << temp << endl;
+//	}
+//	int mx = 0;
+//	for (auto itr = mp.begin(); itr != mp.end(); itr++) {
+//		mx = max(mx, itr->second);
+//		//cout << itr->first << " " << itr->second << endl;
+//	}
+//	for (auto itr = mp.begin(); itr != mp.end(); itr++) {
+//		if (itr->second == mx) {
+//			cout << itr->first;
+//			break;
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//求序列中的众数  网上答案
+//#include<iostream>
+//#include<cstring>
+//#include<cmath>
+//#include<algorithm>
+//#include<string>
+//using namespace std;
+//char w[10000];
+//struct data {
+//	int sum;
+//	char c[10000];
+//}p[130];
+//
+//void fun(int k, int f) {//化简有效数字 
+//	if (w[0] == '+' || w[0] == '-')k++;
+//	if (w[0] == '-')f = 0;
+//	while (w[k] == '0')k++;
+//
+//	char t[1000];
+//	int j = 0;
+//	if (!f) {
+//		t[0] = '-';
+//		j++;
+//	}
+//	for (int i = k; w[i] != '\0'; i++) {
+//		t[j] = w[i];
+//		j++;
+//	}
+//	t[j] = '\0';
+//
+//	if (strcmp(t, "-") == 0)strcpy_s(t, "0");
+//	else if (strcmp(t, "") == 0)strcpy_s(t, "0");
+//	strcpy_s(w, t);
+//}
+//
+//int main() {
+//	int n, num = 0, maxsum = 1;
+//	char c[1000];
+//	cin>>n;
+//
+//	int len = 0;//记录有多少个不重复的数字
+//	while (n != num) {
+//		memset(w, 0, sizeof(w));
+//		int f = 1;
+//		cin>>w;
+//		if (strcmp(w, "") == 0)continue;
+//
+//		int k = 0, j;
+//		fun(k, f);
+//		//cout << w << endl;
+//		//cout << "len " << len << endl;
+//		for (j = 0; j < len; j++) {
+//			if (strcmp(p[j].c, w) == 0) {
+//				p[j].sum++;
+//				break;
+//			}
+//		}
+//		if (j >= len) {
+//			strcpy_s(p[len].c, w);
+//			p[len].sum = 1;
+//			len++;
+//		}
+//
+//		num++;
+//	}
+//	if (len == 1 && n > len)printf("no\n");
+//	else {
+//		int k = 0;
+//		for (int i = 0; i < len; i++) {
+//			//			printf("-- %d\n",p[i].sum);
+//			if (p[i].sum > p[k].sum)k = i;
+//		}
+//		printf("%s\n", p[k].c);
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//求序列中的众数  自己写
+//#include<iostream>
+//#include<string>
+//using namespace std;
+//struct Data
+//{
+//	int cnt;
+//	string data;
+//};
+//Data d[130];
+//int main() {
+//	int n;
+//	cin >> n;
+//	int tot = 0;
+//	string str;
+//	for (int k = 0; k < n; k++) {
+//		cin >> str;
+//		string temp = "";
+//		if (str[0] == '-') {
+//			temp += str[0];
+//			int flag = 0;
+//			for (int i = 1; i < str.length(); i++) {
+//				if (str[i] != '0') {
+//					flag = 1;
+//				}
+//				if (flag) {
+//					temp += str[i];
+//				}
+//			}
+//		}
+//		else {
+//			if (str[0] == '+') {
+//				int flag = 0;
+//				for (int i = 1; i < str.length(); i++) {
+//					if (str[i] != '0') {
+//						flag = 1;
+//					}
+//					if (flag) {
+//						temp += str[i];
+//					}
+//				}
+//			}
+//			else {
+//				int flag = 0;
+//				for (int i = 0; i < str.length(); i++) {
+//					if (str[i] != '0') {
+//						flag = 1;
+//					}
+//					if (flag) {
+//						temp += str[i];
+//					}
+//				}
+//			}
+//		}
+//		//cout << temp << endl;
+//		if (temp == "" ||temp == "-") {//特判为0的情况
+//			temp = '0';
+//		}
+//		int has = 0;
+//		for (int i = 0; i < tot; i++) {
+//			if (temp== d[i].data) {
+//				d[i].cnt += 1;
+//				 has = 1;
+//				break;
+//			}
+//		}
+//		if (has == 0) {
+//			d[tot].data = temp;
+//			d[tot].cnt = 1;
+//			tot++;
+//			//cout<<temp<<" " << tot << endl;
+//
+//		}
+//	}
+//	if (tot == 1) {
+//		cout << "no" << endl;
+//		system("pause");
+//		return 0;
+//	}
+//	int mx_index = 0;
+//	for (int i = 0; i < tot; i++) {
+//		if (d[i].cnt > d[mx_index].cnt) {
+//			mx_index = i;
+//		}
+//	}
+//	cout << d[mx_index].data << endl;
+//	//cout << tot << endl;
+//	system("pause");
+//	return 0;
+//}
+
+//最长单词2
+//#include<iostream>
+//#include<string>
+//#include<sstream>
+//#include<cstring>
+//using namespace std;
+//struct Data
+//{
+//	string data;
+//	int len_d;
+//};
+//Data d[510];
+//int main() {
+//	string line;
+//	getline(cin, line);
+//	stringstream ss(line);
+//	string token;
+//	int cnt = 0;
+//	while (ss >> token) {
+//		int len = token.length();
+//		if (token[len - 1] != '.') {
+//			d[cnt].data = token;
+//			d[cnt].len_d = len;
+//		}
+//		else{
+//			len = len - 1;
+//			for (int i = 0; i < len; i++) {
+//				d[cnt].data += token[i];
+//			}
+//			d[cnt].len_d = len;
+//		}
+//		//cout << cnt << " " << d[cnt].data << " " << d[cnt].len_d << endl;
+//		cnt++;
+//	}
+//	int mx_index = 0;
+//	for (int i = 0; i < cnt; i++) {
+//		if (d[mx_index].len_d < d[i].len_d) {
+//			mx_index = i;
+//			//break;
+//		}
+//	}
+//	cout << d[mx_index].data << endl;
+//	system("pause");
+//	return 0;
+//}
+
 // 2.5基本算法之搜索
 //maze 网友答案
 //#include<iostream>
@@ -17269,5 +18428,236 @@ else//当前字符为操作符(这里需要注意运算时操作数的顺序)
 //	int pos = lower_bound(m, m + 5, 10) - m;
 //	cout << pos << "hhh" << endl;*/
 //	system("pause");
+//	return 0;
+//}
+
+
+//n件物品，盗窃第i件被抓获的概率为p[i], 第i件价值为a[i]，问被抓获概率小于P的情况下可获得的最大价值。不同物品的盗窃事件概率相互独立。n范围100，a[i]范围100。
+//Hdu2955 http://acm.hdu.edu.cn/showproblem.php?pid=2955
+//#include <iostream>
+//#include <cstring>
+//#include <cstdio>
+//#include <cstdlib>
+//#include <algorithm>
+//
+//using namespace std;
+//
+//double f[10003], p[103], P;
+//int a[103], n, sum;
+//
+//int main()
+//{
+//	int T;  scanf_s("%d", &T);
+//	for (; T--;)
+//	{
+//		scanf_s("%lf%d", &P, &n);
+//		for (int i = 1; i <= n; i++)
+//			scanf_s("%d %lf", &a[i], &p[i]);
+//
+//		sum = 0;
+//		for (int i = 1; i <= n; i++)
+//			sum += a[i];
+//
+//		for (int i = 1; i <= sum; i++) {
+//			f[i] = P * 2;
+//			//cout << i << " " << f[i] << endl;
+//		}
+//		f[0] = 0;
+//
+//		for (int i = 1; i <= n; i++)
+//			for (int j = sum; j >= a[i]; j--) {
+//				f[j] = min(f[j], f[j - a[i]] + (1. - f[j - a[i]])* p[i]);//抢这一次之前的风险+本次被抢（之前不被抢*本次被抢）
+//				//cout << i << " " << j << " " << f[j] << endl;
+//			}
+//
+//		for (int i = sum; i >= 0; i--)
+//			if (f[i] <= P)
+//			{
+//				printf("%d\n", i);
+//				break;
+//			}
+//	}
+//}
+
+
+//Coins  Hdu2844  ？？	http://acm.hdu.edu.cn/showproblem.php?pid=2844
+//多重背包问题的二进制优化解法
+//对于a[i] * c[i] >= m的情况，可以将其视为无限背包
+//
+//否则，可以将第i种硬币的使用数量x(x <= c[i])分解成1, 2, 4...2^k, c[i] - 2 ^ (k + 1) + 1, 这几个数的唯一组合。其中k为使得c[i] - 2 ^ k>0的最大的k。
+//#include <iostream>
+//#include <cstring>
+//#include <cstdio>
+//#include <cstdlib>
+//#include <algorithm>
+//
+//using namespace std;
+//
+//bool f[100003];
+//int A[103], C[103], n, m, ans;
+//
+//
+//void dp1(int x)
+//{
+//	for (int j = 0; j + x <= m; j++)
+//		f[j + x] |= f[j];
+//}
+//
+//void dp2(int x)
+//{
+//	for (int j = m; j >= x; j--)
+//		f[j] |= f[j - x];
+//}
+//
+//
+//
+//int main()
+//{
+//	for (;;)
+//	{
+//		scanf("%d%d", &n, &m);
+//		if (!n && !m) break;
+//
+//		for (int i = 1; i <= n; i++)    scanf("%d", &A[i]);
+//		for (int i = 1; i <= n; i++)    scanf("%d", &C[i]);
+//
+//		for (int i = 0; i <= m; i++)    f[i] = 0;
+//
+//		f[0] = 1;
+//
+//		for (int i = 1; i <= n; i++)
+//		{
+//			if (A[i] * C[i] >= m)   dp1(A[i]);              //可视作无限背包
+//			else {
+//				int sl = C[i], k = 1;
+//				for (; k <= sl;)
+//				{
+//					dp2(A[i] * k);            //二进制优化转为01背包
+//					sl -= k;
+//					k <<= 1;
+//				}
+//				if (sl) dp2(A[i] * sl);
+//			}
+//
+//		}
+//
+//		ans = 0;
+//		for (int i = 1; i <= m; i++) ans += f[i];
+//		printf("%d\n", ans);
+//	}
+//}
+
+
+//#include <iostream>
+//#include<cstdio>
+//#include<cstring>
+//using namespace std;
+//int dp[100007], n, m, a[105], c[105], count;
+//void zeropack(int cost, int value)
+//{
+//	for (int i = m; i >= cost; i--)
+//		dp[i] = max(dp[i], dp[i - cost] + value);
+//	// cout<<"01"<<endl;
+//}
+//void completepack(int cost, int value)
+//{
+//	for (int i = cost; i <= m; i++)
+//		dp[i] = max(dp[i], dp[i - cost] + value);
+//	//cout<<"complete"<<endl;
+//}
+//void multipack(int cost, int value, int num)
+//{
+//	if (num*cost >= m)
+//	{
+//		completepack(cost, value);
+//		return;
+//	}
+//	int k = 1;
+//	while (k<num)
+//	{
+//		zeropack(k*cost, k*value);
+//		num -= k;
+//		k *= 2;
+//	}
+//	zeropack(num*cost, num*value);
+//}
+//int main()
+//{
+//	// freopen("cin.txt","r",stdin);
+//	while (~scanf("%d%d", &n, &m))
+//	{
+//		if (n == 0 && m == 0) break;
+//		for (int i = 1; i <= n; i++) scanf("%d", &a[i]);
+//		for (int i = 1; i <= n; i++) scanf("%d", &c[i]);
+//		memset(dp, 0, sizeof(dp));
+//		count = 0;
+//		for (int i = 1; i <= n; i++)
+//		{
+//			multipack(a[i], a[i], c[i]);
+//		}
+//
+//		for (int i = 1; i <= m; i++)
+//		{
+//			if (dp[i] == i) count++;
+//			//printf("dp[]=%d\n",dp[i]);
+//		}
+//		printf("%d\n", count);
+//	}
+//	return 0;
+//}
+
+
+//
+//Hdu2159 http ://acm.hdu.edu.cn/showproblem.php?pid=2159
+//
+//K种怪物，每种怪物无限只，每杀一只增长a[i]的经验值，减去b[i]的忍耐度。初始忍耐度是m，减到小于等于0时不再杀怪。问在最多杀s只怪的情况下，能否得到经验值总量n。若能达到输出达到后还能保留的最大忍耐度。
+//
+//Dp
+//
+//无限背包
+//#include <stdio.h>
+//#include <iostream>
+//#include <cstring>
+//#include <stdlib.h>
+//#include <algorithm>
+//#include <queue>
+//#include <math.h>
+//#define INF 1e8
+//
+//using namespace std;
+//int n, m, k, s;
+//int dp[100][100];
+//int a[100], aa[100];
+//int main(void)
+//{
+//	while (scanf("%d %d %d %d", &n, &m, &k, &s) != EOF)
+//	{
+//		for (int i = 0; i < k; i++)
+//			scanf("%d %d", &a[i], &aa[i]);
+//		memset(dp, 0, sizeof(dp));
+//		for (int i = 1; i <= s; i++)
+//		{
+//			for (int j = 0; j < k; j++)
+//			{
+//				for (int q = aa[j]; q <= m; q++)
+//				{
+//					dp[i][q] = max(dp[i][q], dp[i - 1][q - aa[j]] + a[j]);//状态转移方程
+//				}
+//			}
+//		}
+//		if (dp[s][m] < n)
+//			cout << -1 << endl;
+//		else
+//		{
+//			for (int i = 0; i <= m; i++)
+//			{
+//				if (dp[s][i] >= n)
+//				{
+//					cout << m - i << endl;
+//					break;
+//				}//找到最小的忍耐度，输出，结束
+//			}
+//		}
+//	}
 //	return 0;
 //}
