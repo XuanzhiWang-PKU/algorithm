@@ -7053,6 +7053,7 @@
 //矩形分割  ??思路
 //#include<iostream>
 //#include<cstring>
+//#include<algorithm>
 //using namespace std;
 //const int maxn = 1000010;
 //long long m[maxn];//极端情形下，R=10^6，从而R^2=10^12，考虑前缀和，将超过int——所以用long long。
@@ -7084,20 +7085,37 @@
 //
 //		}
 //	}
-//
+//	/*for (int i = 0; i < 10; i++) {
+//		cout << i << " " << m[i] << endl;
+//	}*/
 //	for (int i = 1; i <= r; i++) {
 //		s[i] = s[i - 1] + m[i];//前缀和
 //		//cout << s[i] << endl;
 //	}
-//	/*for (int i = 1; i <= r; i++) {
-//		cout <<"hhh  "<< m[i] << " " << s[i] << endl;
+//	/*for (int i = 0; i < 10; i++) {
+//		cout << i << " " << m[i] << " " << s[i] << endl;
 //	}*/
-//	int v = solve(1, r);
-//	//cout << v << endl;
-//	while (v < r&&s[v] == s[v + 1]) {
-//		v++;
+//	if (s[r] % 2 == 0) {
+//		int ans = lower_bound(s, s + r, s[r] / 2) - s;
+//		while (ans < r&&s[ans] == s[ans + 1]) {
+//			ans++;
+//		}
+//		cout << ans << endl;
 //	}
-//	cout << v;
+//	else {
+//		int ans = lower_bound(s, s + r, s[r] / 2 + 1) - s;
+//		while (ans < r&&s[ans] == s[ans + 1]) {
+//			ans++;
+//		}
+//		cout << ans << endl;
+//	}
+//	//自己写的二分 是对的
+//	//int v = solve(1, r);
+//	////cout << v << endl;
+//	//while (v < r&&s[v] == s[v + 1]) {
+//	//	v++;
+//	//}
+//	//cout << v;
 //	system("pause");
 //	return 0;
 //}
@@ -14194,7 +14212,7 @@
 //	return 0;
 //}
 
-//棋盘问题 ？？ 思路同八皇后 超时
+//棋盘问题 ？？ 思路同八皇后 
 //#include<iostream>
 //#include<cstring>
 //using namespace std;
@@ -16636,17 +16654,18 @@
 //		for (int i = 1; i <= n; i++) {
 //			cin >> v[i];
 //		}
-//		
-//		for (int i =1; i <= n; i++) {
+//
+//		for (int i = 1; i <= n; i++) {
 //			dp[i] = v[i];
 //			for (int j = 1; j < i; j++) {
 //				if (m[i] - m[j] > k) {
-//					dp[i] = max(dp[i], dp[j] + v[i]);
+//					dp[i] = max(dp[i], dp[j] + v[i]);//表示一定要选到物品i的价值
 //				}
 //			}
 //		}
 //		long long ans = LLONG_MIN;
-//		for (int i = 1; i <= n; i++) {
+//		for (int i = 1; i <= n; i++) {//一定要遍历答案 因为表示的是一定要选到物品i的价值 而不是截止到i的最大价值 
+//			cout << "hhh " << dp[i] << endl;
 //			ans = max(ans, dp[i]);
 //		}
 //		cout << ans << endl;
@@ -16701,13 +16720,16 @@
 //	dp[0][0] = 1;
 //	for (int i = 1; i <= 4; i++) {
 //		for (int j = 0; j <= n; j++) {
-//			for (int k = 0; k <= n / m[i]; k++) {
+//			/*for (int k = 0; k <= n / m[i]; k++) {
 //				if (j >= k * m[i]) {
 //					dp[i][j] = dp[i][j] + dp[i - 1][j - k * m[i]];
 //				}
 //				else {
 //					dp[i][j] = dp[i][j];
 //				}
+//			}*/
+//			for (int k = 0; k <= j / m[i]; k++) {//这样也可以
+//				dp[i][j] = dp[i][j] + dp[i - 1][j - k * m[i]];
 //			}
 //		}
 //	}
@@ -22447,7 +22469,7 @@ else//当前字符为操作符(这里需要注意运算时操作数的顺序)
 //}
 
 
-//1190:生日蛋糕  网上答案 摇号理解一点
+//1190:生日蛋糕  网上答案 要好理解一点
 //#include<stdio.h>
 //#include<string.h>
 //#include<algorithm>
@@ -22473,7 +22495,7 @@ else//当前字符为操作符(这里需要注意运算时操作数的顺序)
 //	//    如果现在所求的表面积加上下一层的依然大于之前所求的的结果,则返回
 //	//    如果剩余体积的测面积加上之前的大于之前求得的最优结果,返回上一层.
 //	if (v + minv[dep - 1] > n || sum + minb[dep - 1] > ans || (n - v) / r * 2 + sum >= ans) {
-//		cout<<"hhh "<< sum << " " << v << " " << dep << " " << h << " " << r << endl;
+//		cout << "hhh " << sum << " " << v << " " << dep << " " << h << " " << r << endl;
 //		return;
 //	}
 //	for (int i = r - 1; i >= dep; i--)   //从大到小枚举,所求的结果一定是最优的
@@ -22491,7 +22513,7 @@ else//当前字符为操作符(这里需要注意运算时操作数的顺序)
 //{
 //	for (int i = 1; i < 21; i++)
 //	{
-//		minv[i] = minv[i - 1] + i * i*i;
+//		minv[i] = minv[i - 1] + i * i * i;
 //		minb[i] = minb[i - 1] + i * i * 2;
 //	}
 //	while (~scanf_s("%d%d", &n, &m))
@@ -22504,7 +22526,7 @@ else//当前字符为操作符(这里需要注意运算时操作数的顺序)
 //	}
 //	return 0;
 //}
-
+//
 
 //1610:四分树
 //#include <cstdio>
@@ -23696,11 +23718,11 @@ else//当前字符为操作符(这里需要注意运算时操作数的顺序)
 //			fun();
 //			break;
 //		case ']':
-//			for (set<string>::iterator i = s.begin(); i != s.end(); i++) {
+//			for (set<string>::iterator itr = s.begin(); itr != s.end(); itr++) {
 //				for (int j = 0; j < n; j++) {
 //					cout << "|     ";
 //				}
-//				cout << *i << endl;
+//				cout << *itr << endl;
 //			}
 //			n--;
 //			return;
@@ -23722,77 +23744,6 @@ else//当前字符为操作符(这里需要注意运算时操作数的顺序)
 //	return 0;
 //}
 
-//2775:文件结构“图”
-//#include <cstdio>
-//#include <vector>
-//#include <string>
-//#include <algorithm>
-//using namespace std;
-//void print(int level) {
-//	for (int i = 0; i < level; i++)
-//		printf("|     ");
-//}
-//int main() {
-//	char temp[32];
-//	int cnt = 1;
-//	vector<string> v;
-//	vector<string> content[100];
-//	while (true) {
-//		v.clear();
-//		scanf("%s", temp);
-//		if (temp[0] == '#')break;
-//		else {
-//			string s = temp;
-//			v.push_back(s);
-//		}
-//		if (cnt == 1)
-//			printf("DATA SET %d:\nROOT\n", cnt++);
-//		else
-//			printf("\nDATA SET %d:\nROOT\n", cnt++);
-//		while (~scanf("%s", temp)) {
-//			if (temp[0] == '*')break;
-//			string t = temp;
-//			v.push_back(t);
-//		}
-//		//
-//		int size = v.size();
-//		int level = 0;
-//		content[0].clear();
-//		for (int i = 0; i < size;) {
-//			if (v[i][0] == 'd') {
-//				level++;
-//				content[level].clear();
-//				print(level);
-//				printf("%s\n", v[i].c_str());
-//				if (i < size - 1 && v[i + 1][0] == ']') {
-//					level--;
-//					i += 2;
-//				}
-//				else {
-//					//level++;
-//					i++;
-//				}
-//			}
-//			else if (v[i][0] == 'f') {
-//				content[level].push_back(v[i]);
-//				i++;
-//			}
-//			else if (v[i][0] == ']') {
-//				sort(content[level].begin(), content[level].end());
-//				for (int p = 0; p < content[level].size(); p++) {
-//					print(level); printf("%s\n", content[level][p].c_str());
-//				}
-//				level--;
-//				i++;
-//			}
-//		}
-//		sort(content[level].begin(), content[level].end());
-//		for (int i = 0; i < content[level].size(); i++) {
-//			print(level); printf("%s\n", content[level][i].c_str());
-//		}
-//	}
-//
-//}	
 
 
 //
@@ -24461,7 +24412,7 @@ else//当前字符为操作符(这里需要注意运算时操作数的顺序)
 //
 //	int tmp[10];
 //	memset(tmp, 0, sizeof(tmp));
-//	for (int m1 = 0; m1 < 4; ++m1) {
+//	for (int m1 = 0; m1 < 4; ++m1) {//枚举每一个移动的次数
 //		for (int m2 = 0; m2 < 4; ++m2) {
 //			for (int m3 = 0; m3 < 4; ++m3) {
 //				for (int m4 = 0; m4 < 4; ++m4) {
@@ -24470,7 +24421,7 @@ else//当前字符为操作符(这里需要注意运算时操作数的顺序)
 //							for (int m7 = 0; m7 < 4; ++m7) {
 //								for (int m8 = 0; m8 < 4; ++m8) {
 //									for (int m9 = 0; m9 < 4; ++m9) {
-//										tmp[0] = (a[0] + m1 + m2 + m4) % 4;//A
+//										tmp[0] = (a[0] + m1 + m2 + m4) % 4;//A  tmp表示时钟的状态
 //										tmp[1] = (a[1] + m1 + m2 + m3 + m5) % 4;//B
 //										tmp[2] = (a[2] + m2 + m3 + m6) % 4;//C
 //										tmp[3] = (a[3] + m1 + m4 + m5 + m7) % 4;//D
@@ -27883,3 +27834,895 @@ else//当前字符为操作符(这里需要注意运算时操作数的顺序)
 //	return 0;
 //}
 
+
+
+
+//4117:简单的整数划分问题
+//#include<cstdio>
+//#include<iostream>
+//#include<algorithm>
+//using namespace std;
+//const int MAX = 55 + 5;
+//long long dp[MAX][MAX];
+//long long ans[MAX];
+//int main()
+//{
+//	int n;
+//	while (cin >> n) {
+//		for (int i = 1; i <= n; i++)
+//			dp[0][i] = 1;
+//		for (int i = 1; i <= n; i++) {//遍历总和
+//			for (int j = 1; j <= n; j++) {//遍历最大数
+//				if (i < j) dp[i][j] = dp[i][j - 1];//这里思路比较像01背包 注意 这里也可以等于 dp[i][j] = dp[i][i]
+//				else dp[i][j] = dp[i - j][j] + dp[i][j - 1];
+//			//	cout << i << " " << j << " " << dp[i][j] << endl;
+//			}
+//		}
+//		cout << dp[n][n] << endl;
+//	}
+//	
+//	system("pause");
+//	return 0;
+//}
+
+
+
+//4119:复杂的整数划分问题
+//#include<cstdio>
+//#include<cmath>
+//#include<iostream>
+//#include<cstring>
+//#include<cstdlib>
+//#include<algorithm>
+//#include<vector>
+//#include<sstream>
+//#include<map>
+//#include<stack>
+//#include<queue>
+//#include<set>
+//using namespace std;
+//int N, K, dp[51][51];
+//void Work_1() {//类似于分苹果的思想   fun(m,n-1)+fun(m-n,n);  //有空盘子的情况 +　没有空盘子的情况
+//	memset(dp, 0, sizeof(dp)); //dp[i][j]把i划分成j个数的种类数
+//	dp[0][0] = 1;
+//	for (int i = 1; i <= N; i++) {
+//		for (int j = 1; j <= K; j++) {
+//			if (i >= j) dp[i][j] = dp[i - j][j] + dp[i - 1][j - 1];
+//			//dp[i-j][j]表示这j个数中没有1（即每个数都大于1），则每个数减1的种类数
+//			//dp[i-1][j-1]表示这j个数中有1，则分离出一个1
+//			//cout << i << " " << j << " " << dp[i][j] << endl;
+//		}
+//	}
+//	printf("%d\n", dp[N][K]);
+//}
+//void Work_2() {
+//	memset(dp, 0, sizeof(dp)); //d[i][j]把i划分成最大数为j的种类数。
+//	for (int i = 0; i <= N; i++)
+//		dp[0][i] = 1;
+//	for (int i = 1; i <= N; i++) {
+//		for (int j = 1; j <= N; j++) {
+//			if (j > i) dp[i][j] = dp[i][i];//dp[i][j] = dp[i][j-1]也可以
+//			else dp[i][j] = dp[i - j][j - 1] + dp[i][j - 1];
+//			//dp[i-j][j-1] 如果i里包括j，则转化为把(i-j)划分为 最大数为 j-1 的种类数
+//			//dp[i][j-1] 如果i里不包括j，则转化为把 i 划分为 最大数为 j-1 的种类数
+//			//cout << i << " " << j << " " << dp[i][j] << endl;
+//
+//		}
+//	}
+//	printf("%d\n", dp[N][N]);
+//}
+//void Work_3() {
+//	memset(dp, 0, sizeof(dp)); //d[i][j]把i划分成最大数为j的种类数。
+//	for (int i = 1; i <= N; i++) {//初始化
+//		dp[i][1] = 1;
+//		dp[0][i] = 1;
+//	}
+//	for (int i = 1; i <= N; i++) {
+//		for (int j = 1; j <= N; j++) {
+//			if (j & 1) {//如果j为奇数
+//				if (j > i) dp[i][j] = dp[i][i];
+//				else dp[i][j] = dp[i - j][j] + dp[i][j - 1];//这里不能改成j-2  因为最开始是1  如果减2就越界了
+//				//dp[i-j][j] 如果i里包括j，则转化为把(i-j)划分为 最大数为 j 的种类数
+//				//dp[i][j-1] 如果i里不包括j，则转化为把 i 划分为 最大数为 j-1 的种类数
+//			}
+//			else dp[i][j] = dp[i][j - 1];
+//		}
+//	}
+//
+//	printf("%d\n", dp[N][N]);
+//}
+//int main() {
+//	while (cin >> N >> K) {
+//		Work_1();
+//		Work_2();
+//		Work_3();
+//	}
+//	return 0;
+//}
+
+
+
+//4120:硬币
+//#include<iostream>
+//#include<stdio.h>
+//#include<cstring>
+//using namespace std;
+//int dp[1000005];//表示形成i钱数的方案
+//int ans[1000005];//表示没有j时形成i钱数的方案数
+//int a[220];//存放钱的种类
+//int b[220];//存放必须有的种类
+//int main()
+//{
+//	int n, m;
+//	int count, k;
+//	while (cin >> n >> m)
+//	{
+//		for (int i = 1; i <= n; i++)
+//			cin >> a[i];
+//		memset(dp, 0, sizeof(dp));
+//		dp[0] = 1;
+//		for (int i = 1; i <= n; i++)
+//		{
+//			for (int j = m; j >= a[i]; j--)
+//			{
+//				dp[j] = dp[j] + dp[j - a[i]];
+//				//j是由a[i]和j-a[i]的和，a[i]的方案为1，
+//				//j-a[i]的方案数为dp[h-a[i]],即为dp[j-a[i]]；
+//				//cout << i << " " << j << " " << dp[j] << endl;
+//			}
+//
+//		}
+//		count = 0;
+//		for (int i = 1; i <= n; i++)
+//		{
+//			for (int j = 0; j <= m; j++)
+//			{	
+//				//cout << j << " " << dp[j] << endl;
+//				if (j < a[i])
+//					ans[j] = dp[j];
+//				else
+//					ans[j] = dp[j] - ans[j - a[i]];
+//				cout << i << " " << j << " " << ans[j] << endl;
+//			}
+//			if (ans[m] == 0)//缺了j就不行了，那么j是必需的
+//			{
+//				b[count++] = a[i];
+//			}
+//		}
+//		printf("%d\n", count);
+//		if (count == 0)
+//			printf("\n\n");
+//		else
+//		{
+//			for (int i = 0; i < count; i++)
+//			{
+//				if (i != count - 1)
+//					printf("%d ", b[i]);
+//				else
+//					printf("%d\n", b[i]);
+//			}
+//		}
+//
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//4121:股票买卖
+//#include<iostream>
+//#include<cstdio>
+//#include<cstring>
+//#include<algorithm>
+//#include<stdio.h>
+//using namespace std;
+//const int N = 100005;//n^2算法肯定超时
+//int m[N], p[N], q[N];
+//int main()
+//{
+//	int t, n;
+//	cin >> t;
+//	while (t--)
+//	{
+//		cin >> n;
+//		memset(p, 0, sizeof(p));//记得输入后就清零，以免忘记
+//		memset(q, 0, sizeof(q));
+//		for (int i = 1; i <= n; i++)
+//			//cin >> m[i];
+//			scanf("%d", &m[i]);
+//		int minn = m[1];
+//		p[1] = 0;//前i个数中所有数对之差的最大值。
+//		for (int i = 2; i <= n; i++)
+//		{
+//			minn = min(m[i], minn);
+//			p[i] = max(p[i - 1], m[i] - minn);
+//			//cout << i << " " << p[i] << endl;
+//		}
+//		int maxn = m[n];
+//		q[n] = 0;
+//		for (int i = n - 1; i >= 1; i--)//下标从i~n中所有数对之差的最大值
+//		{
+//			maxn = max(m[i], maxn);
+//			q[i] = max(q[i + 1], maxn - m[i]);
+//			//cout << i << " " << q[i] << endl;
+//		}
+//		int money = 0;
+//		for (int i = 1; i <= n; i++) {
+//			money = max(p[i - 1] + q[i], money);
+//			//cout << i << ' ' << p[i - 1] << " " << q[i] << endl;
+//		}
+//		money = max(money, 0);//如果最后小于0，就选择入手就卖的方法
+//		printf("%d\n", money);
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//4124:海贼王之伟大航路
+//#include <ctime>
+//#include <cmath>
+//#include <queue>
+//#include <vector>
+//#include <cstdio>
+//#include <string>
+//#include <cstring>
+//#include <iomanip>
+//#include <iostream>
+//#include <algorithm>
+//using namespace std;
+//
+//const int INF = 0x3f3f3f3f;
+//const int MAXN = 16 + 5;
+//
+//int N;
+//int G[MAXN][MAXN];
+//int dp[MAXN][(1 << 16) + 5];
+//int finish;
+//
+//int main() {
+//
+//	while (~scanf("%d", &N)) {
+//		for (int i = 1; i <= N; i++) {
+//			for (int j = 1; j <= N; j++) {
+//				scanf("%d", &G[i][j]);
+//			}
+//		}
+//		finish = (1 << N) - 1;
+//		memset(dp, INF, sizeof(dp));
+//
+//		dp[1][1] = 0;
+//		for (int k = 1; k <= finish; k++) {//枚举状态
+//			for (int i = 1, fi = 1; i <= N; i++, fi <<= 1) {
+//				if (!(k & fi)) continue;
+//				for (int j = 1, fj = 1; j <= N; j++, fj <<= 1) {
+//					if (i == j || !(k & fj)) continue;
+//					dp[i][k] = min(dp[i][k], dp[j][k ^ fi] + G[j][i]);
+//				}
+//			}
+//		}
+//		printf("%d\n", dp[N][finish]);
+//	}
+//	//    end = clock();
+//	//    printf ("time=%f\n", (double) (end - start) / CLK_TCK);
+//	return 0;
+//}
+
+
+//4128:单词序列
+//#include <iostream>
+//#include <string.h>
+//#include <algorithm>
+//#include <cstdio>
+//#include <stdlib.h>
+//#include <string>
+//#include <memory>
+//#include <queue>
+//using namespace std;
+//struct word {
+//	char words[7];
+//	int step;
+//	word() { step = 0; }
+//};
+//word diction[31];
+//word start, endw;
+//int num = 1;
+//bool visited[31];
+//queue<word>q;
+//int cmp(word&a, word&b) {
+//	int count = 0;
+//	int l = strlen(a.words);
+//	for (int i = 0; i < l; i++)
+//		if (a.words[i] != b.words[i])
+//			count++;
+//	return count;
+//}
+//void bfs() {
+//	bool flag = false;
+//	while (!q.empty()) {
+//		word now = q.front();
+//		q.pop();
+//		for (int i = 1; i <= num; i++) {
+//			if (visited[i] != 1 && cmp(now, diction[i]) == 1) {
+//				visited[i] = 1;
+//				diction[i].step = now.step + 1;
+//				if (cmp(diction[i], endw) == 1) {
+//					flag = true;
+//					printf("%d\n", diction[i].step + 2);
+//					return;
+//				}
+//				q.push(diction[i]);
+//			}
+//		}
+//	}
+//	if (flag == false)
+//		printf("0\n");
+//}
+//int main()
+//{
+//	cin >> start.words >> endw.words;
+//	while (cin >> diction[num].words)
+//		num++;
+//	if (cmp(start, endw) == 1)
+//	{
+//		printf("2\n");
+//		return 0;
+//	}
+//	q.push(start);
+//	bfs();
+//	return 0;
+//}
+
+
+//4133:垃圾炸弹
+//Garbage bomb
+//#include<iostream>
+//#include<cstdio>
+//#include<cstring>
+//using namespace std;
+//
+//#define MAX 1025
+//
+//int map[MAX][MAX];    //枚举地图各点可清除垃圾数
+//
+//					  /*垃圾点*/
+//struct Point {
+//	int x, y;    //坐标
+//	int m;    //垃圾数
+//}p[21];
+//
+//int main()
+//{
+//	memset(map, 0, sizeof(map));
+//	int d, n;
+//	scanf("%d%d", &d, &n);
+//	for (int i = 0; i < n; i++)
+//		scanf("%d%d%d", &p[i].x, &p[i].y, &p[i].m);
+//
+//	int ans = 0, cnt = 0;
+//	for (int i = 0; i < n; i++)//枚举每一枚炸弹
+//	{
+//		for (int row = p[i].x - d; row <= p[i].x + d; row++)//枚举这枚炸弹周围的横坐标
+//			if (row >= 0 && row < MAX) {
+//				for (int col = p[i].y - d; col <= p[i].y + d; col++)//枚举这枚炸弹周围的纵坐标
+//				{
+//					if (col >= 0 && col < MAX)
+//					{
+//						map[row][col] += p[i].m;
+//						/*refresh*/
+//						if (ans < map[row][col])
+//						{
+//							ans = map[row][col];
+//							cnt = 1;
+//						}
+//						else if (ans == map[row][col]) cnt++;
+//					}
+//				}
+//			}
+//	}
+//	printf("%d %d\n", cnt, ans);
+//	return 0;
+//}
+
+
+//4134:查找最接近的元素
+//#include<iostream>
+//#include<set>
+//#include<algorithm>
+//using namespace std;
+//const int maxn = 100010;
+//int main() {
+//	int n;
+//	while (cin >> n) {
+//		int m[maxn];
+//		int tmp;
+//		for (int i = 0; i < n; i++) {
+//			scanf_s("%d", &m[i]);
+//		}
+//		int t;
+//		cin >> t;
+//		for (int i = 0; i < t; i++) {
+//			int tar;
+//			cin >> tar;
+//			int l = lower_bound(m, m + n, tar) - m;
+//			int u = upper_bound(m, m + n, tar) - m;
+//			//cout << l << " " << u << endl;
+//			if (l == n) {
+//				cout << m[n - 1] << endl;
+//			}
+//			else {
+//				if (tar == m[l]) {//即l!=u
+//					cout << tar << endl;
+//				}
+//				else {//l==u
+//					/*if (abs(tar - m[l-1]) > abs(tar - m[u])) {
+//						cout << m[u] << endl;
+//					}
+//					else {
+//						cout << m[u-1] << endl;
+//					}*/
+//					if (l == 0) {//一定要加这个判断！！！否则l-1可能越界
+//						cout << m[0] << endl;
+//					}
+//					else {
+//						if (abs(tar - m[l - 1]) > abs(tar - m[l])) {
+//							cout << m[l] << endl;
+//						}
+//						else {
+//							cout << m[l - 1] << endl;
+//						}
+//					}
+//				}
+//				
+//
+//			}
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//4144:畜栏保留问题
+//#include<iostream>
+//#include <queue>
+//using namespace std;
+//#define NUM 50005
+//struct cow {
+//	int start;
+//	int ed;//挤奶区间起终点
+//	int id;//编号
+//	bool operator<(const struct cow  &t) const {
+//		return this->start < t.start;
+//	}
+//}Cow[NUM];
+//int result[NUM];//表示编号为i的奶牛去的畜栏编号
+//struct Fence
+//{
+//	int bgin;//开始
+//	int finish;//结束
+//	int id_fense;//栅栏编号;
+//	bool operator<(const Fence &t)const {
+//		return this->finish > t.finish;//先用时间结束早的；
+//	}
+//	Fence() {};
+//	Fence(int x, int y, int n) :bgin(x), finish(y), id_fense(n) {}
+//};
+//int main()
+//{
+//	int N;
+//	cin >> N;
+//	for (int i = 0; i < N; i++)
+//	{
+//		cin >> Cow[i].start >> Cow[i].ed;
+//		Cow[i].id = i;
+//	}
+//
+//	//    for(int i = 0;i<N;i++)
+//	//        {cout <<Cow[i].f<<" "<<Cow[i].e<<" "<< Cow[i].NO<<endl;}
+//	sort(Cow, Cow + N);
+//
+//	//    for(int i = 0;i<N;i++)
+//	//        {cout <<Cow[i].f<<" "<<Cow[i].e<<" "<< Cow[i].NO<<endl;}
+//
+//
+//
+//	int tot = 0;
+//	priority_queue<Fence > q;
+//	for (int i = 0; i < N; i++) {
+//		if (q.empty()) {
+//			tot++;
+//			q.push(Fence(Cow[i].start, Cow[i].ed, tot));
+//			result[Cow[i].id] = tot;
+//		}
+//		else {
+//			Fence now_fence = q.top();
+//			if (now_fence.finish < Cow[i].start) {//可以加入原来的畜栏
+//				q.pop();
+//				result[Cow[i].id] = now_fence.id_fense;
+//				q.push(Fence(Cow[i].start, Cow[i].ed, now_fence.id_fense));
+//			}
+//			else {
+//				tot++;
+//				q.push(Fence(Cow[i].start, Cow[i].ed, tot));
+//				result[Cow[i].id] = tot;
+//			}
+//		}
+//
+//
+//	}
+//	cout << tot << endl;
+//	for (int i = 0; i < N; ++i)
+//		cout << result[i] << endl;
+//
+//
+//
+//
+//	return 0;
+//}
+
+//4145:放弃考试
+//#include <iostream>
+//#include <memory.h>
+//#include <math.h>
+//#include <stdio.h>
+//#include <unordered_map>
+//#include <string>
+//#include <map>
+//#include <algorithm>
+//#include <cmath>
+//using namespace std;
+//int pass[1005], question[1005];
+//double temp[1005];
+//int n, k;
+//bool check(double rate)
+//{
+//	for (int i = 0; i < n; i++) {
+//		temp[i] = pass[i] - rate * question[i];
+//		cout << i << " " << rate << " " << pass[i] << " " << question[i] << " " << temp[i] << endl;
+//	}
+//	sort(temp, temp + n);//这个数组是什么意思
+//	double sum = 0.0;
+//	for (int i = k; i < n; i++)
+//		sum += temp[i];
+//	if (sum >= 0)
+//		return true;
+//	else
+//		return false;
+//}
+//int main()
+//{
+//	while (cin >> n >> k, n != 0)
+//	{
+//		for (int i = 0; i < n; i++)
+//			cin >> pass[i];
+//		for (int i = 0; i < n; i++)
+//			cin >> question[i];
+//		double left = 0, right = 1;
+//		while ((right - left) > 1e-6)
+//		{
+//			double mid = left + (right - left) / 2.0;
+//			if (check(mid))
+//			{
+//				left = mid;
+//			}
+//			else
+//				right = mid;
+//		}
+//		printf("%.0f\n", 100 * left);
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//4149:课程大作业
+//#include<iostream>
+//#include<cstring>
+//#include<string>
+//#include<algorithm>
+//#include<vector>
+//using namespace std;
+//int t, n;
+////记录课程的结束时间，需要花费的时间
+//struct Homework {
+//	string name;
+//	int deadline, cost;
+//}homework[20];
+//
+////记录路径，最小扣分以及最后结束的天数，用于dp
+//struct node {
+//	int pre;
+//	int minscore;
+//	int last;
+//	int finishday;
+//}dp[(1 << 16) + 20];
+//
+////返回路径
+//vector<int> getpath(int status) {
+//	vector<int> path;
+//	while (status) {
+//		path.push_back(dp[status].last);
+//		status = dp[status].pre;
+//	}
+//	reverse(path.begin(), path.end());
+//	return path;
+//}
+//
+//int main() {
+//	cin >> t;
+//	while (t--) {
+//		cin >> n;
+//		char name[60];
+//		int d, c;
+//		for (int i = 0; i < n; i++)
+//			cin >> homework[i].name >> homework[i].deadline >> homework[i].cost;
+//		dp[0].finishday = 0;
+//		dp[0].minscore = 0;
+//		dp[0].pre = -1;
+//		int m = 1 << n;
+//
+//		for (int i = 1; i < m; ++i) {
+//			dp[i].minscore = 1 << 30;
+//			for (int j = 0; j < n; ++j) {
+//				if (i&(1 << j)) {  //枚举最后一个做的课程是什么
+//					int pre = i - (1 << j); // 上一个课程
+//					int finishday = dp[pre].finishday + homework[j].cost;
+//					int tmpscore = finishday - homework[j].deadline;
+//					if (tmpscore < 0)tmpscore = 0;
+//					if (dp[i].minscore > dp[pre].minscore + tmpscore) {
+//						dp[i].minscore = dp[pre].minscore + tmpscore;
+//						dp[i].pre = pre;
+//						dp[i].finishday = finishday;
+//						dp[i].last = j;
+//					}
+//					if (dp[i].minscore == dp[pre].minscore + tmpscore) {
+//						vector<int> p1 = getpath(dp[i].pre);
+//						vector<int> p2 = getpath(pre);
+//						if (p2 < p1) {
+//							dp[i].pre = pre;
+//							dp[i].finishday = finishday;
+//							dp[i].last = j;
+//						}
+//					}
+//				}
+//			}
+//		}
+//		cout << dp[m - 1].minscore << endl;
+//		int status = m - 1;
+//		vector<int> path = getpath(status);
+//		for (int i = 0; i < path.size(); i++)cout << homework[path[i]].name << endl;
+//	}
+//	return 0;
+//}
+
+//4150:上机
+//#include<iostream>
+//#include<cmath>
+//#include<cstring>
+//#include<algorithm>
+//#include<iomanip>
+//#include<queue>
+//#include<stack>
+//#include<vector>
+//#include<set>
+//#include<map>
+//using namespace std;
+//int dp[10005][4];
+//int a[10005];
+//int b[10005];
+//int c[10005];
+//int main()
+//{
+//	int n;
+//	scanf_s("%d", &n);
+//	for (int i = 1; i <= n; ++i)
+//	{
+//		scanf_s("%d", &a[i]);
+//	}
+//	for (int i = 1; i <= n; ++i)
+//	{
+//		scanf_s("%d", &b[i]);
+//	}
+//	for (int i = 1; i <= n; ++i)
+//	{
+//		scanf_s("%d", &c[i]);
+//	}
+//	dp[1][0] = a[1];//左右无人
+//	dp[1][1] = b[1];//右边有人
+//	dp[1][2] = -0x7fffffff / 2;//左边有人
+//	dp[1][3] = -0x7fffffff / 2;//两边都有人
+//	//cout << endl << 1 << " " << dp[1][0] << " " << dp[1][1] << " " << dp[1][2] << " " << dp[1][3] << endl;
+//	for (int i = 2; i <= n; ++i)
+//	{
+//		//逻辑关系：dp[i][0]表示左右无人 所以i-1和i+1是后来坐的  对于i-1是右边有人所以从dp[i - 1][3]和dp[i - 1][1]转移过来
+//		dp[i][0] = max(dp[i - 1][3], dp[i - 1][1]) + a[i];
+//		dp[i][1] = max(dp[i - 1][3], dp[i - 1][1]) + b[i];
+//		dp[i][2] = max(dp[i - 1][2], dp[i - 1][0]) + b[i];
+//		dp[i][3] = max(dp[i - 1][2], dp[i - 1][0]) + c[i];
+//		//cout << i << " " << dp[i][0] << " " << dp[i][1] << " " << dp[i][2] << " " << dp[i][3] << endl;
+//	}
+//	cout << max(dp[n][0], dp[n][2]) << endl;
+//	system("pause");
+//	return 0;
+//}
+
+
+//特殊密码锁  http://noi.openjudge.cn/ch0406/8469/
+//#include <iostream>
+//#include <string>
+//#include <algorithm>
+//#include<stdio.h>
+//#include<climits>
+//using namespace std;
+//const int maxn = 35;
+//int m[maxn];
+//int ans[maxn];
+//string tmpst, tmped;
+//int st[maxn], ed[maxn];
+//int cnt = 0;
+//int len;
+//int suc = 0;
+//bool check() {
+//	//cout << len << endl;
+//	if (ans[1]) {
+//		cnt++;
+//	}
+//	for (int i = 2; i <= len + 1; i++) {
+//	
+//			ans[i] = st[i - 1] ^ ans[i - 1] ^ ans[i - 2] ^ ed[i - 1];
+//		
+//		if (ans[i] == 1 && i != len + 1) {
+//			cnt++;
+//		}
+//		//cout << i << " " << ans[i] << " " << cnt << endl;
+//	}
+//	if (ans[len + 1]) {//在按下第len+1个按钮之后 前了了len个已经和目标对齐  但实际上没有第了len+1个按钮 所以ans[len+1]必须为0才对
+//		return false;
+//	}
+//	else {
+//		suc = 1;
+//		return true;
+//	}
+//}
+//int main() {
+//
+//	cin >> tmpst >> tmped;
+//	len = tmpst.length();
+//	for (int i = 1; i <= len; i++) {
+//		st[i] = tmpst[i - 1] - '0';
+//		ed[i] = tmped[i - 1] - '0';
+//	}
+//	int res = INT_MAX;
+//	for (int op = 0; op < 2; op++) {
+//		cnt = 0;
+//		ans[1] = op;
+//
+//		if (check()) {
+//			//cout << cnt << endl;
+//			res = min(res, cnt);
+//		}
+//	}
+//	if (suc) {
+//		cout << res << endl;
+//	}
+//	else {
+//		cout << "impossible" << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//The Sierpinski Fractal
+//#include<cstdio>
+//#include<cstring>
+//#include<iostream>
+//using namespace std;
+//
+//int n, tot;
+//char a[2050][2050];
+//
+//void cal(int u, int x, int y)
+//{
+//	if (u == 1)
+//	{
+//		a[x][y] = ' ';
+//		a[x][y + 1] = '/';
+//		a[x][y + 2] = '\\';
+//		a[x][y + 3] = ' ';
+//
+//		a[x + 1][y] = '/';
+//		a[x + 1][y + 1] = '_';
+//		a[x + 1][y + 2] = '_';
+//		a[x + 1][y + 3] = '\\';
+//		return;
+//	}
+//	for (int i = x; i < x + (1 << (u - 1)); i++) {
+//		for (int j = y; j < y + (1 << (u - 1)); j++) {
+//			a[i][j] = ' ';
+//			cout << i << " " << j << endl;
+//		}
+//	}
+//		
+//	cout << "hhh" << endl;
+//	for (int i = x; i < x + (1 << (u - 1)); i++) {
+//		for (int j = y + (1 << (u + 1)) - 1; (1 << (u + 1)) - j <=  y + 1 << (u - 1); j--) {
+//			a[i][j] = ' ';
+//			cout << i << " " << j << endl;
+//		}
+//
+//	}
+//		
+//	cal(u - 1, x + (1 << (u - 1)), y);
+//	cal(u - 1, x, y + (1 << (u - 1)));
+//	cal(u - 1, x + (1 << (u - 1)), y + (1 << u));
+//}
+//
+//int main()
+//{
+//	while (cin>>n && n)
+//	{
+//		memset(a, 0, sizeof(a));
+//		tot = 1 << n;
+//		cal(n, 1, 1);
+//		for (int i = 1; i <= tot; i++)
+//		{
+//			printf("%s", a[i] + 1); 
+//			puts("");
+//		}
+//		puts("");
+//	}
+//	return 0;
+//}
+
+
+//UNIMODAL PALINDROMIC DECOMPOSITIONS
+//# include<stdio.h>
+//# include<string.h>
+//#include<iostream>
+//using namespace std;
+//const int maxn = 6;
+//long long  d[maxn][maxn];
+//int main() {
+//	memset(d, 0, sizeof(d));
+//	int i, j;
+//	//初始化
+//	for (i = 1; i<maxn; i++)
+//	{
+//		d[i][i] = 1;
+//		if (i % 2 == 0) d[i][i / 2] = 1;  //如果i是偶数，则可分解成i/2i/2这种形式
+//	}
+//	d[2][1] = 1;
+//	d[3][1] = 1;
+//	d[4][1] = 2;
+//	d[4][2] = 1;
+//	
+//	for (i = 5; i<maxn; i++)//相当于输入的n
+//	{
+//		for (j = 1; j<maxn; j++)//遍历最小值
+//		{
+//			if (i - 2 * j >= j)//满足回文并且还是先上升再下降
+//			{
+//				for (int m = j; m <= i - 2 * j; m++) {//拆分成更小的子问题
+//					d[i][j] += d[i - 2 * j][m];
+//					//cout << i << " " << j << ' ' << i - 2 * j << " " << m<<" " << d[i - 2 * j][m] << endl;
+//				}
+//					
+//			}
+//			else
+//				break;
+//		}
+//	}
+//	int n;
+//	while (cin>>n && n)
+//	{
+//		long long  ans = 0;
+//		for (i = 1; i <= n; i++) {
+//			ans += d[n][i];
+//			cout << i << " " << d[n][i] << " " << ans << endl;
+//		}
+//		printf("%d %lld\n", n, ans);
+//	}
+//	return 0;
+//}
