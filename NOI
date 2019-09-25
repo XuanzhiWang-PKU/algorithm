@@ -18100,7 +18100,7 @@
 
 
 
-//数的划分 另一种思路
+//数的划分 另一种思路  这种方法好一点
 //#include<iostream>
 //#include<cstring>
 //#include<climits>
@@ -18125,6 +18125,32 @@
 //	system("pause");
 //	return 0;
 //}
+
+
+//8787:数的划分
+//#include<iostream>	
+//using namespace std;
+//const int maxn = 220;
+//int dp[maxn][maxn];
+//int main() {
+//	int n, k;
+//	cin >> n >> k;
+//	//dp[0][1] = 1;
+//	//dp[1][0] = 1;
+//	for (int i = 1; i <= n; i++) {
+//		dp[i][i] = 1;
+//		dp[i][1] = 1;
+//	}
+//	for (int i = 2; i <= n; i++) {
+//		for (int j = 1; j <= k; j++) {
+//			dp[i][j] = dp[i - j][j] + dp[i - 1][j - 1];
+//		}
+//	}
+//	cout << dp[n][k] << endl;
+//	system("pause");
+//
+//}
+
 
 //滑雪
 //#include<iostream>
@@ -18899,7 +18925,7 @@
 //{
 //	int n;
 //	cin >> n;
-//	map<int, int > mp;
+//	map<int, int > mp;//每个abi对应最小的id
 //	mp[1000000000] = 1;
 //	for (int i = 1; i <= n; i++)
 //	{
@@ -18907,11 +18933,11 @@
 //		map<int, int>::iterator itr;
 //		itr = mp.lower_bound(abi);
 //		//int now_id;
-//		if (itr == mp.end())
-//		{
-//			itr--;
-//			//now_id = itr->second;
-//		}
+//		//if (itr == mp.end())
+//		//{
+//		//	itr--;
+//		//	//now_id = itr->second;
+//		//}
 //		// else {
 //		int now_cha = abs(itr->first - abi);
 //		int now_id = itr->second;
@@ -18931,6 +18957,8 @@
 //			mp[abi] = id;
 //		}
 //	}
+//	system("pause");
+//	return 0;
 //}
 
 
@@ -28520,7 +28548,7 @@ else//当前字符为操作符(这里需要注意运算时操作数的顺序)
 //using namespace std;
 //int fun(string h) {
 //	string tp = "0";//最开始加一个0方便统计
-//	for (int i = 0; i<h.size(); i++) {
+//	for (int i = 0; i < h.size(); i++) {
 //		//cout << i - 1 << " " << tp << endl;
 //		switch (h[i]) {
 //		case '0':tp += "0000"; break;
@@ -28542,10 +28570,15 @@ else//当前字符为操作符(这里需要注意运算时操作数的顺序)
 //		}
 //
 //	}
-//	int sum = 0; bool q = 0;
-//	for (int m = 0; m<tp.size(); m++) {
-//		if (tp[m] == '1'&&q == 0) sum++, q = 1;
-//		else if (tp[m] == '0') q = 0;
+//	int sum = 0;
+//	bool q = 0;
+//	for (int m = 0; m < tp.size(); m++) {
+//		if (tp[m] == '1'&&q == 0) {
+//			sum++;
+//			q = 1;
+//		}
+//		else if (tp[m] == '0')
+//			q = 0;
 //	}
 //	return sum;
 //}
@@ -28554,15 +28587,15 @@ else//当前字符为操作符(这里需要注意运算时操作数的顺序)
 //	while (n--) {
 //		string p, q;
 //		cin >> p >> q;
-//		string a = p.substr(2, (p.size() - 2)); 
+//		string a = p.substr(2, (p.size() - 2));
 //		string b = q.substr(2, (q.size() - 2));
-//		if (fun(a)>fun(b)) { cout << "Alice" << endl; }
-//		else if (fun(a)<fun(b)) { cout << "Bob" << endl; }
+//		if (fun(a) > fun(b)) { cout << "Alice" << endl; }
+//		else if (fun(a) < fun(b)) { cout << "Bob" << endl; }
 //		else { cout << "Tie" << endl; }
 //	}
 //	return 0;
 //}
-//
+
 
 
 //4112:情报破译-Cryptanalysis
@@ -28876,6 +28909,11 @@ else//当前字符为操作符(这里需要注意运算时操作数的顺序)
 //	for (int i = 1; i <= N; i++) {
 //		for (int j = 1; j <= K; j++) {
 //			if (i >= j) dp[i][j] = dp[i - j][j] + dp[i - 1][j - 1];
+//			//下面这句不能加 
+//			/*else
+//			{
+//				dp[i][j] = dp[i][j - 1];
+//			}*/
 //			//dp[i-j][j]表示这j个数中没有1（即每个数都大于1），则每个数减1的种类数
 //			//dp[i-1][j-1]表示这j个数中有1，则分离出一个1
 //			//cout << i << " " << j << " " << dp[i][j] << endl;
@@ -32694,3 +32732,706 @@ POJ 1077 Eight
 //}
 
 
+//4007:计算字符串距离
+//#include<iostream>
+//#include<cstring>
+//#include<algorithm>
+//#include<string>
+//using namespace std;
+//const int maxn = 1010;
+//int dp[maxn][maxn];//dp[i][j] 考虑a长度为i  b长度为j时的最短距离
+//
+//int main() {
+//	int t;
+//	cin >> t;
+//	for (int cnt = 0; cnt < t; cnt++) {
+//		char a[maxn], b[maxn];
+//		cin >> a >> b;
+//		int lena = strlen(a);
+//		int lenb = strlen(b);
+//		for (int i = 0; i <= lena; i++) {
+//			dp[i][0] = i;
+//		}
+//		for (int i =0; i <= lenb; i++) {
+//			dp[0][i] = i;
+//		}
+//		
+//		for (int i = 1; i <= lena; i++) {
+//			for (int j = 1; j <= lenb; j++) {
+//				if (a[i-1] == b[j-1]) {//长度为i  下标就是i-1
+//					dp[i][j] = dp[i - 1][j - 1];
+//				}
+//				else {
+//					dp[i][j] = min(min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1]) + 1;
+//				}
+//				//cout << i << " " << j << " " << dp[i][j] << endl;
+//			}
+//		}
+//		cout << dp[lena][lenb] << endl;
+//	}
+//	system("pause");
+//}
+
+
+//4008:糖果
+//#include<iostream>
+//#include<string>
+//#include<cstring>
+//#include<algorithm>
+//#include<climits>
+//using namespace std;
+//const int maxn = 110;
+//int m[maxn];
+//int dp[maxn][maxn];
+//int main() {
+//	int n, k;
+//	cin >> n >> k;
+//
+//
+//	for (int i = 1; i <= n; i++) {
+//		cin >> m[i];
+//		//dp[i][m[i] % k] = m[i];//初始化错啦
+//	}
+//	for (int i = 1; i < k; i++) {//从1开始初始化 不是从0开始 因为
+//		dp[0][i] = INT_MIN;
+//	}
+//	//dp[0][0]=0  而不是INT_MIN 因为0能被k整除
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = 0; j < k; j++) {
+//			int tmp = (j - (m[i]) % k + k) % k;
+//			dp[i][j] = max(dp[i - 1][tmp] + m[i], dp[i - 1][j]);//这里不能和自己比大小  因为是从上一个状态转移过来
+//			//cout << i << " " << j << " " << dp[i][j] << endl;
+//		}
+//	}
+//	if (dp[n][0] < 0) {
+//		cout << 0 << endl;
+//	}
+//	else {
+//		cout << dp[n][0] << endl;
+//	}
+//	system("pause");
+//}
+
+
+//4019:黑色星期五
+//#include<iostream>
+//using namespace std;
+//const int day[13] = { 0,31,29,31,30,31,30,31,31,30,31,30,31 };
+//int main() {
+//	int w;
+//	while (cin >> w) {
+//		int d = 1, m = 1, y = 1;
+//		int cnt = 0;
+//		int suc = 0;
+//		while (d < 14 || m < 13) {
+//			d++;
+//			if (d > day[m]) {
+//				d = 1;
+//				m++;
+//			}
+//			if (m > 12) {
+//				m = 1;
+//				y++;
+//			}
+//			if (y > 1)break;
+//			cnt++;
+//			//cout << y << " " << m << " " << d<<" "<<cnt<<" "<< (cnt + w) % 7 << endl;
+//			if (d == 13) {
+//				if ((cnt + w) % 7 == 5) {
+//					suc = 1;
+//					cout << m << " ";
+//				}
+//			}
+//		}
+//		if (!suc)cout << "NULL" ;
+//		cout << endl;
+//	}
+//	system("pause");
+//}
+
+//4030:统计单词数
+//#include<iostream>
+//#include<string>
+//#include<algorithm>
+//using namespace std;
+//int main() {
+//	string tar;
+//	cin >> tar;
+//	string non;
+//	string str;
+//	getline(cin, non);
+//	getline(cin, str);
+//	transform(tar.begin(), tar.end(), tar.begin(), ::tolower);
+//	transform(str.begin(), str.end(), str.begin(), ::tolower);
+//	str += '#';
+//	int len = str.length();
+//	int cnt = 0;
+//	int first = -1;
+//	for (int i = 0; i < len; i++) {
+//		if (isalpha(str[i])) {
+//			string tmp = "";
+//			int pos = i;
+//			int flag = i;
+//			while (isalpha(str[pos])) {
+//				tmp += str[pos];
+//				i = pos;
+//				pos++;
+//			}
+//			//cout << tmp << endl;
+//			if (tmp == tar) {
+//				if (first == -1) {
+//					first = flag;
+//				}
+//				cnt++;
+//			}
+//		}
+//	}
+//	if (cnt) {
+//		cout << cnt << " " << first << endl;
+//	}
+//	else {
+//		cout << -1;
+//	}
+//	system("pause");
+//}
+
+
+//4071:查找出现了k次的字符
+//#include<iostream>
+//#include<cstring>
+//#include<map>
+//#include<string>
+//#include<stdio.h>
+//using namespace std;
+//int main() {
+//	int n;
+//	cin >> n;
+//	string str;
+//	string non;
+//	getline(cin, non);
+//	for (int i = 0; i < n; i++) {
+//		map<char, int> mp;
+//		getline(cin, str);
+//		int len = str.length();
+//		//cout << str << endl;
+//		int pos = len - 1;
+//		//cout << len << " " << pos << endl;
+//
+//		while (str[pos] != ' ') {
+//			pos--;
+//		}
+//		//cout << pos << endl;
+//		string tar = "";
+//		for (int j = pos + 1; j < len; j++) {
+//			tar += str[j];
+//		}
+//		int tarnum = stoi(tar);
+//
+//		for (int j = 0; j < pos; j++) {
+//			mp[str[j]]++;
+//		}
+//		int first = 1;
+//		for (auto itr = mp.begin(); itr != mp.end(); itr++) {
+//			if (itr->second == tarnum) {
+//				if (first) {
+//					printf("'%c'", itr->first);
+//					first = 0;
+//				}
+//				else {
+//					printf(",'%c'", itr->first);
+//				}
+//			}
+//		}
+//		cout << endl;
+//	}
+//	system("pause");
+//}
+
+
+//4072:判断多个点是否在同一直线
+//#include<iostream>
+//#include<algorithm>
+//using namespace std;
+//const int maxn = 110;
+//struct Point
+//{
+//	int x, y;
+//};
+//Point p[maxn];
+//int main() {
+//	int t;
+//	cin >> t;
+//	for (int cnt = 0; cnt < t; cnt++) {
+//		int n;
+//		cin >> n;
+//		for (int i = 1; i <= n; i++) {
+//			cin >> p[i].x >> p[i].y;
+//		}
+//		int a1 = p[1].x;
+//		int b1 = p[1].y;
+//		int suc = 1;
+//		for (int i = 2; i < n; i++) {
+//			if ((p[i + 1].y - b1)*(p[i].x - a1) != (p[i].y - b1)*(p[i + 1].x - a1)) {
+//				suc = 0;
+//			}
+//		}
+//		if (suc) {
+//			cout << "True" << endl;
+//		}
+//		else {
+//			cout << "False" << endl;
+//		}
+//	}
+//	system("pause");
+//
+//}
+
+
+//4080:Huffman编码树
+//#include<iostream>
+//#include<queue>
+//#include<vector>
+//using namespace std;
+//int main() {
+//	int n;
+//	cin >> n;
+//	priority_queue<int, vector<int>, greater<int>> q;
+//	int tmp;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> tmp;
+//		q.push(tmp);
+//	}
+//	int ans = 0;
+//	while (q.size() != 1) {
+//		int a = q.top();
+//		q.pop();
+//		int b = q.top();
+//		q.pop();
+//		ans += a + b;
+//		//cout << a << " " << b << " " << ans << endl;
+//		q.push(a + b);
+//	}
+//	cout << ans << endl;
+//	system("pause");
+//}
+
+//4088:集合运算  超时
+//#include<iostream>
+//#include<cstring>
+//#include<set>
+//using namespace std;
+//int main() {
+//	int n;
+//	cin >> n;
+//	set<int> s1, s2, backup1, backup2;
+//	int tmp;
+//	for (int i = 0; i < n; i++) {
+//		cin >> tmp;
+//		s1.insert(tmp);
+//		//backup1.insert(tmp);
+//	}
+//	cin >> n;
+//	for (int i = 0; i < n; i++) {
+//		cin >> tmp;
+//		s2.insert(tmp);
+//		//backup2.insert(tmp);
+//	}
+//	backup1 = s1;
+//	backup2 = s2;
+//	for (auto itr = s2.begin(); itr != s2.end(); itr++) {
+//		int x = *itr;
+//		backup1.erase(x);
+//	}
+//	for (auto itr = s1.begin(); itr != s1.end(); itr++) {
+//		int x = *itr;
+//		backup2.erase(x);
+//	}
+//	set<int> ans;
+//	for (auto itr = backup1.begin(); itr != backup1.end(); itr++) {
+//		ans.insert(*itr);
+//	}
+//	for (auto itr = backup2.begin(); itr != backup2.end(); itr++) {
+//		ans.insert(*itr);
+//	}
+//	for (auto itr = ans.begin(); itr != ans.end(); itr++) {
+//		cout << *itr << " ";
+//
+//	}
+//	system("pause");
+//}
+
+
+//4097:报站
+//#include<iostream>
+//#include<vector>
+//#include<algorithm>
+//#include<string>
+//#include<iterator>
+//using namespace std;
+//int main() {
+//	int n;
+//	cin >> n;
+//	vector<string> v;
+//	string str;
+//	for (int i = 0; i < n; i++) {
+//		cin >> str;
+//		v.push_back(str);
+//	}
+//	cin >> n;
+//	string st, ed;
+//	for (int i = 0; i < n; i++) {
+//		cin >> st >> ed;
+//		vector<string>::iterator itrs = find(v.begin(), v.end(), st);
+//		vector<string>::iterator itre = find(v.begin(), v.end(), ed);
+//		if (itrs <= itre) {
+//			for (auto itr = itrs; itr != itre + 1; itr++) {
+//				cout << *itr << " ";
+//			}
+//
+//		}
+//		else {
+//			//cout << *itrs << " " << *itre << endl;
+//
+//			for (auto itr = itrs; itr != itre-1 ; itr--) {
+//				cout << *itr << " ";
+//			}
+//		}
+//		cout << endl;
+//	}
+//	system("pause");
+//}
+
+//4104:单词翻转
+//#include<iostream>
+//#include<string>
+//#include<cstring>
+//#include<sstream>
+//#include<algorithm>
+//using namespace std;
+//int main() {
+//	string str;
+//	getline(cin, str);
+//	int len = str.length();
+//	str += '*';
+////	cout << len << endl;
+//	for (int i = 0; i < len; i++) {
+//		if (str[i] != ' '&&str[i] != '*') {
+//			int pos = i;
+//			string tmp = "";
+//			while (str[pos] != ' '&&str[pos] != '*') {
+//				tmp += str[pos];
+//				//cout << pos << " " << tmp << endl;
+//				i = pos;
+//				pos++;
+//			}
+//			//cout << tmp << endl;
+//			reverse(tmp.begin(), tmp.end());
+//			cout << tmp;
+//		}
+//		else {
+//			cout << str[i];
+//		}
+//	}
+//	system("pause");
+//}
+
+
+//4117:简单的整数划分问题
+//#include<iostream>
+//#include<algorithm>
+//using namespace std;
+//int solve(int a, int b) {//a是和  b是最大数
+//	if (a == 0)return 1;
+//	if  (b == 0)return 0;
+//	if (a >= b) {
+//		return solve(a - b, b) + solve(a, b - 1);//有最大数+没有最大数（故最大数减一）
+//	}
+//	else {
+//		return solve(a, b - 1);
+//	}
+//}
+//int main() {
+//	int n;
+//	while (cin >> n) {
+//		if (n == 0) {
+//			cout << 0 << endl;
+//			return 0;
+//		}
+//		int ans = solve(n, n);
+//		cout << ans << endl;
+//	}
+//	
+//	system("pause");
+//
+//}
+
+
+//4119:复杂的整数划分问题  判断特殊值 0 0
+//#include<iostream>
+//#include<cstring>
+//using namespace std;
+//void fun1(int n, int k) {
+//	int dp[55][55];
+//	memset(dp, 0, sizeof(dp));
+//	dp[0][0] = 1;
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = 1; j <= k; j++) {
+//			if (i >= j) {
+//				//注意啦 和为i  分成j个数  j个数中有单独的1  或者没有单独的1
+//				dp[i][j] = dp[i - j][j] + dp[i-1][j - 1];
+//			}
+//		}
+//	}
+//	cout << dp[n][k] << endl;
+//}
+//void fun2(int n) {
+//	int dp[55][55];
+//	memset(dp, 0, sizeof(dp));
+//	for (int i = 0; i <= n; i++)
+//	{
+//		dp[0][i] = 1;
+//	}
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = 1; j <= n; j++) {
+//			if (i >= j) {
+//				dp[i][j] = dp[i - j][j - 1] + dp[i][j - 1];
+//			}
+//			else {
+//				dp[i][j] = dp[i][i];
+//			}
+//		}
+//	}
+//	cout << dp[n][n] << endl;
+//}
+//void fun3(int n) {
+//	int dp[55][55];
+//	memset(dp, 0, sizeof(dp));
+//	for (int i = 1; i <= n; i++)//这里从0开始遍历
+//	{
+//		dp[0][i] = 1;
+//		dp[i][1] = 1;
+//	}
+//	for (int i = 1; i <= n; i++) {
+//		for (int j = 1; j <= n; j++) {
+//			if (j & 1 == 1) {
+//				if (i >= j) {
+//					dp[i][j] = dp[i - j][j] + dp[i][j - 1];
+//				}
+//				else {
+//					dp[i][j] = dp[i][i];
+//				}
+//			}
+//			else {
+//				dp[i][j] = dp[i][j - 1];
+//			}
+//			//cout << i << " " << j << " " << dp[i][j] << endl;
+//		}
+//	}
+//	cout << dp[n][n] << endl;
+//}
+//int main() {
+//	int n, k;
+//	while (cin >> n >> k) {
+//		fun1(n, k);
+//		fun2(n);
+//		fun3(n);
+//	}
+//
+//	system("pause");
+//}
+
+
+
+//4147:汉诺塔问题(Hanoi)
+//#include<iostream>
+//#include<cstring>
+//#include<string>
+//#include<stdio.h>
+//using namespace std;
+//void out(int num, char st, char ed) {
+//	printf("%d:%c->%c\n", num, st, ed);
+//}
+//void fun(int num, char st, char tmp, char ed) {
+//	//cout << num << " " << st << " " << tmp << " " << ed << endl;
+//	if (num == 1) {
+//		out(num, st, ed);
+//		return;
+//	}
+//	fun(num - 1, st, ed, tmp);
+//	out(num, st, ed);
+//	fun(num - 1, tmp, st, ed);
+//}
+//int main() {
+//	int n;
+//	char st, ed, tmp;
+//	cin >> n >> st >> tmp >> ed;
+//	fun(n, st, tmp, ed);
+//	system("pause");
+//}
+
+
+//
+#include <iostream>
+#include <cstdio>
+#include <algorithm>
+using namespace std;
+
+struct Film {
+	int f;
+	int e;
+};
+bool operator<(const Film & t, const Film & c)//重载操作符；
+{
+	if (t.e == c.e)
+		return t.f < c.f;
+	else
+		return t.e < c.e;
+}
+
+
+//12
+//1 3
+//3 4
+//0 7
+//3 8
+//15 19
+//15 20
+//10 15
+//8 18
+//6 12
+//5 10
+//4 14
+//2 9
+//0
+
+
+//4151:电影节
+//#include<iostream>
+//#include<string>
+//#include<algorithm>
+//using namespace std;
+//struct film
+//{
+//	int st, ed;
+//};
+//bool mycmp(film a, film b) {
+//	return a.ed < b.ed;
+//}
+//int main()
+//{
+//	film f[110];
+//	int n;
+//	while (cin >> n) {
+//		if (n == 0) {
+//			break;
+//		}
+//		for (int i = 0; i < n; i++) {
+//			cin >> f[i].st >> f[i].ed;
+//		}
+//		sort(f, f + n, mycmp);
+//		int t = 0;
+//		int cnt = 0;
+//		for (int i = 0; i < n; i++) {
+//			if (f[i].st >= t) {
+//				cnt++;
+//				t = f[i].ed;
+//			}
+//		}
+//		cout << cnt << endl;
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+//2287:Tian Ji -- The Horse Racing
+//#include<iostream>
+//#include<string>
+//#include<algorithm>
+//using namespace std;
+//int main() {
+//	int n;
+//	while (cin >> n) {
+//		if (n == 0) {
+//			break;
+//		}
+//		int t[1010];
+//		int k[1010];
+//		for (int i = 0; i < n; i++) {
+//			cin >> t[i];
+//		}
+//		for (int i = 0; i < n; i++) {
+//			cin >> k[i];
+//		}
+//		sort(t, t + n);
+//		sort(k, k + n);
+//		int tl = 0, tr = n - 1;
+//		int kl = 0, kr = n - 1;
+//		int res = 0;
+//		while (tl <= tr && kl <= kr) {
+//			if (t[tr] > k[kr]) {
+//				tr--;
+//				kr--;
+//				res += 200;
+//			}
+//			else if (t[tr] < k[kr]) {
+//				tl++;
+//				kr--;
+//				res -= 200;
+//			}
+//			else {
+//				if (t[tl] > k[kl]) {
+//					tl++;
+//					kl++;
+//					res += 200;
+//				}
+//				else {
+//					if (t[tl] > k[kr]) {
+//						res += 200;
+//					}
+//					else {
+//						if (t[tl] < k[kr]) {
+//							res -= 200;
+//						}
+//					}
+//					tl++;
+//					kr--;
+//				}
+//
+//			}
+//		}
+//		cout << res << endl;
+//	}
+//	system("pause");
+//
+//}
+
+//22:最大上升子序列和
+//#include<iostream>
+//#include<cstring>
+//#include<algorithm>
+//#include<climits>
+//using namespace std;
+//const int maxn = 1010;
+//int m[maxn];
+//int dp[maxn];
+//int main() {
+//	int n;
+//	cin >> n;
+//	for (int i = 1; i <= n; i++) {
+//		cin >> m[i];
+//	}
+//	for (int i = 1; i <= n; i++) {
+//		dp[i] = m[i];
+//		for (int j = 1; j < i; j++) {
+//			if (m[j] < m[i]) {
+//				dp[i] = max(dp[i], dp[j] + m[i]);
+//			}
+//		}
+//	}
+//	int ans = INT_MIN;
+//	for (int i = 1; i <= n; i++) {
+//		ans = max(ans, dp[i]);
+//	}
+//	cout << ans << endl;
+//	system("pause");
+//}
